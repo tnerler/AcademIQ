@@ -9,12 +9,19 @@ Kullanim:
   uv run python -m backend.indexing.index_cvs                        # config'deki klasor
   uv run python -m backend.indexing.index_cvs --recreate             # tablolari sifirdan kur
   uv run python -m backend.indexing.index_cvs path/to/H001.pdf       # tek dosya
-  uv run python -m backend.indexing.index_cvs --dump out/            # DB'ye yazmadan chunk'lari incele
+  uv run python -m backend.indexing.index_cvs --save data/processed/cv_output   # indeksle + ciktilari kaydet
+  uv run python -m backend.indexing.index_cvs --dump data/processed/cv_output   # DB'ye yazmadan sadece kaydet
+
+Kaydedilen ciktilar (her PDF icin ayri klasor, girdideki alt klasorler korunur):
+  <id>/<id>.md          parser Markdown ciktisi
+  <id>/<id>.json        parser JSON ciktisi (sayfalar, tablolar, metadata)
+  <id>/<id>.clean.json  kimlik bilgileri, temizlenmis bolumler, chunk'lar ve LLM profil ozeti
 """
 
 from __future__ import annotations
 
 import argparse
+from dataclasses import asdict
 import json
 import logging
 import sys
@@ -25,7 +32,7 @@ from langchain_core.documents import Document
 from backend.config import PROJECT_ROOT, get_settings
 from backend.indexing.chunker import build_chunks
 from backend.indexing.cleaner import clean_section
-from backend.indexing.parser import collect_pdfs, parse_pdf
+from backend.indexing.parser import DocumentResult, collect_pdfs, output_dir_for, parse_pdf
 from backend.indexing.profile import AkademikProfil, format_sections, profile_chain, profile_text
 from backend.indexing.sections import SEARCHABLE_SECTIONS, ParsedCV, split_sections
 from backend.vectorstore import apply_indexes, doc_id, get_chunk_store, get_profile_store, init_tables
@@ -33,11 +40,39 @@ from backend.vectorstore import apply_indexes, doc_id, get_chunk_store, get_prof
 logger = logging.getLogger("index_cvs")
 
 
-def prepare_cv(pdf_path: Path) -> tuple[ParsedCV, dict[str, list[str]]]:
+def prepare_cv(pdf_path: Path) -> tuple[DocumentResult, ParsedCV, dict[str, list[str]]]:
     """PDF -> temizlenmis bolumler. PyMuPDF thread-safe olmadigi icin sirayla cagrilir."""
-    cv = split_sections(parse_pdf(pdf_path, use_ocr=False).markdown)
+    doc = parse_pdf(pdf_path, use_ocr=False)
+    cv = split_sections(doc.markdown)
     sections = {key: clean_section(key, cv.sections[key]) for key in SEARCHABLE_SECTIONS if key in cv.sections}
-    return cv, sections
+    return doc, cv, sections
+
+
+def save_outputs(out_dir: Path, pdf_path: Path, doc: DocumentResult, cv: ParsedCV,
+                 sections: dict[str, list[str]], profile: dict | None) -> None:
+    """Bir CV'nin ara ciktilarini inceleme icin kendi klasorune yazar."""
+    out_dir.mkdir(parents=True, exist_ok=True)
+    stem = pdf_path.stem
+    (out_dir / f"{stem}.md").write_text(doc.markdown + "\n", encoding="utf-8")
+    (out_dir / f"{stem}.json").write_text(json.dumps(asdict(doc), ensure_ascii=False, indent=2), encoding="utf-8")
+    clean = {
+        "id": stem,
+        "kaynak_pdf": _relative(pdf_path),
+        "header": asdict(cv.header),
+        "profil": profile,
+        "sections": sections,
+        "chunks": [c.model_dump(include={"page_content", "metadata"}) for c in build_chunks(stem, sections)],
+    }
+    (out_dir / f"{stem}.clean.json").write_text(json.dumps(clean, ensure_ascii=False, indent=2), encoding="utf-8")
+
+
+def _existing_profile(hoca_id: str) -> dict | None:
+    """--dump modunda LLM'i cagirmadan, daha once DB'ye yazilmis profil ozetini alir (yoksa None)."""
+    try:
+        docs = get_profile_store().get_by_ids([doc_id(hoca_id)])
+    except Exception:  # DB erisilemiyorsa dump yine de profil olmadan yazilsin
+        return None
+    return docs[0].metadata.get("profil") if docs else None
 
 
 def _relative(path: Path) -> str:
@@ -73,7 +108,8 @@ def main() -> int:
                     help="CV PDF dosyasi veya klasoru")
     ap.add_argument("--recreate", action="store_true", help="Vektor tablolarini silip yeniden olusturur")
     ap.add_argument("--concurrency", type=int, default=8, help="Paralel LLM profil cagrisi sayisi")
-    ap.add_argument("--dump", type=Path, help="Temizlenmis bolum ve chunk'lari JSON olarak yazar (DB'ye yazmaz)")
+    ap.add_argument("--save", type=Path, help="Indekslerken ara ciktilari bu klasore kaydeder")
+    ap.add_argument("--dump", type=Path, help="DB'ye yazmadan ara ciktilari bu klasore kaydeder (LLM cagrilmaz)")
     args = ap.parse_args()
 
     pdfs = collect_pdfs(args.input)
@@ -84,11 +120,8 @@ def main() -> int:
     prepared = [(p, *prepare_cv(p)) for p in pdfs]
 
     if args.dump:
-        args.dump.mkdir(parents=True, exist_ok=True)
-        for p, cv, sections in prepared:
-            out = {"header": cv.header.__dict__, "sections": sections,
-                   "chunks": [c.model_dump(include={"page_content", "metadata"}) for c in build_chunks(p.stem, sections)]}
-            (args.dump / f"{p.stem}.json").write_text(json.dumps(out, ensure_ascii=False, indent=2), encoding="utf-8")
+        for p, doc, cv, sections in prepared:
+            save_outputs(output_dir_for(p, args.input, args.dump), p, doc, cv, sections, _existing_profile(p.stem))
         logger.info("%d CV %s klasorune yazildi", len(pdfs), args.dump)
         return 0
 
@@ -96,18 +129,20 @@ def main() -> int:
 
     # LLM profil ozetleri paralel (LangChain batch); hatali olanlar exception olarak doner
     profiles = profile_chain.batch(
-        [{"cv": format_sections(sections)} for _, _, sections in prepared],
+        [{"cv": format_sections(sections)} for _, _, _, sections in prepared],
         config={"max_concurrency": args.concurrency},
         return_exceptions=True,
     )
 
     failed: list[str] = []
-    for (p, cv, sections), profile in zip(prepared, profiles):
+    for (p, doc, cv, sections), profile in zip(prepared, profiles):
         try:
             if isinstance(profile, Exception):
                 raise profile
             chunks = build_chunks(p.stem, sections)
             write_cv(p, cv, profile, chunks)
+            if args.save:
+                save_outputs(output_dir_for(p, args.input, args.save), p, doc, cv, sections, profile.model_dump())
             logger.info("OK    %s (%d chunk)", p.stem, len(chunks))
         except Exception as exc:  # tek bir CV'nin hatasi tum indekslemeyi durdurmasin
             logger.error("HATA  %s: %s", p.stem, exc)
