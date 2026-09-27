@@ -13,3 +13,6 @@ data/
 .env
 data/
 docs/
+
+# Eval cache (LLM ilan cikarimi + embedding vektorleri, yeniden uretilebilir)
+eval/cache/
