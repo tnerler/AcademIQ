@@ -3,7 +3,7 @@
 - frontend/ klasörünü http://localhost:3000 adresinden servis eder
   (backend CORS ayarında izinli port 3000).
 - Mock modda CV PDF önizlemesi için /mock-pdf/<id>.pdf isteklerini
-  data/fake_akademik_cvler/ klasöründen karşılar.
+  data/raw/fake_akademik_cvler/ klasöründen karşılar.
 - Sadece 127.0.0.1'e bağlanır, önbelleği kapatır.
 
 Çalıştırma (repo kökünden):
@@ -17,7 +17,7 @@ from pathlib import Path
 from urllib.parse import unquote, urlparse
 
 FRONTEND = Path(__file__).resolve().parent
-CV_PDFS = FRONTEND.parent / "data" / "fake_akademik_cvler"
+CV_PDFS = FRONTEND.parent / "data" / "raw" / "fake_akademik_cvler"
 PORT = int(sys.argv[1]) if len(sys.argv) > 1 else 3000
 
 

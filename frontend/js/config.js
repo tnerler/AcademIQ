@@ -5,7 +5,7 @@
 //   - Adres çubuğunda ?mock=0 (gerçek API) ya da ?mock=1 (mock) verilirse
 //     seçim tarayıcıda saklanır; sidebar'daki rozetten de değiştirilebilir.
 
-const USE_MOCK_DEFAULT = true;
+const USE_MOCK_DEFAULT = false;
 const STORAGE_KEY = "academiq.useMock";
 
 function readUseMock() {

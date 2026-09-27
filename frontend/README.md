@@ -14,16 +14,17 @@ python frontend/dev_server.py
 Ardından http://localhost:3000 adresini açın. Backend CORS ayarında 3000 portu izinli.
 
 `dev_server.py`, `python -m http.server`'dan tek farkla ayrılıyor: mock modda CV PDF
-önizlemesi için `data/fake_akademik_cvler/` klasörünü `/mock-pdf/` altında servis ediyor.
+önizlemesi için `data/raw/fake_akademik_cvler/` klasörünü `/mock-pdf/` altında servis ediyor.
 
 ## Mock / gerçek API
 
-- Varsayılan olarak **mock veri** kullanılır (`js/config.js` → `USE_MOCK_DEFAULT`).
-- Gerçek backend'e geçmek için sol alttaki **Mock veri** rozetine tıklayın ya da
-  `http://localhost:3000/?mock=0` adresini açın. Seçim tarayıcıda saklanır. `?mock=1` ile geri dönülür.
+- Varsayılan olarak **gerçek backend** kullanılır (`js/config.js` → `USE_MOCK_DEFAULT`).
+  Backend: `uv run uvicorn backend.api.main:app --reload` (Postgres için önce `docker compose up -d`).
+- Mock veriye geçmek için sol alttaki rozete tıklayın ya da `http://localhost:3000/?mock=1`
+  adresini açın. Seçim tarayıcıda saklanır. `?mock=0` ile gerçek API'ye dönülür.
 - Backend adresi: `js/config.js` → `API_URL` (varsayılan `http://localhost:8000`).
 
-Mock modda Eşleştir ekranında `data/duz_metin/` ya da `data/tablo_formatli/` klasöründen
+Mock modda Eşleştir ekranında `data/raw/proje_ilanlari/duz_metin/` ya da `.../tablo_formatli/` klasöründen
 bir ilan PDF'i seçin; ilan dosya adındaki `I0xx` numarasından tanınır. "Metin yapıştır"
 sekmesinde ise metin, kelime örtüşmesine göre en yakın örnek ilanla eşlenir.
 Hata ekranını denemek için adında `hata` geçen bir PDF yükleyin ya da metne "hata" yazın.
@@ -52,7 +53,6 @@ frontend/
     matches.json        { ilan_id: MatchResponse }
     ilanlar.json        önizleme ekranları için örnek ilan listesi
     generate_mock.py    yukarıdaki dosyaları data/ altındaki PDF'lerden üretir
-  TUANA_SORULAR.md      backend'e iletilecek açık sorular
 ```
 
 ## Kullanılan endpoint'ler
@@ -62,9 +62,7 @@ frontend/
 | GET | `/api/cvs` | CV'ler listesi, Ana Sayfa sayacı, Eşleştir "N CV tarandı" |
 | GET | `/api/cvs/{id}` | CV'ler detay paneli |
 | GET | `/api/cvs/{id}/pdf` | PDF önizleme (iframe) |
-| POST | `/api/match` | Eşleştir (multipart: PDF için `file`, metin için `metin`*) |
-
-\* Metin alanının adı backend'le netleşecek, bkz. `TUANA_SORULAR.md`.
+| POST | `/api/match` | Eşleştir (multipart: PDF için `file`, düz metin için `metin`; 100–3000 karakter) |
 
 Pasif modüller (`POST /api/cvs`, `GET/POST /api/ilanlar`) çağrılmıyor.
 

@@ -13,7 +13,15 @@ data/
 .env
 data/
 docs/
+
+
+# Eval cache (LLM ilan cikarimi + embedding vektorleri, yeniden uretilebilir)
+eval/cache/
+
 /.claude
 AcademIQ Arayüz Taslakları.pdf
 AcademIQ.md
 frontend/TUANA_SORULAR.md
+
+academiq.sql
+data.zip
