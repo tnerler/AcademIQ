@@ -1,0 +1,288 @@
+[
+ {
+  "id": "I001",
+  "baslik": "Gelişmekte Olan Piyasalarda Fintek Uygulamalarının Finansal İstikrara Etkisi",
+  "kurum": "TÜBİTAK 1001",
+  "program": "TÜBİTAK 1001 - Bilimsel ve Teknolojik Araştırma Projelerini Destekleme Programı",
+  "alan": "Ekonomi ve Finans",
+  "gerekli_uzmanlik": [
+   "Fintek",
+   "Finansal ekonometri",
+   "Uluslararası ticaret",
+   "Davranışsal finans"
+  ],
+  "son_basvuru": "2026-10-15",
+  "kaynak": "TÜBİTAK",
+  "dosya": "I001_gelismekteolan.pdf"
+ },
+ {
+  "id": "I002",
+  "baslik": "Kritik Altyapılar için Post-Kuantum Kriptografi Tabanlı Güvenlik Mimarisi",
+  "kurum": "TÜBİTAK 1007",
+  "program": "TÜBİTAK 1007 - Kamu Kurumları Araştırma ve Geliştirme Projelerini Destekleme Programı",
+  "alan": "Siber Güvenlik",
+  "gerekli_uzmanlik": [
+   "Post-kuantum kriptografi",
+   "IoT güvenliği",
+   "Kriptografi",
+   "Saldırı tespit sistemleri"
+  ],
+  "son_basvuru": "2026-11-01",
+  "kaynak": "TÜBİTAK",
+  "dosya": "I002_kritikaltyapil.pdf"
+ },
+ {
+  "id": "I003",
+  "baslik": "STEM Eğitiminde Yapay Zekâ Destekli Kişiselleştirilmiş Öğrenme Platformu",
+  "kurum": "Milli Eğitim Bakanlığı",
+  "program": "Milli Eğitim Bakanlığı - Eğitim Teknolojileri Genel Müdürlüğü",
+  "alan": "Eğitim Bilimleri ve Eğitim Teknolojileri",
+  "gerekli_uzmanlik": [
+   "STEM eğitimi",
+   "Yapay zekâ destekli öğretim",
+   "Oyunlaştırma",
+   "Öğrenme analitiği"
+  ],
+  "son_basvuru": "2026-10-20",
+  "kaynak": "Elle yüklendi",
+  "dosya": "I003_stemegitiminde.pdf"
+ },
+ {
+  "id": "I004",
+  "baslik": "Kardiyovasküler Hastalıklarda Yapay Zekâ Destekli Erken Tanı Sistemi",
+  "kurum": "Sağlık Bakanlığı",
+  "program": "Sağlık Bakanlığı - Sağlık Bilimleri Üniversitesi Ar-Ge Destek Programı",
+  "alan": "Tıp ve Sağlık Bilimleri",
+  "gerekli_uzmanlik": [
+   "Kardiyoloji",
+   "Yapay zekâ ile tıbbi tanı",
+   "Klinik araştırmalar",
+   "Epidemiyoloji"
+  ],
+  "son_basvuru": "2026-09-30",
+  "kaynak": "Elle yüklendi",
+  "dosya": "I004_kardiyovaskule.pdf"
+ },
+ {
+  "id": "I005",
+  "baslik": "6G Haberleşme Sistemleri için Yeni Nesil Anten ve Sinyal İşleme Teknikleri",
+  "kurum": "TÜBİTAK 1501",
+  "program": "TÜBİTAK 1501 - Sanayi Ar-Ge Projeleri Destekleme Programı",
+  "alan": "Haberleşme ve Sinyal İşleme",
+  "gerekli_uzmanlik": [
+   "5G/6G haberleşme",
+   "Anten tasarımı",
+   "Sinyal işleme",
+   "Radar sistemleri"
+  ],
+  "son_basvuru": "2026-10-05",
+  "kaynak": "TÜBİTAK",
+  "dosya": "I005_6ghaberlesmesi.pdf"
+ },
+ {
+  "id": "I006",
+  "baslik": "Elektrikli Araçlar için Akıllı Şarj Altyapısı ve Enerji Depolama Çözümleri",
+  "kurum": "Sanayi ve Teknoloji Bakanlığı",
+  "program": "Sanayi ve Teknoloji Bakanlığı - Yeşil Dönüşüm Destek Programı",
+  "alan": "Yenilenebilir Enerji ve Güç Sistemleri",
+  "gerekli_uzmanlik": [
+   "Elektrikli araç şarj altyapısı",
+   "Enerji depolama",
+   "Akıllı şebekeler",
+   "Güç elektroniği"
+  ],
+  "son_basvuru": "2026-11-10",
+  "kaynak": "Diğer site",
+  "dosya": "I006_elektrikliarac.pdf"
+ },
+ {
+  "id": "I007",
+  "baslik": "Türkçe Büyük Dil Modelleri ile Açıklanabilir Karar Destek Sistemleri",
+  "kurum": "TÜBİTAK 1001",
+  "program": "TÜBİTAK 1001 - Bilimsel ve Teknolojik Araştırma Projelerini Destekleme Programı",
+  "alan": "Yapay Zekâ ve Makine Öğrenmesi",
+  "gerekli_uzmanlik": [
+   "Büyük dil modelleri",
+   "Açıklanabilir yapay zekâ",
+   "Doğal dil işleme",
+   "Derin öğrenme"
+  ],
+  "son_basvuru": "2026-10-25",
+  "kaynak": "TÜBİTAK",
+  "dosya": "I007_turkcebuyukdil.pdf"
+ },
+ {
+  "id": "I008",
+  "baslik": "CRISPR Tabanlı Gen Düzenleme ile Kanser Tedavisinde Yeni Yaklaşımlar",
+  "kurum": "TÜBİTAK 1001",
+  "program": "TÜBİTAK 1001 - Bilimsel ve Teknolojik Araştırma Projelerini Destekleme Programı",
+  "alan": "Moleküler Biyoloji ve Biyoteknoloji",
+  "gerekli_uzmanlik": [
+   "Gen düzenleme (CRISPR)",
+   "Kanser biyolojisi",
+   "Kök hücre",
+   "Biyoinformatik"
+  ],
+  "son_basvuru": "2026-11-15",
+  "kaynak": "TÜBİTAK",
+  "dosya": "I008_crisprtabanlig.pdf"
+ },
+ {
+  "id": "I009",
+  "baslik": "Tarihi Yapılarda Deprem Güçlendirme ve Sismik İzolasyon Uygulamaları",
+  "kurum": "Kültür ve Turizm Bakanlığı",
+  "program": "Kültür ve Turizm Bakanlığı - Kültürel Miras Koruma Destek Programı",
+  "alan": "Deprem ve Yapı Mühendisliği",
+  "gerekli_uzmanlik": [
+   "Güçlendirme teknikleri",
+   "Sismik izolasyon",
+   "Deprem mühendisliği",
+   "Hasar tespiti"
+  ],
+  "son_basvuru": "2026-10-12",
+  "kaynak": "Elle yüklendi",
+  "dosya": "I009_tarihiyapilard.pdf"
+ },
+ {
+  "id": "I010",
+  "baslik": "Havacılık Uygulamaları için Yüksek Entropili Alaşımlar ve Kompozit Malzeme Geliştirilmesi",
+  "kurum": "Savunma Sanayii Başkanlığı",
+  "program": "Savunma Sanayii Başkanlığı - Ar-Ge Destek Programı",
+  "alan": "Malzeme Bilimi ve Nanoteknoloji",
+  "gerekli_uzmanlik": [
+   "Yüksek entropili alaşımlar",
+   "Kompozit malzemeler",
+   "Korozyon",
+   "Eklemeli imalat (3B baskı)"
+  ],
+  "son_basvuru": "2026-11-05",
+  "kaynak": "Diğer site",
+  "dosya": "I010_havacilikuygul.pdf"
+ },
+ {
+  "id": "I011",
+  "baslik": "Fonksiyonel Gıda Ürünlerinde Probiyotik Katkı Maddesi Geliştirilmesi",
+  "kurum": "Tarım ve Orman Bakanlığı",
+  "program": "Tarım ve Orman Bakanlığı - Gıda Ar-Ge Destek Programı",
+  "alan": "Tarım ve Gıda Bilimleri",
+  "gerekli_uzmanlik": [
+   "Probiyotikler",
+   "Fonksiyonel gıdalar",
+   "Gıda ambalajlama",
+   "Gıda güvenliği"
+  ],
+  "son_basvuru": "2026-10-18",
+  "kaynak": "Diğer site",
+  "dosya": "I011_fonksiyonelgid.pdf"
+ },
+ {
+  "id": "I012",
+  "baslik": "Sürdürülebilir Kimyasal Süreçler için Yeni Nesil Kataliz Yöntemleri",
+  "kurum": "TÜBİTAK 1003",
+  "program": "TÜBİTAK 1003 - Öncelikli Alanlar Ar-Ge Projeleri Destekleme Programı",
+  "alan": "Kimya ve Kimya Mühendisliği",
+  "gerekli_uzmanlik": [
+   "Kataliz",
+   "Yeşil kimya",
+   "Hesaplamalı kimya",
+   "Adsorpsiyon"
+  ],
+  "son_basvuru": "2026-11-20",
+  "kaynak": "TÜBİTAK",
+  "dosya": "I012_surdurulebilir.pdf"
+ },
+ {
+  "id": "I013",
+  "baslik": "Tarımsal Otomasyon için İnsansız Hava Araçları ve Mekatronik Sistemler",
+  "kurum": "Sanayi İşbirliği (Özel Sektör) Projesi",
+  "program": "Sanayi İşbirliği (Özel Sektör) Projesi",
+  "alan": "Makine Mühendisliği ve Robotik",
+  "gerekli_uzmanlik": [
+   "İnsansız hava araçları",
+   "Mekatronik",
+   "Otonom sistemler",
+   "Hesaplamalı akışkanlar dinamiği"
+  ],
+  "son_basvuru": "2026-10-08",
+  "kaynak": "Diğer site",
+  "dosya": "I013_tarimsalotomas.pdf"
+ },
+ {
+  "id": "I014",
+  "baslik": "Mikroplastik Kirliliğinin İzlenmesi ve Döngüsel Ekonomi Temelli Çözüm Önerileri",
+  "kurum": "Çevre, Şehircilik ve İklim Değişikliği Bakanlığı",
+  "program": "Çevre, Şehircilik ve İklim Değişikliği Bakanlığı",
+  "alan": "Çevre Mühendisliği ve İklim Değişikliği",
+  "gerekli_uzmanlik": [
+   "Mikroplastikler",
+   "Döngüsel ekonomi",
+   "Su kaynakları yönetimi",
+   "Karbon ayak izi"
+  ],
+  "son_basvuru": "2026-11-08",
+  "kaynak": "Diğer site",
+  "dosya": "I014_mikroplastikki.pdf"
+ },
+ {
+  "id": "I015",
+  "baslik": "Enerji Sektöründe Finansal Risk Yönetimi ve Ekonometrik Modelleme",
+  "kurum": "Enerji Piyasaları İşletme A.Ş.",
+  "program": "Enerji Piyasaları İşletme A.Ş. - Ar-Ge İşbirliği",
+  "alan": "Ekonomi ve Finans",
+  "gerekli_uzmanlik": [
+   "Enerji ekonomisi",
+   "Finansal ekonometri",
+   "Uluslararası ticaret"
+  ],
+  "son_basvuru": "2026-10-22",
+  "kaynak": "Elle yüklendi",
+  "dosya": "I015_enerjisektorun.pdf"
+ },
+ {
+  "id": "I016",
+  "baslik": "Tarımda Yapay Zekâ Destekli Uzaktan Algılama ile Hassas Tarım Uygulamaları",
+  "kurum": "TÜBİTAK 1001",
+  "program": "TÜBİTAK 1001 - Bilimsel ve Teknolojik Araştırma Projelerini Destekleme Programı",
+  "alan": "Tarım ve Gıda Bilimleri",
+  "gerekli_uzmanlik": [
+   "Hassas tarım",
+   "Tarımsal uzaktan algılama",
+   "Yapay zekâ destekli öğretim",
+   "Derin öğrenme"
+  ],
+  "son_basvuru": "2026-11-12",
+  "kaynak": "TÜBİTAK",
+  "dosya": "I016_tarimdayapayze.pdf"
+ },
+ {
+  "id": "I017",
+  "baslik": "İklim Değişikliğinin Yenilenebilir Enerji Altyapısına Etkilerinin Değerlendirilmesi",
+  "kurum": "TÜBİTAK 1003",
+  "program": "TÜBİTAK 1003 - Öncelikli Alanlar Ar-Ge Projeleri Destekleme Programı",
+  "alan": "Çevre Mühendisliği ve İklim Değişikliği",
+  "gerekli_uzmanlik": [
+   "İklim değişikliği etkileri",
+   "Akıllı şebekeler",
+   "Mikro şebekeler",
+   "Döngüsel ekonomi"
+  ],
+  "son_basvuru": "2026-10-30",
+  "kaynak": "TÜBİTAK",
+  "dosya": "I017_iklimdegisikli.pdf"
+ },
+ {
+  "id": "I018",
+  "baslik": "Kentsel Dönüşüm Sürecinde Sosyolojik Etkilerin ve Toplumsal Algının Araştırılması",
+  "kurum": "Çevre, Şehircilik ve İklim Değişikliği Bakanlığı",
+  "program": "Çevre, Şehircilik ve İklim Değişikliği Bakanlığı - Kentsel Dönüşüm Genel Müdürlüğü",
+  "alan": "Şehir Sosyolojisi ve Toplumsal Araştırmalar",
+  "gerekli_uzmanlik": [
+   "Kentsel sosyoloji",
+   "Anket ve saha araştırması yöntemleri",
+   "Toplumsal algı analizi"
+  ],
+  "son_basvuru": "2026-11-25",
+  "kaynak": "Elle yüklendi",
+  "dosya": "I018_kentseldonusum.pdf"
+ }
+]

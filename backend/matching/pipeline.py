@@ -64,8 +64,12 @@ def _evidence(a: AcademicScore, g: Gerekce, best_chunk: float) -> list[Kanit]:
 
 
 async def match(pdf_bytes: bytes) -> MatchResponse:
-    markdown = await asyncio.to_thread(_parse, pdf_bytes)
-    ilan: IlanOzet = await extract_ilan(markdown)
+    return await match_text(await asyncio.to_thread(_parse, pdf_bytes))
+
+
+async def match_text(ilan_metni: str) -> MatchResponse:
+    """Ilan metni (PDF'ten cikarilmis Markdown ya da kullanicinin yapistirdigi duz metin) ile eslestirme."""
+    ilan: IlanOzet = await extract_ilan(ilan_metni)
 
     query_vector = await get_embeddings().aembed_query(ilan.sorgu_metni)
     hits, profiles = await asyncio.gather(

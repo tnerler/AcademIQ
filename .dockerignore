@@ -1,0 +1,10 @@
+.git
+.venv
+.env
+.claude
+data
+docs
+eval
+frontend
+**/__pycache__
+*.py[oc]

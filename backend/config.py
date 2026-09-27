@@ -45,7 +45,7 @@ class Settings(BaseSettings):
     cv_pdf_dir: Path = PROJECT_ROOT / "data" / "raw" / "fake_akademik_cvler"
 
     # --- API ---
-    cors_origins: list[str] = ["http://localhost:3000", "http://localhost:5173"]
+    cors_origins: list[str] = ["http://localhost:3000", "http://127.0.0.1:3000", "http://localhost:5173"]
 
     # --- PGVectorStore tablolari ---
     chunk_table: str = "cv_chunks"
