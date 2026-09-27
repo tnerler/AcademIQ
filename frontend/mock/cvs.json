@@ -1,0 +1,2078 @@
+[
+ {
+  "id": "H001_Zeynep_Yildiz",
+  "unvan": "Prof. Dr.",
+  "ad_soyad": "Zeynep YILDIZ",
+  "universite": "Selçuk Üniversitesi",
+  "fakulte": "İktisadi ve İdari Bilimler Fakültesi",
+  "bolum": "İktisat",
+  "ana_alan": "Ekonomi ve Finans",
+  "arastirma_alanlari": [
+   "Fintek",
+   "Kalkınma ekonomisi",
+   "Enerji ekonomisi",
+   "Finansal ekonometri",
+   "Uluslararası ticaret",
+   "Davranışsal finans"
+  ],
+  "email": "zeynep.yildiz@selcuk.demo.edu.tr",
+  "profil": {
+   "arastirma_alanlari": [
+    "Fintek",
+    "Kalkınma ekonomisi",
+    "Enerji ekonomisi",
+    "Finansal ekonometri",
+    "Uluslararası ticaret",
+    "Davranışsal finans"
+   ],
+   "yontemler": [
+    "panel veri",
+    "makine öğrenmesi tabanlı",
+    "ekonometrik",
+    "yapay zekâ destekli"
+   ],
+   "anahtar_kelimeler": [
+    "KOBİ'lerin finansmana erişimi",
+    "Dijital paraların finansal istikrara etkisi",
+    "Yeşil dönüşümün ekonomik etkileri",
+    "Enflasyon beklentilerinin tahmini"
+   ],
+   "ozet_metni": "İktisat alanında çalışan Prof. Dr. Zeynep Yıldız; Fintek, Kalkınma ekonomisi, Enerji ekonomisi konularına odaklanıyor. Çalışmalarında ağırlıklı olarak panel veri, makine öğrenmesi tabanlı, ekonometrik yöntemlerini kullanıyor. CV'sinde 27 yayın, 9 proje ve 20 yönetilen tez bulunuyor."
+  },
+  "pdf_url": "/api/cvs/H001_Zeynep_Yildiz/pdf"
+ },
+ {
+  "id": "H002_Serap_Ozdemir",
+  "unvan": "Dr. Öğr. Üyesi",
+  "ad_soyad": "Serap ÖZDEMİR",
+  "universite": "Ankara Üniversitesi",
+  "fakulte": "İktisadi ve İdari Bilimler Fakültesi",
+  "bolum": "İktisat",
+  "ana_alan": "Ekonomi ve Finans",
+  "arastirma_alanlari": [
+   "Finansal ekonometri",
+   "Fintek",
+   "Enerji ekonomisi",
+   "Uluslararası ticaret"
+  ],
+  "email": "serap.ozdemir@ankara.demo.edu.tr",
+  "profil": {
+   "arastirma_alanlari": [
+    "Finansal ekonometri",
+    "Fintek",
+    "Enerji ekonomisi",
+    "Uluslararası ticaret"
+   ],
+   "yontemler": [
+    "panel veri",
+    "makine öğrenmesi tabanlı",
+    "ekonometrik",
+    "yapay zekâ destekli"
+   ],
+   "anahtar_kelimeler": [
+    "Dijital paraların finansal istikrara etkisi",
+    "Enflasyon beklentilerinin tahmini",
+    "KOBİ'lerin finansmana erişimi",
+    "Yeşil dönüşümün ekonomik etkileri"
+   ],
+   "ozet_metni": "İktisat alanında çalışan Dr. Öğr. Üyesi Serap Özdemir; Finansal ekonometri, Fintek, Enerji ekonomisi konularına odaklanıyor. Çalışmalarında ağırlıklı olarak panel veri, makine öğrenmesi tabanlı, ekonometrik yöntemlerini kullanıyor. CV'sinde 13 yayın, 4 proje ve 2 yönetilen tez bulunuyor."
+  },
+  "pdf_url": "/api/cvs/H002_Serap_Ozdemir/pdf"
+ },
+ {
+  "id": "H003_Seda_Ozturk",
+  "unvan": "Dr. Öğr. Üyesi",
+  "ad_soyad": "Seda ÖZTÜRK",
+  "universite": "Boğaziçi Üniversitesi",
+  "fakulte": "Mühendislik Fakültesi",
+  "bolum": "Bilgisayar Mühendisliği",
+  "ana_alan": "Siber Güvenlik",
+  "arastirma_alanlari": [
+   "Dijital adli bilişim",
+   "Ağ güvenliği",
+   "Kriptografi",
+   "Kötü amaçlı yazılım analizi"
+  ],
+  "email": "seda.ozturk@boun.demo.edu.tr",
+  "profil": {
+   "arastirma_alanlari": [
+    "Dijital adli bilişim",
+    "Ağ güvenliği",
+    "Kriptografi",
+    "Kötü amaçlı yazılım analizi"
+   ],
+   "yontemler": [
+    "makine öğrenmesi",
+    "anomali tespiti",
+    "blokzincir",
+    "hafif kriptografi"
+   ],
+   "anahtar_kelimeler": [
+    "Kritik altyapıların siber saldırılara karşı korunması",
+    "Bankacılık sistemlerinde dolandırıcılık tespiti",
+    "E-devlet uygulamalarında veri mahremiyeti",
+    "IoT cihazlarında güvenli kimlik doğrulama"
+   ],
+   "ozet_metni": "Bilgisayar Mühendisliği alanında çalışan Dr. Öğr. Üyesi Seda Öztürk; Dijital adli bilişim, Ağ güvenliği, Kriptografi konularına odaklanıyor. Çalışmalarında ağırlıklı olarak makine öğrenmesi, anomali tespiti, blokzincir yöntemlerini kullanıyor. CV'sinde 12 yayın, 4 proje ve 4 yönetilen tez bulunuyor."
+  },
+  "pdf_url": "/api/cvs/H003_Seda_Ozturk/pdf"
+ },
+ {
+  "id": "H004_Serap_Sahin",
+  "unvan": "Doç. Dr.",
+  "ad_soyad": "Serap ŞAHİN",
+  "universite": "Boğaziçi Üniversitesi",
+  "fakulte": "Eğitim Fakültesi",
+  "bolum": "Bilgisayar ve Öğretim Teknolojileri Eğitimi",
+  "ana_alan": "Eğitim Bilimleri ve Eğitim Teknolojileri",
+  "arastirma_alanlari": [
+   "Uzaktan eğitim",
+   "Öğretmen eğitimi",
+   "Artırılmış gerçeklik",
+   "STEM eğitimi",
+   "Yapay zekâ destekli öğretim",
+   "Tarımsal uzaktan algılama",
+   "Gıda ambalajlama"
+  ],
+  "email": "serap.sahin@boun.demo.edu.tr",
+  "profil": {
+   "arastirma_alanlari": [
+    "Uzaktan eğitim",
+    "Öğretmen eğitimi",
+    "Artırılmış gerçeklik",
+    "STEM eğitimi",
+    "Yapay zekâ destekli öğretim",
+    "Tarımsal uzaktan algılama",
+    "Gıda ambalajlama"
+   ],
+   "yontemler": [
+    "oyunlaştırma tabanlı",
+    "artırılmış gerçeklik destekli",
+    "yapay zekâ destekli",
+    "öğrenme analitiği ile",
+    "akıllı sensörlerle"
+   ],
+   "anahtar_kelimeler": [
+    "Öğretmenlerin dijital yetkinlikleri",
+    "STEM etkinliklerinin geliştirilmesi",
+    "Uzaktan eğitimde öğrenci başarısının tahmini",
+    "Ortaokul öğrencilerinde bilgi işlemsel düşünme",
+    "Gıdalarda mikotoksin tespiti"
+   ],
+   "ozet_metni": "Bilgisayar ve Öğretim Teknolojileri Eğitimi alanında çalışan Doç. Dr. Serap Şahin; Uzaktan eğitim, Öğretmen eğitimi, Artırılmış gerçeklik konularına odaklanıyor. Çalışmalarında ağırlıklı olarak oyunlaştırma tabanlı, artırılmış gerçeklik destekli, yapay zekâ destekli yöntemlerini kullanıyor. CV'sinde 19 yayın, 6 proje ve 10 yönetilen tez bulunuyor."
+  },
+  "pdf_url": "/api/cvs/H004_Serap_Sahin/pdf"
+ },
+ {
+  "id": "H005_Ayse_Tunc",
+  "unvan": "Dr. Öğr. Üyesi",
+  "ad_soyad": "Ayşe TUNÇ",
+  "universite": "Hacettepe Üniversitesi",
+  "fakulte": "Tıp Fakültesi",
+  "bolum": "İç Hastalıkları / Tıbbi Biyokimya",
+  "ana_alan": "Tıp ve Sağlık Bilimleri",
+  "arastirma_alanlari": [
+   "Klinik araştırmalar",
+   "Epidemiyoloji",
+   "Kardiyoloji",
+   "Yapay zekâ ile tıbbi tanı",
+   "Halk sağlığı"
+  ],
+  "email": "ayse.tunc@hacettepe.demo.edu.tr",
+  "profil": {
+   "arastirma_alanlari": [
+    "Klinik araştırmalar",
+    "Epidemiyoloji",
+    "Kardiyoloji",
+    "Yapay zekâ ile tıbbi tanı",
+    "Halk sağlığı"
+   ],
+   "yontemler": [
+    "telemedikal",
+    "biyobelirteç tabanlı",
+    "yapay zekâ destekli",
+    "çok merkezli klinik"
+   ],
+   "anahtar_kelimeler": [
+    "Kronik hastalıklarda risk tahmini",
+    "Diyabet hastalarının uzaktan izlenmesi",
+    "Kanser taramalarının etkinliği",
+    "Kalp yetmezliğinde erken tanı"
+   ],
+   "ozet_metni": "İç Hastalıkları / Tıbbi Biyokimya alanında çalışan Dr. Öğr. Üyesi Ayşe Tunç; Klinik araştırmalar, Epidemiyoloji, Kardiyoloji konularına odaklanıyor. Çalışmalarında ağırlıklı olarak telemedikal, biyobelirteç tabanlı, yapay zekâ destekli yöntemlerini kullanıyor. CV'sinde 11 yayın, 5 proje ve 4 yönetilen tez bulunuyor."
+  },
+  "pdf_url": "/api/cvs/H005_Ayse_Tunc/pdf"
+ },
+ {
+  "id": "H006_Merve_Yildiz",
+  "unvan": "Doç. Dr.",
+  "ad_soyad": "Merve YILDIZ",
+  "universite": "Gazi Üniversitesi",
+  "fakulte": "Mühendislik Fakültesi",
+  "bolum": "Elektronik ve Haberleşme Mühendisliği",
+  "ana_alan": "Haberleşme ve Sinyal İşleme",
+  "arastirma_alanlari": [
+   "5G/6G haberleşme",
+   "Görünür ışık haberleşmesi",
+   "Anten tasarımı",
+   "Radar sistemleri",
+   "Sinyal işleme",
+   "Akıllı şebekeler",
+   "Yeşil hidrojen"
+  ],
+  "email": "merve.yildiz@gazi.demo.edu.tr",
+  "profil": {
+   "arastirma_alanlari": [
+    "5G/6G haberleşme",
+    "Görünür ışık haberleşmesi",
+    "Anten tasarımı",
+    "Radar sistemleri",
+    "Sinyal işleme",
+    "Akıllı şebekeler",
+    "Yeşil hidrojen"
+   ],
+   "yontemler": [
+    "düşük maliyetli",
+    "yapay zekâ destekli",
+    "yerli ve milli",
+    "yazılım tanımlı",
+    "akıllı yansıtıcı yüzey tasarımı için yerli ve milli"
+   ],
+   "anahtar_kelimeler": [
+    "Otomotiv radarlarında hedef tespiti",
+    "Afet bölgelerinde acil haberleşme ağı",
+    "Yerli uydu haberleşme terminali",
+    "6G için akıllı yansıtıcı yüzey tasarımı",
+    "Güneş enerjisi santrallerinde verim artırımı"
+   ],
+   "ozet_metni": "Elektronik ve Haberleşme Mühendisliği alanında çalışan Doç. Dr. Merve Yıldız; 5G/6G haberleşme, Görünür ışık haberleşmesi, Anten tasarımı konularına odaklanıyor. Çalışmalarında ağırlıklı olarak düşük maliyetli, yapay zekâ destekli, yerli ve milli yöntemlerini kullanıyor. CV'sinde 18 yayın, 8 proje ve 8 yönetilen tez bulunuyor."
+  },
+  "pdf_url": "/api/cvs/H006_Merve_Yildiz/pdf"
+ },
+ {
+  "id": "H007_Volkan_Aslan",
+  "unvan": "Prof. Dr.",
+  "ad_soyad": "Volkan ASLAN",
+  "universite": "İstanbul Teknik Üniversitesi",
+  "fakulte": "Mühendislik Fakültesi",
+  "bolum": "Elektrik-Elektronik Mühendisliği",
+  "ana_alan": "Yenilenebilir Enerji ve Güç Sistemleri",
+  "arastirma_alanlari": [
+   "Akıllı şebekeler",
+   "Yeşil hidrojen",
+   "Elektrikli araç şarj altyapısı",
+   "Enerji depolama",
+   "Mikro şebekeler",
+   "Güç elektroniği"
+  ],
+  "email": "volkan.aslan@itu.demo.edu.tr",
+  "profil": {
+   "arastirma_alanlari": [
+    "Akıllı şebekeler",
+    "Yeşil hidrojen",
+    "Elektrikli araç şarj altyapısı",
+    "Enerji depolama",
+    "Mikro şebekeler",
+    "Güç elektroniği"
+   ],
+   "yontemler": [
+    "optimizasyon tabanlı",
+    "IoT tabanlı",
+    "yapay zekâ destekli",
+    "hızlı şarj istasyonu için IoT tabanlı",
+    "model öngörülü kontrol"
+   ],
+   "anahtar_kelimeler": [
+    "Yeşil hidrojen üretimi",
+    "Güneş enerjisi santrallerinde verim artırımı",
+    "Mikro şebekelerde enerji yönetimi",
+    "Rüzgâr enerjisi üretim tahmini",
+    "Elektrikli araçlar"
+   ],
+   "ozet_metni": "Elektrik-Elektronik Mühendisliği alanında çalışan Prof. Dr. Volkan Aslan; Akıllı şebekeler, Yeşil hidrojen, Elektrikli araç şarj altyapısı konularına odaklanıyor. Çalışmalarında ağırlıklı olarak optimizasyon tabanlı, IoT tabanlı, yapay zekâ destekli yöntemlerini kullanıyor. CV'sinde 27 yayın, 7 proje ve 15 yönetilen tez bulunuyor."
+  },
+  "pdf_url": "/api/cvs/H007_Volkan_Aslan/pdf"
+ },
+ {
+  "id": "H008_Hasan_Tunc",
+  "unvan": "Doç. Dr.",
+  "ad_soyad": "Hasan TUNÇ",
+  "universite": "Hacettepe Üniversitesi",
+  "fakulte": "Mühendislik Fakültesi",
+  "bolum": "Bilgisayar Mühendisliği",
+  "ana_alan": "Yapay Zekâ ve Makine Öğrenmesi",
+  "arastirma_alanlari": [
+   "Pekiştirmeli öğrenme",
+   "Büyük dil modelleri",
+   "Derin öğrenme",
+   "Türkçe metin madenciliği",
+   "Federated learning",
+   "Çizge sinir ağları",
+   "Oyunlaştırma",
+   "Yapay zekâ destekli öğretim"
+  ],
+  "email": "hasan.tunc@hacettepe.demo.edu.tr",
+  "profil": {
+   "arastirma_alanlari": [
+    "Pekiştirmeli öğrenme",
+    "Büyük dil modelleri",
+    "Derin öğrenme",
+    "Türkçe metin madenciliği",
+    "Federated learning",
+    "Çizge sinir ağları",
+    "Oyunlaştırma",
+    "Yapay zekâ destekli öğretim"
+   ],
+   "yontemler": [
+    "pekiştirmeli öğrenme",
+    "çizge sinir ağı",
+    "transformer",
+    "açıklanabilir yapay zekâ",
+    "derin öğrenme"
+   ],
+   "anahtar_kelimeler": [
+    "Türkçe hukuki metinlerin analizi",
+    "Sağlık kayıtlarından bilgi çıkarımı",
+    "Kamu hizmetlerinde sohbet robotu geliştirme",
+    "Görüntü tabanlı kalite kontrol",
+    "STEM etkinliklerinin geliştirilmesi"
+   ],
+   "ozet_metni": "Bilgisayar Mühendisliği alanında çalışan Doç. Dr. Hasan Tunç; Pekiştirmeli öğrenme, Büyük dil modelleri, Derin öğrenme konularına odaklanıyor. Çalışmalarında ağırlıklı olarak pekiştirmeli öğrenme, çizge sinir ağı, transformer yöntemlerini kullanıyor. CV'sinde 18 yayın, 6 proje ve 12 yönetilen tez bulunuyor."
+  },
+  "pdf_url": "/api/cvs/H008_Hasan_Tunc/pdf"
+ },
+ {
+  "id": "H009_Serap_Ates",
+  "unvan": "Dr. Öğr. Üyesi",
+  "ad_soyad": "Serap ATEŞ",
+  "universite": "Orta Doğu Teknik Üniversitesi",
+  "fakulte": "Mühendislik Fakültesi",
+  "bolum": "Elektrik-Elektronik Mühendisliği",
+  "ana_alan": "Yenilenebilir Enerji ve Güç Sistemleri",
+  "arastirma_alanlari": [
+   "Rüzgâr enerjisi",
+   "Güneş enerjisi sistemleri",
+   "Yeşil hidrojen",
+   "Batarya yönetim sistemleri",
+   "Elektrikli araç şarj altyapısı"
+  ],
+  "email": "serap.ates@odtu.demo.edu.tr",
+  "profil": {
+   "arastirma_alanlari": [
+    "Rüzgâr enerjisi",
+    "Güneş enerjisi sistemleri",
+    "Yeşil hidrojen",
+    "Batarya yönetim sistemleri",
+    "Elektrikli araç şarj altyapısı"
+   ],
+   "yontemler": [
+    "optimizasyon tabanlı",
+    "model öngörülü kontrol",
+    "yapay zekâ destekli",
+    "IoT tabanlı"
+   ],
+   "anahtar_kelimeler": [
+    "Güneş enerjisi santrallerinde verim artırımı",
+    "Mikro şebekelerde enerji yönetimi",
+    "Rüzgâr enerjisi üretim tahmini",
+    "Yeşil hidrojen üretimi"
+   ],
+   "ozet_metni": "Elektrik-Elektronik Mühendisliği alanında çalışan Dr. Öğr. Üyesi Serap Ateş; Rüzgâr enerjisi, Güneş enerjisi sistemleri, Yeşil hidrojen konularına odaklanıyor. Çalışmalarında ağırlıklı olarak optimizasyon tabanlı, model öngörülü kontrol, yapay zekâ destekli yöntemlerini kullanıyor. CV'sinde 11 yayın, 5 proje ve 3 yönetilen tez bulunuyor."
+  },
+  "pdf_url": "/api/cvs/H009_Serap_Ates/pdf"
+ },
+ {
+  "id": "H010_Zeynep_Ozkan",
+  "unvan": "Prof. Dr.",
+  "ad_soyad": "Zeynep ÖZKAN",
+  "universite": "Çukurova Üniversitesi",
+  "fakulte": "Fen Fakültesi",
+  "bolum": "Moleküler Biyoloji ve Genetik",
+  "ana_alan": "Moleküler Biyoloji ve Biyoteknoloji",
+  "arastirma_alanlari": [
+   "Mikrobiyom",
+   "Biyoinformatik",
+   "Aşı geliştirme",
+   "Rekombinant protein üretimi"
+  ],
+  "email": "zeynep.ozkan@cu.demo.edu.tr",
+  "profil": {
+   "arastirma_alanlari": [
+    "Mikrobiyom",
+    "Biyoinformatik",
+    "Aşı geliştirme",
+    "Rekombinant protein üretimi"
+   ],
+   "yontemler": [
+    "rekombinant DNA teknolojisiyle",
+    "yeni nesil dizileme ile",
+    "CRISPR tabanlı",
+    "biyoinformatik destekli"
+   ],
+   "anahtar_kelimeler": [
+    "Yerli aşı adaylarının geliştirilmesi",
+    "Endüstriyel enzim üretimi",
+    "Kolorektal kanserde yeni biyobelirteçlerin keşfi",
+    "Antibiyotik direncinin moleküler mekanizmaları"
+   ],
+   "ozet_metni": "Moleküler Biyoloji ve Genetik alanında çalışan Prof. Dr. Zeynep Özkan; Mikrobiyom, Biyoinformatik, Aşı geliştirme konularına odaklanıyor. Çalışmalarında ağırlıklı olarak rekombinant DNA teknolojisiyle, yeni nesil dizileme ile, CRISPR tabanlı yöntemlerini kullanıyor. CV'sinde 26 yayın, 7 proje ve 20 yönetilen tez bulunuyor."
+  },
+  "pdf_url": "/api/cvs/H010_Zeynep_Ozkan/pdf"
+ },
+ {
+  "id": "H011_Tuncay_Keskin",
+  "unvan": "Dr. Öğr. Üyesi",
+  "ad_soyad": "Tuncay KESKİN",
+  "universite": "Ondokuz Mayıs Üniversitesi",
+  "fakulte": "Mühendislik Fakültesi",
+  "bolum": "Elektronik ve Haberleşme Mühendisliği",
+  "ana_alan": "Haberleşme ve Sinyal İşleme",
+  "arastirma_alanlari": [
+   "Mikrodalga devreler",
+   "Radar sistemleri",
+   "Kablosuz sensör ağları",
+   "Anten tasarımı",
+   "Hava kirliliği modellemesi",
+   "Mikroplastikler"
+  ],
+  "email": "tuncay.keskin@omu.demo.edu.tr",
+  "profil": {
+   "arastirma_alanlari": [
+    "Mikrodalga devreler",
+    "Radar sistemleri",
+    "Kablosuz sensör ağları",
+    "Anten tasarımı",
+    "Hava kirliliği modellemesi",
+    "Mikroplastikler"
+   ],
+   "yontemler": [
+    "yerli ve milli",
+    "düşük maliyetli",
+    "yazılım tanımlı",
+    "yaşam döngüsü analizi ile",
+    "yapay zekâ destekli"
+   ],
+   "anahtar_kelimeler": [
+    "Afet bölgelerinde acil haberleşme ağı",
+    "Yerli uydu haberleşme terminali",
+    "Sanayi atıksularının geri kazanımı",
+    "Otomotiv radarlarında hedef tespiti"
+   ],
+   "ozet_metni": "Elektronik ve Haberleşme Mühendisliği alanında çalışan Dr. Öğr. Üyesi Tuncay Keskin; Mikrodalga devreler, Radar sistemleri, Kablosuz sensör ağları konularına odaklanıyor. Çalışmalarında ağırlıklı olarak yerli ve milli, düşük maliyetli, yazılım tanımlı yöntemlerini kullanıyor. CV'sinde 14 yayın, 4 proje ve 3 yönetilen tez bulunuyor."
+  },
+  "pdf_url": "/api/cvs/H011_Tuncay_Keskin/pdf"
+ },
+ {
+  "id": "H012_Ipek_Gundogdu",
+  "unvan": "Prof. Dr.",
+  "ad_soyad": "İpek GÜNDOĞDU",
+  "universite": "Marmara Üniversitesi",
+  "fakulte": "Mühendislik Fakültesi",
+  "bolum": "İnşaat Mühendisliği",
+  "ana_alan": "Deprem ve Yapı Mühendisliği",
+  "arastirma_alanlari": [
+   "Güçlendirme teknikleri",
+   "Deprem mühendisliği",
+   "Hasar tespiti",
+   "Sismik izolasyon"
+  ],
+  "email": "ipek.gundogdu@marmara.demo.edu.tr",
+  "profil": {
+   "arastirma_alanlari": [
+    "Güçlendirme teknikleri",
+    "Deprem mühendisliği",
+    "Hasar tespiti",
+    "Sismik izolasyon"
+   ],
+   "yontemler": [
+    "yapay zekâ destekli",
+    "sensör tabanlı",
+    "deneysel ve sayısal",
+    "olasılıksal"
+   ],
+   "anahtar_kelimeler": [
+    "Mevcut yapı stokunun hızlı deprem risk değerlendirmesi",
+    "Tarihi yapıların güçlendirilmesi",
+    "Hastanelerde sismik izolasyon",
+    "Deprem sonrası hasar tespiti"
+   ],
+   "ozet_metni": "İnşaat Mühendisliği alanında çalışan Prof. Dr. İpek Gündoğdu; Güçlendirme teknikleri, Deprem mühendisliği, Hasar tespiti konularına odaklanıyor. Çalışmalarında ağırlıklı olarak yapay zekâ destekli, sensör tabanlı, deneysel ve sayısal yöntemlerini kullanıyor. CV'sinde 28 yayın, 7 proje ve 20 yönetilen tez bulunuyor."
+  },
+  "pdf_url": "/api/cvs/H012_Ipek_Gundogdu/pdf"
+ },
+ {
+  "id": "H013_Nur_Koc",
+  "unvan": "Prof. Dr.",
+  "ad_soyad": "Nur KOÇ",
+  "universite": "Ankara Üniversitesi",
+  "fakulte": "Mühendislik Fakültesi",
+  "bolum": "Bilgisayar Mühendisliği",
+  "ana_alan": "Siber Güvenlik",
+  "arastirma_alanlari": [
+   "Mahremiyet koruyan hesaplama",
+   "Saldırı tespit sistemleri",
+   "Post-kuantum kriptografi",
+   "IoT güvenliği",
+   "Blokzincir"
+  ],
+  "email": "nur.koc@ankara.demo.edu.tr",
+  "profil": {
+   "arastirma_alanlari": [
+    "Mahremiyet koruyan hesaplama",
+    "Saldırı tespit sistemleri",
+    "Post-kuantum kriptografi",
+    "IoT güvenliği",
+    "Blokzincir"
+   ],
+   "yontemler": [
+    "blokzincir",
+    "anomali tespiti",
+    "makine öğrenmesi",
+    "hafif kriptografi"
+   ],
+   "anahtar_kelimeler": [
+    "Bankacılık sistemlerinde dolandırıcılık tespiti",
+    "IoT cihazlarında güvenli kimlik doğrulama",
+    "Kritik altyapıların siber saldırılara karşı korunması",
+    "E-devlet uygulamalarında veri mahremiyeti"
+   ],
+   "ozet_metni": "Bilgisayar Mühendisliği alanında çalışan Prof. Dr. Nur Koç; Mahremiyet koruyan hesaplama, Saldırı tespit sistemleri, Post-kuantum kriptografi konularına odaklanıyor. Çalışmalarında ağırlıklı olarak blokzincir, anomali tespiti, makine öğrenmesi yöntemlerini kullanıyor. CV'sinde 25 yayın, 8 proje ve 15 yönetilen tez bulunuyor."
+  },
+  "pdf_url": "/api/cvs/H013_Nur_Koc/pdf"
+ },
+ {
+  "id": "H014_Esra_Keskin",
+  "unvan": "Prof. Dr.",
+  "ad_soyad": "Esra KESKİN",
+  "universite": "Erciyes Üniversitesi",
+  "fakulte": "Fen Fakültesi",
+  "bolum": "Moleküler Biyoloji ve Genetik",
+  "ana_alan": "Moleküler Biyoloji ve Biyoteknoloji",
+  "arastirma_alanlari": [
+   "Biyoinformatik",
+   "Kanser biyolojisi",
+   "Kök hücre",
+   "Gen düzenleme (CRISPR)",
+   "Mikrobiyom",
+   "Genomik ve transkriptomik"
+  ],
+  "email": "esra.keskin@erciyes.demo.edu.tr",
+  "profil": {
+   "arastirma_alanlari": [
+    "Biyoinformatik",
+    "Kanser biyolojisi",
+    "Kök hücre",
+    "Gen düzenleme (CRISPR)",
+    "Mikrobiyom",
+    "Genomik ve transkriptomik"
+   ],
+   "yontemler": [
+    "CRISPR tabanlı",
+    "biyoinformatik destekli",
+    "rekombinant DNA teknolojisiyle",
+    "yeni nesil dizileme ile"
+   ],
+   "anahtar_kelimeler": [
+    "Endüstriyel enzim üretimi",
+    "Yerli aşı adaylarının geliştirilmesi",
+    "Antibiyotik direncinin moleküler mekanizmaları",
+    "Kolorektal kanserde yeni biyobelirteçlerin keşfi"
+   ],
+   "ozet_metni": "Moleküler Biyoloji ve Genetik alanında çalışan Prof. Dr. Esra Keskin; Biyoinformatik, Kanser biyolojisi, Kök hücre konularına odaklanıyor. Çalışmalarında ağırlıklı olarak CRISPR tabanlı, biyoinformatik destekli, rekombinant DNA teknolojisiyle yöntemlerini kullanıyor. CV'sinde 25 yayın, 8 proje ve 17 yönetilen tez bulunuyor."
+  },
+  "pdf_url": "/api/cvs/H014_Esra_Keskin/pdf"
+ },
+ {
+  "id": "H015_Gamze_Polat",
+  "unvan": "Doç. Dr.",
+  "ad_soyad": "Gamze POLAT",
+  "universite": "Bursa Uludağ Üniversitesi",
+  "fakulte": "Mühendislik Fakültesi",
+  "bolum": "Metalurji ve Malzeme Mühendisliği",
+  "ana_alan": "Malzeme Bilimi ve Nanoteknoloji",
+  "arastirma_alanlari": [
+   "İnce film kaplamalar",
+   "Grafen ve 2B malzemeler",
+   "Kompozit malzemeler",
+   "Korozyon"
+  ],
+  "email": "gamze.polat@uludag.demo.edu.tr",
+  "profil": {
+   "arastirma_alanlari": [
+    "İnce film kaplamalar",
+    "Grafen ve 2B malzemeler",
+    "Kompozit malzemeler",
+    "Korozyon"
+   ],
+   "yontemler": [
+    "eklemeli imalat ile üretilmiş",
+    "sol-jel yöntemiyle",
+    "toz metalurjisi yöntemiyle",
+    "nano katkılı",
+    "hafif kompozit geliştirilmesi için toz metalurjisi yöntemiyle"
+   ],
+   "anahtar_kelimeler": [
+    "Korozyona dayanıklı kaplamalar",
+    "Havacılık için hafif kompozit geliştirilmesi",
+    "Yerli bor minerallerinden ileri seramik üretimi",
+    "Biyouyumlu implant malzemeleri",
+    "Havacılık"
+   ],
+   "ozet_metni": "Metalurji ve Malzeme Mühendisliği alanında çalışan Doç. Dr. Gamze Polat; İnce film kaplamalar, Grafen ve 2B malzemeler, Kompozit malzemeler konularına odaklanıyor. Çalışmalarında ağırlıklı olarak eklemeli imalat ile üretilmiş, sol-jel yöntemiyle, toz metalurjisi yöntemiyle yöntemlerini kullanıyor. CV'sinde 18 yayın, 5 proje ve 8 yönetilen tez bulunuyor."
+  },
+  "pdf_url": "/api/cvs/H015_Gamze_Polat/pdf"
+ },
+ {
+  "id": "H016_Volkan_Altun",
+  "unvan": "Doç. Dr.",
+  "ad_soyad": "Volkan ALTUN",
+  "universite": "Çukurova Üniversitesi",
+  "fakulte": "Mühendislik Fakültesi",
+  "bolum": "Elektrik-Elektronik Mühendisliği",
+  "ana_alan": "Yenilenebilir Enerji ve Güç Sistemleri",
+  "arastirma_alanlari": [
+   "Güneş enerjisi sistemleri",
+   "Güç elektroniği",
+   "Batarya yönetim sistemleri",
+   "Enerji depolama",
+   "Rüzgâr enerjisi",
+   "Yeşil hidrojen"
+  ],
+  "email": "volkan.altun@cu.demo.edu.tr",
+  "profil": {
+   "arastirma_alanlari": [
+    "Güneş enerjisi sistemleri",
+    "Güç elektroniği",
+    "Batarya yönetim sistemleri",
+    "Enerji depolama",
+    "Rüzgâr enerjisi",
+    "Yeşil hidrojen"
+   ],
+   "yontemler": [
+    "yapay zekâ destekli",
+    "optimizasyon tabanlı",
+    "model öngörülü kontrol",
+    "IoT tabanlı"
+   ],
+   "anahtar_kelimeler": [
+    "Yeşil hidrojen üretimi",
+    "Elektrikli araçlar için hızlı şarj istasyonu",
+    "Rüzgâr enerjisi üretim tahmini",
+    "Mikro şebekelerde enerji yönetimi",
+    "Güneş enerjisi santrallerinde verim artırımı"
+   ],
+   "ozet_metni": "Elektrik-Elektronik Mühendisliği alanında çalışan Doç. Dr. Volkan Altun; Güneş enerjisi sistemleri, Güç elektroniği, Batarya yönetim sistemleri konularına odaklanıyor. Çalışmalarında ağırlıklı olarak yapay zekâ destekli, optimizasyon tabanlı, model öngörülü kontrol yöntemlerini kullanıyor. CV'sinde 20 yayın, 5 proje ve 9 yönetilen tez bulunuyor."
+  },
+  "pdf_url": "/api/cvs/H016_Volkan_Altun/pdf"
+ },
+ {
+  "id": "H017_Mehmet_Karakaya",
+  "unvan": "Prof. Dr.",
+  "ad_soyad": "Mehmet KARAKAYA",
+  "universite": "Selçuk Üniversitesi",
+  "fakulte": "Ziraat Fakültesi",
+  "bolum": "Gıda Mühendisliği",
+  "ana_alan": "Tarım ve Gıda Bilimleri",
+  "arastirma_alanlari": [
+   "Gıda ambalajlama",
+   "Probiyotikler",
+   "Sürdürülebilir tarım",
+   "Bitki ıslahı"
+  ],
+  "email": "mehmet.karakaya@selcuk.demo.edu.tr",
+  "profil": {
+   "arastirma_alanlari": [
+    "Gıda ambalajlama",
+    "Probiyotikler",
+    "Sürdürülebilir tarım",
+    "Bitki ıslahı"
+   ],
+   "yontemler": [
+    "akıllı sensörlerle",
+    "nanoteknoloji destekli",
+    "doğal katkılı",
+    "dron ve uydu verisi ile"
+   ],
+   "anahtar_kelimeler": [
+    "Kuraklığa dayanıklı buğday çeşitleri",
+    "Fındık bahçelerinde verim tahmini",
+    "Fonksiyonel gıda geliştirme",
+    "Gıdalarda mikotoksin tespiti"
+   ],
+   "ozet_metni": "Gıda Mühendisliği alanında çalışan Prof. Dr. Mehmet Karakaya; Gıda ambalajlama, Probiyotikler, Sürdürülebilir tarım konularına odaklanıyor. Çalışmalarında ağırlıklı olarak akıllı sensörlerle, nanoteknoloji destekli, doğal katkılı yöntemlerini kullanıyor. CV'sinde 26 yayın, 7 proje ve 20 yönetilen tez bulunuyor."
+  },
+  "pdf_url": "/api/cvs/H017_Mehmet_Karakaya/pdf"
+ },
+ {
+  "id": "H018_Elif_Erbas",
+  "unvan": "Dr. Öğr. Üyesi",
+  "ad_soyad": "Elif ERBAŞ",
+  "universite": "Selçuk Üniversitesi",
+  "fakulte": "Fen Fakültesi",
+  "bolum": "Moleküler Biyoloji ve Genetik",
+  "ana_alan": "Moleküler Biyoloji ve Biyoteknoloji",
+  "arastirma_alanlari": [
+   "Kanser biyolojisi",
+   "Aşı geliştirme",
+   "Kök hücre",
+   "Gen düzenleme (CRISPR)",
+   "Hasar tespiti",
+   "Güçlendirme teknikleri"
+  ],
+  "email": "elif.erbas@selcuk.demo.edu.tr",
+  "profil": {
+   "arastirma_alanlari": [
+    "Kanser biyolojisi",
+    "Aşı geliştirme",
+    "Kök hücre",
+    "Gen düzenleme (CRISPR)",
+    "Hasar tespiti",
+    "Güçlendirme teknikleri"
+   ],
+   "yontemler": [
+    "rekombinant DNA teknolojisiyle",
+    "CRISPR tabanlı",
+    "biyoinformatik destekli",
+    "yeni nesil dizileme ile",
+    "yapay zekâ destekli"
+   ],
+   "anahtar_kelimeler": [
+    "Endüstriyel enzim üretimi",
+    "Kolorektal kanserde yeni biyobelirteçlerin keşfi",
+    "Yerli aşı adaylarının geliştirilmesi",
+    "Mevcut yapı stokunun hızlı deprem risk değerlendirmesi",
+    "Antibiyotik direncinin moleküler mekanizmaları"
+   ],
+   "ozet_metni": "Moleküler Biyoloji ve Genetik alanında çalışan Dr. Öğr. Üyesi Elif Erbaş; Kanser biyolojisi, Aşı geliştirme, Kök hücre konularına odaklanıyor. Çalışmalarında ağırlıklı olarak rekombinant DNA teknolojisiyle, CRISPR tabanlı, biyoinformatik destekli yöntemlerini kullanıyor. CV'sinde 13 yayın, 6 proje ve 3 yönetilen tez bulunuyor."
+  },
+  "pdf_url": "/api/cvs/H018_Elif_Erbas/pdf"
+ },
+ {
+  "id": "H019_Esra_Aydin",
+  "unvan": "Dr. Öğr. Üyesi",
+  "ad_soyad": "Esra AYDIN",
+  "universite": "Çukurova Üniversitesi",
+  "fakulte": "Fen Fakültesi",
+  "bolum": "Kimya",
+  "ana_alan": "Kimya ve Kimya Mühendisliği",
+  "arastirma_alanlari": [
+   "Kataliz",
+   "Hesaplamalı kimya",
+   "İlaç sentezi",
+   "Sensörler",
+   "Polimer kimyası",
+   "Adsorpsiyon",
+   "Davranışsal finans",
+   "Para politikası"
+  ],
+  "email": "esra.aydin@cu.demo.edu.tr",
+  "profil": {
+   "arastirma_alanlari": [
+    "Kataliz",
+    "Hesaplamalı kimya",
+    "İlaç sentezi",
+    "Sensörler",
+    "Polimer kimyası",
+    "Adsorpsiyon",
+    "Davranışsal finans",
+    "Para politikası"
+   ],
+   "yontemler": [
+    "elektrokimyasal",
+    "yeşil sentez ile",
+    "nano katalizör destekli",
+    "hesaplamalı",
+    "yapay zekâ destekli"
+   ],
+   "anahtar_kelimeler": [
+    "Biyobozunur polimer geliştirme",
+    "Karbondioksitin değerli kimyasallara dönüşümü",
+    "Ilaç etken maddelerinin yerli üretimi",
+    "Dijital paraların finansal istikrara etkisi"
+   ],
+   "ozet_metni": "Kimya alanında çalışan Dr. Öğr. Üyesi Esra Aydın; Kataliz, Hesaplamalı kimya, İlaç sentezi konularına odaklanıyor. Çalışmalarında ağırlıklı olarak elektrokimyasal, yeşil sentez ile, nano katalizör destekli yöntemlerini kullanıyor. CV'sinde 12 yayın, 6 proje ve 4 yönetilen tez bulunuyor."
+  },
+  "pdf_url": "/api/cvs/H019_Esra_Aydin/pdf"
+ },
+ {
+  "id": "H020_Fatma_Avci",
+  "unvan": "Doç. Dr.",
+  "ad_soyad": "Fatma AVCI",
+  "universite": "Selçuk Üniversitesi",
+  "fakulte": "Tıp Fakültesi",
+  "bolum": "İç Hastalıkları / Tıbbi Biyokimya",
+  "ana_alan": "Tıp ve Sağlık Bilimleri",
+  "arastirma_alanlari": [
+   "Klinik araştırmalar",
+   "Dijital sağlık",
+   "Halk sağlığı",
+   "Diyabet ve metabolizma"
+  ],
+  "email": "fatma.avci@selcuk.demo.edu.tr",
+  "profil": {
+   "arastirma_alanlari": [
+    "Klinik araştırmalar",
+    "Dijital sağlık",
+    "Halk sağlığı",
+    "Diyabet ve metabolizma"
+   ],
+   "yontemler": [
+    "telemedikal",
+    "biyobelirteç tabanlı",
+    "çok merkezli klinik",
+    "yapay zekâ destekli"
+   ],
+   "anahtar_kelimeler": [
+    "Diyabet hastalarının uzaktan izlenmesi",
+    "Kalp yetmezliğinde erken tanı",
+    "Kanser taramalarının etkinliği",
+    "Kronik hastalıklarda risk tahmini"
+   ],
+   "ozet_metni": "İç Hastalıkları / Tıbbi Biyokimya alanında çalışan Doç. Dr. Fatma Avcı; Klinik araştırmalar, Dijital sağlık, Halk sağlığı konularına odaklanıyor. Çalışmalarında ağırlıklı olarak telemedikal, biyobelirteç tabanlı, çok merkezli klinik yöntemlerini kullanıyor. CV'sinde 20 yayın, 7 proje ve 10 yönetilen tez bulunuyor."
+  },
+  "pdf_url": "/api/cvs/H020_Fatma_Avci/pdf"
+ },
+ {
+  "id": "H021_Seda_Sahin",
+  "unvan": "Doç. Dr.",
+  "ad_soyad": "Seda ŞAHİN",
+  "universite": "Selçuk Üniversitesi",
+  "fakulte": "Mühendislik Fakültesi",
+  "bolum": "Makine Mühendisliği",
+  "ana_alan": "Makine Mühendisliği ve Robotik",
+  "arastirma_alanlari": [
+   "Mekatronik",
+   "İnsansız hava araçları",
+   "Titreşim analizi",
+   "Hesaplamalı akışkanlar dinamiği",
+   "Otonom sistemler",
+   "Su kaynakları yönetimi",
+   "Katı atık yönetimi"
+  ],
+  "email": "seda.sahin@selcuk.demo.edu.tr",
+  "profil": {
+   "arastirma_alanlari": [
+    "Mekatronik",
+    "İnsansız hava araçları",
+    "Titreşim analizi",
+    "Hesaplamalı akışkanlar dinamiği",
+    "Otonom sistemler",
+    "Su kaynakları yönetimi",
+    "Katı atık yönetimi"
+   ],
+   "yontemler": [
+    "yerli tasarım",
+    "yapay zekâ destekli",
+    "otonom",
+    "dijital ikiz tabanlı",
+    "ileri oksidasyon prosesleri ile"
+   ],
+   "anahtar_kelimeler": [
+    "Rehabilitasyon amaçlı dış iskelet robotu",
+    "Akıllı fabrikalarda kestirimci bakım",
+    "Tarımsal insansız hava aracı",
+    "Depo otomasyonu için mobil robot",
+    "Havzalarda iklim değişikliği uyum stratejileri"
+   ],
+   "ozet_metni": "Makine Mühendisliği alanında çalışan Doç. Dr. Seda Şahin; Mekatronik, İnsansız hava araçları, Titreşim analizi konularına odaklanıyor. Çalışmalarında ağırlıklı olarak yerli tasarım, yapay zekâ destekli, otonom yöntemlerini kullanıyor. CV'sinde 23 yayın, 6 proje ve 10 yönetilen tez bulunuyor."
+  },
+  "pdf_url": "/api/cvs/H021_Seda_Sahin/pdf"
+ },
+ {
+  "id": "H022_Baris_Altun",
+  "unvan": "Dr. Öğr. Üyesi",
+  "ad_soyad": "Barış ALTUN",
+  "universite": "Yıldız Teknik Üniversitesi",
+  "fakulte": "Mühendislik Fakültesi",
+  "bolum": "Elektrik-Elektronik Mühendisliği",
+  "ana_alan": "Yenilenebilir Enerji ve Güç Sistemleri",
+  "arastirma_alanlari": [
+   "Yeşil hidrojen",
+   "Güç elektroniği",
+   "Rüzgâr enerjisi",
+   "Güneş enerjisi sistemleri"
+  ],
+  "email": "baris.altun@ytu.demo.edu.tr",
+  "profil": {
+   "arastirma_alanlari": [
+    "Yeşil hidrojen",
+    "Güç elektroniği",
+    "Rüzgâr enerjisi",
+    "Güneş enerjisi sistemleri"
+   ],
+   "yontemler": [
+    "optimizasyon tabanlı",
+    "IoT tabanlı",
+    "hızlı şarj istasyonu için model öngörülü kontrol"
+   ],
+   "anahtar_kelimeler": [
+    "Güneş enerjisi santrallerinde verim artırımı",
+    "Mikro şebekelerde enerji yönetimi",
+    "Rüzgâr enerjisi üretim tahmini",
+    "Elektrikli araçlar"
+   ],
+   "ozet_metni": "Elektrik-Elektronik Mühendisliği alanında çalışan Dr. Öğr. Üyesi Barış Altun; Yeşil hidrojen, Güç elektroniği, Rüzgâr enerjisi konularına odaklanıyor. Çalışmalarında ağırlıklı olarak optimizasyon tabanlı, IoT tabanlı, hızlı şarj istasyonu için model öngörülü kontrol yöntemlerini kullanıyor. CV'sinde 10 yayın, 4 proje ve 2 yönetilen tez bulunuyor."
+  },
+  "pdf_url": "/api/cvs/H022_Baris_Altun/pdf"
+ },
+ {
+  "id": "H023_Cem_Kilic",
+  "unvan": "Prof. Dr.",
+  "ad_soyad": "Cem KILIÇ",
+  "universite": "Dokuz Eylül Üniversitesi",
+  "fakulte": "Eğitim Fakültesi",
+  "bolum": "Bilgisayar ve Öğretim Teknolojileri Eğitimi",
+  "ana_alan": "Eğitim Bilimleri ve Eğitim Teknolojileri",
+  "arastirma_alanlari": [
+   "Yapay zekâ destekli öğretim",
+   "STEM eğitimi",
+   "Öğrenme analitiği",
+   "Oyunlaştırma",
+   "Eğitim teknolojileri"
+  ],
+  "email": "cem.kilic@deu.demo.edu.tr",
+  "profil": {
+   "arastirma_alanlari": [
+    "Yapay zekâ destekli öğretim",
+    "STEM eğitimi",
+    "Öğrenme analitiği",
+    "Oyunlaştırma",
+    "Eğitim teknolojileri"
+   ],
+   "yontemler": [
+    "oyunlaştırma tabanlı",
+    "öğrenme analitiği ile",
+    "artırılmış gerçeklik destekli",
+    "yapay zekâ destekli"
+   ],
+   "anahtar_kelimeler": [
+    "Ortaokul öğrencilerinde bilgi işlemsel düşünme",
+    "Öğretmenlerin dijital yetkinlikleri",
+    "Uzaktan eğitimde öğrenci başarısının tahmini",
+    "STEM etkinliklerinin geliştirilmesi"
+   ],
+   "ozet_metni": "Bilgisayar ve Öğretim Teknolojileri Eğitimi alanında çalışan Prof. Dr. Cem Kılıç; Yapay zekâ destekli öğretim, STEM eğitimi, Öğrenme analitiği konularına odaklanıyor. Çalışmalarında ağırlıklı olarak oyunlaştırma tabanlı, öğrenme analitiği ile, artırılmış gerçeklik destekli yöntemlerini kullanıyor. CV'sinde 26 yayın, 7 proje ve 18 yönetilen tez bulunuyor."
+  },
+  "pdf_url": "/api/cvs/H023_Cem_Kilic/pdf"
+ },
+ {
+  "id": "H024_Fatma_Gunes",
+  "unvan": "Prof. Dr.",
+  "ad_soyad": "Fatma GÜNEŞ",
+  "universite": "Dokuz Eylül Üniversitesi",
+  "fakulte": "Fen Fakültesi",
+  "bolum": "Kimya",
+  "ana_alan": "Kimya ve Kimya Mühendisliği",
+  "arastirma_alanlari": [
+   "Yeşil kimya",
+   "Adsorpsiyon",
+   "Hesaplamalı kimya",
+   "Polimer kimyası",
+   "Kataliz"
+  ],
+  "email": "fatma.gunes@deu.demo.edu.tr",
+  "profil": {
+   "arastirma_alanlari": [
+    "Yeşil kimya",
+    "Adsorpsiyon",
+    "Hesaplamalı kimya",
+    "Polimer kimyası",
+    "Kataliz"
+   ],
+   "yontemler": [
+    "yeşil sentez ile",
+    "nano katalizör destekli",
+    "elektrokimyasal",
+    "hesaplamalı",
+    "sensörler için yeşil sentez ile"
+   ],
+   "anahtar_kelimeler": [
+    "Karbondioksitin değerli kimyasallara dönüşümü",
+    "Biyobozunur polimer geliştirme",
+    "Gıda ve çevrede kirletici tespiti için sensörler",
+    "Ilaç etken maddelerinin yerli üretimi",
+    "Gıda ve çevrede kirletici tespiti"
+   ],
+   "ozet_metni": "Kimya alanında çalışan Prof. Dr. Fatma Güneş; Yeşil kimya, Adsorpsiyon, Hesaplamalı kimya konularına odaklanıyor. Çalışmalarında ağırlıklı olarak yeşil sentez ile, nano katalizör destekli, elektrokimyasal yöntemlerini kullanıyor. CV'sinde 25 yayın, 7 proje ve 22 yönetilen tez bulunuyor."
+  },
+  "pdf_url": "/api/cvs/H024_Fatma_Gunes/pdf"
+ },
+ {
+  "id": "H025_Levent_Ates",
+  "unvan": "Doç. Dr.",
+  "ad_soyad": "Levent ATEŞ",
+  "universite": "Boğaziçi Üniversitesi",
+  "fakulte": "Ziraat Fakültesi",
+  "bolum": "Gıda Mühendisliği",
+  "ana_alan": "Tarım ve Gıda Bilimleri",
+  "arastirma_alanlari": [
+   "Gıda güvenliği",
+   "Gıda ambalajlama",
+   "Probiyotikler",
+   "Fonksiyonel gıdalar"
+  ],
+  "email": "levent.ates@boun.demo.edu.tr",
+  "profil": {
+   "arastirma_alanlari": [
+    "Gıda güvenliği",
+    "Gıda ambalajlama",
+    "Probiyotikler",
+    "Fonksiyonel gıdalar"
+   ],
+   "yontemler": [
+    "dron ve uydu verisi ile",
+    "nanoteknoloji destekli",
+    "doğal katkılı",
+    "akıllı sensörlerle"
+   ],
+   "anahtar_kelimeler": [
+    "Fonksiyonel gıda geliştirme",
+    "Kuraklığa dayanıklı buğday çeşitleri",
+    "Gıdalarda mikotoksin tespiti",
+    "Fındık bahçelerinde verim tahmini"
+   ],
+   "ozet_metni": "Gıda Mühendisliği alanında çalışan Doç. Dr. Levent Ateş; Gıda güvenliği, Gıda ambalajlama, Probiyotikler konularına odaklanıyor. Çalışmalarında ağırlıklı olarak dron ve uydu verisi ile, nanoteknoloji destekli, doğal katkılı yöntemlerini kullanıyor. CV'sinde 18 yayın, 7 proje ve 12 yönetilen tez bulunuyor."
+  },
+  "pdf_url": "/api/cvs/H025_Levent_Ates/pdf"
+ },
+ {
+  "id": "H026_Kaan_Sonmez",
+  "unvan": "Doç. Dr.",
+  "ad_soyad": "Kaan SÖNMEZ",
+  "universite": "Karadeniz Teknik Üniversitesi",
+  "fakulte": "Mühendislik Fakültesi",
+  "bolum": "Çevre Mühendisliği",
+  "ana_alan": "Çevre Mühendisliği ve İklim Değişikliği",
+  "arastirma_alanlari": [
+   "Mikroplastikler",
+   "Karbon ayak izi",
+   "Su kaynakları yönetimi",
+   "Döngüsel ekonomi",
+   "Katı atık yönetimi"
+  ],
+  "email": "kaan.sonmez@ktu.demo.edu.tr",
+  "profil": {
+   "arastirma_alanlari": [
+    "Mikroplastikler",
+    "Karbon ayak izi",
+    "Su kaynakları yönetimi",
+    "Döngüsel ekonomi",
+    "Katı atık yönetimi"
+   ],
+   "yontemler": [
+    "yaşam döngüsü analizi ile",
+    "ileri oksidasyon prosesleri ile",
+    "membran teknolojisiyle",
+    "uzaktan algılama ile"
+   ],
+   "anahtar_kelimeler": [
+    "Kentsel hava kalitesinin izlenmesi",
+    "Sanayi atıksularının geri kazanımı",
+    "Marmara Denizi'nde mikroplastik kirliliği",
+    "Havzalarda iklim değişikliği uyum stratejileri"
+   ],
+   "ozet_metni": "Çevre Mühendisliği alanında çalışan Doç. Dr. Kaan Sönmez; Mikroplastikler, Karbon ayak izi, Su kaynakları yönetimi konularına odaklanıyor. Çalışmalarında ağırlıklı olarak yaşam döngüsü analizi ile, ileri oksidasyon prosesleri ile, membran teknolojisiyle yöntemlerini kullanıyor. CV'sinde 17 yayın, 5 proje ve 7 yönetilen tez bulunuyor."
+  },
+  "pdf_url": "/api/cvs/H026_Kaan_Sonmez/pdf"
+ },
+ {
+  "id": "H027_Kerem_Ucar",
+  "unvan": "Doç. Dr.",
+  "ad_soyad": "Kerem UÇAR",
+  "universite": "Ankara Üniversitesi",
+  "fakulte": "Mühendislik Fakültesi",
+  "bolum": "İnşaat Mühendisliği",
+  "ana_alan": "Deprem ve Yapı Mühendisliği",
+  "arastirma_alanlari": [
+   "Hasar tespiti",
+   "Yapı sağlığı izleme",
+   "Zemin-yapı etkileşimi",
+   "Deprem mühendisliği"
+  ],
+  "email": "kerem.ucar@ankara.demo.edu.tr",
+  "profil": {
+   "arastirma_alanlari": [
+    "Hasar tespiti",
+    "Yapı sağlığı izleme",
+    "Zemin-yapı etkileşimi",
+    "Deprem mühendisliği"
+   ],
+   "yontemler": [
+    "olasılıksal",
+    "deneysel ve sayısal",
+    "sensör tabanlı",
+    "yapay zekâ destekli"
+   ],
+   "anahtar_kelimeler": [
+    "Mevcut yapı stokunun hızlı deprem risk değerlendirmesi",
+    "Hastanelerde sismik izolasyon",
+    "Deprem sonrası hasar tespiti",
+    "Tarihi yapıların güçlendirilmesi"
+   ],
+   "ozet_metni": "İnşaat Mühendisliği alanında çalışan Doç. Dr. Kerem Uçar; Hasar tespiti, Yapı sağlığı izleme, Zemin-yapı etkileşimi konularına odaklanıyor. Çalışmalarında ağırlıklı olarak olasılıksal, deneysel ve sayısal, sensör tabanlı yöntemlerini kullanıyor. CV'sinde 20 yayın, 7 proje ve 7 yönetilen tez bulunuyor."
+  },
+  "pdf_url": "/api/cvs/H027_Kerem_Ucar/pdf"
+ },
+ {
+  "id": "H028_Ali_Tunc",
+  "unvan": "Prof. Dr.",
+  "ad_soyad": "Ali TUNÇ",
+  "universite": "Atatürk Üniversitesi",
+  "fakulte": "Mühendislik Fakültesi",
+  "bolum": "Bilgisayar Mühendisliği",
+  "ana_alan": "Siber Güvenlik",
+  "arastirma_alanlari": [
+   "Post-kuantum kriptografi",
+   "Kötü amaçlı yazılım analizi",
+   "Kriptografi",
+   "IoT güvenliği",
+   "Dijital adli bilişim"
+  ],
+  "email": "ali.tunc@atauni.demo.edu.tr",
+  "profil": {
+   "arastirma_alanlari": [
+    "Post-kuantum kriptografi",
+    "Kötü amaçlı yazılım analizi",
+    "Kriptografi",
+    "IoT güvenliği",
+    "Dijital adli bilişim"
+   ],
+   "yontemler": [
+    "blokzincir",
+    "hafif kriptografi",
+    "anomali tespiti",
+    "makine öğrenmesi"
+   ],
+   "anahtar_kelimeler": [
+    "Kritik altyapıların siber saldırılara karşı korunması",
+    "E-devlet uygulamalarında veri mahremiyeti",
+    "IoT cihazlarında güvenli kimlik doğrulama",
+    "Bankacılık sistemlerinde dolandırıcılık tespiti"
+   ],
+   "ozet_metni": "Bilgisayar Mühendisliği alanında çalışan Prof. Dr. Ali Tunç; Post-kuantum kriptografi, Kötü amaçlı yazılım analizi, Kriptografi konularına odaklanıyor. Çalışmalarında ağırlıklı olarak blokzincir, hafif kriptografi, anomali tespiti yöntemlerini kullanıyor. CV'sinde 26 yayın, 9 proje ve 18 yönetilen tez bulunuyor."
+  },
+  "pdf_url": "/api/cvs/H028_Ali_Tunc/pdf"
+ },
+ {
+  "id": "H029_Levent_Arslan",
+  "unvan": "Prof. Dr.",
+  "ad_soyad": "Levent ARSLAN",
+  "universite": "Boğaziçi Üniversitesi",
+  "fakulte": "Mühendislik Fakültesi",
+  "bolum": "Metalurji ve Malzeme Mühendisliği",
+  "ana_alan": "Malzeme Bilimi ve Nanoteknoloji",
+  "arastirma_alanlari": [
+   "Biyomalzemeler",
+   "Nanomalzemeler",
+   "Grafen ve 2B malzemeler",
+   "Eklemeli imalat (3B baskı)",
+   "Korozyon"
+  ],
+  "email": "levent.arslan@boun.demo.edu.tr",
+  "profil": {
+   "arastirma_alanlari": [
+    "Biyomalzemeler",
+    "Nanomalzemeler",
+    "Grafen ve 2B malzemeler",
+    "Eklemeli imalat (3B baskı)",
+    "Korozyon"
+   ],
+   "yontemler": [
+    "nano katkılı",
+    "sol-jel yöntemiyle",
+    "eklemeli imalat ile üretilmiş",
+    "toz metalurjisi yöntemiyle",
+    "hafif kompozit geliştirilmesi için eklemeli imalat ile üretilmiş"
+   ],
+   "anahtar_kelimeler": [
+    "Yerli bor minerallerinden ileri seramik üretimi",
+    "Biyouyumlu implant malzemeleri",
+    "Korozyona dayanıklı kaplamalar",
+    "Havacılık için hafif kompozit geliştirilmesi",
+    "Havacılık"
+   ],
+   "ozet_metni": "Metalurji ve Malzeme Mühendisliği alanında çalışan Prof. Dr. Levent Arslan; Biyomalzemeler, Nanomalzemeler, Grafen ve 2B malzemeler konularına odaklanıyor. Çalışmalarında ağırlıklı olarak nano katkılı, sol-jel yöntemiyle, eklemeli imalat ile üretilmiş yöntemlerini kullanıyor. CV'sinde 26 yayın, 8 proje ve 19 yönetilen tez bulunuyor."
+  },
+  "pdf_url": "/api/cvs/H029_Levent_Arslan/pdf"
+ },
+ {
+  "id": "H030_Baris_Isik",
+  "unvan": "Prof. Dr.",
+  "ad_soyad": "Barış IŞIK",
+  "universite": "Erciyes Üniversitesi",
+  "fakulte": "Mühendislik Fakültesi",
+  "bolum": "Metalurji ve Malzeme Mühendisliği",
+  "ana_alan": "Malzeme Bilimi ve Nanoteknoloji",
+  "arastirma_alanlari": [
+   "Kompozit malzemeler",
+   "Korozyon",
+   "Biyomalzemeler",
+   "Eklemeli imalat (3B baskı)",
+   "Seramik malzemeler"
+  ],
+  "email": "baris.isik@erciyes.demo.edu.tr",
+  "profil": {
+   "arastirma_alanlari": [
+    "Kompozit malzemeler",
+    "Korozyon",
+    "Biyomalzemeler",
+    "Eklemeli imalat (3B baskı)",
+    "Seramik malzemeler"
+   ],
+   "yontemler": [
+    "eklemeli imalat ile üretilmiş",
+    "sol-jel yöntemiyle",
+    "nano katkılı",
+    "toz metalurjisi yöntemiyle",
+    "hafif kompozit geliştirilmesi için toz metalurjisi yöntemiyle"
+   ],
+   "anahtar_kelimeler": [
+    "Biyouyumlu implant malzemeleri",
+    "Yerli bor minerallerinden ileri seramik üretimi",
+    "Korozyona dayanıklı kaplamalar",
+    "Havacılık için hafif kompozit geliştirilmesi",
+    "Havacılık"
+   ],
+   "ozet_metni": "Metalurji ve Malzeme Mühendisliği alanında çalışan Prof. Dr. Barış Işık; Kompozit malzemeler, Korozyon, Biyomalzemeler konularına odaklanıyor. Çalışmalarında ağırlıklı olarak eklemeli imalat ile üretilmiş, sol-jel yöntemiyle, nano katkılı yöntemlerini kullanıyor. CV'sinde 27 yayın, 8 proje ve 22 yönetilen tez bulunuyor."
+  },
+  "pdf_url": "/api/cvs/H030_Baris_Isik/pdf"
+ },
+ {
+  "id": "H031_Serap_Erbas",
+  "unvan": "Prof. Dr.",
+  "ad_soyad": "Serap ERBAŞ",
+  "universite": "Erciyes Üniversitesi",
+  "fakulte": "İktisadi ve İdari Bilimler Fakültesi",
+  "bolum": "İktisat",
+  "ana_alan": "Ekonomi ve Finans",
+  "arastirma_alanlari": [
+   "Enerji ekonomisi",
+   "Uluslararası ticaret",
+   "Para politikası",
+   "Kalkınma ekonomisi"
+  ],
+  "email": "serap.erbas@erciyes.demo.edu.tr",
+  "profil": {
+   "arastirma_alanlari": [
+    "Enerji ekonomisi",
+    "Uluslararası ticaret",
+    "Para politikası",
+    "Kalkınma ekonomisi"
+   ],
+   "yontemler": [
+    "ekonometrik",
+    "panel veri",
+    "makine öğrenmesi tabanlı",
+    "yapay zekâ destekli"
+   ],
+   "anahtar_kelimeler": [
+    "KOBİ'lerin finansmana erişimi",
+    "Dijital paraların finansal istikrara etkisi",
+    "Enflasyon beklentilerinin tahmini",
+    "Yeşil dönüşümün ekonomik etkileri"
+   ],
+   "ozet_metni": "İktisat alanında çalışan Prof. Dr. Serap Erbaş; Enerji ekonomisi, Uluslararası ticaret, Para politikası konularına odaklanıyor. Çalışmalarında ağırlıklı olarak ekonometrik, panel veri, makine öğrenmesi tabanlı yöntemlerini kullanıyor. CV'sinde 28 yayın, 9 proje ve 15 yönetilen tez bulunuyor."
+  },
+  "pdf_url": "/api/cvs/H031_Serap_Erbas/pdf"
+ },
+ {
+  "id": "H032_Volkan_Simsek",
+  "unvan": "Dr. Öğr. Üyesi",
+  "ad_soyad": "Volkan ŞİMŞEK",
+  "universite": "Hacettepe Üniversitesi",
+  "fakulte": "Mühendislik Fakültesi",
+  "bolum": "Çevre Mühendisliği",
+  "ana_alan": "Çevre Mühendisliği ve İklim Değişikliği",
+  "arastirma_alanlari": [
+   "Mikroplastikler",
+   "Atıksu arıtımı",
+   "İklim değişikliği etkileri",
+   "Döngüsel ekonomi",
+   "Mikrobiyom",
+   "Kök hücre"
+  ],
+  "email": "volkan.simsek@hacettepe.demo.edu.tr",
+  "profil": {
+   "arastirma_alanlari": [
+    "Mikroplastikler",
+    "Atıksu arıtımı",
+    "İklim değişikliği etkileri",
+    "Döngüsel ekonomi",
+    "Mikrobiyom",
+    "Kök hücre"
+   ],
+   "yontemler": [
+    "ileri oksidasyon prosesleri ile",
+    "uzaktan algılama ile",
+    "membran teknolojisiyle",
+    "CRISPR tabanlı",
+    "yaşam döngüsü analizi ile"
+   ],
+   "anahtar_kelimeler": [
+    "Sanayi atıksularının geri kazanımı",
+    "Marmara Denizi'nde mikroplastik kirliliği",
+    "Kolorektal kanserde yeni biyobelirteçlerin keşfi",
+    "Havzalarda iklim değişikliği uyum stratejileri",
+    "Kentsel hava kalitesinin izlenmesi"
+   ],
+   "ozet_metni": "Çevre Mühendisliği alanında çalışan Dr. Öğr. Üyesi Volkan Şimşek; Mikroplastikler, Atıksu arıtımı, İklim değişikliği etkileri konularına odaklanıyor. Çalışmalarında ağırlıklı olarak ileri oksidasyon prosesleri ile, uzaktan algılama ile, membran teknolojisiyle yöntemlerini kullanıyor. CV'sinde 14 yayın, 4 proje ve 4 yönetilen tez bulunuyor."
+  },
+  "pdf_url": "/api/cvs/H032_Volkan_Simsek/pdf"
+ },
+ {
+  "id": "H033_Burcu_Ozturk",
+  "unvan": "Prof. Dr.",
+  "ad_soyad": "Burcu ÖZTÜRK",
+  "universite": "Yıldız Teknik Üniversitesi",
+  "fakulte": "Mühendislik Fakültesi",
+  "bolum": "İnşaat Mühendisliği",
+  "ana_alan": "Deprem ve Yapı Mühendisliği",
+  "arastirma_alanlari": [
+   "Betonarme yapılar",
+   "Deprem mühendisliği",
+   "Zemin-yapı etkileşimi",
+   "Sismik izolasyon",
+   "Afet risk yönetimi",
+   "Makroekonomi",
+   "Enerji ekonomisi"
+  ],
+  "email": "burcu.ozturk@ytu.demo.edu.tr",
+  "profil": {
+   "arastirma_alanlari": [
+    "Betonarme yapılar",
+    "Deprem mühendisliği",
+    "Zemin-yapı etkileşimi",
+    "Sismik izolasyon",
+    "Afet risk yönetimi",
+    "Makroekonomi",
+    "Enerji ekonomisi"
+   ],
+   "yontemler": [
+    "deneysel ve sayısal",
+    "yapay zekâ destekli",
+    "sensör tabanlı",
+    "olasılıksal"
+   ],
+   "anahtar_kelimeler": [
+    "Deprem sonrası hasar tespiti",
+    "Mevcut yapı stokunun hızlı deprem risk değerlendirmesi",
+    "Tarihi yapıların güçlendirilmesi",
+    "Hastanelerde sismik izolasyon",
+    "Enflasyon beklentilerinin tahmini"
+   ],
+   "ozet_metni": "İnşaat Mühendisliği alanında çalışan Prof. Dr. Burcu Öztürk; Betonarme yapılar, Deprem mühendisliği, Zemin-yapı etkileşimi konularına odaklanıyor. Çalışmalarında ağırlıklı olarak deneysel ve sayısal, yapay zekâ destekli, sensör tabanlı yöntemlerini kullanıyor. CV'sinde 29 yayın, 8 proje ve 23 yönetilen tez bulunuyor."
+  },
+  "pdf_url": "/api/cvs/H033_Burcu_Ozturk/pdf"
+ },
+ {
+  "id": "H034_Burcu_Kurt",
+  "unvan": "Dr. Öğr. Üyesi",
+  "ad_soyad": "Burcu KURT",
+  "universite": "Sakarya Üniversitesi",
+  "fakulte": "Mühendislik Fakültesi",
+  "bolum": "Bilgisayar Mühendisliği",
+  "ana_alan": "Yapay Zekâ ve Makine Öğrenmesi",
+  "arastirma_alanlari": [
+   "Doğal dil işleme",
+   "Açıklanabilir yapay zekâ",
+   "Bilgisayarlı görü",
+   "Bilgi erişimi ve anlamsal arama",
+   "Federated learning",
+   "Mikrobiyom",
+   "Aşı geliştirme"
+  ],
+  "email": "burcu.kurt@sakarya.demo.edu.tr",
+  "profil": {
+   "arastirma_alanlari": [
+    "Doğal dil işleme",
+    "Açıklanabilir yapay zekâ",
+    "Bilgisayarlı görü",
+    "Bilgi erişimi ve anlamsal arama",
+    "Federated learning",
+    "Mikrobiyom",
+    "Aşı geliştirme"
+   ],
+   "yontemler": [
+    "transformer",
+    "çizge sinir ağı",
+    "derin öğrenme",
+    "büyük dil modeli",
+    "rekombinant DNA teknolojisiyle"
+   ],
+   "anahtar_kelimeler": [
+    "Sağlık kayıtlarından bilgi çıkarımı",
+    "Türkçe hukuki metinlerin analizi",
+    "Sosyal medyada dezenformasyon tespiti",
+    "Kamu hizmetlerinde sohbet robotu geliştirme",
+    "Endüstriyel enzim üretimi"
+   ],
+   "ozet_metni": "Bilgisayar Mühendisliği alanında çalışan Dr. Öğr. Üyesi Burcu Kurt; Doğal dil işleme, Açıklanabilir yapay zekâ, Bilgisayarlı görü konularına odaklanıyor. Çalışmalarında ağırlıklı olarak transformer, çizge sinir ağı, derin öğrenme yöntemlerini kullanıyor. CV'sinde 14 yayın, 6 proje ve 2 yönetilen tez bulunuyor."
+  },
+  "pdf_url": "/api/cvs/H034_Burcu_Kurt/pdf"
+ },
+ {
+  "id": "H035_Burak_Sari",
+  "unvan": "Prof. Dr.",
+  "ad_soyad": "Burak SARI",
+  "universite": "Marmara Üniversitesi",
+  "fakulte": "Mühendislik Fakültesi",
+  "bolum": "Bilgisayar Mühendisliği",
+  "ana_alan": "Siber Güvenlik",
+  "arastirma_alanlari": [
+   "Mahremiyet koruyan hesaplama",
+   "IoT güvenliği",
+   "Kriptografi",
+   "Post-kuantum kriptografi",
+   "Saldırı tespit sistemleri"
+  ],
+  "email": "burak.sari@marmara.demo.edu.tr",
+  "profil": {
+   "arastirma_alanlari": [
+    "Mahremiyet koruyan hesaplama",
+    "IoT güvenliği",
+    "Kriptografi",
+    "Post-kuantum kriptografi",
+    "Saldırı tespit sistemleri"
+   ],
+   "yontemler": [
+    "hafif kriptografi",
+    "anomali tespiti",
+    "makine öğrenmesi",
+    "blokzincir"
+   ],
+   "anahtar_kelimeler": [
+    "Bankacılık sistemlerinde dolandırıcılık tespiti",
+    "IoT cihazlarında güvenli kimlik doğrulama",
+    "Kritik altyapıların siber saldırılara karşı korunması",
+    "E-devlet uygulamalarında veri mahremiyeti"
+   ],
+   "ozet_metni": "Bilgisayar Mühendisliği alanında çalışan Prof. Dr. Burak Sarı; Mahremiyet koruyan hesaplama, IoT güvenliği, Kriptografi konularına odaklanıyor. Çalışmalarında ağırlıklı olarak hafif kriptografi, anomali tespiti, makine öğrenmesi yöntemlerini kullanıyor. CV'sinde 27 yayın, 7 proje ve 21 yönetilen tez bulunuyor."
+  },
+  "pdf_url": "/api/cvs/H035_Burak_Sari/pdf"
+ },
+ {
+  "id": "H036_Ebru_Isik",
+  "unvan": "Prof. Dr.",
+  "ad_soyad": "Ebru IŞIK",
+  "universite": "Boğaziçi Üniversitesi",
+  "fakulte": "Mühendislik Fakültesi",
+  "bolum": "Bilgisayar Mühendisliği",
+  "ana_alan": "Yapay Zekâ ve Makine Öğrenmesi",
+  "arastirma_alanlari": [
+   "Büyük dil modelleri",
+   "Çizge sinir ağları",
+   "Doğal dil işleme",
+   "Pekiştirmeli öğrenme",
+   "Fintek",
+   "Kalkınma ekonomisi"
+  ],
+  "email": "ebru.isik@boun.demo.edu.tr",
+  "profil": {
+   "arastirma_alanlari": [
+    "Büyük dil modelleri",
+    "Çizge sinir ağları",
+    "Doğal dil işleme",
+    "Pekiştirmeli öğrenme",
+    "Fintek",
+    "Kalkınma ekonomisi"
+   ],
+   "yontemler": [
+    "çizge sinir ağı",
+    "transformer",
+    "açıklanabilir yapay zekâ",
+    "derin öğrenme",
+    "pekiştirmeli öğrenme"
+   ],
+   "anahtar_kelimeler": [
+    "Türkçe hukuki metinlerin analizi",
+    "Akademik yayınlarda anlamsal arama",
+    "Görüntü tabanlı kalite kontrol",
+    "Sağlık kayıtlarından bilgi çıkarımı",
+    "Sosyal medyada dezenformasyon tespiti"
+   ],
+   "ozet_metni": "Bilgisayar Mühendisliği alanında çalışan Prof. Dr. Ebru Işık; Büyük dil modelleri, Çizge sinir ağları, Doğal dil işleme konularına odaklanıyor. Çalışmalarında ağırlıklı olarak çizge sinir ağı, transformer, açıklanabilir yapay zekâ yöntemlerini kullanıyor. CV'sinde 29 yayın, 9 proje ve 15 yönetilen tez bulunuyor."
+  },
+  "pdf_url": "/api/cvs/H036_Ebru_Isik/pdf"
+ },
+ {
+  "id": "H037_Elif_Demir",
+  "unvan": "Prof. Dr.",
+  "ad_soyad": "Elif DEMİR",
+  "universite": "İstanbul Teknik Üniversitesi",
+  "fakulte": "Mühendislik Fakültesi",
+  "bolum": "Metalurji ve Malzeme Mühendisliği",
+  "ana_alan": "Malzeme Bilimi ve Nanoteknoloji",
+  "arastirma_alanlari": [
+   "Kompozit malzemeler",
+   "Korozyon",
+   "Yüksek entropili alaşımlar",
+   "İnce film kaplamalar",
+   "Eklemeli imalat (3B baskı)",
+   "Grafen ve 2B malzemeler"
+  ],
+  "email": "elif.demir@itu.demo.edu.tr",
+  "profil": {
+   "arastirma_alanlari": [
+    "Kompozit malzemeler",
+    "Korozyon",
+    "Yüksek entropili alaşımlar",
+    "İnce film kaplamalar",
+    "Eklemeli imalat (3B baskı)",
+    "Grafen ve 2B malzemeler"
+   ],
+   "yontemler": [
+    "toz metalurjisi yöntemiyle",
+    "eklemeli imalat ile üretilmiş",
+    "nano katkılı",
+    "sol-jel yöntemiyle",
+    "hafif kompozit geliştirilmesi için eklemeli imalat ile üretilmiş"
+   ],
+   "anahtar_kelimeler": [
+    "Yerli bor minerallerinden ileri seramik üretimi",
+    "Korozyona dayanıklı kaplamalar",
+    "Biyouyumlu implant malzemeleri",
+    "Havacılık",
+    "Havacılık için hafif kompozit geliştirilmesi"
+   ],
+   "ozet_metni": "Metalurji ve Malzeme Mühendisliği alanında çalışan Prof. Dr. Elif Demir; Kompozit malzemeler, Korozyon, Yüksek entropili alaşımlar konularına odaklanıyor. Çalışmalarında ağırlıklı olarak toz metalurjisi yöntemiyle, eklemeli imalat ile üretilmiş, nano katkılı yöntemlerini kullanıyor. CV'sinde 28 yayın, 8 proje ve 20 yönetilen tez bulunuyor."
+  },
+  "pdf_url": "/api/cvs/H037_Elif_Demir/pdf"
+ },
+ {
+  "id": "H038_Deniz_Kilic",
+  "unvan": "Doç. Dr.",
+  "ad_soyad": "Deniz KILIÇ",
+  "universite": "Marmara Üniversitesi",
+  "fakulte": "Mühendislik Fakültesi",
+  "bolum": "Makine Mühendisliği",
+  "ana_alan": "Makine Mühendisliği ve Robotik",
+  "arastirma_alanlari": [
+   "Mekatronik",
+   "Endüstri 4.0",
+   "Titreşim analizi",
+   "Isı transferi",
+   "Otonom sistemler"
+  ],
+  "email": "deniz.kilic@marmara.demo.edu.tr",
+  "profil": {
+   "arastirma_alanlari": [
+    "Mekatronik",
+    "Endüstri 4.0",
+    "Titreşim analizi",
+    "Isı transferi",
+    "Otonom sistemler"
+   ],
+   "yontemler": [
+    "dijital ikiz tabanlı",
+    "yapay zekâ destekli",
+    "yerli tasarım",
+    "otonom"
+   ],
+   "anahtar_kelimeler": [
+    "Tarımsal insansız hava aracı",
+    "Rehabilitasyon amaçlı dış iskelet robotu",
+    "Akıllı fabrikalarda kestirimci bakım",
+    "Depo otomasyonu için mobil robot"
+   ],
+   "ozet_metni": "Makine Mühendisliği alanında çalışan Doç. Dr. Deniz Kılıç; Mekatronik, Endüstri 4.0, Titreşim analizi konularına odaklanıyor. Çalışmalarında ağırlıklı olarak dijital ikiz tabanlı, yapay zekâ destekli, yerli tasarım yöntemlerini kullanıyor. CV'sinde 18 yayın, 7 proje ve 10 yönetilen tez bulunuyor."
+  },
+  "pdf_url": "/api/cvs/H038_Deniz_Kilic/pdf"
+ },
+ {
+  "id": "H039_Seda_Ozkan",
+  "unvan": "Doç. Dr.",
+  "ad_soyad": "Seda ÖZKAN",
+  "universite": "Boğaziçi Üniversitesi",
+  "fakulte": "Tıp Fakültesi",
+  "bolum": "İç Hastalıkları / Tıbbi Biyokimya",
+  "ana_alan": "Tıp ve Sağlık Bilimleri",
+  "arastirma_alanlari": [
+   "Epidemiyoloji",
+   "Klinik araştırmalar",
+   "Onkoloji",
+   "Halk sağlığı"
+  ],
+  "email": "seda.ozkan@boun.demo.edu.tr",
+  "profil": {
+   "arastirma_alanlari": [
+    "Epidemiyoloji",
+    "Klinik araştırmalar",
+    "Onkoloji",
+    "Halk sağlığı"
+   ],
+   "yontemler": [
+    "yapay zekâ destekli",
+    "biyobelirteç tabanlı",
+    "telemedikal",
+    "çok merkezli klinik"
+   ],
+   "anahtar_kelimeler": [
+    "Diyabet hastalarının uzaktan izlenmesi",
+    "Kalp yetmezliğinde erken tanı",
+    "Kanser taramalarının etkinliği",
+    "Kronik hastalıklarda risk tahmini"
+   ],
+   "ozet_metni": "İç Hastalıkları / Tıbbi Biyokimya alanında çalışan Doç. Dr. Seda Özkan; Epidemiyoloji, Klinik araştırmalar, Onkoloji konularına odaklanıyor. Çalışmalarında ağırlıklı olarak yapay zekâ destekli, biyobelirteç tabanlı, telemedikal yöntemlerini kullanıyor. CV'sinde 19 yayın, 7 proje ve 9 yönetilen tez bulunuyor."
+  },
+  "pdf_url": "/api/cvs/H039_Seda_Ozkan/pdf"
+ },
+ {
+  "id": "H040_Hulya_Aksoy",
+  "unvan": "Prof. Dr.",
+  "ad_soyad": "Hülya AKSOY",
+  "universite": "Ankara Üniversitesi",
+  "fakulte": "Mühendislik Fakültesi",
+  "bolum": "Makine Mühendisliği",
+  "ana_alan": "Makine Mühendisliği ve Robotik",
+  "arastirma_alanlari": [
+   "Otonom sistemler",
+   "Mekatronik",
+   "Isı transferi",
+   "Endüstri 4.0",
+   "Görünür ışık haberleşmesi",
+   "5G/6G haberleşme"
+  ],
+  "email": "hulya.aksoy@ankara.demo.edu.tr",
+  "profil": {
+   "arastirma_alanlari": [
+    "Otonom sistemler",
+    "Mekatronik",
+    "Isı transferi",
+    "Endüstri 4.0",
+    "Görünür ışık haberleşmesi",
+    "5G/6G haberleşme"
+   ],
+   "yontemler": [
+    "dijital ikiz tabanlı",
+    "yerli tasarım",
+    "yapay zekâ destekli",
+    "mobil robot için yerli tasarım",
+    "otonom"
+   ],
+   "anahtar_kelimeler": [
+    "Rehabilitasyon amaçlı dış iskelet robotu",
+    "Depo otomasyonu",
+    "Depo otomasyonu için mobil robot",
+    "Tarımsal insansız hava aracı",
+    "Akıllı fabrikalarda kestirimci bakım"
+   ],
+   "ozet_metni": "Makine Mühendisliği alanında çalışan Prof. Dr. Hülya Aksoy; Otonom sistemler, Mekatronik, Isı transferi konularına odaklanıyor. Çalışmalarında ağırlıklı olarak dijital ikiz tabanlı, yerli tasarım, yapay zekâ destekli yöntemlerini kullanıyor. CV'sinde 29 yayın, 8 proje ve 15 yönetilen tez bulunuyor."
+  },
+  "pdf_url": "/api/cvs/H040_Hulya_Aksoy/pdf"
+ },
+ {
+  "id": "H041_Ipek_Taskin",
+  "unvan": "Prof. Dr.",
+  "ad_soyad": "İpek TAŞKIN",
+  "universite": "Çukurova Üniversitesi",
+  "fakulte": "Mühendislik Fakültesi",
+  "bolum": "Çevre Mühendisliği",
+  "ana_alan": "Çevre Mühendisliği ve İklim Değişikliği",
+  "arastirma_alanlari": [
+   "Atıksu arıtımı",
+   "Katı atık yönetimi",
+   "İklim değişikliği etkileri",
+   "Döngüsel ekonomi",
+   "Akıllı şebekeler",
+   "Mikro şebekeler"
+  ],
+  "email": "ipek.taskin@cu.demo.edu.tr",
+  "profil": {
+   "arastirma_alanlari": [
+    "Atıksu arıtımı",
+    "Katı atık yönetimi",
+    "İklim değişikliği etkileri",
+    "Döngüsel ekonomi",
+    "Akıllı şebekeler",
+    "Mikro şebekeler"
+   ],
+   "yontemler": [
+    "yaşam döngüsü analizi ile",
+    "ileri oksidasyon prosesleri ile",
+    "uzaktan algılama ile",
+    "membran teknolojisiyle",
+    "yapay zekâ destekli"
+   ],
+   "anahtar_kelimeler": [
+    "Havzalarda iklim değişikliği uyum stratejileri",
+    "Kentsel hava kalitesinin izlenmesi",
+    "Sanayi atıksularının geri kazanımı",
+    "Marmara Denizi'nde mikroplastik kirliliği",
+    "Yeşil hidrojen üretimi"
+   ],
+   "ozet_metni": "Çevre Mühendisliği alanında çalışan Prof. Dr. İpek Taşkın; Atıksu arıtımı, Katı atık yönetimi, İklim değişikliği etkileri konularına odaklanıyor. Çalışmalarında ağırlıklı olarak yaşam döngüsü analizi ile, ileri oksidasyon prosesleri ile, uzaktan algılama ile yöntemlerini kullanıyor. CV'sinde 27 yayın, 9 proje ve 19 yönetilen tez bulunuyor."
+  },
+  "pdf_url": "/api/cvs/H041_Ipek_Taskin/pdf"
+ },
+ {
+  "id": "H042_Zeynep_Koc",
+  "unvan": "Doç. Dr.",
+  "ad_soyad": "Zeynep KOÇ",
+  "universite": "Karadeniz Teknik Üniversitesi",
+  "fakulte": "Fen Fakültesi",
+  "bolum": "Kimya",
+  "ana_alan": "Kimya ve Kimya Mühendisliği",
+  "arastirma_alanlari": [
+   "İlaç sentezi",
+   "Polimer kimyası",
+   "Kataliz",
+   "Adsorpsiyon",
+   "Elektrokimya",
+   "Sensörler"
+  ],
+  "email": "zeynep.koc@ktu.demo.edu.tr",
+  "profil": {
+   "arastirma_alanlari": [
+    "İlaç sentezi",
+    "Polimer kimyası",
+    "Kataliz",
+    "Adsorpsiyon",
+    "Elektrokimya",
+    "Sensörler"
+   ],
+   "yontemler": [
+    "hesaplamalı",
+    "nano katalizör destekli",
+    "yeşil sentez ile",
+    "elektrokimyasal",
+    "sensörler için elektrokimyasal"
+   ],
+   "anahtar_kelimeler": [
+    "Biyobozunur polimer geliştirme",
+    "Ilaç etken maddelerinin yerli üretimi",
+    "Karbondioksitin değerli kimyasallara dönüşümü",
+    "Gıda ve çevrede kirletici tespiti için sensörler",
+    "Gıda ve çevrede kirletici tespiti"
+   ],
+   "ozet_metni": "Kimya alanında çalışan Doç. Dr. Zeynep Koç; İlaç sentezi, Polimer kimyası, Kataliz konularına odaklanıyor. Çalışmalarında ağırlıklı olarak hesaplamalı, nano katalizör destekli, yeşil sentez ile yöntemlerini kullanıyor. CV'sinde 20 yayın, 5 proje ve 11 yönetilen tez bulunuyor."
+  },
+  "pdf_url": "/api/cvs/H042_Zeynep_Koc/pdf"
+ },
+ {
+  "id": "H043_Serap_Ozturk",
+  "unvan": "Prof. Dr.",
+  "ad_soyad": "Serap ÖZTÜRK",
+  "universite": "Ege Üniversitesi",
+  "fakulte": "Eğitim Fakültesi",
+  "bolum": "Bilgisayar ve Öğretim Teknolojileri Eğitimi",
+  "ana_alan": "Eğitim Bilimleri ve Eğitim Teknolojileri",
+  "arastirma_alanlari": [
+   "Oyunlaştırma",
+   "Yapay zekâ destekli öğretim",
+   "STEM eğitimi",
+   "Eğitim teknolojileri"
+  ],
+  "email": "serap.ozturk@ege.demo.edu.tr",
+  "profil": {
+   "arastirma_alanlari": [
+    "Oyunlaştırma",
+    "Yapay zekâ destekli öğretim",
+    "STEM eğitimi",
+    "Eğitim teknolojileri"
+   ],
+   "yontemler": [
+    "oyunlaştırma tabanlı",
+    "yapay zekâ destekli",
+    "öğrenme analitiği ile",
+    "artırılmış gerçeklik destekli"
+   ],
+   "anahtar_kelimeler": [
+    "Uzaktan eğitimde öğrenci başarısının tahmini",
+    "Öğretmenlerin dijital yetkinlikleri",
+    "Ortaokul öğrencilerinde bilgi işlemsel düşünme",
+    "STEM etkinliklerinin geliştirilmesi"
+   ],
+   "ozet_metni": "Bilgisayar ve Öğretim Teknolojileri Eğitimi alanında çalışan Prof. Dr. Serap Öztürk; Oyunlaştırma, Yapay zekâ destekli öğretim, STEM eğitimi konularına odaklanıyor. Çalışmalarında ağırlıklı olarak oyunlaştırma tabanlı, yapay zekâ destekli, öğrenme analitiği ile yöntemlerini kullanıyor. CV'sinde 27 yayın, 7 proje ve 19 yönetilen tez bulunuyor."
+  },
+  "pdf_url": "/api/cvs/H043_Serap_Ozturk/pdf"
+ },
+ {
+  "id": "H044_Sibel_Basaran",
+  "unvan": "Doç. Dr.",
+  "ad_soyad": "Sibel BAŞARAN",
+  "universite": "Hacettepe Üniversitesi",
+  "fakulte": "Mühendislik Fakültesi",
+  "bolum": "Bilgisayar Mühendisliği",
+  "ana_alan": "Yapay Zekâ ve Makine Öğrenmesi",
+  "arastirma_alanlari": [
+   "Bilgi erişimi ve anlamsal arama",
+   "Derin öğrenme",
+   "Federated learning",
+   "Bilgisayarlı görü",
+   "Büyük dil modelleri"
+  ],
+  "email": "sibel.basaran@hacettepe.demo.edu.tr",
+  "profil": {
+   "arastirma_alanlari": [
+    "Bilgi erişimi ve anlamsal arama",
+    "Derin öğrenme",
+    "Federated learning",
+    "Bilgisayarlı görü",
+    "Büyük dil modelleri"
+   ],
+   "yontemler": [
+    "açıklanabilir yapay zekâ",
+    "büyük dil modeli",
+    "pekiştirmeli öğrenme",
+    "transformer",
+    "çizge sinir ağı"
+   ],
+   "anahtar_kelimeler": [
+    "Sağlık kayıtlarından bilgi çıkarımı",
+    "Görüntü tabanlı kalite kontrol",
+    "Türkçe hukuki metinlerin analizi",
+    "Kamu hizmetlerinde sohbet robotu geliştirme",
+    "Sosyal medyada dezenformasyon tespiti"
+   ],
+   "ozet_metni": "Bilgisayar Mühendisliği alanında çalışan Doç. Dr. Sibel Başaran; Bilgi erişimi ve anlamsal arama, Derin öğrenme, Federated learning konularına odaklanıyor. Çalışmalarında ağırlıklı olarak açıklanabilir yapay zekâ, büyük dil modeli, pekiştirmeli öğrenme yöntemlerini kullanıyor. CV'sinde 19 yayın, 6 proje ve 8 yönetilen tez bulunuyor."
+  },
+  "pdf_url": "/api/cvs/H044_Sibel_Basaran/pdf"
+ },
+ {
+  "id": "H045_Mustafa_Bulut",
+  "unvan": "Prof. Dr.",
+  "ad_soyad": "Mustafa BULUT",
+  "universite": "Sakarya Üniversitesi",
+  "fakulte": "Ziraat Fakültesi",
+  "bolum": "Gıda Mühendisliği",
+  "ana_alan": "Tarım ve Gıda Bilimleri",
+  "arastirma_alanlari": [
+   "Hassas tarım",
+   "Fonksiyonel gıdalar",
+   "Tarımsal uzaktan algılama",
+   "Probiyotikler",
+   "Para politikası",
+   "Fintek"
+  ],
+  "email": "mustafa.bulut@sakarya.demo.edu.tr",
+  "profil": {
+   "arastirma_alanlari": [
+    "Hassas tarım",
+    "Fonksiyonel gıdalar",
+    "Tarımsal uzaktan algılama",
+    "Probiyotikler",
+    "Para politikası",
+    "Fintek"
+   ],
+   "yontemler": [
+    "doğal katkılı",
+    "dron ve uydu verisi ile",
+    "nanoteknoloji destekli",
+    "akıllı sensörlerle",
+    "panel veri"
+   ],
+   "anahtar_kelimeler": [
+    "Gıdalarda mikotoksin tespiti",
+    "Fonksiyonel gıda geliştirme",
+    "Kuraklığa dayanıklı buğday çeşitleri",
+    "Fındık bahçelerinde verim tahmini",
+    "Yeşil dönüşümün ekonomik etkileri"
+   ],
+   "ozet_metni": "Gıda Mühendisliği alanında çalışan Prof. Dr. Mustafa Bulut; Hassas tarım, Fonksiyonel gıdalar, Tarımsal uzaktan algılama konularına odaklanıyor. Çalışmalarında ağırlıklı olarak doğal katkılı, dron ve uydu verisi ile, nanoteknoloji destekli yöntemlerini kullanıyor. CV'sinde 30 yayın, 10 proje ve 13 yönetilen tez bulunuyor."
+  },
+  "pdf_url": "/api/cvs/H045_Mustafa_Bulut/pdf"
+ },
+ {
+  "id": "H046_Murat_Isik",
+  "unvan": "Prof. Dr.",
+  "ad_soyad": "Murat IŞIK",
+  "universite": "Atatürk Üniversitesi",
+  "fakulte": "Mühendislik Fakültesi",
+  "bolum": "Elektronik ve Haberleşme Mühendisliği",
+  "ana_alan": "Haberleşme ve Sinyal İşleme",
+  "arastirma_alanlari": [
+   "Görünür ışık haberleşmesi",
+   "Uydu haberleşmesi",
+   "5G/6G haberleşme",
+   "Sinyal işleme"
+  ],
+  "email": "murat.isik@atauni.demo.edu.tr",
+  "profil": {
+   "arastirma_alanlari": [
+    "Görünür ışık haberleşmesi",
+    "Uydu haberleşmesi",
+    "5G/6G haberleşme",
+    "Sinyal işleme"
+   ],
+   "yontemler": [
+    "yazılım tanımlı",
+    "düşük maliyetli",
+    "yerli ve milli",
+    "yapay zekâ destekli",
+    "akıllı yansıtıcı yüzey tasarımı için yazılım tanımlı"
+   ],
+   "anahtar_kelimeler": [
+    "Afet bölgelerinde acil haberleşme ağı",
+    "6G için akıllı yansıtıcı yüzey tasarımı",
+    "Yerli uydu haberleşme terminali",
+    "6G",
+    "Otomotiv radarlarında hedef tespiti"
+   ],
+   "ozet_metni": "Elektronik ve Haberleşme Mühendisliği alanında çalışan Prof. Dr. Murat Işık; Görünür ışık haberleşmesi, Uydu haberleşmesi, 5G/6G haberleşme konularına odaklanıyor. Çalışmalarında ağırlıklı olarak yazılım tanımlı, düşük maliyetli, yerli ve milli yöntemlerini kullanıyor. CV'sinde 27 yayın, 9 proje ve 16 yönetilen tez bulunuyor."
+  },
+  "pdf_url": "/api/cvs/H046_Murat_Isik/pdf"
+ },
+ {
+  "id": "H047_Tolga_Karakaya",
+  "unvan": "Dr. Öğr. Üyesi",
+  "ad_soyad": "Tolga KARAKAYA",
+  "universite": "Erciyes Üniversitesi",
+  "fakulte": "Mühendislik Fakültesi",
+  "bolum": "İnşaat Mühendisliği",
+  "ana_alan": "Deprem ve Yapı Mühendisliği",
+  "arastirma_alanlari": [
+   "Zemin-yapı etkileşimi",
+   "Hasar tespiti",
+   "Güçlendirme teknikleri",
+   "Deprem mühendisliği",
+   "Biyoinformatik",
+   "Aşı geliştirme"
+  ],
+  "email": "tolga.karakaya@erciyes.demo.edu.tr",
+  "profil": {
+   "arastirma_alanlari": [
+    "Zemin-yapı etkileşimi",
+    "Hasar tespiti",
+    "Güçlendirme teknikleri",
+    "Deprem mühendisliği",
+    "Biyoinformatik",
+    "Aşı geliştirme"
+   ],
+   "yontemler": [
+    "olasılıksal",
+    "deneysel ve sayısal",
+    "sensör tabanlı",
+    "CRISPR tabanlı"
+   ],
+   "anahtar_kelimeler": [
+    "Mevcut yapı stokunun hızlı deprem risk değerlendirmesi",
+    "Deprem sonrası hasar tespiti",
+    "Tarihi yapıların güçlendirilmesi",
+    "Endüstriyel enzim üretimi"
+   ],
+   "ozet_metni": "İnşaat Mühendisliği alanında çalışan Dr. Öğr. Üyesi Tolga Karakaya; Zemin-yapı etkileşimi, Hasar tespiti, Güçlendirme teknikleri konularına odaklanıyor. Çalışmalarında ağırlıklı olarak olasılıksal, deneysel ve sayısal, sensör tabanlı yöntemlerini kullanıyor. CV'sinde 13 yayın, 4 proje ve 3 yönetilen tez bulunuyor."
+  },
+  "pdf_url": "/api/cvs/H047_Tolga_Karakaya/pdf"
+ },
+ {
+  "id": "H048_Burak_Ucar",
+  "unvan": "Dr. Öğr. Üyesi",
+  "ad_soyad": "Burak UÇAR",
+  "universite": "Sakarya Üniversitesi",
+  "fakulte": "Fen Fakültesi",
+  "bolum": "Moleküler Biyoloji ve Genetik",
+  "ana_alan": "Moleküler Biyoloji ve Biyoteknoloji",
+  "arastirma_alanlari": [
+   "Kanser biyolojisi",
+   "Rekombinant protein üretimi",
+   "Biyoinformatik",
+   "Gen düzenleme (CRISPR)"
+  ],
+  "email": "burak.ucar@sakarya.demo.edu.tr",
+  "profil": {
+   "arastirma_alanlari": [
+    "Kanser biyolojisi",
+    "Rekombinant protein üretimi",
+    "Biyoinformatik",
+    "Gen düzenleme (CRISPR)"
+   ],
+   "yontemler": [
+    "biyoinformatik destekli",
+    "yeni nesil dizileme ile",
+    "rekombinant DNA teknolojisiyle"
+   ],
+   "anahtar_kelimeler": [
+    "Endüstriyel enzim üretimi",
+    "Antibiyotik direncinin moleküler mekanizmaları",
+    "Yerli aşı adaylarının geliştirilmesi",
+    "Kolorektal kanserde yeni biyobelirteçlerin keşfi"
+   ],
+   "ozet_metni": "Moleküler Biyoloji ve Genetik alanında çalışan Dr. Öğr. Üyesi Burak Uçar; Kanser biyolojisi, Rekombinant protein üretimi, Biyoinformatik konularına odaklanıyor. Çalışmalarında ağırlıklı olarak biyoinformatik destekli, yeni nesil dizileme ile, rekombinant DNA teknolojisiyle yöntemlerini kullanıyor. CV'sinde 10 yayın, 4 proje ve 4 yönetilen tez bulunuyor."
+  },
+  "pdf_url": "/api/cvs/H048_Burak_Ucar/pdf"
+ },
+ {
+  "id": "H049_Serkan_Ekinci",
+  "unvan": "Prof. Dr.",
+  "ad_soyad": "Serkan EKİNCİ",
+  "universite": "Hacettepe Üniversitesi",
+  "fakulte": "Ziraat Fakültesi",
+  "bolum": "Gıda Mühendisliği",
+  "ana_alan": "Tarım ve Gıda Bilimleri",
+  "arastirma_alanlari": [
+   "Bitki ıslahı",
+   "Hassas tarım",
+   "Probiyotikler",
+   "Gıda ambalajlama",
+   "Fonksiyonel gıdalar",
+   "Gen düzenleme (CRISPR)",
+   "Genomik ve transkriptomik"
+  ],
+  "email": "serkan.ekinci@hacettepe.demo.edu.tr",
+  "profil": {
+   "arastirma_alanlari": [
+    "Bitki ıslahı",
+    "Hassas tarım",
+    "Probiyotikler",
+    "Gıda ambalajlama",
+    "Fonksiyonel gıdalar",
+    "Gen düzenleme (CRISPR)",
+    "Genomik ve transkriptomik"
+   ],
+   "yontemler": [
+    "akıllı sensörlerle",
+    "nanoteknoloji destekli",
+    "dron ve uydu verisi ile",
+    "doğal katkılı",
+    "CRISPR tabanlı"
+   ],
+   "anahtar_kelimeler": [
+    "Gıdalarda mikotoksin tespiti",
+    "Kuraklığa dayanıklı buğday çeşitleri",
+    "Fındık bahçelerinde verim tahmini",
+    "Fonksiyonel gıda geliştirme",
+    "Kolorektal kanserde yeni biyobelirteçlerin keşfi"
+   ],
+   "ozet_metni": "Gıda Mühendisliği alanında çalışan Prof. Dr. Serkan Ekinci; Bitki ıslahı, Hassas tarım, Probiyotikler konularına odaklanıyor. Çalışmalarında ağırlıklı olarak akıllı sensörlerle, nanoteknoloji destekli, dron ve uydu verisi ile yöntemlerini kullanıyor. CV'sinde 31 yayın, 8 proje ve 21 yönetilen tez bulunuyor."
+  },
+  "pdf_url": "/api/cvs/H049_Serkan_Ekinci/pdf"
+ },
+ {
+  "id": "H050_Gul_Ozkan",
+  "unvan": "Dr. Öğr. Üyesi",
+  "ad_soyad": "Gül ÖZKAN",
+  "universite": "Yıldız Teknik Üniversitesi",
+  "fakulte": "Mühendislik Fakültesi",
+  "bolum": "Çevre Mühendisliği",
+  "ana_alan": "Çevre Mühendisliği ve İklim Değişikliği",
+  "arastirma_alanlari": [
+   "Katı atık yönetimi",
+   "Hava kirliliği modellemesi",
+   "Karbon ayak izi",
+   "Döngüsel ekonomi",
+   "Mikroplastikler"
+  ],
+  "email": "gul.ozkan@ytu.demo.edu.tr",
+  "profil": {
+   "arastirma_alanlari": [
+    "Katı atık yönetimi",
+    "Hava kirliliği modellemesi",
+    "Karbon ayak izi",
+    "Döngüsel ekonomi",
+    "Mikroplastikler"
+   ],
+   "yontemler": [
+    "ileri oksidasyon prosesleri ile",
+    "uzaktan algılama ile",
+    "yaşam döngüsü analizi ile"
+   ],
+   "anahtar_kelimeler": [
+    "Kentsel hava kalitesinin izlenmesi",
+    "Havzalarda iklim değişikliği uyum stratejileri",
+    "Marmara Denizi'nde mikroplastik kirliliği"
+   ],
+   "ozet_metni": "Çevre Mühendisliği alanında çalışan Dr. Öğr. Üyesi Gül Özkan; Katı atık yönetimi, Hava kirliliği modellemesi, Karbon ayak izi konularına odaklanıyor. Çalışmalarında ağırlıklı olarak ileri oksidasyon prosesleri ile, uzaktan algılama ile, yaşam döngüsü analizi ile yöntemlerini kullanıyor. CV'sinde 13 yayın, 3 proje ve 3 yönetilen tez bulunuyor."
+  },
+  "pdf_url": "/api/cvs/H050_Gul_Ozkan/pdf"
+ }
+]
