@@ -21,7 +21,7 @@ class AkademikProfil(BaseModel):
 _PROMPT = ChatPromptTemplate.from_messages([
     ("system",
      "Sen akademik CV'leri analiz eden bir asistansın. Sana bir akademisyenin CV'sinden yalnızca "
-     "akademik bölümler (araştırma alanları, eğitim, yayın/proje/tez başlıkları, dersler) verilecek. "
+     "akademik bölümler (araştırma alanları ve özet, tez, yayın, proje başlıkları) verilecek. "
      "Bu içeriğe dayanarak akademisyenin araştırma profilini çıkar. Sadece verilen içerikte geçen "
      "veya doğrudan ondan çıkarılabilen bilgileri kullan; uydurma."),
     ("human", "{cv}"),

@@ -1,8 +1,9 @@
 # Tek komutla tum sistem:  docker compose up -d --build
 #   Frontend : http://localhost:3000
 #   API      : http://localhost:8000  (Swagger: /docs)
-# Bos bir veritabaninda CV'leri indekslemek icin (tek seferlik):
+# data/cvler'e CV (.docx/.pdf) eklenince ya da silinince senkronize etmek icin:
 #   docker compose --profile index run --rm indexer
+# Proje cagrilari cagri-fetcher servisiyle her gun toplanir (docs/cagri-toplama-plan.md).
 
 x-backend: &backend
   build: .
@@ -42,6 +43,9 @@ services:
     <<: *backend
     container_name: academiq-backend
     restart: unless-stopped
+    volumes:
+      - ./data:/app/data:ro
+      - ./data/uploads:/app/data/uploads  # CV Yukle / "CV'mi kaydet" ile gelen PDF'ler
     ports:
       - "8000:8000"
     healthcheck:
@@ -65,7 +69,14 @@ services:
       backend:
         condition: service_healthy
 
-  # Tek seferlik CV indeksleme (varsayilan "up" ile calismaz)
+  # Proje cagrisi toplama: her gun CAGRI_CEKME_SAATI'nde (varsayilan 07:00 TSI) ve "Kaynaklari tara" ile
+  cagri-fetcher:
+    <<: *backend
+    container_name: academiq-cagri-fetcher
+    restart: unless-stopped
+    command: ["python", "-m", "backend.cagrilar.worker"]
+
+  # CV klasoru senkronizasyonu: yalnizca yeni/degisen CV'ler islenir (varsayilan "up" ile calismaz)
   indexer:
     <<: *backend
     profiles: ["index"]

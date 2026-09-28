@@ -87,6 +87,59 @@ export function deadline(isoDate) {
   return { text, days };
 }
 
+/** "2026-09-28T07:02:10+03:00" -> "28.09.2026 07:02" */
+export function formatDateTime(iso) {
+  if (!iso) return "";
+  return new Date(iso).toLocaleString("tr-TR", { day: "2-digit", month: "2-digit", year: "numeric", hour: "2-digit", minute: "2-digit" });
+}
+
+// ---------------------------------------------------------------------------
+// Proje çağrıları
+// ---------------------------------------------------------------------------
+export const DURUM = {
+  acik: ["ok", "Başvurusu açık"],
+  gecmis: ["muted", "Süresi doldu"],
+  belirsiz: ["warn", "Tarih belirsiz"],
+};
+export const HEDEF_KITLE = { akademik: ["primary", "Akademik"], sanayi: ["muted", "Sanayi"] };
+
+export function durumBadge(durum) {
+  const [cls, label] = DURUM[durum] ?? ["muted", durum];
+  return `<span class="badge ${cls}">${esc(label)}</span>`;
+}
+
+/** Listede gösterilecek tarih: bugünden sonraki ilk tarih, hepsi geçtiyse sonuncusu. */
+export function nextTarih(tarihler) {
+  const list = [...(tarihler ?? [])].sort((a, b) => a.tarih.localeCompare(b.tarih));
+  const upcoming = list.find((t) => deadline(t.tarih).days >= 0);
+  return upcoming ?? list.at(-1) ?? null;
+}
+
+export function daysLeftText(days) {
+  if (days < 0) return "Süresi doldu";
+  if (days === 0) return "Bugün son gün";
+  return `${days} gün kaldı`;
+}
+
+/** Çağrının sıradaki tarihi: tarih, etiket ve kalan gün (7 günden azsa vurgulu). */
+export function tarihCell(cagri) {
+  const t = nextTarih(cagri.tarihler);
+  if (!t) return `<span class="badge warn">Tarih belirsiz</span>`;
+  const d = deadline(t.tarih);
+  const rest = (cagri.tarihler?.length ?? 0) - 1;
+  return `<div style="font-weight:600">${d.text}</div>
+    <div class="days-left ${d.days >= 0 && d.days < 7 ? "urgent" : ""}">${daysLeftText(d.days)}</div>
+    <div class="tiny muted" title="${esc(cagri.tarihler.map((x) => `${deadline(x.tarih).text} · ${x.etiket}`).join("\n"))}">${esc(t.etiket)}${rest > 0 ? ` · +${rest} tarih` : ""}</div>`;
+}
+
+export function tarihList(tarihler) {
+  if (!tarihler?.length) return `<p class="small muted">Metinde başvuru tarihi bulunamadı.</p>`;
+  return `<dl class="meta-list">${[...tarihler].sort((a, b) => a.tarih.localeCompare(b.tarih)).map((t) => {
+    const d = deadline(t.tarih);
+    return `<dt>${d.text}</dt><dd>${esc(t.etiket)} <span class="days-left ${d.days >= 0 && d.days < 7 ? "urgent" : ""}">· ${daysLeftText(d.days)}</span></dd>`;
+  }).join("")}</dl>`;
+}
+
 // ---------------------------------------------------------------------------
 // Küçük bileşenler (HTML string döner)
 // ---------------------------------------------------------------------------

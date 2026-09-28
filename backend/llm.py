@@ -18,6 +18,18 @@ def get_llm() -> ChatOpenAI:
 @lru_cache
 def get_embeddings() -> OpenAIEmbeddings:
     """CV'ler ve ilanlar ayni model/boyut ile embed edilir."""
+    return _embeddings()
+
+
+@lru_cache
+def get_store_embeddings() -> OpenAIEmbeddings:
+    """PGVectorStore'lara verilen ayri istemci. Store'lar PGEngine'in kendi event loop'unda embed eder;
+    istemcinin async baglantilari ilk kullanildigi loop'a baglandigi icin get_embeddings() ile paylasilirsa
+    (ör. CV yukleyip ayni surecte eslestirince) 'bound to a different event loop' hatasi olusur."""
+    return _embeddings()
+
+
+def _embeddings() -> OpenAIEmbeddings:
     s = get_settings()
     return OpenAIEmbeddings(
         model=s.embedding_model,

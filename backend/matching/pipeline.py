@@ -24,11 +24,11 @@ from backend.matching.scoring import AcademicScore, score_academics, to_percent
 from backend.matching.search import hybrid_chunk_search, profile_ranking
 
 # PyMuPDF thread-safe degil: eszamanli isteklerde parse islemleri siraya alinir
-_PARSE_LOCK = threading.Lock()
+PARSE_LOCK = threading.Lock()
 
 
 def _parse(pdf_bytes: bytes) -> str:
-    with _PARSE_LOCK, tempfile.NamedTemporaryFile(suffix=".pdf") as tmp:
+    with PARSE_LOCK, tempfile.NamedTemporaryFile(suffix=".pdf") as tmp:
         tmp.write(pdf_bytes)
         tmp.flush()
         return parse_pdf(Path(tmp.name), use_ocr=False).markdown

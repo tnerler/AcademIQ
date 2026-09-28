@@ -1,4 +1,4 @@
-import { getCvs } from "../api.js";
+import { getCvs, getCagrilar } from "../api.js";
 import { icon } from "../ui.js";
 
 export const title = "Ana Sayfa";
@@ -16,17 +16,17 @@ export function render(el) {
           <p>Sistemdeki hocaları alan, unvan ve üniversiteye göre filtreleyin, CV detayına bakın.</p>
           <span class="meta" id="cv-count">&nbsp;</span>
         </a>
-        <a class="card home-card passive" href="#/cv-yukle">
+        <a class="card home-card" href="#/cv-yukle">
           <div class="icon-box">${icon("upload")}</div>
           <h2>CV yükle</h2>
           <p>PDF CV'leri sürükleyip bırakın; metin çıkarılır, bölümlere ayrılır ve vektör veritabanına eklenir.</p>
-          <span class="meta">PDF · toplu yükleme <span class="badge soon">Yakında</span></span>
+          <span class="meta">PDF · toplu yükleme</span>
         </a>
-        <a class="card home-card passive" href="#/ilanlar">
+        <a class="card home-card" href="#/ilanlar">
           <div class="icon-box">${icon("file")}</div>
           <h2>Proje ilanlarını görüntüle</h2>
-          <p>Scrape edilen ve elle yüklenen ilanları kaynak ve son başvuru tarihine göre inceleyin.</p>
-          <span class="meta">İlan listesi <span class="badge soon">Yakında</span></span>
+          <p>TÜBİTAK duyurularından her gün toplanan çağrıları son başvuru tarihi ve programa göre inceleyin.</p>
+          <span class="meta" id="cagri-count">İlan listesi</span>
         </a>
         <a class="card home-card dark" href="#/eslestir">
           <div class="icon-box">${icon("swap")}</div>
@@ -41,7 +41,7 @@ export function render(el) {
           <h3>Akademisyen misiniz?</h3>
           <p>Kendi CV'nizi yükleyin, yalnızca size uygun proje ilanlarını görün.</p>
         </div>
-        <span class="go">Bana uygun ilanlar → <span class="badge soon">Yakında</span></span>
+        <span class="go">Bana uygun ilanlar →</span>
       </a>
     </div>`;
 
@@ -49,4 +49,9 @@ export function render(el) {
   getCvs()
     .then((cvs) => (count.textContent = `${cvs.length} CV kayıtlı`))
     .catch(() => (count.textContent = "CV listesine git"));
+
+  const cagriCount = el.querySelector("#cagri-count");
+  getCagrilar({ durum: "acik", limit: 1 })
+    .then((r) => (cagriCount.textContent = `${r.toplam} çağrının başvurusu açık`))
+    .catch(() => {});
 }

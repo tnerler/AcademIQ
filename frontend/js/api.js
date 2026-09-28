@@ -136,11 +136,17 @@ export function validatePdf(file) {
   return null;
 }
 
+/** CV: PDF ya da Word (.docx). */
+export function validateCv(file) {
+  if (!file) return new ApiError(422, "Lütfen bir CV dosyası seçin.");
+  if (!/\.(pdf|docx)$/i.test(file.name)) return new ApiError(415, "CV yalnızca PDF ya da Word (.docx) olabilir.");
+  if (file.size > CONFIG.MAX_PDF_MB * 1024 * 1024) return new ApiError(413, `Dosya ${CONFIG.MAX_PDF_MB} MB'tan büyük olamaz.`);
+  return null;
+}
+
 export function validateMetin(metin) {
   const len = (metin ?? "").trim().length;
-  if (len < CONFIG.MIN_METIN_LENGTH) {
-    return new ApiError(422, `İlan metni çok kısa. En az ${CONFIG.MIN_METIN_LENGTH} karakter girin.`);
-  }
+  if (len === 0) return new ApiError(422, "İlan metni boş olamaz.");
   if (len > CONFIG.MAX_METIN_LENGTH) {
     return new ApiError(422, `İlan metni çok uzun. En fazla ${CONFIG.MAX_METIN_LENGTH} karakter girin.`);
   }
@@ -181,11 +187,12 @@ export function cvPdfUrl(id) {
 
 /**
  * POST /api/match (multipart/form-data) -> MatchResponse
- * İlan ya PDF olarak ("file") ya da düz metin olarak ("metin") gönderilir.
+ * İlan PDF ("file"), düz metin ("metin") ya da toplanan bir çağrı ("cagri") olarak gönderilir.
+ * Çağrıda kayıtlı sonuç varsa hemen döner (olusturuldu dolu); yenile=true yeniden hesaplatır.
  * signal ile iptal edilebilir; CONFIG.MATCH_TIMEOUT_MS sonunda 408 fırlatır.
  */
-export async function match({ file = null, metin = null }, { signal } = {}) {
-  const invalid = file ? validatePdf(file) : validateMetin(metin);
+export async function match({ file = null, metin = null, cagri = null, yenile = false }, { signal } = {}) {
+  const invalid = cagri ? null : file ? validatePdf(file) : validateMetin(metin);
   if (invalid) throw invalid;
 
   const controller = new AbortController();
@@ -200,12 +207,16 @@ export async function match({ file = null, metin = null }, { signal } = {}) {
     if (CONFIG.USE_MOCK) {
       await sleep(CONFIG.MOCK_MATCH_DELAY_MS, controller.signal);
       // Hata ekranını denemek için: adında "hata" geçen bir PDF yükleyin ya da metne "hata" yazın.
-      if (/hata/i.test(file ? file.name : metin)) throw new ApiError(500, FALLBACK_MESSAGES[500]);
+      if (/hata/i.test(file ? file.name : metin ?? "")) throw new ApiError(500, FALLBACK_MESSAGES[500]);
+      if (cagri) return structuredClone(await pickMockIlanByText(cagri.baslik));
       return structuredClone(await (file ? pickMockIlan(file.name) : pickMockIlanByText(metin)));
     }
     const form = new FormData();
     if (file) form.append("file", file);
-    else form.append("metin", metin.trim());
+    else if (cagri) {
+      form.append("cagri_id", cagri.id);
+      if (yenile) form.append("yenile", "true");
+    } else form.append("metin", metin.trim());
     return await request("/api/match", { method: "POST", body: form, signal: controller.signal });
   } catch (err) {
     if (err.name === "AbortError" && timedOut) throw new ApiError(408, FALLBACK_MESSAGES[408]);
@@ -215,7 +226,127 @@ export async function match({ file = null, metin = null }, { signal } = {}) {
   }
 }
 
-/** Pasif ekranlardaki örnek ilan listesi (backend'de GET /api/ilanlar şu an 501). */
+/** Pasif İlan Ekle ekranındaki örnek ilan listesi. */
 export function getSampleIlanlar() {
   return loadMock("ilanlar");
+}
+
+// ---------------------------------------------------------------------------
+// Proje çağrıları (otomatik toplanan). Mock modda örnek ilanlar çağrı şekline çevrilir.
+// ---------------------------------------------------------------------------
+function todayIso() {
+  const d = new Date();
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+}
+
+async function mockCagrilar() {
+  const ilanlar = await loadMock("ilanlar");
+  const today = todayIso();
+  return ilanlar.map((i) => ({
+    id: i.id,
+    kaynak: i.kaynak,
+    url: "#",
+    baslik: i.baslik,
+    program_kodu: i.kurum.match(/\d{4}/)?.[0] ?? null,
+    program_adi: i.program,
+    hedef_kitle: "akademik",
+    ozet: `Aranan uzmanlıklar: ${i.gerekli_uzmanlik.join(", ")}.`,
+    tarihler: [{ etiket: "Son başvuru", tarih: i.son_basvuru }],
+    son_tarih: i.son_basvuru,
+    durum: i.son_basvuru >= today ? "acik" : "gecmis",
+    yayin_tarihi: null,
+    uygun_hocalar: [],
+    butce: null, sure: null, basvuru_kosullari: [], baglantilar: [], guncelleme_urller: [],
+  }));
+}
+
+/** GET /api/cagrilar -> { toplam, cagrilar: CagriOzet[] } */
+export async function getCagrilar({ durum = "", hedef_kitle = "", program = "", q = "", limit = 50, offset = 0 } = {}) {
+  if (CONFIG.USE_MOCK) {
+    await sleep(250);
+    const ara = normalizeText(q);
+    const list = (await mockCagrilar()).filter((c) =>
+      (!durum || c.durum === durum) && (!hedef_kitle || c.hedef_kitle === hedef_kitle)
+      && (!program || c.program_kodu === program) && (!ara || normalizeText(c.baslik + " " + c.ozet).includes(ara)));
+    return { toplam: list.length, cagrilar: list.slice(offset, offset + limit) };
+  }
+  const params = new URLSearchParams(
+    Object.entries({ durum, hedef_kitle, program, q, limit, offset }).filter(([, v]) => v !== "" && v != null),
+  );
+  return request(`/api/cagrilar?${params}`);
+}
+
+/** GET /api/cagrilar/{id} -> CagriDetay */
+export async function getCagri(id) {
+  if (CONFIG.USE_MOCK) {
+    const cagri = (await mockCagrilar()).find((c) => c.id === id);
+    if (!cagri) throw new ApiError(404, "Çağrı bulunamadı.");
+    return cagri;
+  }
+  return request(`/api/cagrilar/${encodeURIComponent(id)}`);
+}
+
+/** GET /api/cagrilar/programlar -> ProgramOzet[] */
+export async function getProgramlar() {
+  if (CONFIG.USE_MOCK) {
+    const counts = new Map();
+    for (const c of await mockCagrilar()) if (c.program_kodu) counts.set(c.program_kodu, (counts.get(c.program_kodu) ?? 0) + 1);
+    return [...counts].map(([kod, sayi]) => ({ kod, ad: null, sayi }));
+  }
+  return request("/api/cagrilar/programlar");
+}
+
+/** GET /api/cagrilar/tarama -> TaramaDurumu */
+export async function getTarama() {
+  if (CONFIG.USE_MOCK) return { son: null, son_basarili: null };
+  return request("/api/cagrilar/tarama");
+}
+
+/** POST /api/cagrilar/tara (X-Admin-Token) -> CekmeCalismasi */
+export async function tara(token) {
+  if (CONFIG.USE_MOCK) throw new ApiError(501, "Mock modda kaynak taraması yapılamaz.");
+  return request("/api/cagrilar/tara", { method: "POST", headers: { "X-Admin-Token": token } });
+}
+
+// ---------------------------------------------------------------------------
+// CV yükleme ve Bana Uygun
+// ---------------------------------------------------------------------------
+
+/** POST /api/cvs (multipart) -> HocaDetay */
+export async function uploadCv(file, { signal } = {}) {
+  const invalid = validateCv(file);
+  if (invalid) throw invalid;
+  if (CONFIG.USE_MOCK) {
+    await sleep(2000, signal);
+    return structuredClone((await loadMock("cvs"))[hashString(file.name) % 10]);
+  }
+  const form = new FormData();
+  form.append("file", file);
+  return request("/api/cvs", { method: "POST", body: form, signal });
+}
+
+/** POST /api/bana-uygun (multipart) -> BanaUygunResponse */
+export async function banaUygun(file, { kaydet = false, sadeceAcik = true } = {}, { signal } = {}) {
+  const invalid = validateCv(file);
+  if (invalid) throw invalid;
+  if (CONFIG.USE_MOCK) {
+    await sleep(CONFIG.MOCK_MATCH_DELAY_MS, signal);
+    const cv = (await loadMock("cvs"))[hashString(file.name) % 10];
+    const cagrilar = (await mockCagrilar()).filter((c) => !sadeceAcik || c.durum !== "gecmis").slice(0, 3);
+    return {
+      ad_soyad: cv.ad_soyad,
+      profil: cv.profil ?? { arastirma_alanlari: cv.arastirma_alanlari ?? [], yontemler: [], anahtar_kelimeler: [], ozet_metni: "" },
+      hoca_id: kaydet ? cv.id : null,
+      sonuclar: cagrilar.map((c, i) => ({
+        sira: i + 1, cagri: c, skor: 100 - i * 14,
+        neden: "Örnek sonuç: araştırma alanlarınız çağrının konusu ile örtüşüyor.",
+        eksik: i ? "Örnek sonuç: çağrının yöntem tarafında doğrudan yayınınız görünmüyor." : null,
+      })),
+    };
+  }
+  const form = new FormData();
+  form.append("file", file);
+  form.append("kaydet", String(kaydet));
+  form.append("sadece_acik", String(sadeceAcik));
+  return request("/api/bana-uygun", { method: "POST", body: form, signal });
 }

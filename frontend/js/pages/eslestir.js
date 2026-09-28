@@ -1,8 +1,8 @@
-import { match, validatePdf, validateMetin, getCvs, cvPdfUrl } from "../api.js";
+import { match, validatePdf, validateMetin, getCvs, cvPdfUrl, getCagri, getCagrilar } from "../api.js";
 import { CONFIG } from "../config.js";
 import {
   esc, icon, chips, displayName, fullName, shortUni, shortBolum, scoreBar, notice, soonBadge,
-  formatBytes, openPdfModal, downloadFile, slugify, normalize, toast,
+  formatBytes, openPdfModal, downloadFile, slugify, normalize, toast, durumBadge, tarihList, formatDateTime,
 } from "../ui.js";
 
 export const title = "Eşleştir";
@@ -28,9 +28,11 @@ const BOLUM_SAYI = {
 
 // Durum modül seviyesinde tutulur: sayfadan çıkıp dönünce (ya da istek sürerken) kaybolmaz.
 const state = {
-  tab: "pdf", // pdf | metin
+  tab: "pdf", // liste | pdf | metin
   file: null,
   metin: "",
+  cagri: null, // "Listeden seç": seçili çağrı (CagriDetay)
+  cagrilar: null, // seçim listesi (açık çağrılar)
   topN: 5,
   status: "idle", // idle | loading | done | error
   result: restoreResult(),
@@ -61,8 +63,12 @@ function saveResult(result) {
   }
 }
 
-export function render(el) {
+// #/eslestir/cagri/<id>: İlanlar sayfasındaki "Eşleştir" (çağrıyı seçer ve kayıtlı sonucu ya da yeni eşleştirmeyi getirir)
+export function render(el, params = []) {
   root = el;
+  if (params[0] === "cagri" && params[1] && state.status !== "loading" && state.cagri?.id !== params[1]) {
+    selectCagri(params[1], { autoStart: true });
+  }
   el.innerHTML = `
     <div class="page">
       <div class="match-layout">
@@ -86,7 +92,8 @@ export function render(el) {
 }
 
 const canStart = () =>
-  state.status !== "loading" && (state.tab === "pdf" ? !!state.file : !validateMetin(state.metin));
+  state.status !== "loading"
+  && (state.tab === "liste" ? !!state.cagri : state.tab === "pdf" ? !!state.file : !validateMetin(state.metin));
 
 // ---------------------------------------------------------------------------
 // Sol kolon: ilan girişi, ilan detayları, ayarlar
@@ -101,15 +108,14 @@ function renderLeft() {
     <h1 class="page-title">Eşleştir</h1>
 
     <div class="segmented" role="tablist" aria-label="İlan kaynağı">
-      <button role="tab" disabled title="Yakında: kayıtlı ilanlardan seçim">Listeden seç</button>
-      ${["pdf", "metin"].map((t) => `
+      ${[["liste", "Listeden seç"], ["pdf", "PDF yükle"], ["metin", "Metin yapıştır"]].map(([t, label]) => `
         <button role="tab" data-tab="${t}" class="${state.tab === t ? "active" : ""}" aria-selected="${state.tab === t}" ${loading ? "disabled" : ""}>
-          ${t === "pdf" ? "PDF yükle" : "Metin yapıştır"}
+          ${label}
         </button>`).join("")}
     </div>
 
     <input type="file" id="file-input" accept=".pdf,application/pdf" hidden>
-    ${state.tab === "pdf" ? (state.file ? fileCard(loading) : dropzone()) : metinBox(loading)}
+    ${state.tab === "liste" ? cagriBox(loading) : state.tab === "pdf" ? (state.file ? fileCard(loading) : dropzone()) : metinBox(loading)}
 
     ${ilan ? ilanCard(ilan) : ""}
 
@@ -136,9 +142,14 @@ function renderLeft() {
     </button>
     ${loading ? `<button class="link-btn" id="cancel" style="align-self:center">İptal et</button>` : ""}
     ${!loading && !canStart() ? `<p class="tiny muted" style="text-align:center">${
-      state.tab === "pdf" ? "Başlamak için bir ilan PDF'i seçin." : "Başlamak için ilan metnini yapıştırın."}</p>` : ""}
+      { liste: "Başlamak için bir çağrı seçin.", pdf: "Başlamak için bir ilan PDF'i seçin." }[state.tab]
+      ?? "Başlamak için ilan metnini yapıştırın."}</p>` : ""}
   `;
 
+  if (state.tab === "liste" && !state.cagrilar) loadCagrilar();
+  left.querySelector("#cagri-select")?.addEventListener("change", (e) => {
+    if (e.target.value) selectCagri(e.target.value);
+  });
   left.querySelectorAll("[data-tab]").forEach((b) =>
     b.addEventListener("click", () => {
       if (state.tab === b.dataset.tab) return;
@@ -192,8 +203,56 @@ function renderLeft() {
     state.topN = Number(e.target.value);
     if (state.status === "done") renderRight();
   });
-  left.querySelector("#start").addEventListener("click", start);
+  left.querySelector("#start").addEventListener("click", () => start());
   left.querySelector("#cancel")?.addEventListener("click", () => state.controller?.abort());
+}
+
+function cagriBox(loading) {
+  if (!state.cagrilar) return `<div class="skel" style="height:42px"></div>`;
+  const options = [...state.cagrilar];
+  if (state.cagri && !options.some((c) => c.id === state.cagri.id)) options.unshift(state.cagri);
+  return `
+    <label class="field"><span>Başvurusu açık çağrılar (${state.cagrilar.length})</span>
+      <select class="select" id="cagri-select" ${loading ? "disabled" : ""}>
+        <option value="">Çağrı seçin…</option>
+        ${options.map((c) => `<option value="${esc(c.id)}" ${state.cagri?.id === c.id ? "selected" : ""}>${
+          esc([c.program_kodu, c.baslik].filter(Boolean).join(" · "))}</option>`).join("")}
+      </select></label>
+    ${state.cagri ? cagriCard(state.cagri) : `<p class="tiny muted">Tüm çağrılar için <a href="#/ilanlar">Proje İlanları</a> sayfasına bakın.</p>`}`;
+}
+
+function cagriCard(c) {
+  return `
+    <div class="card card-pad ilan-card">
+      <div style="display:flex;gap:6px;flex-wrap:wrap">${durumBadge(c.durum)}${c.program_kodu ? `<span class="badge muted">${esc(c.program_kodu)}</span>` : ""}</div>
+      <h3>${esc(c.baslik)}</h3>
+      ${c.ozet ? `<p class="small muted" style="line-height:1.6;margin:0">${esc(c.ozet)}</p>` : ""}
+      ${tarihList(c.tarihler)}
+      <a class="link-btn" href="${esc(c.url)}" target="_blank" rel="noopener">${icon("external")} TÜBİTAK duyurusu</a>
+    </div>`;
+}
+
+async function loadCagrilar() {
+  try {
+    const res = await getCagrilar({ durum: "acik", limit: 200 });
+    state.cagrilar = res.cagrilar;
+  } catch (err) {
+    state.cagrilar = [];
+    toast(err.message);
+  }
+  if (state.tab === "liste") renderLeft();
+}
+
+async function selectCagri(id, { autoStart = false } = {}) {
+  state.tab = "liste";
+  try {
+    state.cagri = state.cagrilar?.find((c) => c.id === id) ?? await getCagri(id);
+  } catch (err) {
+    toast(err.message);
+    return;
+  }
+  renderLeft();
+  if (autoStart) start();
 }
 
 function metinBox(loading) {
@@ -208,9 +267,8 @@ function metinBox(loading) {
 // Uzun metni sessizce kırpmamak için textarea'ya maxlength verilmiyor; sayaç uyarıyor.
 function metinStatus() {
   const len = state.metin.trim().length;
-  const { MIN_METIN_LENGTH: min, MAX_METIN_LENGTH: max } = CONFIG;
+  const { MAX_METIN_LENGTH: max } = CONFIG;
   const count = `${len.toLocaleString("tr-TR")} / ${max.toLocaleString("tr-TR")} karakter`;
-  if (len < min) return { text: `${count} · en az ${min} karakter gerekli`, over: false };
   if (len > max) return { text: `${count} · ${(len - max).toLocaleString("tr-TR")} karakter fazla`, over: true };
   return { text: count, over: false };
 }
@@ -299,9 +357,10 @@ function setFile(file) {
 // ---------------------------------------------------------------------------
 // Eşleştirme akışı
 // ---------------------------------------------------------------------------
-async function start() {
+async function start({ yenile = false } = {}) {
   if (!canStart()) return;
-  const input = state.tab === "pdf" ? { file: state.file } : { metin: state.metin };
+  const input = state.tab === "liste" ? { cagri: state.cagri, yenile }
+    : state.tab === "pdf" ? { file: state.file } : { metin: state.metin };
   const controller = new AbortController();
   Object.assign(state, { status: "loading", error: null, startedAt: Date.now(), controller });
   renderLeft();
@@ -369,7 +428,7 @@ function renderRight() {
       ${notice("err", `<b>Eşleştirme tamamlanamadı.</b> ${esc(state.error?.message ?? "")}`,
         canStart() ? `<button class="btn btn-outline" id="retry">${icon("refresh")} Tekrar dene</button>` : "")}
       ${state.result ? `<p class="small muted">Önceki sonuç aşağıda gösteriliyor.</p>${resultsList()}` : ""}`;
-    right.querySelector("#retry")?.addEventListener("click", start);
+    right.querySelector("#retry")?.addEventListener("click", () => start());
     bindResults(right);
     return;
   }
@@ -382,14 +441,19 @@ function renderRight() {
           <h2>En uygun hocalar</h2>
           <p class="small muted">${[
             CONFIG.USE_MOCK ? "Örnek sonuç (mock veri)" : null,
+            state.result.olusturuldu ? `Kayıtlı sonuç · ${formatDateTime(state.result.olusturuldu)}` : null,
             state.totalCvs ? `${state.totalCvs} CV tarandı` : null,
             `en uygun ${shown} hoca`,
           ].filter(Boolean).join(" · ")}</p>
         </div>
-        <button class="btn btn-outline" id="download" ${shown ? "" : "disabled"}>${icon("download")} Sonuçları indir</button>
+        <div style="display:flex;gap:10px;flex-wrap:wrap">
+          ${state.result.olusturuldu && state.tab === "liste" && state.cagri ? `<button class="btn btn-outline" id="rematch" title="Yeni eklenen CV'leri de hesaba katmak için">${icon("refresh")} Yeniden eşleştir</button>` : ""}
+          <button class="btn btn-outline" id="download" ${shown ? "" : "disabled"}>${icon("download")} Sonuçları indir</button>
+        </div>
       </div>
       ${resultsList()}`;
     right.querySelector("#download").addEventListener("click", downloadCsv);
+    right.querySelector("#rematch")?.addEventListener("click", () => start({ yenile: true }));
     bindResults(right);
     return;
   }
@@ -399,7 +463,7 @@ function renderRight() {
     <div class="card empty">
       ${icon("swap")}
       <h3>Henüz eşleştirme yapılmadı</h3>
-      <p class="small" style="max-width:440px;margin:0 auto">Soldan bir proje ilanı PDF'i yükleyip <b>Eşleştirmeyi başlat</b>'a basın.
+      <p class="small" style="max-width:440px;margin:0 auto">Soldan toplanan bir çağrıyı seçin ya da bir proje ilanı PDF'i yükleyip <b>Eşleştirmeyi başlat</b>'a basın.
       En uygun hocalar skor, gerekçe ve CV'den kanıtlarıyla burada listelenir.</p>
       ${CONFIG.USE_MOCK ? `<p class="tiny muted" style="margin-top:12px">Mock mod: <code>data/duz_metin</code> ya da <code>data/tablo_formatli</code> klasöründen bir ilan PDF'i seçin.</p>` : ""}
     </div>`;
