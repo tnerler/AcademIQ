@@ -62,7 +62,7 @@ frontend/
 | GET | `/api/cvs` | CV'ler listesi, Ana Sayfa sayacı, Eşleştir "N CV tarandı" |
 | GET | `/api/cvs/{id}` | CV'ler detay paneli |
 | GET | `/api/cvs/{id}/pdf` | PDF önizleme (iframe) |
-| POST | `/api/match` | Eşleştir (multipart: PDF için `file`, düz metin için `metin`; 100–3000 karakter) |
+| POST | `/api/match` | Eşleştir (multipart: PDF için `file`, düz metin için `metin`; en fazla 3000 karakter) |
 
 Pasif modüller (`POST /api/cvs`, `GET/POST /api/ilanlar`) çağrılmıyor.
 

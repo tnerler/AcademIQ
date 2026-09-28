@@ -208,9 +208,8 @@ function metinBox(loading) {
 // Uzun metni sessizce kırpmamak için textarea'ya maxlength verilmiyor; sayaç uyarıyor.
 function metinStatus() {
   const len = state.metin.trim().length;
-  const { MIN_METIN_LENGTH: min, MAX_METIN_LENGTH: max } = CONFIG;
+  const { MAX_METIN_LENGTH: max } = CONFIG;
   const count = `${len.toLocaleString("tr-TR")} / ${max.toLocaleString("tr-TR")} karakter`;
-  if (len < min) return { text: `${count} · en az ${min} karakter gerekli`, over: false };
   if (len > max) return { text: `${count} · ${(len - max).toLocaleString("tr-TR")} karakter fazla`, over: true };
   return { text: count, over: false };
 }

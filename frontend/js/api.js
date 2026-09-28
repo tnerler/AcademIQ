@@ -138,9 +138,7 @@ export function validatePdf(file) {
 
 export function validateMetin(metin) {
   const len = (metin ?? "").trim().length;
-  if (len < CONFIG.MIN_METIN_LENGTH) {
-    return new ApiError(422, `İlan metni çok kısa. En az ${CONFIG.MIN_METIN_LENGTH} karakter girin.`);
-  }
+  if (len === 0) return new ApiError(422, "İlan metni boş olamaz.");
   if (len > CONFIG.MAX_METIN_LENGTH) {
     return new ApiError(422, `İlan metni çok uzun. En fazla ${CONFIG.MAX_METIN_LENGTH} karakter girin.`);
   }

@@ -8,7 +8,6 @@ from backend.api.schemas import MatchResponse
 from backend.matching.pipeline import match, match_text
 
 MAX_PDF_BYTES = 20 * 1024 * 1024
-MIN_METIN_CHARS = 100
 MAX_METIN_CHARS = 3000
 
 router = APIRouter(prefix="/api", tags=["Eşleştir"])
@@ -30,9 +29,9 @@ async def match_ilan(
     metin = (metin or "").strip()
     if not metin:
         raise HTTPException(status.HTTP_422_UNPROCESSABLE_CONTENT, "Bir PDF dosyasi ya da ilan metni gonderin")
-    if not MIN_METIN_CHARS <= len(metin) <= MAX_METIN_CHARS:
+    if len(metin) > MAX_METIN_CHARS:
         raise HTTPException(status.HTTP_422_UNPROCESSABLE_CONTENT,
-                            f"Ilan metni {MIN_METIN_CHARS}-{MAX_METIN_CHARS} karakter arasinda olmali")
+                            f"Ilan metni en fazla {MAX_METIN_CHARS} karakter olabilir")
     return await match_text(metin)
 
 
