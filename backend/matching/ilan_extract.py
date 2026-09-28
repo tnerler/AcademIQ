@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import re
 import unicodedata
+from collections.abc import Callable
 
 from langchain_core.prompts import ChatPromptTemplate
 
@@ -49,11 +50,7 @@ def keyword_query(ilan: IlanOzet) -> str:
 def ground_ilan(ilan: IlanOzet, source: str) -> IlanOzet:
     """kurum, meta ve aranan_uzmanliklar alanlarindan ilan metninde dayanagi olmayan degerleri temizler.
     Arama genislemesi (es anlamli / Ingilizce terimler) anahtar_kelimeler'de kalir."""
-    src_words, src_numbers = _words(source), _numbers(source)
-
-    def ok(value: str | None) -> bool:
-        return bool(value) and _grounded(value, src_words, src_numbers)
-
+    ok = grounded_in(source)
     m = ilan.meta
     return ilan.model_copy(update={
         "kurum": ilan.kurum if ok(ilan.kurum) else None,
@@ -69,6 +66,12 @@ def ground_ilan(ilan: IlanOzet, source: str) -> IlanOzet:
     })
 
 
+def grounded_in(source: str) -> Callable[[str | None], bool]:
+    """Bir degerin kaynak metinde dayanagi olup olmadigini soyleyen kontrol (sayilar birebir, kelimeler kismen)."""
+    src_words, src_numbers = _words(source), _numbers(source)
+    return lambda value: bool(value) and _grounded(value, src_words, src_numbers)
+
+
 def _grounded(value: str, src_words: set[str], src_numbers: set[str]) -> bool:
     # Degerdeki her sayi metinde gecmeli (500.000 TL, 24 ay, 2025 ...)
     if not _numbers(value) <= src_numbers:
@@ -79,7 +82,7 @@ def _grounded(value: str, src_words: set[str], src_numbers: set[str]) -> bool:
     return len(words & src_words) / len(words) >= MIN_WORD_OVERLAP
 
 
-def _fold(text: str) -> str:
+def fold(text: str) -> str:
     """Kucuk harf + Turkce karakter/aksan sadelestirme (Görüntü -> goruntu)."""
     text = text.replace("İ", "i").replace("I", "ı").lower().replace("ı", "i")
     return unicodedata.normalize("NFKD", text).encode("ascii", "ignore").decode()
@@ -87,7 +90,7 @@ def _fold(text: str) -> str:
 
 def _words(text: str) -> set[str]:
     # Ilk 5 harf: Turkce eklerden bagimsiz karsilastirma (vakfi/vakfinca, doktora/doktorasi)
-    return {w[:5] for w in re.findall(r"[a-z]{3,}", _fold(text))}
+    return {w[:5] for w in re.findall(r"[a-z]{3,}", fold(text))}
 
 
 _MONTHS = ["ocak", "subat", "mart", "nisan", "mayis", "haziran",
@@ -95,7 +98,7 @@ _MONTHS = ["ocak", "subat", "mart", "nisan", "mayis", "haziran",
 
 
 def _numbers(text: str) -> set[str]:
-    folded = _fold(text)
+    folded = fold(text)
     # "31 Aralik 2025" metni, LLM'in "2025-12-31" yazdigi tarihi de dogrulayabilsin
     months = {str(i) for i, ay in enumerate(_MONTHS, 1) if re.search(rf"\b{ay}", folded)}
     text = re.sub(r"(?<=\d)[.,\s](?=\d{3}\b)", "", text)  # binlik ayraclari: 1.500.000 -> 1500000

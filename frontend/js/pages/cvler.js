@@ -244,15 +244,58 @@ async function select(id, { scroll = false } = {}) {
         <div class="section-label">Anahtar kelimeler</div>
         ${chips(p.anahtar_kelimeler, { size: "sm" })}
       </div>` : ""}
+    ${h.cv ? cvBlocks(h.cv) : ""}
     <div class="detail-actions">
-      <button class="btn btn-outline" id="open-pdf">${icon("pdf")} PDF'i aç</button>
+      <button class="btn btn-outline" id="open-pdf" ${h.pdf_url ? "" : "disabled title=\"Bu CV için önizleme yok\""}>${icon("pdf")} CV'yi aç</button>
       <button class="btn btn-primary" disabled title="Yakında: bu hocaya uygun ilanlar">Uygun ilanlar</button>
     </div>`;
 
-  panel.querySelector("#open-pdf").addEventListener("click", () =>
+  panel.querySelector("#open-pdf").addEventListener("click", () => h.pdf_url &&
     openPdfModal(`${fullName(h)} · CV`, cvPdfUrl(h.id)),
   );
 }
+
+// CV'den çıkarılan, aramaya girmeyen bilgiler (iletişim, geçmiş, yayın listesi ...)
+const YAYIN_TURU = { makale: "Makale", bildiri: "Bildiri", kitap: "Kitap", kitap_bolumu: "Kitap bölümü", diger: "Diğer" };
+const SEVIYE = { yuksek_lisans: "Yüksek Lisans", doktora: "Doktora" };
+
+function cvBlocks(cv) {
+  const i = cv.iletisim ?? {};
+  const b = cv.bibliyometri ?? {};
+  const iletisim = [
+    i.telefon && esc(i.telefon),
+    i.web && `<a href="${esc(i.web)}" target="_blank" rel="noopener">${esc(i.web.replace(/^https?:\/\//, ""))}</a>`,
+    i.orcid && `ORCID <a href="https://orcid.org/${esc(i.orcid)}" target="_blank" rel="noopener">${esc(i.orcid)}</a>`,
+    i.yoksis && `YÖKSİS ${esc(i.yoksis)}`,
+  ].filter(Boolean);
+  const stats = [["Yayın", b.toplam_yayin], ["Atıf", b.atif], ["h-indeksi", b.h_indeksi], ["i10", b.i10_indeksi]]
+    .filter(([, v]) => v != null);
+  const gorev = (g) => `<li>${esc(g.gorev)}${g.kurum ? ` · <span class="muted">${esc(g.kurum)}</span>` : ""}${g.donem ? ` <span class="tiny muted">(${esc(g.donem)})</span>` : ""}</li>`;
+  const yayinlar = [...(cv.yayinlar ?? [])].sort((a, c) => (c.yil ?? 0) - (a.yil ?? 0));
+  const yayinSayi = Object.entries(yayinlar.reduce((m, y) => ({ ...m, [y.tur]: (m[y.tur] ?? 0) + 1 }), {}))
+    .map(([t, n]) => `${n} ${YAYIN_TURU[t]?.toLocaleLowerCase("tr") ?? t}`).join(" · ");
+
+  return `
+    ${iletisim.length ? block("İletişim", `<p class="small" style="margin:0;line-height:1.8">${iletisim.join("<br>")}</p>`) : ""}
+    ${stats.length ? block("Bibliyometri", `<dl class="meta-list">${stats.map(([k, v]) => `<dt>${k}</dt><dd>${v}</dd>`).join("")}</dl>`) : ""}
+    ${cv.egitim?.length ? block("Eğitim", list(cv.egitim.map((e) =>
+      `<li><b>${esc(e.derece)}</b>${e.yil ? ` · ${e.yil}` : ""} — ${esc(e.universite)}${e.tez_basligi ? `<div class="tiny muted">Tez: ${esc(e.tez_basligi)}</div>` : ""}</li>`))) : ""}
+    ${cv.akademik_gorevler?.length ? block("Akademik görevler", list(cv.akademik_gorevler.map(gorev))) : ""}
+    ${yayinlar.length ? more(`Yayınlar (${yayinlar.length}) · ${yayinSayi}`, list(yayinlar.map((y) =>
+      `<li>${esc(y.baslik)}${y.yil ? ` <span class="tiny muted">(${y.yil})</span>` : ""}${y.yayin_yeri ? `<div class="tiny muted">${esc(YAYIN_TURU[y.tur] ?? "")} · ${esc(y.yayin_yeri)}</div>` : ""}</li>`))) : ""}
+    ${cv.projeler?.length ? more(`Projeler (${cv.projeler.length})`, list(cv.projeler.map((pr) =>
+      `<li>${esc(pr.ad)}<div class="tiny muted">${esc([pr.program, pr.gorev, pr.donem].filter(Boolean).join(" · "))}</div></li>`))) : ""}
+    ${cv.yonetilen_tezler?.length ? more(`Yönetilen tezler (${cv.yonetilen_tezler.length})`, list(cv.yonetilen_tezler.map((t) =>
+      `<li>${esc(t.baslik)}<div class="tiny muted">${esc([SEVIYE[t.seviye], t.ogrenci, t.yil].filter(Boolean).join(" · "))}</div></li>`))) : ""}
+    ${cv.dersler?.length ? more(`Verdiği dersler (${cv.dersler.length})`, chips(cv.dersler, { size: "sm" })) : ""}
+    ${cv.yonetim_gorevleri?.length ? more(`Yönetim görevleri (${cv.yonetim_gorevleri.length})`, list(cv.yonetim_gorevleri.map(gorev))) : ""}
+    ${[["Ödüller", cv.oduller], ["Üyelikler", cv.uyelikler], ["Hakemlik ve editörlük", cv.hakemlik_editorluk], ["Yabancı dil", cv.yabanci_diller]]
+      .filter(([, v]) => v?.length).map(([k, v]) => more(`${k} (${v.length})`, list(v.map((x) => `<li>${esc(x)}</li>`)))).join("")}`;
+}
+
+const block = (label, html) => `<div class="detail-block"><div class="section-label">${label}</div>${html}</div>`;
+const more = (summary, html) => `<div class="detail-block"><details class="more"><summary>${esc(summary)}</summary>${html}</details></div>`;
+const list = (items) => `<ul class="kosullar">${items.join("")}</ul>`;
 
 function skeleton() {
   const row = `<tr><td><div class="skel" style="height:14px;width:60%"></div><div class="skel" style="height:11px;width:35%;margin-top:6px"></div></td>

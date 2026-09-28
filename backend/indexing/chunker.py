@@ -29,7 +29,7 @@ def _splitter() -> RecursiveCharacterTextSplitter:
 
 
 def build_chunks(hoca_id: str, sections: dict[str, list[str]]) -> list[Document]:
-    """sections: bolum anahtari -> temiz madde listesi (SEARCHABLE_SECTIONS sirasinda)."""
+    """sections: bolum anahtari (SECTION_LABELS) -> madde listesi (cv_extract.arama_bolumleri)."""
     docs: list[Document] = []
     for bolum, items in sections.items():
         if not items:

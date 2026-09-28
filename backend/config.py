@@ -42,7 +42,8 @@ class Settings(BaseSettings):
     result_count: int = 5
 
     # --- Dosyalar ---
-    cv_pdf_dir: Path = PROJECT_ROOT / "data" / "raw" / "fake_akademik_cvler"
+    cv_dir: Path = PROJECT_ROOT / "data" / "cvler"  # ana CV klasoru (.docx / .pdf); index_cvs ile senkronize
+    cv_onizleme_dir: Path = PROJECT_ROOT / "data" / "processed" / "cv_onizleme"  # .docx CV'lerin PDF onizlemeleri
 
     # --- API ---
     cors_origins: list[str] = ["http://localhost:3000", "http://127.0.0.1:3000", "http://localhost:5173"]
@@ -50,6 +51,17 @@ class Settings(BaseSettings):
     # --- PGVectorStore tablolari ---
     chunk_table: str = "cv_chunks"
     profile_table: str = "hoca_profilleri"
+    cagri_table: str = "cagri_vektorleri"
+
+    # --- Cagri toplama (docs/cagri-toplama-plan.md) ---
+    cagri_cekme_saati: int = 7          # her gun bu saatte (Turkiye saati) calisir
+    cagri_backfill_gun: int = 365       # ilk calistirmada geriye gidilecek gun
+    cagri_belirsiz_kontrol_gun: int = 90  # tarihi belirsiz cagrilar bu kadar gun yeniden kontrol edilir
+    cagri_otomatik_eslestirme: bool = True
+    admin_token: str | None = None      # "Kaynaklari tara" icin; tanimli degilse tetikleme kapali
+
+    # --- CV yukleme ---
+    cv_upload_dir: Path = PROJECT_ROOT / "data" / "uploads" / "cvler"
 
     @property
     def database_url(self) -> str:
