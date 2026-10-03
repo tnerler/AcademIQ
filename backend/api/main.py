@@ -13,15 +13,17 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from backend.api import routes_cagrilar, routes_cvs, routes_match
+from backend.api import routes_cagrilar, routes_cvs, routes_match, routes_sohbet, routes_yok
 from backend.cagrilar.db import init_schema
 from backend.config import get_settings
 from backend.matching.search import get_bm25
+from backend.yok.db import init_schema as init_yok_schema
 
 
 @asynccontextmanager
 async def lifespan(_app: FastAPI):
     init_schema()  # cagri tablolari (idempotent)
+    init_yok_schema()  # YOK tablolari (idempotent)
     get_bm25()  # BM25 indeksini ilk istekten once bellege yukle
     yield
 
@@ -35,7 +37,9 @@ app.add_middleware(
 )
 app.include_router(routes_cvs.router)
 app.include_router(routes_match.router)
+app.include_router(routes_sohbet.router)
 app.include_router(routes_cagrilar.router)
+app.include_router(routes_yok.router)
 
 
 @app.get("/health", tags=["Sistem"])

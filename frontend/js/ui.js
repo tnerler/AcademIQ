@@ -13,6 +13,8 @@ export function esc(value) {
 // İkonlar (lucide tarzı, 24x24 çizgi)
 // ---------------------------------------------------------------------------
 const ICON_PATHS = {
+  sun: '<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>',
+  moon: '<path d="M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5a8.5 8.5 0 1 0 11 11Z"/>',
   home: '<path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/><path d="M10 21v-6h4v6"/>',
   users: '<circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.6-3.4 3.3-5.5 6.5-5.5s5.9 2.1 6.5 5.5"/><path d="M15.5 4.8a3.5 3.5 0 0 1 0 6.4"/><path d="M18 14.8c1.9.8 3.2 2.6 3.5 5.2"/>',
   upload: '<path d="M12 16V4"/><path d="m7 9 5-5 5 5"/><path d="M4 20h16"/>',
@@ -31,6 +33,9 @@ const ICON_PATHS = {
   pdf: '<path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/>',
   arrow: '<path d="M5 12h14"/><path d="m13 6 6 6-6 6"/>',
   refresh: '<path d="M20 11a8 8 0 1 0-2.3 5.7"/><path d="M20 4v7h-7"/>',
+  send: '<path d="M4 12 20 4l-4 16-4-7z"/><path d="m12 13 8-9"/>',
+  chat: '<path d="M4 5h16v11H9l-5 4z"/><path d="M8 9.5h8M8 12.5h5"/>',
+  trash: '<path d="M4 7h16"/><path d="M9 7V4h6v3"/><path d="M6 7l1 13h10l1-13"/>',
 };
 
 export function icon(name, cls = "") {
@@ -108,9 +113,10 @@ export function durumBadge(durum) {
   return `<span class="badge ${cls}">${esc(label)}</span>`;
 }
 
-/** Listede gösterilecek tarih: bugünden sonraki ilk tarih, hepsi geçtiyse sonuncusu. */
+/** Listede gösterilecek tarih: bugünden sonraki ilk başvuru tarihi, hepsi geçtiyse sonuncusu.
+ *  Başvuru dışı tarihler (basvuru: false) sayılmaz; sunucudaki son_tarih ile aynı kural. */
 export function nextTarih(tarihler) {
-  const list = [...(tarihler ?? [])].sort((a, b) => a.tarih.localeCompare(b.tarih));
+  const list = (tarihler ?? []).filter((t) => t.basvuru !== false).sort((a, b) => a.tarih.localeCompare(b.tarih));
   const upcoming = list.find((t) => deadline(t.tarih).days >= 0);
   return upcoming ?? list.at(-1) ?? null;
 }
@@ -136,6 +142,8 @@ export function tarihList(tarihler) {
   if (!tarihler?.length) return `<p class="small muted">Metinde başvuru tarihi bulunamadı.</p>`;
   return `<dl class="meta-list">${[...tarihler].sort((a, b) => a.tarih.localeCompare(b.tarih)).map((t) => {
     const d = deadline(t.tarih);
+    // Başvuru dışı tarihler (sonuç, proje başlangıcı) bilgi amaçlı: soluk ve geri sayımsız
+    if (t.basvuru === false) return `<dt class="muted">${d.text}</dt><dd class="muted">${esc(t.etiket)}</dd>`;
     return `<dt>${d.text}</dt><dd>${esc(t.etiket)} <span class="days-left ${d.days >= 0 && d.days < 7 ? "urgent" : ""}">· ${daysLeftText(d.days)}</span></dd>`;
   }).join("")}</dl>`;
 }

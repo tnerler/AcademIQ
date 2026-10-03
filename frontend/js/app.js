@@ -6,6 +6,7 @@ import { icon, esc, closeModal } from "./ui.js";
 import * as home from "./pages/home.js";
 import * as cvler from "./pages/cvler.js";
 import * as eslestir from "./pages/eslestir.js";
+import * as asistan from "./pages/asistan.js";
 import * as cvYukle from "./pages/cv-yukle.js";
 import * as ilanlar from "./pages/ilanlar.js";
 import * as ilanEkle from "./pages/ilan-ekle.js";
@@ -15,6 +16,7 @@ const routes = {
   home,
   cvler,
   eslestir,
+  asistan,
   "cv-yukle": cvYukle,
   ilanlar,
   "ilan-ekle": ilanEkle,
@@ -90,6 +92,44 @@ function initSidebar() {
   badge.querySelector("button").addEventListener("click", () => setUseMock(!CONFIG.USE_MOCK));
 }
 
+// Tema: index.html'deki script ilk temayı uygular; burada düğme ve değişiklikler yönetilir.
+const TEMA_KEY = "academiq-tema";
+const themeToggle = document.getElementById("theme-toggle");
+const sistemKaranlik = matchMedia("(prefers-color-scheme: dark)");
+
+function kayitliTema() {
+  try { return localStorage.getItem(TEMA_KEY); } catch { return null; }
+}
+
+function temaUygula(tema, animasyon = true) {
+  const root = document.documentElement;
+  if (animasyon) {
+    root.classList.add("theme-anim");
+    clearTimeout(temaUygula.t);
+    temaUygula.t = setTimeout(() => root.classList.remove("theme-anim"), 250);
+  }
+  root.dataset.theme = tema;
+  const karanlik = tema === "dark";
+  const label = karanlik ? "Aydınlık moda geç" : "Karanlık moda geç";
+  themeToggle.innerHTML = icon(karanlik ? "sun" : "moon");
+  themeToggle.setAttribute("aria-label", label);
+  themeToggle.title = label;
+}
+
+function initTheme() {
+  temaUygula(document.documentElement.dataset.theme === "dark" ? "dark" : "light", false);
+  themeToggle.addEventListener("click", () => {
+    const yeni = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
+    try { localStorage.setItem(TEMA_KEY, yeni); } catch { /* gizli pencere: yalnızca bu oturum */ }
+    temaUygula(yeni);
+  });
+  // Kullanıcı seçim yapmadıysa sistem tercihini izlemeye devam et
+  sistemKaranlik.addEventListener("change", (e) => {
+    if (!["light", "dark"].includes(kayitliTema())) temaUygula(e.matches ? "dark" : "light");
+  });
+}
+
+initTheme();
 initSidebar();
 window.addEventListener("hashchange", navigate);
 navigate();

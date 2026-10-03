@@ -1,0 +1,1478 @@
+
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<meta charset="utf-8"/>
+<meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="YÖK Akademik Arama" name="description"/><meta content="AYDIN EMRE CEVİZ, MUSTAFA IŞIK" name="author"/>
+<link href="./images/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
+<title>YÜKSEKÖĞRETİM KURULU</title>
+<!-- CSS -->
+<link href="../css/bootstrap.css" rel="stylesheet"/>
+<link href="../css/custom.css?v=2218" rel="stylesheet"/>
+<link href="../css/timeline.css" rel="stylesheet"/>
+<link href="../css/bootstrapValidator.css" rel="stylesheet"/>
+<link href="../css/font-awesome.css" rel="stylesheet"/>
+<!-- Hata ayıklama ie! -->
+<!--[if lt IE 9]><![endif]-->
+<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!--[if lt IE 9]>
+      
+      
+    <![endif]-->
+</head>
+<body>
+<div class="bodyback">
+<div class="container-fluid">
+<div class="navbar navbar-inverse navbar-fixed-top navbarBackground" role="navigation">
+<div class="container-fluid">
+<div class="navbar-header">
+<button class="navbar-toggle" data-target=".navbar-collapse" data-toggle="collapse" type="button">
+<span class="sr-only">Toggle navigation</span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+</button>
+<a class="navbar_brand" href="../"><img alt="Yükseköğretim Kurulu Akademik Arama" class="logo" src="../images/miniLogo.png"/></a>
+</div>
+<div class="navbar-collapse collapse">
+<ul class="nav navbar-nav navbar-right">
+<li class="active"><a href="../">Anasayfa</a></li>
+<li class="active"><a href="#" onclick="yonlendir('/AkademikArama/LanguageServlet?dil=trHome');">Türkçe</a></li>
+<li class="active"> <a href="#" onclick="yonlendir('/AkademikArama/LanguageServlet?dil=enHome');"> English</a> </li>
+</ul>
+</div> <!--navbar-collapse bitis-->
+</div> <!--container bitis-->
+<!--Arama Bölmesi-->
+<div class="container-fluid">
+<div class="col-lg-4 col-md-5 col-sm-6 col-xs-9 col-md-offset-2 col-sm-offset-3 col-xs-offset-2">
+<form action="/AkademikArama/AkademisyenArama" class="form-horizontal error" id="searchForm" method="post">
+<div class="row">
+<div>
+<div class="form-group">
+<div class="input-group">
+<input class="form-control" data-bv-notempty="" data-bv-notempty-message="Lütfen arama terimi giriniz" data-bv-stringlength-max="50" data-bv-stringlength-message="En az 3 en fazla 30 karakter girilebilir" data-bv-stringlength-min="3" maxlength="50" minlength="3" name="aramaTerim" placeholder="Arama yapmak istediğiniz kelimeyi giriniz" required="" type="text" value=""/>
+<div class="input-group-btn">
+<button class="btn btn-default" data-container="body" data-placement="bottom" data-toggle="popover" data-trigger="hover" id="searchButton" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+<button class="btn btn-default dropdown-toggle" data-toggle="dropdown" tabindex="-1" type="button">
+<span class="caret"></span>
+<span class="sr-only"></span>
+</button><input name="islem" type="hidden" value="1"/>
+<ul class="dropdown-menu dropdown-menu-form pull-right" role="menu"> <!--Arama secenekleri-->
+<li>
+<label class="checkbox">
+<input checked="checked" id="yazarCheckbox" name="yazarCheckbox" type="checkbox"/>
+													Akademisyenler
+												</label>
+</li>
+<li>
+<label class="checkbox">
+<input checked="checked" id="kitapCheckbox" name="kitapCheckbox" type="checkbox"/>
+													Kitaplar
+												</label>
+</li>
+<li>
+<label class="checkbox">
+<input checked="checked" id="PatentCheckbox" name="PatentCheckbox" type="checkbox"/>
+													Patentler
+												</label>
+</li>
+<li>
+<label class="checkbox">
+<input checked="checked" id="projeCheckbox" name="projeCheckbox" type="checkbox"/>
+													Projeler
+												</label>
+</li>
+<li>
+<label class="checkbox">
+<input checked="checked" id="MakaeleCheckbox" name="MakaeleCheckbox" type="checkbox"/>
+													Makaleler
+												</label>
+</li>
+<li>
+<label class="checkbox">
+<input checked="checked" id="BildiriCheckbox" name="BildiriCheckbox" type="checkbox"/>
+													Bildiriler
+												</label>
+</li>
+<li>
+<label class="checkbox">
+<input checked="checked" id="SanatsalCheckbox" name="SanatsalCheckbox" type="checkbox"/>
+													Sanatsal faaliyetler
+												</label>
+</li>
+<li>
+<label class="checkbox">
+<input checked="checked" id="TezCheckbox" name="TezCheckbox" type="checkbox"/>
+													Tezler
+												</label>
+</li>
+</ul> <!--Arama secenekleri bitis-->
+</div>
+</div>
+</div><!-- /.input-group -->
+</div>
+</div><!-- /.row -->
+</form>
+</div>
+</div>
+</div>
+</div>
+<hr/>
+
+
+<hr/>
+<hr/>
+<div class="container-fluid">
+<!-- Sol Menu -->
+<div class="col-lg-2 col-md-2 col-sm-0 col-xs-0 padSol">
+<div class="sidebar-nav">
+<div class="navbar navbar-default" role="navigation">
+<div class="navbar-header">
+<button class="navbar-toggle" data-target=".sidebar-navbar-collapse" data-toggle="collapse" type="button">
+<span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+</button>
+<span class="visible-xs navbar-brand">Profili</span>
+</div>
+<div class="navbar-collapse collapse sidebar-navbar-collapse">
+<ul class="nav nav-pills nav-stacked wide">
+<li id="personelMenu"><a href="viewAuthor.jsp"><div class="iconLi">
+<i class="fa fa-graduation-cap"></i>
+</div>Kişisel Bilgiler </a></li>
+<li id="booksMenu"><a href="/AkademikArama/AkademisyenYayinBilgileri?pubType=q3SMeouSUM6tBWypaNs06Q&amp;authorId=7F04B05BA408005A">
+<div class="iconLi">
+<i class="fa fa-book"></i>
+</div>
+<div class="iconLitext">Kitaplar</div>
+</a></li>
+<li id="articleMenu"><a href="/AkademikArama/AkademisyenYayinBilgileri?pubType=5Eaxq5GEK5ukOf71Zpm7dA&amp;authorId=7F04B05BA408005A">
+<div class="iconLi">
+<i class="fa fa-pencil"></i>
+</div>
+<div class="iconLitext">Makaleler</div>
+</a></li>
+<li id="proceedingMenu"><a href="/AkademikArama/AkademisyenYayinBilgileri?pubType=iHDPgsbZ-szm5UHCxj3mmg&amp;authorId=7F04B05BA408005A">
+<div class="iconLi">
+<i class="fa fa-foursquare"></i>
+</div>
+<div class="iconLitext">Bildiriler</div>
+</a></li>
+<li id="projectMenu"><a href="/AkademikArama/AkademisyenProjeBilgileri?authorId=7F04B05BA408005A">
+<div class="iconLi">
+<i class="fa fa-flask"></i>
+</div>
+<div class="iconLitext">Projeler</div>
+</a></li>
+<li id="lessonMenu"><a href="/AkademikArama/AkademisyenDersBilgileri?authorId=7F04B05BA408005A">
+<div class="iconLi">
+<i class="glyphicon glyphicon-blackboard"></i>
+</div>
+<div class="iconLitext">Dersler</div>
+</a></li>
+<li id="thesisMenu"><a href="/AkademikArama/AkademisyenYonTezBilgileri?authorId=7F04B05BA408005A">
+<div class="iconLi">
+<i class="fa fa-check"></i>
+</div>
+<div class="iconLitext">Yönetilen Tezler</div>
+</a></li>
+<li id="awardMenu"><a href="/AkademikArama/AkademisyenOdulBilgileri?authorId=7F04B05BA408005A">
+<div class="iconLi">
+<i class="fa fa-star-o"></i>
+</div>
+<div class="iconLitext">Ödüller</div>
+</a></li>
+<li id="patentMenu"><a href="/AkademikArama/AkademisyenPatentBilgileri?authorId=7F04B05BA408005A">
+<div class="iconLi">
+<i class="fa fa-certificate"></i>
+</div>
+<div class="iconLitext">Patentler</div>
+</a></li>
+<li id="memberMenu"><a href="/AkademikArama/AkademisyenUyelikBilgileri?authorId=7F04B05BA408005A">
+<div class="iconLi">
+<i class="fa fa-users"></i>
+</div>
+<div class="iconLitext">Üyelikler</div>
+</a></li>
+<li id="artMenu"><a href="/AkademikArama/AkademisyenSanatsalBilgileri?authorId=7F04B05BA408005A">
+<div class="iconLi">
+<i class="fa fa-video-camera"></i>
+</div>
+<div class="iconLitext">Sanatsal faaliyetler</div>
+</a></li>
+<li id="idariMenu"><a href="/AkademikArama/AkademisyenIdariGorevBilgileri?authorId=7F04B05BA408005A">
+<div class="iconLi">
+<i class="fa fa-user"></i>
+</div>
+<div class="iconLitext">İdari Görevler</div>
+</a></li>
+<li id="expeirenceMenu"><a href="/AkademikArama/AkademisyenDeneyimBilgileri?authorId=7F04B05BA408005A">
+<div class="iconLi">
+<i class="fa fa-suitcase"></i>
+</div>
+<div class="iconLitext">Üniversite Dışı Deneyim</div>
+</a></li>
+<li>
+<span class="label label-info labelFont">Son güncelleme: 15.05.2023</span>
+</li>
+</ul>
+</div>
+<!--/.nav-collapse -->
+</div>
+</div>
+</div>
+<!-- Sol Menu bitis-->
+<div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
+<div class="row borderLine">
+<div class="col-lg-2 col-md-2 col-sm-2 col-xs-0 text-center">
+<img alt="AHMET SAMİM ÜNAN" class="img-circle" src="" style="width: 90px; height: 90px;"/>
+</div>
+<div class="col-lg-6 col-md-6 col-sm-10 col-xs-12">
+<h4>PROFESÖR AHMET SAMİM ÜNAN
+					
+						</h4>
+						 PİRİ REİS ÜNİVERSİTESİ/HUKUK FAKÜLTESİ/ÖZEL HUKUK BÖLÜMÜ/DENİZ HUKUKU ANABİLİM DALI/
+						<p></p>
+<span class="label label-success"> Hukuk Temel Alanı</span>
+<span class="label label-primary"> Deniz Hukuku</span>
+						
+					Deniz Hukuku
+						 
+						 
+					</div>
+<div class="col-lg-4 col-md-4 col-sm-0 col-xs-0">
+<a href="viewAuthorGraphs.jsp"><img alt="Birlikte çalıştığı yazarlar" class="img" src="../images/collaborated.png"/> Birlikte çalıştığı kişiler </a>
+</div>
+</div>
+<div class="container-fluid">
+<div class="header">
+<h4>
+<span class="label kitap">KİTAPLAR</span>
+</h4>
+</div>
+<hr/>
+<div class="row">
+<div class="projects">
+<div class="row">
+<div class="col-lg-11 col-md-10 col-sm-10 col-xs-9">
+<span class="pull-right">
+</span>
+<strong>1. Türk Ticaret Kanunu Şerhi Altıncı Kitap: Sigorta Hukuku Cilt VII Yargı Kararları</strong>
+<p>
+ÜNAN AHMET SAMİM, 
+Yayın Yeri:On İki Levha Yayınları, 
+Editör:-, 
+Basım sayısı:1, 
+Sayfa sayısı:530, 
+ISBN:9786257334365, 
+</p>
+<p>
+<span class="label label-info">
+2021
+</span>
+  <span class="label label-primary">
+Bilimsel Kitap
+</span>
+</p>
+</div>
+</div>
+<hr/>
+<div class="row">
+<div class="col-lg-11 col-md-10 col-sm-10 col-xs-9">
+<span class="pull-right">
+</span>
+<strong>2. Sigorta Hukukunun İki Güncel Sorunu: İnsansız Araçlar- Sorumluluk ve Sağlık Sigortalarında Birden Çok Sigorta Sempozyumu, Galatasaray Üniversitesi, 18 Ocak 2019</strong>
+<p>
+Bölüm Adı:Birden Çok Sigortaya İlişkin Bazı Sorunlar, 
+ÜNAN AHMET SAMİM, 
+Yayın Yeri:On İki Levha Yayınları, 
+Editör:Serap Amasya, 
+Basım sayısı:1, 
+ISBN:978-625-7773-37-9, 
+Bölüm Sayfaları:107
+-152
+</p>
+<p>
+<span class="label label-info">
+2020
+</span>
+  <span class="label label-primary">
+Bilimsel Kitap
+</span>
+  <span class="label label-success">
+Kitap Bölümü
+</span>
+</p>
+</div>
+</div>
+<hr/>
+<div class="row">
+<div class="col-lg-11 col-md-10 col-sm-10 col-xs-9">
+<span class="pull-right">
+</span>
+<strong>3. Prof. Dr. Rayegan Kender’e Saygı Günü: Sigorta Genel Şartlarının Düzenlenmesi, Denetlenmesi ve Uygulamada Ortaya Çıkan Sorunlar Sempozyumu</strong>
+<p>
+Bölüm Adı:Sigorta Genel Şartları İle İlgili Olarak Uygulamada Karşılaşılan Bazı Sorunlar, 
+ÜNAN AHMET SAMİM, 
+Yayın Yeri:Filiz Kitabevi, 
+Editör:yok, 
+Basım sayısı:1, 
+ISBN:9789753685825, 
+Bölüm Sayfaları:177
+-198
+</p>
+<p>
+<span class="label label-info">
+2020
+</span>
+  <span class="label label-primary">
+Bilimsel Kitap
+</span>
+  <span class="label label-success">
+Kitap Bölümü
+</span>
+</p>
+</div>
+</div>
+<hr/>
+<div class="row">
+<div class="col-lg-11 col-md-10 col-sm-10 col-xs-9">
+<span class="pull-right">
+</span>
+<strong>4. Prof. Dr. Haluk Burcuoğlu'na Armağan</strong>
+<p>
+Bölüm Adı:Sigorta Alacağının Güvence İşleviyle Bağlantılı Bazı Sorunlar, 
+ÜNAN AHMET SAMİM, 
+Yayın Yeri:Filiz Kitabevi, 
+Editör:Saibe Oktay Özdemir, Atilla Altop, Azra Arkan Serim, 
+Basım sayısı:1, 
+ISBN:9789753686150, 
+Bölüm Sayfaları:1809
+-1850
+</p>
+<p>
+<span class="label label-info">
+2020
+</span>
+  <span class="label label-primary">
+Bilimsel Kitap
+</span>
+  <span class="label label-success">
+Kitap Bölümü
+</span>
+</p>
+</div>
+</div>
+<hr/>
+<div class="row">
+<div class="col-lg-11 col-md-10 col-sm-10 col-xs-9">
+<span class="pull-right">
+</span>
+<strong>5. Ticaret Hukuku ve Yargıtay Kararları Sempozyumu, XXXII, 21.12.2018</strong>
+<p>
+Bölüm Adı:Sorumluluk Sigortalarında Zamanaşımı ile İlgili Bazı Sorunlar, 
+ÜNAN AHMET SAMİM, 
+Yayın Yeri:Banka ve Ticaret Hukuku Araştırma Enstitüsü, 
+Editör:-, 
+Basım sayısı:1, 
+ISBN:9789755372716, 
+Bölüm Sayfaları:145
+-182
+</p>
+<p>
+<span class="label label-info">
+2020
+</span>
+  <span class="label label-primary">
+Bilimsel Kitap
+</span>
+  <span class="label label-success">
+Kitap Bölümü
+</span>
+</p>
+</div>
+</div>
+<hr/>
+<div class="row">
+<div class="col-lg-11 col-md-10 col-sm-10 col-xs-9">
+<span class="pull-right">
+</span>
+<strong>6. Türk Ticaret Kanunu Şerhi Altıncı Kitap Sigorta Hukuku Cilt VI Yargı Kararları</strong>
+<p>
+ÜNAN AHMET SAMİM, 
+Yayın Yeri:On İki Levha Yayınları, 
+Editör:-, 
+Basım sayısı:1, 
+Sayfa sayısı:455, 
+ISBN:978-625-7899-09-3, 
+</p>
+<p>
+<span class="label label-info">
+2020
+</span>
+  <span class="label label-primary">
+Bilimsel Kitap
+</span>
+</p>
+</div>
+</div>
+<hr/>
+<div class="row">
+<div class="col-lg-11 col-md-10 col-sm-10 col-xs-9">
+<span class="pull-right">
+</span>
+<strong>7. Türk Ticaret Kanunu Şerhi Altıncı Kitap Sigorta Hukuku Cilt IV Yargıtay Kararları</strong>
+<p>
+ÜNAN AHMET SAMİM, 
+Yayın Yeri:On İki Levha Yayınları, 
+Editör:-, 
+Basım sayısı:1, 
+Sayfa sayısı:470, 
+ISBN:978-605-7820-31-0, 
+</p>
+<p>
+<span class="label label-info">
+2019
+</span>
+  <span class="label label-primary">
+Bilimsel Kitap
+</span>
+</p>
+</div>
+</div>
+<hr/>
+<div class="row">
+<div class="col-lg-11 col-md-10 col-sm-10 col-xs-9">
+<span class="pull-right">
+</span>
+<strong>8. Türk Ticaret Kanunu Şerhi Altıncı Kitap Sigorta Hukuku Cilt V Yargı Kararları</strong>
+<p>
+ÜNAN AHMET SAMİM, 
+Yayın Yeri:On İki Levha Yayınları, 
+Editör:-, 
+Basım sayısı:1, 
+Sayfa sayısı:503, 
+ISBN:978-975-2449-27-5, 
+</p>
+<p>
+<span class="label label-info">
+2019
+</span>
+  <span class="label label-primary">
+Bilimsel Kitap
+</span>
+</p>
+</div>
+</div>
+<hr/>
+<div class="row">
+<div class="col-lg-11 col-md-10 col-sm-10 col-xs-9">
+<span class="pull-right">
+</span>
+<strong>9. Causation in Insurance</strong>
+<p>
+Bölüm Adı:Some Problems Related to Causation in Turkish Insurance Law, 
+ÜNAN AHMET SAMİM, 
+Yayın Yeri:On İki Levha Yayınevi, 
+Editör:Ayşegül Buğra, 
+Basım sayısı:1, 
+ISBN:9786057542052, 
+Bölüm Sayfaları:71
+-86
+</p>
+<p>
+<span class="label label-info">
+2018
+</span>
+  <span class="label label-primary">
+Bilimsel Kitap
+</span>
+  <span class="label label-success">
+Kitap Bölümü
+</span>
+</p>
+</div>
+</div>
+<hr/>
+<div class="row">
+<div class="col-lg-11 col-md-10 col-sm-10 col-xs-9">
+<span class="pull-right">
+</span>
+<strong>10. Sigorta Hukuku Sempozyumları</strong>
+<p>
+Bölüm Adı:Ölüm Dışındaki Bedensel Zararların Özel Sigortalar Kapsamında Karşılanması, 
+ÜNAN AHMET SAMİM, 
+Yayın Yeri:On İki Levha Yayınları, 
+Editör:Samim Ünan, Emine Yazıcıoğlu, 
+Basım sayısı:1, 
+ISBN:9786051529851, 
+Bölüm Sayfaları:215
+-256
+</p>
+<p>
+<span class="label label-info">
+2018
+</span>
+  <span class="label label-primary">
+Bilimsel Kitap
+</span>
+  <span class="label label-success">
+Kitap Bölümü
+</span>
+</p>
+</div>
+</div>
+<hr/>
+<div class="row">
+<div class="col-lg-11 col-md-10 col-sm-10 col-xs-9">
+<span class="pull-right">
+</span>
+<strong>11. Sigorta Hukuku Sempozyumları</strong>
+<p>
+Bölüm Adı:Türk Ticaret Kanunu Uyarınca Sorumluluk Sigortalarında Sigortacının Hukuksal Koruma Edimi, 
+ÜNAN AHMET SAMİM, 
+Yayın Yeri:On İki Levha Yayınları, 
+Editör:Ahmet Samim Ünan, Emine Yazıcıoğlu, 
+Basım sayısı:1, 
+ISBN:9786051529851, 
+Bölüm Sayfaları:347
+-389
+</p>
+<p>
+<span class="label label-info">
+2018
+</span>
+  <span class="label label-primary">
+Bilimsel Kitap
+</span>
+  <span class="label label-success">
+Kitap Bölümü
+</span>
+</p>
+</div>
+</div>
+<hr/>
+<div class="row">
+<div class="col-lg-11 col-md-10 col-sm-10 col-xs-9">
+<span class="pull-right">
+</span>
+<strong>12. Sigorta Hukuku Sempozyumları</strong>
+<p>
+Bölüm Adı:Kusurlu Sürücünün Kazada Hayatını Kaybetmesine İlişkin Yeni Yargıtay Kararı, 
+ÜNAN AHMET SAMİM, 
+Yayın Yeri:On İki Levha Yayınları, 
+Editör:Ahmet Samim Ünan, Emine Yazıcıoğlu, 
+Basım sayısı:1, 
+ISBN:9786051529851, 
+Bölüm Sayfaları:317
+-345
+</p>
+<p>
+<span class="label label-info">
+2018
+</span>
+  <span class="label label-primary">
+Bilimsel Kitap
+</span>
+  <span class="label label-success">
+Kitap Bölümü
+</span>
+</p>
+</div>
+</div>
+<hr/>
+<div class="row">
+<div class="col-lg-11 col-md-10 col-sm-10 col-xs-9">
+<span class="pull-right">
+</span>
+<strong>13. Sigorta Hukuku Sempozyumları</strong>
+<p>
+Bölüm Adı:Yargıtay Hukuk Genel Kurulu (HGK) Tarafından Destekten Yoksun Kalma Tazminatı Konusunda Verilen Yeni Karar, 
+ÜNAN AHMET SAMİM, 
+Yayın Yeri:On İki Levha Yayınevi, 
+Editör:Ahmet Samim Ünan, Emine Yazıcıoğlu, 
+Basım sayısı:1, 
+ISBN:9786051529851, 
+Bölüm Sayfaları:289
+-315
+</p>
+<p>
+<span class="label label-info">
+2018
+</span>
+  <span class="label label-primary">
+Bilimsel Kitap
+</span>
+  <span class="label label-success">
+Kitap Bölümü
+</span>
+</p>
+</div>
+</div>
+<hr/>
+<div class="row">
+<div class="col-lg-11 col-md-10 col-sm-10 col-xs-9">
+<span class="pull-right">
+</span>
+<strong>14. Sektörel Bazda Tüketici Hukuku ve Uygulamaları 2016-2017</strong>
+<p>
+Bölüm Adı:Tüketici Sözleşmesi Niteliğindeki Sigorta Sözleşmelerine Uygulanacak Hukuk Kuralları, 
+ÜNAN AHMET SAMİM, 
+Yayın Yeri:Aristo Yayınevi, 
+Editör:İsmail Çakır/Hakan Tokbaş, Fehim Üçışık/Hamide Zafer, 
+Basım sayısı:1, 
+ISBN:9786056743801, 
+Bölüm Sayfaları:478
+-489
+</p>
+<p>
+<span class="label label-info">
+2017
+</span>
+  <span class="label label-primary">
+Bilimsel Kitap
+</span>
+  <span class="label label-success">
+Kitap Bölümü
+</span>
+</p>
+</div>
+</div>
+<hr/>
+<div class="row">
+<div class="col-lg-11 col-md-10 col-sm-10 col-xs-9">
+<span class="pull-right">
+</span>
+<strong>15. Türk Ticaret Kanunu Şerhi Altıncı Kitap Sigorta Hukuku Cilt III Can Sigortaları</strong>
+<p>
+ÜNAN AHMET SAMİM, 
+Yayın Yeri:On İki Levha Yayınları, 
+Editör:-, 
+Basım sayısı:1, 
+Sayfa sayısı:519, 
+ISBN:978-605-152-622-5, 
+</p>
+<p>
+<span class="label label-info">
+2017
+</span>
+  <span class="label label-primary">
+Bilimsel Kitap
+</span>
+</p>
+</div>
+</div>
+<hr/>
+<div class="row">
+<div class="col-lg-11 col-md-10 col-sm-10 col-xs-9">
+<span class="pull-right">
+</span>
+<strong>16. Ticaret Hukuku ve Yargıtay Kararları Sempozyumu XXIX, 25 Aralık 2015</strong>
+<p>
+Bölüm Adı:Sigorta Hukukunda İlliyet Bağına İlişkin Bazı Sorunlar, 
+ÜNAN AHMET SAMİM, 
+Yayın Yeri:Banka ve Ticaret Hukuku Araştırma Enstitüsü, 
+Editör:İbrahim Bektaş, İfakat Balık, 
+Basım sayısı:1, 
+ISBN:9789755372440, 
+Bölüm Sayfaları:57
+-73
+</p>
+<p>
+<span class="label label-info">
+2016
+</span>
+  <span class="label label-primary">
+Bilimsel Kitap
+</span>
+  <span class="label label-success">
+Kitap Bölümü
+</span>
+</p>
+</div>
+</div>
+<hr/>
+<div class="row">
+<div class="col-lg-11 col-md-10 col-sm-10 col-xs-9">
+<span class="pull-right">
+</span>
+<strong>17. Türk Ticaret Kanunu Şerhi Altıncı Kitap Sigorta Hukuku Cilt I Genel Hükümler (Madde 1401-1452)</strong>
+<p>
+ÜNAN AHMET SAMİM, 
+Yayın Yeri:On İki Levha Yayınları, 
+Editör:yok, 
+Basım sayısı:1, 
+Sayfa sayısı:569, 
+ISBN:978-605-152-430-6, 
+</p>
+<p>
+<span class="label label-info">
+2016
+</span>
+  <span class="label label-primary">
+Bilimsel Kitap
+</span>
+</p>
+</div>
+</div>
+<hr/>
+<div class="row">
+<div class="col-lg-11 col-md-10 col-sm-10 col-xs-9">
+<span class="pull-right">
+</span>
+<strong>18. Sigorta Tüketici Hukuku</strong>
+<p>
+ÜNAN AHMET SAMİM, 
+Yayın Yeri:On İki Levha Yayınları, 
+Editör:yok, 
+Basım sayısı:1, 
+Sayfa sayısı:259, 
+ISBN:978-605-152-416-0, 
+</p>
+<p>
+<span class="label label-info">
+2016
+</span>
+  <span class="label label-primary">
+Bilimsel Kitap
+</span>
+</p>
+</div>
+</div>
+<hr/>
+<div class="row">
+<div class="col-lg-11 col-md-10 col-sm-10 col-xs-9">
+<span class="pull-right">
+</span>
+<strong>19. Türk Ticaret Kanunu Şerhi Altıncı Kitap Sigorta Hukuku Cilt II Zarar Sigortaları</strong>
+<p>
+ÜNAN AHMET SAMİM, 
+Yayın Yeri:On İki Levha Yayınları, 
+Editör:yok, 
+Basım sayısı:1, 
+Sayfa sayısı:525, 
+ISBN:978-605-152-446-7, 
+</p>
+<p>
+<span class="label label-info">
+2016
+</span>
+  <span class="label label-primary">
+Bilimsel Kitap
+</span>
+</p>
+</div>
+</div>
+<hr/>
+<div class="row">
+<div class="col-lg-11 col-md-10 col-sm-10 col-xs-9">
+<span class="pull-right">
+</span>
+<strong>20. Ticaret Hukuku ve Yargıtay Kararları Sempozyumu XXVII, 27 Aralık 2014</strong>
+<p>
+Bölüm Adı:Sözleşmesel Görevler, 
+ÜNAN AHMET SAMİM, 
+Yayın Yeri:Banka ve Ticaret Hukuku Araştırma Enstitüsü, 
+Editör:Ufuk Tekin, İbrahim Bektaş, 
+Basım sayısı:1, 
+ISBN:9789755372402, 
+Bölüm Sayfaları:11
+-27
+</p>
+<p>
+<span class="label label-info">
+2016
+</span>
+  <span class="label label-primary">
+Bilimsel Kitap
+</span>
+  <span class="label label-success">
+Kitap Bölümü
+</span>
+</p>
+</div>
+</div>
+<hr/>
+<div class="row">
+<div class="col-lg-11 col-md-10 col-sm-10 col-xs-9">
+<span class="pull-right">
+</span>
+<strong>21. Türk-Alman Anonim Şirketler ve Sermaye Piyasası Hukukunda Güncel Gelişmeler Sempozyumları (Internationales Symposium zu aktuellen Entwicklungen im türkischen und deutschen Versicherungsrecht),  19-20 Haziran 2014</strong>
+<p>
+Bölüm Adı:2013 tarihli Tüketicinin Korunması Hakkındaki Kanun’un Sigortaya Etkileri, 
+ÜNAN AHMET SAMİM, 
+Yayın Yeri:-, 
+Editör:Kemal Şenocak/Mathias Rohe/Ali Yarayan (der.), 
+Basım sayısı:1, 
+ISBN:-, 
+Bölüm Sayfaları:165
+-192
+</p>
+<p>
+<span class="label label-info">
+2014
+</span>
+  <span class="label label-primary">
+Bilimsel Kitap
+</span>
+  <span class="label label-success">
+Kitap Bölümü
+</span>
+</p>
+</div>
+</div>
+<hr/>
+<div class="row">
+<div class="col-lg-11 col-md-10 col-sm-10 col-xs-9">
+<span class="pull-right">
+</span>
+<strong>22. Insurer’s Pre-Contractual Information Duty, Sigorta Hukuku Türk Derneği, AIDA Consumer Protection &amp; Dispute Resolution Working Party Lisbon Meeting Mayıs 2013</strong>
+<p>
+Bölüm Adı:Insurer’s Pre-Contractual Duties to Inform and Warn/Advise, 
+ÜNAN AHMET SAMİM, 
+Yayın Yeri:Sigorta Hukuku Türk Derneği, 
+Editör:-, 
+Basım sayısı:1, 
+ISBN:-, 
+Bölüm Sayfaları:8
+-29
+</p>
+<p>
+<span class="label label-info">
+2013
+</span>
+  <span class="label label-primary">
+Bilimsel Kitap
+</span>
+  <span class="label label-success">
+Kitap Bölümü
+</span>
+</p>
+</div>
+</div>
+<hr/>
+<div class="row">
+<div class="col-lg-11 col-md-10 col-sm-10 col-xs-9">
+<span class="pull-right">
+</span>
+<strong>23. Yeni Deniz Ticareti Hukuku’nun Kaynakları, C. 1, Milletlerarası Sözleşmeler ve Açıklamalı Çevirileri – Bibliyografya – Mahkeme Kararları</strong>
+<p>
+Bölüm Adı:Gemiler Arasında Çatmaya İlişkin Belli Kuralların Birleştirilmesi Hakkında Milletlerarası Sözleşme, 
+ÜNAN AHMET SAMİM, 
+Yayın Yeri:On İki Levha Yayınları, 
+Editör:Fazıl Kerim Atamer, Cüneyt Süzel, 
+Basım sayısı:1, 
+ISBN:9786051520018, 
+Bölüm Sayfaları:374
+-387
+</p>
+<p>
+<span class="label label-info">
+2013
+</span>
+  <span class="label label-primary">
+Bilimsel Kitap
+</span>
+  <span class="label label-success">
+Kitap Bölümü
+</span>
+</p>
+</div>
+</div>
+<hr/>
+<div class="row">
+<div class="col-lg-11 col-md-10 col-sm-10 col-xs-9">
+<span class="pull-right">
+</span>
+<strong>24. Prof. Dr. Merih Kemal Omağ’a Saygı Günü - Sorumluluk Sigortaları: İlkeler ve Sorunlar Sempozyumu</strong>
+<p>
+Bölüm Adı:Sorumluluk Sigortalarına İlişkin bazı Sorunlar, 
+ÜNAN AHMET SAMİM, 
+Yayın Yeri:Sigorta Hukuku Türk Derneği, 
+Editör:-, 
+Basım sayısı:1, 
+ISBN:-, 
+Bölüm Sayfaları:5
+-15
+</p>
+<p>
+<span class="label label-info">
+2013
+</span>
+  <span class="label label-primary">
+Bilimsel Kitap
+</span>
+  <span class="label label-success">
+Kitap Bölümü
+</span>
+</p>
+</div>
+</div>
+<hr/>
+<div class="row">
+<div class="col-lg-11 col-md-10 col-sm-10 col-xs-9">
+<span class="pull-right">
+</span>
+<strong>25. Kredi (Ticari Alacak) Sigortası Genel Şartları Şerhi</strong>
+<p>
+ÜNAN AHMET SAMİM, 
+Yayın Yeri:yok, 
+Editör:yok, 
+Basım sayısı:1, 
+ISBN:yok, 
+</p>
+<p>
+<span class="label label-info">
+2013
+</span>
+  <span class="label label-primary">
+Bilimsel Kitap
+</span>
+</p>
+</div>
+</div>
+<hr/>
+<div class="row">
+<div class="col-lg-11 col-md-10 col-sm-10 col-xs-9">
+<span class="pull-right">
+</span>
+<strong>26. New Turkish Insurance Contract Law Free Translation of the Provisions of the Turkish Commercial Code Regarding Insurance Contracts, Sigorta Hukuku Türk Derneği (AIDA Turkey)</strong>
+<p>
+ÜNAN AHMET SAMİM, 
+Yayın Yeri:yok, 
+Editör:yok, 
+Basım sayısı:1, 
+ISBN:YOK, 
+</p>
+<p>
+<span class="label label-info">
+2012
+</span>
+  <span class="label label-primary">
+Bilimsel Kitap
+</span>
+</p>
+</div>
+</div>
+<hr/>
+<div class="row">
+<div class="col-lg-11 col-md-10 col-sm-10 col-xs-9">
+<span class="pull-right">
+</span>
+<strong>27.  Transparency in Insurance Law</strong>
+<p>
+Bölüm Adı:Control of General and Special Conditions of Insurance Under Turkish Law with Special Regard to the Transparency Requirement, 
+ÜNAN AHMET SAMİM, 
+Yayın Yeri:Sigorta Hukuku Türk Derneği, 
+Editör:Samim Ünan/Manfred Wandt, 
+Basım sayısı:1, 
+ISBN:-, 
+Bölüm Sayfaları:65
+-88
+</p>
+<p>
+<span class="label label-info">
+2012
+</span>
+  <span class="label label-primary">
+Bilimsel Kitap
+</span>
+  <span class="label label-success">
+Kitap Bölümü
+</span>
+</p>
+</div>
+</div>
+<hr/>
+<div class="row">
+<div class="col-lg-11 col-md-10 col-sm-10 col-xs-9">
+<span class="pull-right">
+</span>
+<strong>28. Ticaret Hukuku ve Yargıtay Kararları Sempozyumu XXVI</strong>
+<p>
+Bölüm Adı:Trafik Kazası Sebebiyle Destekten Yoksun Kalanların Araç İşletenin Sorumluluk Sigortacısına Yönelttiği İstemlerle İlgili Yargıtay Kararlarının Değerlendirilmesi, 
+ÜNAN AHMET SAMİM, BAYSAL BAŞAK, 
+Yayın Yeri:Banka ve Ticaret Hukuku Araştırma Enstitüsü, 
+Editör:Başak Şit İmamoğlu, 
+Basım sayısı:1, 
+ISBN:9789755372198, 
+Bölüm Sayfaları:99
+-131
+</p>
+<p>
+<span class="label label-info">
+2012
+</span>
+  <span class="label label-primary">
+Bilimsel Kitap
+</span>
+  <span class="label label-success">
+Kitap Bölümü
+</span>
+</p>
+</div>
+</div>
+<hr/>
+<div class="row">
+<div class="col-lg-11 col-md-10 col-sm-10 col-xs-9">
+<span class="pull-right">
+</span>
+<strong>29. Zorunlu Hekim Sorumluluğu Sigortası (Genel Şartlar Şerhi)</strong>
+<p>
+ÜNAN AHMET SAMİM, 
+Yayın Yeri:yok, 
+Editör:yok, 
+Basım sayısı:1, 
+ISBN:yok, 
+</p>
+<p>
+<span class="label label-info">
+2012
+</span>
+  <span class="label label-primary">
+Bilimsel Kitap
+</span>
+</p>
+</div>
+</div>
+<hr/>
+<div class="row">
+<div class="col-lg-11 col-md-10 col-sm-10 col-xs-9">
+<span class="pull-right">
+</span>
+<strong>30. Müşterek Avarya Hukuku</strong>
+<p>
+KENDER RAYEGAN, Çetingil Ergon, 
+Yayın Yeri:On İki Levha Yayınevi, 
+Editör:yok, 
+Basım sayısı:1, 
+Sayfa sayısı:448, 
+ISBN:978-605-4396-83-2, 
+</p>
+<p>
+<span class="label label-info">
+2011
+</span>
+  <span class="label label-primary">
+Bilimsel Kitap
+</span>
+</p>
+</div>
+</div>
+<hr/>
+<div class="row">
+<div class="col-lg-11 col-md-10 col-sm-10 col-xs-9">
+<span class="pull-right">
+</span>
+<strong>31. Principles of European Insurance Contract Law (PEICL) Avrupa Sigorta Sözleşmesi Hukuku İlkeleri (ASSHİ) İngilizce Metin ve Türkçe Çeviri</strong>
+<p>
+ÜNAN AHMET SAMİM, ATAMER FAZIL KERİM, 
+Yayın Yeri:yok, 
+Editör:yok, 
+Basım sayısı:1, 
+ISBN:yok, 
+</p>
+<p>
+<span class="label label-info">
+2011
+</span>
+  <span class="label label-primary">
+Bilimsel Kitap
+</span>
+</p>
+</div>
+</div>
+<hr/>
+<div class="row">
+<div class="col-lg-11 col-md-10 col-sm-10 col-xs-9">
+<span class="pull-right">
+</span>
+<strong>32. Kender-Çetingil 50. Akademik Birlikte Çalışma Yılı Armağanı</strong>
+<p>
+Bölüm Adı:Türk Boğazları’na İlişkin Montreux Sözleşmesinin Ticaret Gemileri Hakkındaki Düzenlemesi Ve Bu Bağlamda Karşılaşılan Bazı Sorunlar Hakkında Kısa Değerlendirme, 
+ÜNAN AHMET SAMİM, 
+Yayın Yeri:-, 
+Editör:-, 
+Basım sayısı:1, 
+ISBN:-, 
+Bölüm Sayfaları:1168
+-1171
+</p>
+<p>
+<span class="label label-info">
+2007
+</span>
+  <span class="label label-primary">
+Bilimsel Kitap
+</span>
+  <span class="label label-success">
+Kitap Bölümü
+</span>
+</p>
+</div>
+</div>
+<hr/>
+<div class="row">
+<div class="col-lg-11 col-md-10 col-sm-10 col-xs-9">
+<span class="pull-right">
+</span>
+<strong>33. Kender-Çetingil 50. Akademik Birlikte Çalışma Yılı Armağanı</strong>
+<p>
+Bölüm Adı:“Türk Ticaret Kanunu’nun Yürürlüğü Ve Uygulama Şekli Hakkında Kanun Tasarısı Taslağı Hakkında Bazı Düşünceler”,, 
+ÜNAN AHMET SAMİM, 
+Yayın Yeri:-, 
+Editör:-, 
+Basım sayısı:1, 
+ISBN:-, 
+Bölüm Sayfaları:1150
+-1167
+</p>
+<p>
+<span class="label label-info">
+2007
+</span>
+  <span class="label label-primary">
+Bilimsel Kitap
+</span>
+  <span class="label label-success">
+Kitap Bölümü
+</span>
+</p>
+</div>
+</div>
+<hr/>
+<div class="row">
+<div class="col-lg-11 col-md-10 col-sm-10 col-xs-9">
+<span class="pull-right">
+</span>
+<strong>34. Kender-Çetingil 50. Akademik Birlikte Çalışma Yılı Armağanı</strong>
+<p>
+Bölüm Adı:Yargıtay 11. Hukuk Dairesi’nin Kısmen (6/8 Oranında) Sürücü Kusurundan Kısmen (2/8 Oranında) Araçtaki Bozukluktan Kaynaklanan Kazada Ölen Sürücünün Bu Ölüm Sebebiyle Destekten Yoksun Kalan Yakınlarına Ödenecek Tazminattan Sürücü Kusuru Sebebiyle İndirim Yapılmayacağına İlişkin Kararı (Yargıtay 11. Hukuk Dairesi’nin 11.07.2005 Gün Ve E.2004/10789; K.2005/7481 Sayılı Kararı), 
+ÜNAN AHMET SAMİM, 
+Yayın Yeri:-, 
+Editör:-, 
+Basım sayısı:1, 
+ISBN:-, 
+Bölüm Sayfaları:1172
+-1184
+</p>
+<p>
+<span class="label label-info">
+2007
+</span>
+  <span class="label label-primary">
+Bilimsel Kitap
+</span>
+  <span class="label label-success">
+Kitap Bölümü
+</span>
+</p>
+</div>
+</div>
+<hr/>
+<div class="row">
+<div class="col-lg-11 col-md-10 col-sm-10 col-xs-9">
+<span class="pull-right">
+</span>
+<strong>35. Mehmet Somer Armağanı</strong>
+<p>
+Bölüm Adı:Karayolu Taşıma Kanunu’ndaki Eşya Taşımasına, Taşımacı Acentesine, Taşıma İşleri Yüklenicisine Ve Zorunlu Sigortaya İlişkin Bazı Yanlış Düzenlemeler, 
+ÜNAN AHMET SAMİM, 
+Yayın Yeri:Marmara Üniversitesi Hukuk Fakültesi Yayını, 
+Editör:-, 
+Basım sayısı:1, 
+ISBN:-, 
+Bölüm Sayfaları:383
+-401
+</p>
+<p>
+<span class="label label-info">
+2006
+</span>
+  <span class="label label-primary">
+Bilimsel Kitap
+</span>
+  <span class="label label-success">
+Kitap Bölümü
+</span>
+</p>
+</div>
+</div>
+<hr/>
+<div class="row">
+<div class="col-lg-11 col-md-10 col-sm-10 col-xs-9">
+<span class="pull-right">
+</span>
+<strong>36. Sorumluluk Sigortaları Semineri
+</strong>
+<p>
+Bölüm Adı:Türk Sigorta Hukuku bakımından Sorumluluk Sigortalarının Değerlendirilmesi, 
+ÜNAN AHMET SAMİM, 
+Yayın Yeri:İktisadi Araştırmalar Vakfı Yayını, 
+Editör:-, 
+Basım sayısı:1, 
+ISBN:-, 
+Bölüm Sayfaları:29
+-51
+</p>
+<p>
+<span class="label label-info">
+2006
+</span>
+  <span class="label label-primary">
+Bilimsel Kitap
+</span>
+  <span class="label label-success">
+Kitap Bölümü
+</span>
+</p>
+</div>
+</div>
+<hr/>
+<div class="row">
+<div class="col-lg-11 col-md-10 col-sm-10 col-xs-9">
+<span class="pull-right">
+</span>
+<strong>37. Sigorta Araştırmaları Dergisi, Temmuz 2006, Sayı 2</strong>
+<p>
+Bölüm Adı:Türk Ticaret kanunu Tasarısının Prim Ödeme Borcuna İlişkin Bazı Yanlış Tercihleri, 
+ÜNAN AHMET SAMİM, 
+Yayın Yeri:-, 
+Editör:-, 
+Basım sayısı:1, 
+ISBN:-, 
+Bölüm Sayfaları:23
+-35
+</p>
+<p>
+<span class="label label-info">
+2006
+</span>
+  <span class="label label-primary">
+Bilimsel Kitap
+</span>
+  <span class="label label-success">
+Kitap Bölümü
+</span>
+</p>
+</div>
+</div>
+<hr/>
+<div class="row">
+<div class="col-lg-11 col-md-10 col-sm-10 col-xs-9">
+<span class="pull-right">
+</span>
+<strong>38. Sorumluluk Sigortaları Semineri, İstanbul, İktisadî Araştırmalar Vakfı, 2006/185</strong>
+<p>
+Bölüm Adı:Türk Sigorta Hukuku Bakımından Sorumluluk Sigortalarının Değerlendirilmesi, 
+ÜNAN AHMET SAMİM, 
+Yayın Yeri:İktisadî Araştırmalar Vakfı, 
+Editör:Y. Temel Enderoğlu, 
+Basım sayısı:1, 
+ISBN:-, 
+Bölüm Sayfaları:31
+-51
+</p>
+<p>
+<span class="label label-info">
+2006
+</span>
+  <span class="label label-primary">
+Bilimsel Kitap
+</span>
+  <span class="label label-success">
+Kitap Bölümü
+</span>
+</p>
+</div>
+</div>
+<hr/>
+<div class="row">
+<div class="col-lg-11 col-md-10 col-sm-10 col-xs-9">
+<span class="pull-right">
+</span>
+<strong>39. TSRŞB-TAIEX İşbirliği İle Düzenlenen Avrupa Birliği Sigorta Mevzuatı ve Uygulamaları Semineri, İstanbul, Türkiye Sigorta ve Reasürans Şirketleri Birliği, 23-24 Haziran 2005</strong>
+<p>
+Bölüm Adı:Türk Sigorta Mevzuatının Değerlendirilmesi, 
+ÜNAN AHMET SAMİM, 
+Yayın Yeri:-, 
+Editör:-, 
+Basım sayısı:1, 
+ISBN:-, 
+Bölüm Sayfaları:61
+-71
+</p>
+<p>
+<span class="label label-info">
+2005
+</span>
+  <span class="label label-primary">
+Bilimsel Kitap
+</span>
+  <span class="label label-success">
+Kitap Bölümü
+</span>
+</p>
+</div>
+</div>
+<hr/>
+<div class="row">
+<div class="col-lg-11 col-md-10 col-sm-10 col-xs-9">
+<span class="pull-right">
+</span>
+<strong>40. 
+Hayat Sigortası Sözleşmesi</strong>
+<p>
+ÜNAN AHMET SAMİM, 
+Yayın Yeri:Beta Yayınları, 
+Editör:yok, 
+Basım sayısı:1, 
+Sayfa sayısı:240, 
+ISBN:975-486-654-0, 
+</p>
+<p>
+<span class="label label-info">
+1999
+</span>
+  <span class="label label-primary">
+Bilimsel Kitap
+</span>
+</p>
+</div>
+</div>
+<hr/>
+<div class="row">
+<div class="col-lg-11 col-md-10 col-sm-10 col-xs-9">
+<span class="pull-right">
+</span>
+<strong>41. İsteğe Bağlı Genel Sorumluluk Sigortasında Riziko</strong>
+<p>
+ÜNAN AHMET SAMİM, 
+Yayın Yeri:Beta Yayınları, 
+Editör:yok, 
+Basım sayısı:1, 
+Sayfa sayısı:208, 
+ISBN:975-486-599-X, 
+</p>
+<p>
+<span class="label label-info">
+1998
+</span>
+  <span class="label label-primary">
+Bilimsel Kitap
+</span>
+</p>
+</div>
+</div>
+<hr/>
+<div class="row">
+<div class="col-lg-11 col-md-10 col-sm-10 col-xs-9">
+<span class="pull-right">
+</span>
+<strong>42. Gemi İpoteğinde Lex Commissoria Yasağı
+Cilt 10, Sayı: 1-3, 1996, s. 433-450.</strong>
+<p>
+Bölüm Adı:Hukuk Araştırmaları, 
+ÜNAN AHMET SAMİM, 
+Yayın Yeri:Marmara Üniversitesi Hukuk Fakültesi Yayını,, 
+Editör:-, 
+Basım sayısı:1, 
+ISBN:-, 
+Bölüm Sayfaları:433
+-450
+</p>
+<p>
+<span class="label label-info">
+1996
+</span>
+  <span class="label label-primary">
+Bilimsel Kitap
+</span>
+  <span class="label label-success">
+Kitap Bölümü
+</span>
+</p>
+</div>
+</div>
+<hr/>
+<div class="row">
+<div class="col-lg-11 col-md-10 col-sm-10 col-xs-9">
+<span class="pull-right">
+</span>
+<strong>43. Prof. Dr. Reha POROY’a Armağan</strong>
+<p>
+Bölüm Adı:İsviçre’de Anonim Şirketlerin Kişiliklerin Tanınması (Federal Mahkeme Eski Başkanı ve Cenevre Üniversitesi Onursal Profesörü Robert PATRY), 
+ÜNAN AHMET SAMİM, 
+Yayın Yeri:İstanbul Üniversitesi Hukuk Fakültesi, 
+Editör:-, 
+Basım sayısı:1, 
+ISBN:-, 
+Bölüm Sayfaları:345
+-363
+</p>
+<p>
+<span class="label label-info">
+1995
+</span>
+  <span class="label label-primary">
+Bilimsel Kitap
+</span>
+  <span class="label label-success">
+Kitap Bölümü
+</span>
+</p>
+</div>
+</div>
+<hr/>
+<div class="row">
+<div class="col-lg-11 col-md-10 col-sm-10 col-xs-9">
+<span class="pull-right">
+</span>
+<strong>44. Bankacılar İçin Borçlar Hukuku</strong>
+<p>
+BURCUOĞLU HALUK, ALTOP ATİLLA, 
+Yayın Yeri:Yok, 
+Editör:yok, 
+Basım sayısı:1, 
+ISBN:yok, 
+</p>
+<p>
+<span class="label label-info">
+1990
+</span>
+  <span class="label label-primary">
+Bilimsel Kitap
+</span>
+</p>
+</div>
+</div>
+<hr/>
+</div>
+</div>
+</div>
+</div>
+</div>
+<hr/>
+<footer>
+<!-- Foorter baslangic-->
+<div class="container">
+<div class="row v-center">
+<p>2026 © Yükseköğretim Kurulu</p>
+</div>
+</div>
+<!-- Foorter bitis-->
+</footer>
+</div>
+<!-- 
+    ================================================== -->
+<!-- javascript dosyaları -->
+
+
+
+
+
+
+</body>
+</html>

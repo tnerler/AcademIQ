@@ -38,7 +38,7 @@ Durdurmak için `docker compose down` (veriler `academiq_pgdata` volume'ünde ka
 
 ### Proje çağrıları
 
-`cagri-fetcher` servisi TÜBİTAK duyurularını her gün 07:00'de (TSİ) tarar; ilk çalıştırmada son 1 yılı toplar.
+`cagri-fetcher` servisi TÜBİTAK, TÜSEB, kalkınma ajansları ve AB Başkanlığı duyurularını her gün 07:00'de (TSİ) tarar; ilk çalıştırmada son 1 yılı toplar.
 Çağrı olmayan duyurular elenir, "süresi uzatıldı" duyuruları ilgili çağrının tarihlerini günceller ve yeni
 akademik çağrılar otomatik olarak eşleştirilir. Ayrıntılar: [docs/cagri-toplama-plan.md](docs/cagri-toplama-plan.md).
 

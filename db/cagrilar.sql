@@ -2,11 +2,13 @@
 -- init.sql yalnizca bos volume'de calistigi icin bu dosya backend ve fetcher
 -- acilisinda calistirilir (backend/cagrilar/db.py:init_schema); tum ifadeler idempotent.
 
--- tarihler = [{"etiket": "...", "tarih": "YYYY-MM-DD"}, ...] -> en gec tarih (bos liste: NULL).
+-- tarihler = [{"etiket": "...", "tarih": "YYYY-MM-DD", "basvuru": true}, ...] -> en gec basvuru tarihi
+-- (bos liste: NULL; "basvuru" anahtari olmayan eski kayitlar basvuru tarihi sayilir).
 -- Generated kolonda kullanilabilmesi icin IMMUTABLE; tarihler her zaman ISO formatinda yazilir.
 CREATE OR REPLACE FUNCTION cagri_son_tarih(tarihler JSONB) RETURNS DATE
     LANGUAGE sql IMMUTABLE AS
-$$ SELECT max((e->>'tarih')::date) FROM jsonb_array_elements(tarihler) AS e $$;
+$$ SELECT max((e->>'tarih')::date) FROM jsonb_array_elements(tarihler) AS e
+   WHERE coalesce((e->>'basvuru')::boolean, true) $$;  -- sonuc/proje baslangici gibi tarihler (basvuru=false) haric
 
 CREATE TABLE IF NOT EXISTS cagrilar (
     id                 TEXT PRIMARY KEY,           -- doc_id(url): uuid5
@@ -19,7 +21,8 @@ CREATE TABLE IF NOT EXISTS cagrilar (
     ozet               TEXT,
     tarihler           JSONB NOT NULL DEFAULT '[]',
     son_tarih          DATE GENERATED ALWAYS AS (cagri_son_tarih(tarihler)) STORED,
-    butce              TEXT,
+    butce              TEXT,                       -- proje basina destek ust siniri
+    program_butcesi    TEXT,                       -- programin toplam butcesi
     sure               TEXT,
     basvuru_kosullari  TEXT[] NOT NULL DEFAULT '{}',
     baglantilar        JSONB NOT NULL DEFAULT '[]',  -- [{"etiket": "...", "url": "..."}]
@@ -31,6 +34,7 @@ CREATE TABLE IF NOT EXISTS cagrilar (
     son_kontrol        TIMESTAMPTZ
 );
 CREATE INDEX IF NOT EXISTS cagrilar_son_tarih_idx ON cagrilar (son_tarih);
+ALTER TABLE cagrilar ADD COLUMN IF NOT EXISTS program_butcesi TEXT;
 
 -- Cekilen her duyuru (cagri olsun olmasin): tekrar kontrolu ve filtre hatalarini incelemek icin
 CREATE TABLE IF NOT EXISTS duyurular (

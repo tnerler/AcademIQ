@@ -2,7 +2,7 @@
 CV klasoru senkronizasyonu: data/cvler (.docx / .pdf) -> metin -> LLM cikarimi -> PGVectorStore.
 
   - Yalnizca yeni ya da degisen dosyalar (sha256) islenir; --hepsi ile tumu yeniden islenir.
-  - Klasorde artik olmayan hocalar DB'den silinir (CV Yukle ile gelenler haric).
+  - Klasorde artik olmayan hocalar DB'den silinir (CV Yukle ile gelenler ve YOK akademisyenleri haric).
   - .docx CV'ler icin onizleme PDF'i LibreOffice ile uretilir (data/processed/cv_onizleme).
   - Bir sey degistiyse kayitli cagri eslestirmeleri silinir ve acik akademik cagrilar icin yeniden hesaplanir.
     Calisan backend'in BM25 indeksi bellekte oldugu icin ardindan backend yeniden baslatilmalidir.
@@ -42,6 +42,7 @@ from backend.indexing.parser import parse_pdf
 from backend.indexing.profile import AkademikProfil, format_sections, profile_chain, profile_text
 from backend.matching.ilan_extract import fold
 from backend.vectorstore import apply_indexes, doc_id, get_chunk_store, get_profile_store, init_tables
+from backend.yok import YOK_ID_ONEKI
 
 logger = logging.getLogger("index_cvs")
 
@@ -189,8 +190,10 @@ def senkronize(klasor: Path, hepsi: bool = False, concurrency: int = 6) -> dict[
     hashler = {p: dosya_hash(p) for p in dosyalar}
     islenecek = [p for p in dosyalar if hepsi or kayitli.get(ids[p], {}).get("kaynak_hash") != hashler[p]]
     upload_dir = _relative(s.cv_upload_dir)
+    # CV Yukle ile gelenler ve YOK akademisyenleri (backend/yok/index.py) bu klasore bagli degil
     silinecek = [h for h, m in kayitli.items()
-                 if h not in set(ids.values()) and not str(m.get("kaynak_pdf", "")).startswith(upload_dir)]
+                 if h not in set(ids.values()) and not str(m.get("kaynak_pdf", "")).startswith(upload_dir)
+                 and not h.startswith(YOK_ID_ONEKI)]
     logger.info("%d dosya: %d islenecek, %d degismemis; %d hoca silinecek",
                 len(dosyalar), len(islenecek), len(dosyalar) - len(islenecek), len(silinecek))
 

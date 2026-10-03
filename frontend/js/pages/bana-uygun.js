@@ -82,7 +82,7 @@ function renderLeft() {
         İşaretlemezseniz yalnızca bu arama için kullanılır ve saklanmaz.</p>
     </div>
 
-    <button class="btn btn-primary btn-lg btn-block" id="start" ${state.file && !loading ? "" : "disabled"}>
+    <button class="btn btn-cta btn-lg btn-block" id="start" ${state.file && !loading ? "" : "disabled"}>
       ${loading ? `<span class="spinner"></span> CV analiz ediliyor…` : "Uygun ilanları bul"}
     </button>
     ${loading ? `<button class="link-btn" id="cancel" style="align-self:center">İptal et</button>` : ""}`;
@@ -195,7 +195,7 @@ function renderRight() {
       ${icon("user-check")}
       <h3>Henüz arama yapılmadı</h3>
       <p class="small" style="max-width:440px;margin:0 auto">Soldan CV'nizi yükleyip <b>Uygun ilanları bul</b>'a basın.
-      Profilinizle örtüşen TÜBİTAK çağrıları, neden uygun olduklarıyla birlikte burada listelenir.</p>
+      Profilinizle örtüşen proje çağrıları, neden uygun olduklarıyla birlikte burada listelenir.</p>
     </div>`;
 }
 
@@ -207,7 +207,7 @@ function resultCard(s) {
         <div>
           <div style="font-weight:600;font-size:17px">${esc(c.baslik)}</div>
           <div class="small muted" style="display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin-top:6px">
-            ${durumBadge(c.durum)}${esc([c.program_kodu, c.program_adi].filter(Boolean).join(" · "))}
+            ${durumBadge(c.durum)}${esc([c.kaynak, c.program_kodu, c.program_adi].filter(Boolean).join(" · "))}
           </div>
         </div>
         <div><div class="tiny muted" style="text-align:right">Uyum skoru</div>${scoreBar(s.skor)}</div>

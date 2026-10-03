@@ -1,4 +1,4 @@
-import { match, validatePdf, validateMetin, getCvs, cvPdfUrl, getCagri, getCagrilar } from "../api.js";
+import { match, validatePdf, getCvs, cvPdfUrl, getCagri, getCagrilar } from "../api.js";
 import { CONFIG } from "../config.js";
 import {
   esc, icon, chips, displayName, fullName, shortUni, shortBolum, scoreBar, notice, soonBadge,
@@ -8,7 +8,6 @@ import {
 export const title = "Eşleştir";
 
 const RESULT_KEY = "academiq.lastMatch";
-
 const LOADING_STEPS = [
   "İlan okunuyor",
   "Eşleştirmeye girecek bölümler ayrıştırılıyor",
@@ -28,12 +27,11 @@ const BOLUM_SAYI = {
 
 // Durum modül seviyesinde tutulur: sayfadan çıkıp dönünce (ya da istek sürerken) kaybolmaz.
 const state = {
-  tab: "pdf", // liste | pdf | metin
+  tab: "pdf", // liste | pdf  (serbest metin Asistan sayfasından)
   file: null,
-  metin: "",
   cagri: null, // "Listeden seç": seçili çağrı (CagriDetay)
   cagrilar: null, // seçim listesi (açık çağrılar)
-  topN: 5,
+  topN: 20,
   status: "idle", // idle | loading | done | error
   result: restoreResult(),
   error: null,
@@ -92,11 +90,10 @@ export function render(el, params = []) {
 }
 
 const canStart = () =>
-  state.status !== "loading"
-  && (state.tab === "liste" ? !!state.cagri : state.tab === "pdf" ? !!state.file : !validateMetin(state.metin));
+  state.status !== "loading" && (state.tab === "liste" ? !!state.cagri : !!state.file);
 
 // ---------------------------------------------------------------------------
-// Sol kolon: ilan girişi, ilan detayları, ayarlar
+// Sol kolon: ilan girişi (liste / PDF), ilan detayları, ayarlar
 // ---------------------------------------------------------------------------
 function renderLeft() {
   const left = root?.querySelector("#left");
@@ -104,46 +101,45 @@ function renderLeft() {
   const loading = state.status === "loading";
   const ilan = state.status === "done" ? state.result?.ilan : null;
 
+  // Asistandan gelen sonuç: çağrı/PDF girişi gizlenir, yalnızca sorgu gösterilir (karışmasın diye)
+  if (ilan && state.result.sohbet) {
+    left.innerHTML = `
+      <h1 class="page-title">Eşleştir</h1>
+      ${sohbetCard(state.result)}
+      ${settingsCard()}`;
+    left.querySelector("#yeni-eslesme").addEventListener("click", () => {
+      Object.assign(state, { result: null, status: "idle" });
+      saveResult(null);
+      renderLeft();
+      renderRight();
+    });
+    bindSettings(left);
+    return;
+  }
+
   left.innerHTML = `
     <h1 class="page-title">Eşleştir</h1>
 
     <div class="segmented" role="tablist" aria-label="İlan kaynağı">
-      ${[["liste", "Listeden seç"], ["pdf", "PDF yükle"], ["metin", "Metin yapıştır"]].map(([t, label]) => `
+      ${[["liste", "Listeden seç"], ["pdf", "PDF yükle"]].map(([t, label]) => `
         <button role="tab" data-tab="${t}" class="${state.tab === t ? "active" : ""}" aria-selected="${state.tab === t}" ${loading ? "disabled" : ""}>
           ${label}
         </button>`).join("")}
     </div>
 
     <input type="file" id="file-input" accept=".pdf,application/pdf" hidden>
-    ${state.tab === "liste" ? cagriBox(loading) : state.tab === "pdf" ? (state.file ? fileCard(loading) : dropzone()) : metinBox(loading)}
+    ${state.tab === "liste" ? cagriBox(loading) : state.file ? fileCard(loading) : dropzone()}
 
-    ${ilan ? ilanCard(ilan) : ""}
-
-    <div class="card card-pad settings">
-      <div class="section-label">Ayarlar</div>
-      <label class="setting-row">
-        <span>Gösterilecek hoca sayısı</span>
-        <select class="select" id="top-n">
-          ${[1, 2, 3, 4, 5].map((n) => `<option ${n === state.topN ? "selected" : ""}>${n}</option>`).join("")}
-        </select>
-      </label>
-      <label class="setting-row" title="Yakında: backend unvan filtresini desteklediğinde aktif olacak">
-        <span class="muted">Minimum unvan ${soonBadge()}</span>
-        <select class="select" disabled><option>Fark etmez</option></select>
-      </label>
-      <label class="check disabled" title="Yakında: gerekçeler şu an her zaman üretiliyor">
-        <input type="checkbox" checked disabled>
-        <span>Gerekçeleri yapay zekâ ile açıkla ${soonBadge()}</span>
-      </label>
-    </div>
-
-    <button class="btn btn-primary btn-lg btn-block" id="start" ${canStart() ? "" : "disabled"}>
+    <button class="btn btn-cta btn-lg btn-block" id="start" ${canStart() ? "" : "disabled"}>
       ${loading ? `<span class="spinner"></span> Eşleştiriliyor… <span id="elapsed">${elapsed()}</span> sn` : "Eşleştirmeyi başlat"}
     </button>
     ${loading ? `<button class="link-btn" id="cancel" style="align-self:center">İptal et</button>` : ""}
     ${!loading && !canStart() ? `<p class="tiny muted" style="text-align:center">${
-      { liste: "Başlamak için bir çağrı seçin.", pdf: "Başlamak için bir ilan PDF'i seçin." }[state.tab]
-      ?? "Başlamak için ilan metnini yapıştırın."}</p>` : ""}
+      state.tab === "liste" ? "Başlamak için bir çağrı seçin." : "Başlamak için bir ilan PDF'i seçin."}</p>` : ""}
+
+    ${ilan ? ilanCard(ilan) : ""}
+
+    ${settingsCard()}
   `;
 
   if (state.tab === "liste" && !state.cagrilar) loadCagrilar();
@@ -155,16 +151,8 @@ function renderLeft() {
       if (state.tab === b.dataset.tab) return;
       state.tab = b.dataset.tab;
       renderLeft();
-      if (state.tab === "metin") left.querySelector("#metin")?.focus();
     }),
   );
-
-  // Yazarken sol kolonu yeniden çizmiyoruz (odak kaybolmasın); sadece sayaç ve buton güncellenir.
-  const metinEl = left.querySelector("#metin");
-  metinEl?.addEventListener("input", () => {
-    state.metin = metinEl.value;
-    updateMetinStatus();
-  });
 
   const input = left.querySelector("#file-input");
   input.addEventListener("change", () => {
@@ -199,12 +187,59 @@ function renderLeft() {
     state.file = null;
     renderLeft();
   });
-  left.querySelector("#top-n").addEventListener("change", (e) => {
+  bindSettings(left);
+  left.querySelector("#start").addEventListener("click", () => start());
+  left.querySelector("#cancel")?.addEventListener("click", () => state.controller?.abort());
+}
+
+function settingsCard() {
+  return `
+    <div class="card card-pad settings">
+      <div class="section-label">Ayarlar</div>
+      <label class="setting-row">
+        <span>Gösterilecek hoca sayısı</span>
+        <select class="select" id="top-n">
+          ${[5, 10, 15, 20].map((n) => `<option ${n === state.topN ? "selected" : ""}>${n}</option>`).join("")}
+        </select>
+      </label>
+      <label class="setting-row" title="Yakında: backend unvan filtresini desteklediğinde aktif olacak">
+        <span class="muted">Minimum unvan ${soonBadge()}</span>
+        <select class="select" disabled><option>Fark etmez</option></select>
+      </label>
+      <label class="check disabled" title="Yakında: gerekçeler şu an her zaman üretiliyor">
+        <input type="checkbox" checked disabled>
+        <span>Gerekçeleri yapay zekâ ile açıkla ${soonBadge()}</span>
+      </label>
+    </div>`;
+}
+
+function bindSettings(el) {
+  el.querySelector("#top-n").addEventListener("change", (e) => {
     state.topN = Number(e.target.value);
     if (state.status === "done") renderRight();
   });
-  left.querySelector("#start").addEventListener("click", () => start());
-  left.querySelector("#cancel")?.addEventListener("click", () => state.controller?.abort());
+}
+
+// Asistan sayfasından gelen sonucun kaynağı: kullanıcının sorusu ve sistemin arama sorgusu
+function sohbetCard(r) {
+  const ilan = r.ilan;
+  const soru = r.mesaj && r.mesaj.length > 400 ? `${r.mesaj.slice(0, 400)}…` : r.mesaj;
+  return `
+    <div class="card card-pad ilan-card">
+      <div class="section-label">Asistan sorgusu</div>
+      <p class="small muted" style="margin:0">Bu sonuçlar Asistan sayfasındaki bir sorudan geldi; bir çağrı ya da ilan PDF'i ile eşleştirilmedi.</p>
+      ${soru ? `<blockquote class="sohbet-soru">${esc(soru)}</blockquote>` : `<h3>${esc(ilan.baslik)}</h3>`}
+      ${ilan.aranan_uzmanliklar?.length ? chips(ilan.aranan_uzmanliklar, { size: "sm" }) : ""}
+      ${ilan.sorgu_metni ? `
+        <details class="more"><summary>Sistemin arama sorgusu</summary>
+          <p class="small muted" style="line-height:1.6">${esc(ilan.sorgu_metni)}</p>
+          ${ilan.anahtar_kelimeler?.length ? chips(ilan.anahtar_kelimeler, { size: "sm" }) : ""}
+        </details>` : ""}
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <button class="btn btn-primary" id="yeni-eslesme">Yeni eşleştirme</button>
+        <a class="btn btn-outline" href="#/asistan">${icon("chat")} Asistana dön</a>
+      </div>
+    </div>`;
 }
 
 function cagriBox(loading) {
@@ -228,7 +263,7 @@ function cagriCard(c) {
       <h3>${esc(c.baslik)}</h3>
       ${c.ozet ? `<p class="small muted" style="line-height:1.6;margin:0">${esc(c.ozet)}</p>` : ""}
       ${tarihList(c.tarihler)}
-      <a class="link-btn" href="${esc(c.url)}" target="_blank" rel="noopener">${icon("external")} TÜBİTAK duyurusu</a>
+      <a class="link-btn" href="${esc(c.url)}" target="_blank" rel="noopener">${icon("external")} ${esc(c.kaynak)} duyurusu</a>
     </div>`;
 }
 
@@ -253,37 +288,6 @@ async function selectCagri(id, { autoStart = false } = {}) {
   }
   renderLeft();
   if (autoStart) start();
-}
-
-function metinBox(loading) {
-  return `
-    <div class="field">
-      <textarea class="textarea" id="metin" rows="10" ${loading ? "disabled" : ""}
-        placeholder="İlan metnini buraya yapıştırın: başlık, amaç ve kapsam, aranan uzmanlık alanları…">${esc(state.metin)}</textarea>
-      <div class="tiny ${metinStatus().over ? "over" : "muted"}" id="metin-status">${metinStatus().text}</div>
-    </div>`;
-}
-
-// Uzun metni sessizce kırpmamak için textarea'ya maxlength verilmiyor; sayaç uyarıyor.
-function metinStatus() {
-  const len = state.metin.trim().length;
-  const { MAX_METIN_LENGTH: max } = CONFIG;
-  const count = `${len.toLocaleString("tr-TR")} / ${max.toLocaleString("tr-TR")} karakter`;
-  if (len > max) return { text: `${count} · ${(len - max).toLocaleString("tr-TR")} karakter fazla`, over: true };
-  return { text: count, over: false };
-}
-
-function updateMetinStatus() {
-  const left = root?.querySelector("#left");
-  if (!left) return;
-  const status = metinStatus();
-  const el = left.querySelector("#metin-status");
-  el.textContent = status.text;
-  el.classList.toggle("over", status.over);
-  el.classList.toggle("muted", !status.over);
-  left.querySelector("#start").disabled = !canStart();
-  const hint = left.querySelector("#start + p");
-  if (hint) hint.hidden = canStart();
 }
 
 function dropzone() {
@@ -314,7 +318,7 @@ function ilanCard(ilan) {
   const m = ilan.meta ?? {};
   const metaRows = [
     ["Son başvuru", m.son_basvuru],
-    ["Bütçe", m.butce],
+    ["Proje başına bütçe", m.butce],
     ["Süre", m.sure],
     ["Yer", m.yer],
   ].filter(([, v]) => v);
@@ -354,13 +358,19 @@ function setFile(file) {
   renderLeft();
 }
 
+// Asistan sayfasından gelen eşleşme: sonuç listesinde gösterilmek üzere saklanır.
+export function setSohbetResult(eslesme, mesaj) {
+  state.result = { ...eslesme, sohbet: true, mesaj };
+  saveResult(state.result);
+  if (state.status !== "loading") state.status = "done";
+}
+
 // ---------------------------------------------------------------------------
 // Eşleştirme akışı
 // ---------------------------------------------------------------------------
 async function start({ yenile = false } = {}) {
   if (!canStart()) return;
-  const input = state.tab === "liste" ? { cagri: state.cagri, yenile }
-    : state.tab === "pdf" ? { file: state.file } : { metin: state.metin };
+  const input = state.tab === "liste" ? { cagri: state.cagri, yenile } : { file: state.file };
   const controller = new AbortController();
   Object.assign(state, { status: "loading", error: null, startedAt: Date.now(), controller });
   renderLeft();
@@ -441,13 +451,14 @@ function renderRight() {
           <h2>En uygun hocalar</h2>
           <p class="small muted">${[
             CONFIG.USE_MOCK ? "Örnek sonuç (mock veri)" : null,
+            state.result.sohbet ? "Asistan sorgusu" : null,
             state.result.olusturuldu ? `Kayıtlı sonuç · ${formatDateTime(state.result.olusturuldu)}` : null,
             state.totalCvs ? `${state.totalCvs} CV tarandı` : null,
             `en uygun ${shown} hoca`,
           ].filter(Boolean).join(" · ")}</p>
         </div>
         <div style="display:flex;gap:10px;flex-wrap:wrap">
-          ${state.result.olusturuldu && state.tab === "liste" && state.cagri ? `<button class="btn btn-outline" id="rematch" title="Yeni eklenen CV'leri de hesaba katmak için">${icon("refresh")} Yeniden eşleştir</button>` : ""}
+          ${state.result.olusturuldu && !state.result.sohbet && state.tab === "liste" && state.cagri ? `<button class="btn btn-outline" id="rematch" title="Yeni eklenen CV'leri de hesaba katmak için">${icon("refresh")} Yeniden eşleştir</button>` : ""}
           <button class="btn btn-outline" id="download" ${shown ? "" : "disabled"}>${icon("download")} Sonuçları indir</button>
         </div>
       </div>
@@ -463,7 +474,7 @@ function renderRight() {
     <div class="card empty">
       ${icon("swap")}
       <h3>Henüz eşleştirme yapılmadı</h3>
-      <p class="small" style="max-width:440px;margin:0 auto">Soldan toplanan bir çağrıyı seçin ya da bir proje ilanı PDF'i yükleyip <b>Eşleştirmeyi başlat</b>'a basın.
+      <p class="small" style="max-width:440px;margin:0 auto">Soldan toplanan bir çağrıyı seçin, bir proje ilanı PDF'i yükleyin ya da <a href="#/asistan">Asistan</a>'a ilan metnini yapıştırın ya da aradığınız alanı yazın.
       En uygun hocalar skor, gerekçe ve CV'den kanıtlarıyla burada listelenir.</p>
       ${CONFIG.USE_MOCK ? `<p class="tiny muted" style="margin-top:12px">Mock mod: <code>data/duz_metin</code> ya da <code>data/tablo_formatli</code> klasöründen bir ilan PDF'i seçin.</p>` : ""}
     </div>`;
@@ -517,7 +528,10 @@ function resultCard(s, terms) {
         ${scoreBar(s.skor)}
       </div>
       <div class="result-body">
-        <p class="gerekce">${esc(s.gerekce)}</p>
+        ${s.gerekce ? `<div class="gerekce">
+          <div class="gerekce-label">${icon("chat")} Neden uygun? <span>· yapay zekâ değerlendirmesi</span></div>
+          <p>${esc(s.gerekce)}</p>
+        </div>` : ""}
         <div class="result-foot">
           <span class="evid-sum">${esc(evidenceSummary(kanitlar))}</span>
           <span class="spacer"></span>

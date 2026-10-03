@@ -25,7 +25,7 @@ export function render(el) {
         <a class="card home-card" href="#/ilanlar">
           <div class="icon-box">${icon("file")}</div>
           <h2>Proje ilanlarını görüntüle</h2>
-          <p>TÜBİTAK duyurularından her gün toplanan çağrıları son başvuru tarihi ve programa göre inceleyin.</p>
+          <p>TÜBİTAK, TÜSEB, kalkınma ajansları ve AB Başkanlığı duyurularından her gün toplanan çağrıları son başvuru tarihi ve programa göre inceleyin.</p>
           <span class="meta" id="cagri-count">İlan listesi</span>
         </a>
         <a class="card home-card dark" href="#/eslestir">

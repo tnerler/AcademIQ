@@ -1,0 +1,1441 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="YÖK Akademik Arama">
+<meta name="author" content="AYDIN EMRE CEVİZ, MUSTAFA IŞIK">
+<link rel="shortcut icon" type="image/x-icon"
+	href="./images/favicon.ico" />
+<title>YÜKSEKÖĞRETİM KURULU</title>
+<!-- CSS -->
+<link href="../css/bootstrap.css" rel="stylesheet">
+<link href="../css/custom.css?v=2218" rel="stylesheet">
+<link href="../css/bootstrapValidator.css" rel="stylesheet">
+<!-- Hata ayıklama ie! -->
+<!--[if lt IE 9]><![endif]-->
+<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!--[if lt IE 9]>
+      
+      
+    <![endif]-->
+
+</head>
+<body>
+	<div class="bodyback">
+		<!--Ust menu-->
+		
+
+ 
+<div class="container-fluid">
+    <div class="navbar navbar-inverse navbar-fixed-top navbarBackground" role="navigation">
+	 <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+	
+			<a class="navbar_brand" href="../"><img src="../images/miniLogo.png" class="logo" alt="Yükseköğretim Kurulu Akademik Arama"></a>
+		
+        </div>
+           <div class="navbar-collapse collapse">    	   
+            <ul class="nav navbar-nav navbar-right">
+            
+			  <li class="active"><a href="../">Anasayfa</a></li>
+             
+              <li class="active"><a href="#" onclick="yonlendir('/AkademikArama/LanguageServlet?dil=trHome');">Türkçe</a></li>
+			<li class="active"> <a href="#"  onclick="yonlendir('/AkademikArama/LanguageServlet?dil=enHome');"> English</a> </li>
+			 </ul>
+          </div> <!--navbar-collapse bitis-->
+		</div> <!--container bitis-->
+
+	 <!--Arama Bölmesi-->
+   <div class="container-fluid">
+   
+            <div class="col-lg-4 col-md-5 col-sm-6 col-xs-9 col-md-offset-2 col-sm-offset-3 col-xs-offset-2">
+				 <form id="searchForm" class="form-horizontal error" action="/AkademikArama/AkademisyenArama" method="post">
+					<div class="row">
+						  <div>
+					<div class="form-group">
+							<div class="input-group">
+							  <input name="aramaTerim" type="text" value="" class="form-control" placeholder="Arama yapmak istediğiniz kelimeyi giriniz" minlength="3" maxlength="50" required
+							  data-bv-notempty data-bv-notempty-message="Lütfen arama terimi giriniz"
+							  data-bv-stringlength-message="En az 3 en fazla 30 karakter girilebilir"
+							  data-bv-stringlength-min="3"
+							  data-bv-stringlength-max="50">
+							  <div class="input-group-btn">
+								<button class="btn btn-default" type="submit" id="searchButton"
+										data-container="body" 
+										data-toggle="popover" 
+										data-placement="bottom"
+										data-trigger="hover"										
+										><i class="glyphicon glyphicon-search"></i></button>
+								<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" tabindex="-1">
+								   <span class="caret"></span>
+								   <span class="sr-only"></span>
+								 </button><INPUT type="hidden" name="islem" value="1">
+										<ul class="dropdown-menu dropdown-menu-form pull-right" role="menu">   <!--Arama secenekleri-->
+											<li>
+												<label class="checkbox" >
+												
+													<input id="yazarCheckbox" name="yazarCheckbox" type="checkbox"  checked="checked">
+													Akademisyenler
+												</label>
+											</li>
+											<li>
+												<label class="checkbox">
+													<input id="kitapCheckbox" name="kitapCheckbox" type="checkbox" checked="checked">
+													Kitaplar
+												</label>
+											</li>
+											<li>
+												<label class="checkbox">
+													<input id="PatentCheckbox" name="PatentCheckbox" type="checkbox" checked="checked">
+													Patentler
+												</label>
+											</li>
+											<li>
+												<label class="checkbox">
+													<input id="projeCheckbox" name="projeCheckbox" type="checkbox" checked="checked">
+													Projeler
+												</label>
+											</li>
+												<li> 
+												<label class="checkbox">
+													<input id="MakaeleCheckbox" name="MakaeleCheckbox" type="checkbox" checked="checked">
+													Makaleler
+												</label>
+											</li>
+											<li>
+												<label class="checkbox">
+													<input id="BildiriCheckbox" name="BildiriCheckbox" type="checkbox" checked="checked">
+													Bildiriler
+												</label>
+											</li>
+											
+											<li>
+												<label class="checkbox">
+													<input id="SanatsalCheckbox" name="SanatsalCheckbox" type="checkbox" checked="checked">
+													Sanatsal faaliyetler
+												</label>
+											</li>
+											<li>
+												<label class="checkbox">
+													<input id="TezCheckbox" name="TezCheckbox" type="checkbox" checked="checked">
+													Tezler
+												</label>
+											</li>
+											
+										</ul> <!--Arama secenekleri bitis-->
+
+								  </div>
+							    </div>
+							  </div><!-- /.input-group -->
+							</div>		
+						</div><!-- /.row -->
+					  </form>
+				</div>
+			</div>
+		</div>
+</div>
+
+<hr>
+	 
+	
+ 
+		<hr>
+		<hr>
+		<!-- Content -->
+		<div class="container-fluid">
+			<!-- Sol Menu -->
+			<div class="col-lg-2 col-md-2 col-sm-0 col-xs-0 padSol">
+				<div class="sidebar-nav">
+					<div class="navbar navbar-default nosolcizgi" role="navigation">
+						<div class="navbar-header">
+							<button type="button" class="navbar-toggle"
+								data-toggle="collapse" data-target=".sidebar-navbar-collapse">
+								<span class="sr-only">Toggle navigation</span> <span
+									class="icon-bar"></span> <span class="icon-bar"></span> <span
+									class="icon-bar"></span>
+							</button>
+							<span class="visible-xs navbar-brand">Filtrele</span>
+						</div>
+						<div class="navbar-collapse collapse sidebar-navbar-collapse">
+
+							<div>
+								
+								<form id="filterForm" class="form-horizontal error"
+									action="/AkademikArama/AramaFiltrele?islem=HFeKUiO3_CdOgNOu61FQDXKDMWXeHeAYk_m8L4Ub_9s" method="post">
+								
+									<div class="priority-lists">
+										<div class="panel-group" id="accordion">
+											<div class="panel panel-info">
+												<div class="panel-heading collapsed" data-toggle="collapse"
+													data-parent="#accordion" data-target="#kapsamPanel">
+													<h2 class="panel-title accordion-toggle">
+														Unvan(lar)</h2>
+
+												</div>
+												<div id="kapsamPanel" class="panel-collapse collapse">
+													<div class="panel-body">
+														<div class="row">
+															<ul class="list-group">
+																
+																<li class="list-group-item filitre_menu"><input
+																	name="sec0"
+																	VALUE="1"
+																	type="checkbox"
+																	 />  PROFESÖR</li>
+																
+																<li class="list-group-item filitre_menu"><input
+																	name="sec1"
+																	VALUE="2"
+																	type="checkbox"
+																	 />  DOÇENT</li>
+																
+																<li class="list-group-item filitre_menu"><input
+																	name="sec2"
+																	VALUE="11"
+																	type="checkbox"
+																	 />  DOKTOR ÖĞRETİM ÜYESİ</li>
+																
+																<li class="list-group-item filitre_menu"><input
+																	name="sec3"
+																	VALUE="4"
+																	type="checkbox"
+																	 />  ÖĞRETİM GÖREVLİSİ</li>
+																
+																<li class="list-group-item filitre_menu"><input
+																	name="sec4"
+																	VALUE="7"
+																	type="checkbox"
+																	 />  ARAŞTIRMA GÖREVLİSİ</li>
+																
+															</ul>
+
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+										
+								
+								
+									<div align="center">
+										<ul class="list-group">
+											<li class="list-group-item"><button type="submit"
+													name="kaydet" class="btn btn-default">Filtrele</button>
+												
+												<a class="btn btn-default" href="/AkademikArama/AramaFiltrele?islem=HFeKUiO3_CdOgNOu61FQDbcRTIsinxflHXfgFSdrH1U">Filtreyi Kaldır</a>
+											</li>
+										</ul>
+									</div>
+									
+									<!-- 	<input type="submit" name="kaydet" value=" Filtrele   "> -->
+									<INPUT type="hidden" name="unvanSay" value="5">
+									
+
+									<div align="center">
+										<ul class="list-group">
+											<li class="list-group-item filitre_menu"><a
+												href="/AkademikArama/view/universityListview.jsp">Tüm üniversiteler
+											</a></li>
+										</ul>
+									</div>
+								</form>
+							</div>
+							<div>
+								<div class="list-group">
+									
+									<a
+										class="list-group-item listMinimal list-group-item-info active"
+										href="/AkademikArama/AkademisyenArama?islem=HFeKUiO3_CdOgNOu61FQDTZ6pN7eshcUXS3wb8wrINQ"><span>YÖK</span></a>
+								</div>
+								<div>
+									<form role="form">
+										<div id="searchlist" class="list-group">
+											<div class="form-group">
+												<input id="searchinput" class="form-control" type="search"
+													placeholder="Birim filtrele" />
+											</div>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+erQ7oXAhvrGagi+3UyWlUQsYLb8uZvQ/LKL6bu7cH5w:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>ABDULLAH GÜL ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">ABDULLAH GÜL ÜNİVERSİTESİ ABDULLAH GUL UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+eJgMvKOejnNaHtM9zctzS8orNSaFhVNpYwG3Jl+oRkM:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>ACIBADEM MEHMET ALİ AYDINLAR ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">ACIBADEM MEHMET ALİ AYDINLAR ÜNİVERSİTESİ ACIBADEM MEHMET ALI AYDINLAR UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+fL8X2iAjpMee7zhFRDkJ3FBfDj29OVWqLhMWMaxtFvo:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>ADA KENT ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">ADA KENT ÜNİVERSİTESİ ADA KENT UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+eNEpu1Q0iNLrtxsAEL0OCU669S0lJpJiFXBUlX2onfP:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>ADANA ALPARSLAN TÜRKEŞ BİLİM VE TEKNOLOJİ ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">ADANA ALPARSLAN TÜRKEŞ BİLİM VE TEKNOLOJİ ÜNİVERSİTESİ ADANA ALPARSLAN TURKES SCIENCE AND TECHNOLOGY UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+cxUE8IrBtatw7gDTor3NXgU0okkXAary3aVBm5hoMxm:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>ADIYAMAN ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">ADIYAMAN ÜNİVERSİTESİ ADIYAMAN UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+UDP1qahlehezKcX0IP2YK/ZmYSJVLI9EcUm45bAaM7/:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>AFYON KOCATEPE ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">AFYON KOCATEPE ÜNİVERSİTESİ AFYON KOCATEPE UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+V3z/68RDxqhla04rATdasLubduJPfn5asMqLVe+LiLE:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>AFYONKARAHİSAR SAĞLIK BİLİMLERİ ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">AFYONKARAHİSAR SAĞLIK BİLİMLERİ ÜNİVERSİTESİ AFYONKARAHISAR HEALTH SCIENCES UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+ewSGbVHH4MgiPVGuleTOEArLFx8jsEIq7wnwGLECzaC:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>AĞRI İBRAHİM ÇEÇEN ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">AĞRI İBRAHİM ÇEÇEN ÜNİVERSİTESİ AGRI IBRAHIM CECEN UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+YEwX1Amx6JX0o6LOiHWpkn/YEdg0Zks8HsFYwEAog8R:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>AKDENİZ KARPAZ ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">AKDENİZ KARPAZ ÜNİVERSİTESİ UNIVERSITY OF MEDITERRANEAN KARPASIA</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+Yqa0cW+13Yggn/oJjxZRvvCV5uP4UAcsDch+9ceIS/J:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>AKDENİZ ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">AKDENİZ ÜNİVERSİTESİ AKDENIZ UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+fFt/RPB+k+uuX+8jCe2dUN7IvGSyMHum/xhB7vT7SlQ:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>AKSARAY ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">AKSARAY ÜNİVERSİTESİ AKSARAY UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+UMrKWA+JdB+5aRriPrzxXtKF+zXGxAzgcH3ZtsKX6+B:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>ALANYA ALAADDİN KEYKUBAT ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">ALANYA ALAADDİN KEYKUBAT ÜNİVERSİTESİ ALANYA ALAADDIN KEYKUBAT UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+cD6OEaandgwx7UQ9OJilvC/w2nQqQuTylShMoPtGD1R:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>ALANYA ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">ALANYA ÜNİVERSİTESİ ALANYA UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+b8XX64vLKNDErw8QNneESczHiirXyiJg5T7R70zkFtH:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>ALTINBAŞ KIBRIS ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">ALTINBAŞ KIBRIS ÜNİVERSİTESİ ALTINBAS CYPRUS UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+SU4gd5p+0tVjqvEaIy2LaSbw5hFswWi76/dbVbpRkht:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>ALTINBAŞ ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">ALTINBAŞ ÜNİVERSİTESİ ALTINBAS UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+Vd285e6OOXI4nMxxq6sjPEVyJXGH4JDw15oaZIG13y4:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>AMASYA ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">AMASYA ÜNİVERSİTESİ AMASYA UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+Q/KTKw3KvHJnDp/P8sl0xG6Lt8QAfdMJQ9derHJTQ7s:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>ANADOLU ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">ANADOLU ÜNİVERSİTESİ ANADOLU UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+Wen/XuUKt9b3K+QNa2epwJ9ydkmR00Cbu7F6v+Q5ReL:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>ANKA TEKNOLOJİ ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">ANKA TEKNOLOJİ ÜNİVERSİTESİ ANKA UNIVERSITY OF TECHNOLOGY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+Rg1fE0j3ugzTPvIzJ4V5AdtvwI/b4kED5ekoljWLBcY:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>ANKARA BİLİM ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">ANKARA BİLİM ÜNİVERSİTESİ ANKARA SCIENCE UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+V3z/68RDxqhla04rATdasLRQp4GDUkzZ+7FJEVOnDOz:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>ANKARA HACI BAYRAM VELİ ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">ANKARA HACI BAYRAM VELİ ÜNİVERSİTESİ ANKARA HACI BAYRAM VELI UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+TUI4WLD72agEl3teCFVRwQG1ur9ZPxyQZaqleIv7+nc:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>ANKARA MEDİPOL ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">ANKARA MEDİPOL ÜNİVERSİTESİ ANKARA MEDIPOL UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+eMD2XTDQfc3GOje1ShyDZ4HN0oD4Q0sqgFMMqRN1zMA:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>ANKARA MÜZİK VE GÜZEL SANATLAR ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">ANKARA MÜZİK VE GÜZEL SANATLAR ÜNİVERSİTESİ ANKARA MUSIC AND FINE ARTS UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+SbYtBS9luY1tfGlOH3nZagZ++m+pFzIWHHVeEk/VsOk:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>ANKARA SOSYAL BİLİMLER ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">ANKARA SOSYAL BİLİMLER ÜNİVERSİTESİ SOCIAL SCIENCES UNIVERSITY OF ANKARA</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+QaNWGd42cTAeF3dF2EG0QWkfyDbz8nB7tyL04ZlM/R1:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>ANKARA ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">ANKARA ÜNİVERSİTESİ ANKARA UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+ck2q5TKZUzlsMyccre6kyy4h/QExmUPf1YpD2jQhlRI:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>ANKARA YILDIRIM BEYAZIT ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">ANKARA YILDIRIM BEYAZIT ÜNİVERSİTESİ ANKARA YILDIRIM BEYAZIT UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+fyBHf8BNBDK2EmEykPluy6omjywYUAQG1786Vvoe+Dc:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>ANTALYA BELEK ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">ANTALYA BELEK ÜNİVERSİTESİ ANTALYA BELEK UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+UeEMZwFEomdimbCEMYZn1mYIzJiWG/zEF9DxcGlm2jT:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>ANTALYA BİLİM ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">ANTALYA BİLİM ÜNİVERSİTESİ ANTALYA BILIM UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+SoVyNcRoz8KDWCfpEq6siwRFAz9EifYfm/z3ZxPVLHA:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>ARDAHAN ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">ARDAHAN ÜNİVERSİTESİ ARDAHAN UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+URvxAtK5oxxKCbfM1z2NBpyaDUkeEwQMNz19msfvntC:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>ARKIN YARATICI SANATLAR VE TASARIM ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">ARKIN YARATICI SANATLAR VE TASARIM ÜNİVERSİTESİ ARKIN UNIVERSITY OF CREATIVE ARTS AND DESIGN</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+UD/MS5yUzsMdP43NSKxB6Rw/QzmM1HX4VhNVWltrwCP:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>ARTVİN ÇORUH ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">ARTVİN ÇORUH ÜNİVERSİTESİ ARTVIN CORUH UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+cMxyWN4uK+Tn9QJ8mkMXAx6bON+hsHZ3/qcbhrreK6K:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>ATAŞEHİR ADIGÜZEL MESLEK YÜKSEKOKULU<span
+													style="visibility: hidden;font-size: 0pt">ATAŞEHİR ADIGÜZEL MESLEK YÜKSEKOKULU ATASEHIR ADIGUZEL VOCATIONAL SCHOOL</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+UNUkSRgJ6ZY6CKeO8Z/2eWAw3Qgy+JMgKaai0/t7r38:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>ATATÜRK ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">ATATÜRK ÜNİVERSİTESİ ATATURK UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+UTXaekzeDA6ZoTOC3WhB9ObytZX/yp3cr+2RRwd8MKW:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>ATILIM ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">ATILIM ÜNİVERSİTESİ ATILIM UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+SGwdOhjdbukc2hYgxW+j5vX2vcWTp/oYbbAJZT0B5mE:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>AVRASYA ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">AVRASYA ÜNİVERSİTESİ UNIVERSITY OF EURASIA</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+f5vIrlunRvBEuwbtXRgRwbnluZTx9akDP6e3oD74S/6:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>AVRUPA LİDERLİK ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">AVRUPA LİDERLİK ÜNİVERSİTESİ EUROPEAN LEADERSHIP UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+TesHFyguejKZ6ojgpwGT+L1iT9qkW7ian2LL8A0dM68:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>AYDIN ADNAN MENDERES ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">AYDIN ADNAN MENDERES ÜNİVERSİTESİ AYDIN ADNAN MENDERES UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+dFdzEL2pH5ZanaAC+g/9vS62/7do9seHk5AlMa2mU/M:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>AZERBAYCAN DEVLET İKTİSAT ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">AZERBAYCAN DEVLET İKTİSAT ÜNİVERSİTESİ AZERBAIJAN STATE ECONOMY UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+dFdzEL2pH5ZanaAC+g/9vSJAyXKyFLLk/ssjPhmwtHr:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>AZERBAYCAN DEVLET MEDENİYET VE İNCE SANAT ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">AZERBAYCAN DEVLET MEDENİYET VE İNCE SANAT ÜNİVERSİTESİ AZERBAIJAN STATE OF CIVILIZATION AND FINE ARTS UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+dFdzEL2pH5ZanaAC+g/9vRzHFV8YrOqYSLFjIR1xfAU:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>AZERBAYCAN DEVLET PEDAGOJİ ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">AZERBAYCAN DEVLET PEDAGOJİ ÜNİVERSİTESİ AZERBAIJAN STATE PEDOGOGICAL UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+dFdzEL2pH5ZanaAC+g/9vTcwOS/A7yusbRmwQAWZC8j:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>AZERBAYCAN DİLLER ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">AZERBAYCAN DİLLER ÜNİVERSİTESİ AZERBAIJAN UNIVERSITY OF LANGUAGES</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+dFdzEL2pH5ZanaAC+g/9vT9t3QbhkuCfSHpazX+akFG:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>AZERBAYCAN MİMARLIK VE İNŞAAT ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">AZERBAYCAN MİMARLIK VE İNŞAAT ÜNİVERSİTESİ AZERBAIJAN ARCHITECTURE AND CONSTRUCTION UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+dFdzEL2pH5ZanaAC+g/9vRe3t2oQ0mCmogjugqjv5wx:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>AZERBAYCAN TIP ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">AZERBAYCAN TIP ÜNİVERSİTESİ AZERBAIJAN MEDICAL UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+X+D2Z9eJ24dect6EnkbwR0m879eZ6f4ZDh8Ye2efDGH:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>BAHÇEŞEHİR KIBRIS ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">BAHÇEŞEHİR KIBRIS ÜNİVERSİTESİ BAHCESEHIR CYPRUS UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+QJ6AOA+fKYsOOO/h8a4a0jTodusjRs8zAicguh7Zx0K:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>BAHÇEŞEHİR ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">BAHÇEŞEHİR ÜNİVERSİTESİ BAHCESEHIR UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+dFdzEL2pH5ZanaAC+g/9vRbLCWmKF43aArAUs5XuilX:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>BAKÜ DEVLET ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">BAKÜ DEVLET ÜNİVERSİTESİ BAKU STATE UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+dFdzEL2pH5ZanaAC+g/9vSDhdLyoDMgSVIA9OT3275z:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>BAKÜ SLAVYAN ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">BAKÜ SLAVYAN ÜNİVERSİTESİ BAKU SLAVYAN UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+cg9//OsbSHMfs2bbxVzGGx81aNdbsOVzNo6fOGa9qAa:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>BALIKESİR ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">BALIKESİR ÜNİVERSİTESİ BALIKESIR UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+acYQu9wnwHK+LATUniVSM2Tse7gWibME2voP34myhGS:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>BANDIRMA ONYEDİ EYLÜL ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">BANDIRMA ONYEDİ EYLÜL ÜNİVERSİTESİ BANDIRMA ONYEDI EYLUL UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+f6oWcapjFNxXS3ih3YSV701+3gEN+bpahAVUtQ9FXXH:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>BARTIN ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">BARTIN ÜNİVERSİTESİ BARTIN UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+feNeNbeSYtXDNZJfiJQOichLBNff5WXiSy7TFKebVTl:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>BAŞKENT ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">BAŞKENT ÜNİVERSİTESİ BASKENT UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+S+8z4ZqeljL4H3rzo552Yb0/XchvwtuTmDU7YXyOoB2:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>BATMAN ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">BATMAN ÜNİVERSİTESİ BATMAN UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+bg/kMwpw0V8NGTiJlPuUeD+m/yhTs20oXfs9XmE52Hw:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>BAYBURT ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">BAYBURT ÜNİVERSİTESİ BAYBURT UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+Xi0O+Mp2Xfdcr/Rhp6pnktPZUED00Czt6ABMMvY6OF1:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>BEYKOZ ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">BEYKOZ ÜNİVERSİTESİ BEYKOZ UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+XkcZwS4j6Fhd2cwO+xZMQTGPZdCeQ1tYooj4sG4H5K1:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>BEZM-İ ÂLEM VAKIF ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">BEZM-İ ÂLEM VAKIF ÜNİVERSİTESİ BEZMI ALEM FOUNDATION UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+TaEhmFdALecuQ0ZX+pTGBIwUKsZcNm8O5kpyvBUs+Is:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>BİLECİK ŞEYH EDEBALİ ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">BİLECİK ŞEYH EDEBALİ ÜNİVERSİTESİ BILECIK SEYH EDEBALI UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+UHUWhuvq3d20no6b2MsKBNC8otRbrbphAcLf+CU3HGc:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>BİNGÖL ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">BİNGÖL ÜNİVERSİTESİ BINGOL UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+XX9z3mrBcExEZgCt8QQd3tf5Z42uh+BdmrlPMOkOq0E:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>BİRUNİ ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">BİRUNİ ÜNİVERSİTESİ BIRUNI UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+TEPMNp/3bOOTmftL+gST0P/V9Vmc8/py6wyjOTA05ZR:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>BİTLİS EREN ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">BİTLİS EREN ÜNİVERSİTESİ BITLIS EREN UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+YVk+KSGxL8WGWG+B6D6PnuXYZX5SFS5Ez7z+1dBcBQG:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>BOĞAZİÇİ ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">BOĞAZİÇİ ÜNİVERSİTESİ BOGAZICI UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+bMPdTwL3o3WmhNDMILoz66ovxx6YOYlvDbc/pKWlD0K:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>BOLU ABANT İZZET BAYSAL ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">BOLU ABANT İZZET BAYSAL ÜNİVERSİTESİ BOLU ABANT IZZET BAYSAL UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+adZCgv2kvCQsdFQe+HK8lMfgKTFE5cJZEN1suswicny:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>BURDUR MEHMET AKİF ERSOY ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">BURDUR MEHMET AKİF ERSOY ÜNİVERSİTESİ BURDUR MEHMET AKIF ERSOY UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+dr0oROoQmXOXWzVQDDQN+IrfVdNxAqWd99UFD3G3k5I:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>BURSA TEKNİK ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">BURSA TEKNİK ÜNİVERSİTESİ BURSA TECHNICAL UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+Rhm62N+hHLL16EmldPlLQdvXGv254/FtuUCxUFJt9k4:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>BURSA ULUDAĞ ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">BURSA ULUDAĞ ÜNİVERSİTESİ BURSA ULUDAG UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+VzePprV/eqOfsSB+e2dWkK7/oRI66Z++OH1bDW0JfKL:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>ÇAĞ ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">ÇAĞ ÜNİVERSİTESİ CAG UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+U6NIZQnH98TJax45BHsMC6pIDRN0qj7NhvVN0NxCdha:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>ÇANAKKALE ONSEKİZ MART ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">ÇANAKKALE ONSEKİZ MART ÜNİVERSİTESİ CANAKKALE ONSEKIZ MART UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+Z3Wsx9KablW1EFt/w5TO9R7HRTXPdgKQ993KASHirpR:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>ÇANKAYA ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">ÇANKAYA ÜNİVERSİTESİ CANKAYA UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+Z3Wsx9KablW1EFt/w5TO9T2Y0hJr0beYMKpsN64HL/Q:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>ÇANKIRI KARATEKİN ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">ÇANKIRI KARATEKİN ÜNİVERSİTESİ CANKIRI KARATEKIN UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+QpXbdDAf8LUS6Q2WUg+lrif1Z0rYuBJm01PLVgg6woF:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>ÇUKUROVA ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">ÇUKUROVA ÜNİVERSİTESİ CUKUROVA UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+Tt+m3W2HzbBq7/Bi0P/807v3/FZaegZXmjPikksFhh1:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>DEMİROĞLU BİLİM ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">DEMİROĞLU BİLİM ÜNİVERSİTESİ DEMİROĞLU BİLİM UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+a/9mrhkLN1ApEnj8K+F5z/w0K3yhanR/wlfXBghyvvX:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>DİCLE ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">DİCLE ÜNİVERSİTESİ DICLE UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+T5Fb5Ux3fxQNgngq1AtVhevBrbWjrUfOGtwAQ5BRSfj:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>DİĞER (KURUMLAR, HASTANELER VB.)<span
+													style="visibility: hidden;font-size: 0pt">DİĞER (KURUMLAR, HASTANELER VB.) OTHER (INSTITUTIONS, HOSPITALS ETC.)</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+THoywzQ/ItYlhyBgr4sp5he4tkgodoR+DBOH2I9FKoc:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>DOĞU AKDENİZ ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">DOĞU AKDENİZ ÜNİVERSİTESİ EASTERN MEDITERRANEAN UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+WYbhLpKYZjc9arSDHamiKklfxwQ+8j7Qw9mpJB2LPiC:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>DOĞUŞ ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">DOĞUŞ ÜNİVERSİTESİ DOGUS UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+WYbhLpKYZjc9arSDHamiKnVdBrrskqavdnvwm3Lg/CP:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>DOKUZ EYLÜL ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">DOKUZ EYLÜL ÜNİVERSİTESİ DOKUZ EYLUL UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+RBG9qJ3zSB2cmu0Ah+V4A0ccey7igpH/Gj9Eb1hGxPR:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>DÜZCE ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">DÜZCE ÜNİVERSİTESİ DUZCE UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+fYcGsatf2AnH6L4XmVyV4DO8NmhBpji3LaKHr4ZrBhK:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>EGE ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">EGE ÜNİVERSİTESİ EGE UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+dDx9Cg1fuU4+wXjbpaRTpYno4PPeF/WIiwnmJ55lZbT:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>ERCİYES ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">ERCİYES ÜNİVERSİTESİ ERCIYES UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+Q2kIQgnOvVL8Jg6mQe9J3YRRjEch8b0AVjewW1KJEMb:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>ERZİNCAN BİNALİ YILDIRIM ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">ERZİNCAN BİNALİ YILDIRIM ÜNİVERSİTESİ ERZINCAN BINALI YILDIRIM UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+dr0oROoQmXOXWzVQDDQN+Ld39/W+bGQurx9EncZMsNl:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>ERZURUM TEKNİK ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">ERZURUM TEKNİK ÜNİVERSİTESİ ERZURUM TECHNICAL UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+YxJrHr0tB6fwvvOd6z/ts2DRgSKFLWXNwXgZRhNxbsD:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>ESKİŞEHİR OSMANGAZİ ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">ESKİŞEHİR OSMANGAZİ ÜNİVERSİTESİ ESKISEHIR OSMANGAZI UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+db8W3NTZyr7IpUtNm8pBsrxOLBV6VhDfrkNOM6EaJIJ:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>ESKİŞEHİR TEKNİK ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">ESKİŞEHİR TEKNİK ÜNİVERSİTESİ ESKISEHIR TECHNICAL UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+Y4YBI7mySs6wj/gAD25mOOQGqg9/yucED542d2TRG3I:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>FATİH SULTAN MEHMET VAKIF ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">FATİH SULTAN MEHMET VAKIF ÜNİVERSİTESİ FATIH SULTAN MEHMET VAKIF UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+TuIOogI14uOCn3SaKX9a0yhBV4mdDaEMotxQ2x93hmB:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>FENERBAHÇE ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">FENERBAHÇE ÜNİVERSİTESİ FENERBAHCE UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+bwPV7R5vX19QeJRSM2ypF8XXU6HIpWeuANaiywaFkpu:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>FIRAT ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">FIRAT ÜNİVERSİTESİ FIRAT UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+bzyosFGf+Hvx+G1xfbcsj1JlRyLalwsAEvHDK1zQwHA:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>GALATASARAY ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">GALATASARAY ÜNİVERSİTESİ GALATASARAY UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+fifw0KRhLkp6KrvA5KKOaQ4E0ERhNQFGSzGkd8Vl4jm:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>GAZİ ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">GAZİ ÜNİVERSİTESİ GAZI UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+X6PSHksLXhluQbsIGgUB/thUSewDFC4oFLwMV5npgNr:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>GAZİANTEP İSLAM BİLİM VE TEKNOLOJİ ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">GAZİANTEP İSLAM BİLİM VE TEKNOLOJİ ÜNİVERSİTESİ GAZIANTEP ISLAM SCIENCE AND TECHNOLOGY UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+UA9FftXnqH2WN4+nNrV42+jlMkkVEJisDOVpThBxSXu:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>GAZİANTEP ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">GAZİANTEP ÜNİVERSİTESİ GAZIANTEP UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+SNxulipfdNIcgsd/F84ZvYPzxR4zR+YaRbmn63KYL1h:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>GEBZE TEKNİK ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">GEBZE TEKNİK ÜNİVERSİTESİ GEBZE TECHNICAL UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+aIOvO/5tvEN+dU/twgayVm1TouuQrYH3WlekgfxGyPL:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>GİRESUN ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">GİRESUN ÜNİVERSİTESİ GIRESUN UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+SxyO6CjbwutJlh5vX7Q+IBRABeIlJRJe/fnkAUThDFy:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>GİRNE AMERİKAN ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">GİRNE AMERİKAN ÜNİVERSİTESİ GIRNE AMERICAN UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+RfJOpWCiH7/ptVHUP5S3wjXIFXJG1T0Lnomtmt3zYdk:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>GİRNE ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">GİRNE ÜNİVERSİTESİ UNIVERSITY OF KYRENIA</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+efSUnGa+eLM3RVXGWIIpBXVmhyzaKgS4vXzgPTXHihO:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>GÜMÜŞHANE ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">GÜMÜŞHANE ÜNİVERSİTESİ GUMUSHANE UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+efSUnGa+eLM3RVXGWIIpBVtywao89BSJjpXaj1nr+7U:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>HACETTEPE ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">HACETTEPE ÜNİVERSİTESİ HACETTEPE UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+co+9zhZJT9FTxmSsqcV7DkrGUZAr/xI3J3yNV+nOTsa:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>HAKKARİ ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">HAKKARİ ÜNİVERSİTESİ HAKKARI UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+co+9zhZJT9FTxmSsqcV7DmJrpsZ6/J3KIGkmrnkDTrW:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>HALİÇ ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">HALİÇ ÜNİVERSİTESİ HALIC UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+QDCD7PAis7Oo/KiAnOM3WDcdOcZ+l8TpmnVK5NL0phY:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>HARRAN ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">HARRAN ÜNİVERSİTESİ HARRAN UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+aqweM8OBdHPcQCam+RDzHx18rC4MH0YtmL792f5vZ85:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>HASAN KALYONCU ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">HASAN KALYONCU ÜNİVERSİTESİ HASAN KALYONCU UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+UfvYoGyBqu2FeztDzvaMwVzizgDgni15UncGVaSSLr7:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>HATAY MUSTAFA KEMAL ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">HATAY MUSTAFA KEMAL ÜNİVERSİTESİ HATAY MUSTAFA KEMAL UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+fQm13iP6WQvznW1K/8OSFOgCsRIRoNI5CODhoZ6bxhd:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>HİTİT ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">HİTİT ÜNİVERSİTESİ HITIT UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+YHmUw04VKXfZkVXVJDDh2RM7dUFGJJRe3YE3Z1AHtj8:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>HOCA AHMET YESEVİ ULUSLARARASI TÜRK-KAZAK ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">HOCA AHMET YESEVİ ULUSLARARASI TÜRK-KAZAK ÜNİVERSİTESİ INTERNATIONAL HOCA AHMET YESEVI TURKISH-KAZAKH UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+bmC0yIJqFWi3lg2V6QouuwQp7zUCZIVRWHmbkeHlESl:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>IĞDIR ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">IĞDIR ÜNİVERSİTESİ IGDIR UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+db8W3NTZyr7IpUtNm8pBsomBnOxhdB7xWuOhnK33NYa:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>ISPARTA UYGULAMALI BİLİMLER ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">ISPARTA UYGULAMALI BİLİMLER ÜNİVERSİTESİ ISPARTA UNIVERSITY OF APPLIED SCIENCES</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+bmC0yIJqFWi3lg2V6Qouuwn172ca7pip46uPGa9PJtA:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>IŞIK ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">IŞIK ÜNİVERSİTESİ ISIK UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+VBUcn/GHnf90/UzAE8za+ivUwaABERIYKd6twkUtswo:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>İBN HALDUN ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">İBN HALDUN ÜNİVERSİTESİ IBN HALDUN UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+ZAPvvp5iCDXcz5/19ONosxhu5a9deNMkiag+FvKYIrK:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>İHSAN DOĞRAMACI BİLKENT ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">İHSAN DOĞRAMACI BİLKENT ÜNİVERSİTESİ IHSAN DOGRAMACI BILKENT UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+QzxLP9paUzD5ufU3hKm3CU1kqrmxyIY0zJL1CPhsuEd:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>İNÖNÜ ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">İNÖNÜ ÜNİVERSİTESİ INONU UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+VBUcn/GHnf90/UzAE8za+gsZtQeu/TkHLstrxGuUEe7:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>İSKENDERUN TEKNİK ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">İSKENDERUN TEKNİK ÜNİVERSİTESİ ISKENDERUN TECHNICAL UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+e9idwqj49wJb71uvnMDFONo+gbTAyADE2lOipXqChNW:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>İSTANBUL AREL ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">İSTANBUL AREL ÜNİVERSİTESİ ISTANBUL AREL UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+db8W3NTZyr7IpUtNm8pBsoX+Fc3ndoW9wDA1eYOzKAf:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>İSTANBUL ATLAS ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">İSTANBUL ATLAS ÜNİVERSİTESİ ISTANBUL ATLAS UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+f3mEWAPXV+o5EXvmVHMFtNa6fvZN54IkeQEJGfj2pLu:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>İSTANBUL AYDIN ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">İSTANBUL AYDIN ÜNİVERSİTESİ ISTANBUL AYDIN UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+X/Tji1iH1+46k4ca7DfwhYe3AqP3AHkrSVK0u2Lfhw8:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>İSTANBUL BEYKENT ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">İSTANBUL BEYKENT ÜNİVERSİTESİ ISTANBUL BEYKENT UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+aNsfqAJLiiC+gshvo9FfftlhaQyXIrtE9kr4faQ0Tzf:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>İSTANBUL BİLGİ ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">İSTANBUL BİLGİ ÜNİVERSİTESİ ISTANBUL BILGI UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+QnCRsGw2H8LPvQEwtWjZOMXnzMUGnEj8ZEfoDf62s4m:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>İSTANBUL ESENYURT ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">İSTANBUL ESENYURT ÜNİVERSİTESİ ISTANBUL ESENYURT UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+awwtJ5kLjx+lftXxULDu1kUfDqKekkvOqUX1zg1cJ7I:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>İSTANBUL GALATA ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">İSTANBUL GALATA ÜNİVERSİTESİ ISTANBUL GALATA UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+b3Wsq1lV7xbI038tEe5x9C3Z1yLDd8Mxa26sTpv10MZ:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>İSTANBUL GEDİK ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">İSTANBUL GEDİK ÜNİVERSİTESİ ISTANBUL GEDIK UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+chdLSVj4mNWDoe+ycU1q2r8Y3fNvNIHj8DwVSlFJA6O:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>İSTANBUL GELİŞİM ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">İSTANBUL GELİŞİM ÜNİVERSİTESİ ISTANBUL GELISIM UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+Yvp4HJiEivqLYvxNRsJ8XeMPgjdR/F74H6nzeNrSvHY:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>İSTANBUL KENT ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">İSTANBUL KENT ÜNİVERSİTESİ ISTANBUL KENT UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+Z7fxgZfJ/F1HZTAAZ0ZtnvFR9Tf4X7jNs+3eEC3gGHl:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>İSTANBUL KÜLTÜR ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">İSTANBUL KÜLTÜR ÜNİVERSİTESİ ISTANBUL KULTUR UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+XFMx5Yv4qfN6yobKYQFEDelZb5PaoOVDpmvcwZorpLy:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>İSTANBUL MEDENİYET ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">İSTANBUL MEDENİYET ÜNİVERSİTESİ ISTANBUL MEDENIYET UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+Y4YBI7mySs6wj/gAD25mOOKOi6arnhLfkQmn6dVVDUX:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>İSTANBUL MEDİPOL ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">İSTANBUL MEDİPOL ÜNİVERSİTESİ ISTANBUL MEDIPOL UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+avXYzqrAXwMicrL6eCD23hn3uWnQ/1U/swa7/1WkL2z:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>İSTANBUL NİŞANTAŞI ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">İSTANBUL NİŞANTAŞI ÜNİVERSİTESİ ISTANBUL NISANTASI UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+RaNNMfJq+Rmt1Va1jVhzq8R5pbWv0KV25vzNhGzFwcX:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>İSTANBUL OKAN ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">İSTANBUL OKAN ÜNİVERSİTESİ ISTANBUL OKAN UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+VBUcn/GHnf90/UzAE8za+ggCdFzf7qDCGGm1MFcb8pV:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>İSTANBUL RUMELİ ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">İSTANBUL RUMELİ ÜNİVERSİTESİ ISTANBUL RUMELI UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+Y4YBI7mySs6wj/gAD25mON9bTMXXiYYot/PIE9aI7RG:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>İSTANBUL SABAHATTİN ZAİM ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">İSTANBUL SABAHATTİN ZAİM ÜNİVERSİTESİ ISTANBUL SABAHATTIN ZAIM UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+UWgbBXYPtryqa9CGPnJl4+zQ5OuzS0on9ALAYmu8DuF:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>İSTANBUL SAĞLIK VE SOSYAL BİLİMLER MESLEK YÜKSEKOKULU<span
+													style="visibility: hidden;font-size: 0pt">İSTANBUL SAĞLIK VE SOSYAL BİLİMLER MESLEK YÜKSEKOKULU ISTANBUL VOCATIONAL SCHOOL OF HEALTH AND SOCIAL SCIENCES</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+enCmHaT01oC1ILmt3kDELG1VwSMfMA2ecBrPwoiAQ2Y:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>İSTANBUL SAĞLIK VE TEKNOLOJİ ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">İSTANBUL SAĞLIK VE TEKNOLOJİ ÜNİVERSİTESİ ISTANBUL HEALTH AND TECHNOLOGY UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+QcXCFkp+q+Fumk2qej9EOb17/aq3OWM3W36yWm19IV/:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>İSTANBUL ŞİŞLİ MESLEK YÜKSEKOKULU<span
+													style="visibility: hidden;font-size: 0pt">İSTANBUL ŞİŞLİ MESLEK YÜKSEKOKULU ISTANBUL SISLI VOCATIONAL SCHOOL</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+R03RB+Ni1YmxelcZXvFDZJ0WSPpdkJIUAotQll5SH15:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>İSTANBUL TEKNİK ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">İSTANBUL TEKNİK ÜNİVERSİTESİ ISTANBUL TECHNICAL UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+eVniYJavBNYGHH0158N5bFo9Eu+GLv8n2jMUUGrQdqq:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>İSTANBUL TİCARET ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">İSTANBUL TİCARET ÜNİVERSİTESİ ISTANBUL COMMERCE UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+a3equroJnEcWtK5g7CfFcWAaZ4seeX2uI2N7mzE/9HW:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>İSTANBUL TOPKAPI ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">İSTANBUL TOPKAPI ÜNİVERSİTESİ ISTANBUL TOPKAPI UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+eVniYJavBNYGHH0158N5bFnYwjnSYWqd9yMn8SiOrhB:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>İSTANBUL ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">İSTANBUL ÜNİVERSİTESİ ISTANBUL UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+WIOBf6r8Y9NpEFyEXgJSjrfNFARLfhyR+3+laPR2Fnt:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>İSTANBUL ÜNİVERSİTESİ-CERRAHPAŞA<span
+													style="visibility: hidden;font-size: 0pt">İSTANBUL ÜNİVERSİTESİ-CERRAHPAŞA ISTANBUL UNIVERSITY-CERRAHPASA</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+SWbnRNFCQCzKBlF0uAEEggBkNAKgYNjp1dwjo/KaRcx:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>İSTANBUL YENİ YÜZYIL ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">İSTANBUL YENİ YÜZYIL ÜNİVERSİTESİ ISTANBUL YENI YUZYIL UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+SKu/INEjXAtb8KRSixXv6f868Qq/gGwSRHiLjxTC7ad:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>İSTANBUL 29 MAYIS ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">İSTANBUL 29 MAYIS ÜNİVERSİTESİ ISTANBUL 29 MAYIS UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+ffC573RqXj8x6rqfhu1cf7cGu8kxuLI/sDifHUjKKrv:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>İSTİNYE ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">İSTİNYE ÜNİVERSİTESİ ISTINYE UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+YYy4iLXfTwB54x6j6iLYR2rqlc8vaLB1AIAauwi4QN/:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>İVANE JAVAKHİSHVİLİ TİFLİS DEVLET ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">İVANE JAVAKHİSHVİLİ TİFLİS DEVLET ÜNİVERSİTESİ IVANE JAVAKHISHVILI TBILISI STATE UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+VvbzuL7KP7g6OcyXzW2LApI/9Pz1d21unPAebbSaXIe:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>İZMİR BAKIRÇAY ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">İZMİR BAKIRÇAY ÜNİVERSİTESİ IZMIR BAKIRCAY UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+VvbzuL7KP7g6OcyXzW2LAoItC+8AAAB1REi5kkdvaYX:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>İZMİR DEMOKRASİ ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">İZMİR DEMOKRASİ ÜNİVERSİTESİ IZMIR DEMOCRACY UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+QEYd4sDfyo1m1MWarcaTeBbblgQlSub5vtJnK+X+2sT:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>İZMİR EKONOMİ ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">İZMİR EKONOMİ ÜNİVERSİTESİ IZMIR UNIVERSITY OF ECONOMICS</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+fi2KAPIFFcqnQZO1v7otYmWiGzkMYehSX2Xu0HIG2v1:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>İZMİR KATİP ÇELEBİ ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">İZMİR KATİP ÇELEBİ ÜNİVERSİTESİ IZMIR KATIP CELEBI UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+bpGQYd2gzxoAv2j2vqorWfx714ErTLi0J4H5k/VmnhY:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>İZMİR KONAK MESLEK YÜKSEKOKULU<span
+													style="visibility: hidden;font-size: 0pt">İZMİR KONAK MESLEK YÜKSEKOKULU İZMİR KONAK VOCATIONAL SCHOOL</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+WIOBf6r8Y9NpEFyEXgJSjqflu2RQc4ddznVO5SQ7fh3:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>İZMİR TINAZTEPE ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">İZMİR TINAZTEPE ÜNİVERSİTESİ IZMIR TINAZTEPE UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+W4/7nWkjf+z19hs7Z0ag8xXCJ0jRNWGpTFBxyI9Gx8A:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>İZMİR YÜKSEK TEKNOLOJİ ENSTİTÜSÜ<span
+													style="visibility: hidden;font-size: 0pt">İZMİR YÜKSEK TEKNOLOJİ ENSTİTÜSÜ IZMIR INSTITUTE OF TECHNOLOGY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+VwuT8i5ksO1AUvC3Dpm5wS5e2DevhdDySEnfTeBYAA9:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>JANDARMA VE SAHİL GÜVENLİK AKADEMİSİ<span
+													style="visibility: hidden;font-size: 0pt">JANDARMA VE SAHİL GÜVENLİK AKADEMİSİ GENDARMERIE AND COAST GUARD ACADEMY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+W4/7nWkjf+z19hs7Z0ag8yJXkaI2g2BZA/EKrw5YrOn:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>KADİR HAS ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">KADİR HAS ÜNİVERSİTESİ KADIR HAS UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+dIMiMOX9ITGsuBhxDC5IeCcPHAw5UjFZ9ibxMgdGo+O:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>KAFKAS ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">KAFKAS ÜNİVERSİTESİ KAFKAS UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+WIOBf6r8Y9NpEFyEXgJSjrocXemgvzvkBV2NrC6e7ir:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>KAHRAMANMARAŞ İSTİKLAL ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">KAHRAMANMARAŞ İSTİKLAL ÜNİVERSİTESİ KAHRAMANMARAS ISTIKLAL UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+Wekv1lC+MzAqwbMKTD/Z1nxZ1CNEd9SVphuh/we0a8l:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>KAHRAMANMARAŞ SÜTÇÜ İMAM ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">KAHRAMANMARAŞ SÜTÇÜ İMAM ÜNİVERSİTESİ KAHRAMANMARAS SUTCU IMAM UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+QR13JeJxfOcAW2yG6LHnQ38IBbo1uHNXouSiNVCJqPm:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>KAPADOKYA ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">KAPADOKYA ÜNİVERSİTESİ CAPPADOCIA UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+WW4R52BZVjoBATl+XJ5/CRdYgcg+USWcHS2dDDZ0kgG:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>KARABÜK ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">KARABÜK ÜNİVERSİTESİ KARABUK UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+dl2npDuOaFyYHCca4fJCTamzgbvmU1luEqGCtPniQ9v:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>KARADENİZ TEKNİK ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">KARADENİZ TEKNİK ÜNİVERSİTESİ KARADENIZ TECHNICAL UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+Vc8bCWllokTe7754P1raUd4gu5qQZCyogAe6VsuP3FY:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>KARAMANOĞLU MEHMETBEY ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">KARAMANOĞLU MEHMETBEY ÜNİVERSİTESİ KARAMANOGLU MEHMETBEY UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+XQmLVFn5esTaQKdijj1NIxtv/HC2yAhFv8Wq069Z9pG:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>KASTAMONU ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">KASTAMONU ÜNİVERSİTESİ KASTAMONU UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+WIOBf6r8Y9NpEFyEXgJSjqow53+JaQYxf+/I/wlQmKk:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>KAYSERİ ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">KAYSERİ ÜNİVERSİTESİ KAYSERI UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+TbQ3AxKpWo+dtXxPgWLjYNTD/vmug/9uEMU0KwOL9mP:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>KIBRIS AMERİKAN ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">KIBRIS AMERİKAN ÜNİVERSİTESİ AMERICAN UNIVERSITY OF CYPRUS</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+QSh4dMsRJpkQ/k/MkZqa6P+GmMYsupMpCp0CRF518mt:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>KIBRIS AYDIN ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">KIBRIS AYDIN ÜNİVERSİTESİ CYPRUS AYDIN UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+eSL2muhGhmUQWo6YtncUMVvOCY8N4jFGSkDOKd0TgRE:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>KIBRIS BATI ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">KIBRIS BATI ÜNİVERSİTESİ CYPRUS WEST UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+by9d9BoWYzjwvddxtLm6mERTmuUTdFe/Nl7OOnpYDlU:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>KIBRIS SAĞLIK VE TOPLUM BİLİMLERİ ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">KIBRIS SAĞLIK VE TOPLUM BİLİMLERİ ÜNİVERSİTESİ CYPRUS HEALTH AND SOCIAL SCIENCES UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+ZJKk2FSTcVDod6JJpnD7ApsEXByfnYDym2oEclsgN6b:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>KIBRIS SOSYAL BİLİMLER ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">KIBRIS SOSYAL BİLİMLER ÜNİVERSİTESİ CYPRUS UNIVERSITY OF SOCIAL SCIENCES</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+flLr/L8wEH2ks94tZL0wGo4/+mvAaasjwWQz8G8vsFZ:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>KIRGIZİSTAN-TÜRKİYE MANAS ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">KIRGIZİSTAN-TÜRKİYE MANAS ÜNİVERSİTESİ KYRGYZ - TURKISH MANAS UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+ZC3tch6CEeHZI2ZDI3NgSbOKfiZyn/4KKYa1W98gdMV:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>KIRIKKALE ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">KIRIKKALE ÜNİVERSİTESİ KIRIKKALE UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+Sdc1m1NxYCKhbViSOSL7ecMgRRW3YYPh2dwYS6rz2dv:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>KIRKLARELİ ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">KIRKLARELİ ÜNİVERSİTESİ KIRKLARELI UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+fTJQf9Cw7IWqFI4FJxK11rusjA+lwWHe6z0pD/wVpMZ:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>KIRŞEHİR AHİ EVRAN ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">KIRŞEHİR AHİ EVRAN ÜNİVERSİTESİ KIRSEHIR AHI EVRAN UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+Sdc1m1NxYCKhbViSOSL7edqTYMtCdpuzS+deCx3k35S:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>KİLİS 7 ARALIK ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">KİLİS 7 ARALIK ÜNİVERSİTESİ KILIS 7 ARALIK UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+RzPNf3p3nthsdkLtCepDA7b8W+7PgZFgwmzC+lh4+Ri:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>KOCAELİ SAĞLIK VE TEKNOLOJİ ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">KOCAELİ SAĞLIK VE TEKNOLOJİ ÜNİVERSİTESİ KOCAELI HEALTH AND TECHNOLOGY UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+R0Yoo4tG4pRJVCkUa31AX9MpWqZAK1waCa/zIYo1r/i:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>KOCAELİ ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">KOCAELİ ÜNİVERSİTESİ KOCAELI UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+cVMyR8A3DB3p0S3atmIJVtkHh9iYt2SkcddJI3r57S3:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>KOÇ ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">KOÇ ÜNİVERSİTESİ KOC UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+YYy4iLXfTwB54x6j6iLYR1Lz2k6BFijUEIVblQH7+L+:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>KOMRAT DEVLET ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">KOMRAT DEVLET ÜNİVERSİTESİ COMRAT STATE UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+Rj1MB7EO+ldV0QqVPFYbWFkf808Oxi/j4J4rD5G7FC5:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>KONYA GIDA VE TARIM ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">KONYA GIDA VE TARIM ÜNİVERSİTESİ KONYA FOOD AND AGRICULTURE UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+WIOBf6r8Y9NpEFyEXgJSjp2OdwyqfcRgGJqSYWa7C2p:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>KONYA TEKNİK ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">KONYA TEKNİK ÜNİVERSİTESİ KONYA TECHNICAL UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+bC1/qBAmg1bq30paBayNNOfN6t6Pj0Z1p7PdGKvcP+n:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>KTO KARATAY ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">KTO KARATAY ÜNİVERSİTESİ KTO KARATAY UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+cbwmcKtDK0ZY0y32/yRCMfuUlEXnOUeK6xGqsXu4Bol:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>KÜTAHYA DUMLUPINAR ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">KÜTAHYA DUMLUPINAR ÜNİVERSİTESİ KUTAHYA DUMLUPINAR UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+WIOBf6r8Y9NpEFyEXgJSjrjikgzbswfodeKZJy++yYj:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>KÜTAHYA SAĞLIK BİLİMLERİ ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">KÜTAHYA SAĞLIK BİLİMLERİ ÜNİVERSİTESİ KUTAHYA HEALTH SCIENCES UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+flLr/L8wEH2ks94tZL0wGqBhJizOc3mS/qytxR0lgLv:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>LEFKE AVRUPA ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">LEFKE AVRUPA ÜNİVERSİTESİ EUROPEAN UNIVERSITY OF LEFKE</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+QHVgqMdPghphzAI/ezzndy5lk5kdi+BQgxel73GT6pT:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>LOKMAN HEKİM ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">LOKMAN HEKİM ÜNİVERSİTESİ LOKMAN HEKIM UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+WIOBf6r8Y9NpEFyEXgJSjqLWxVHuD41g8tYmi/ioGcr:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>MALATYA TURGUT ÖZAL ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">MALATYA TURGUT ÖZAL ÜNİVERSİTESİ MALATYA TURGUT OZAL UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+aRnXYN7nWrz/zmcHVOLqd3BooFT0vaSRq7gCkOtxc4V:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>MALTEPE ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">MALTEPE ÜNİVERSİTESİ MALTEPE UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+TAXbZ7xoWqvcncuET1M9SovyJuzlCK/6omgc7fOeJ7h:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>MANİSA CELÂL BAYAR ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">MANİSA CELÂL BAYAR ÜNİVERSİTESİ MANISA CELAL BAYAR UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+SKhD5hjGrfdMlXgz2RIYRCuBq8fsXfwEV+hAtvAtHne:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>MARDİN ARTUKLU ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">MARDİN ARTUKLU ÜNİVERSİTESİ MARDIN ARTUKLU UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+W8TRwZQsU6MXgFjqChKoGTgb0eyb0aAk/Me5oj++/Xe:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>MARMARA ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">MARMARA ÜNİVERSİTESİ MARMARA UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+Qi/DN2zLkh9+QMDV1eH+uf/EdKNvKlg+quhB6JNY62q:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>MEF ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">MEF ÜNİVERSİTESİ MEF UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+do5r/lumcNYxfRAnzL9Lr27u4O6Mr2V5uPcQ4R1DHUT:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>MERSİN ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">MERSİN ÜNİVERSİTESİ MERSIN UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+eT6Vfc2A6L8Z3ifM5IaB/z2PYd6DagtZW3TMpMlqPpP:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>MİLLİ İSTİHBARAT AKADEMİSİ<span
+													style="visibility: hidden;font-size: 0pt">MİLLİ İSTİHBARAT AKADEMİSİ NATIONAL INTELLIGENCE ACADEMY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+QgFytyec9yL+W8588QmFd1uiHfwcvNkvTkl1Woukl8c:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>MİLLİ SAVUNMA ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">MİLLİ SAVUNMA ÜNİVERSİTESİ NATIONAL DEFENSE UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+U+m+mZI/9UXM4OA7EWGxFr7i5KxsDrpNU1H3c8a9haM:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>MİMAR SİNAN GÜZEL SANATLAR ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">MİMAR SİNAN GÜZEL SANATLAR ÜNİVERSİTESİ MIMAR SINAN FINE ARTS UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+W9IK9OtYDWdRvs8845i5M9PIVFJZs4iC6ryZMIPlOvl:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>MUDANYA ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">MUDANYA ÜNİVERSİTESİ MUDANYA UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+biP709JuXrSbcK8kXOSoMzAkjoCjuJNrgXbZP9QrNi/:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>MUĞLA SITKI KOÇMAN ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">MUĞLA SITKI KOÇMAN ÜNİVERSİTESİ MUGLA SITKI KOCMAN UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+ZTSGCKlHjbt3E8y9FdFr2clNFgaJPBTZY8qsC0SNrVe:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>MUNZUR ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">MUNZUR ÜNİVERSİTESİ MUNZUR UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+RfnHN/sUzKoheFJRO4EF204zoQspZDwu4eG4TfqdLHe:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>MUŞ ALPARSLAN ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">MUŞ ALPARSLAN ÜNİVERSİTESİ MUS ALPARSLAN UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+bezmXqYDN5PtXJnHqSViOusrr410rPFwImIM1MuGzbq:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>NAHCİVAN DEVLET ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">NAHCİVAN DEVLET ÜNİVERSİTESİ NAKHCHIVAN STATE UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+QwpihD7ZPqHUIshaag/IOHaGbvWk+ObVYQVH6lG4wjP:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>NECMETTİN ERBAKAN ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">NECMETTİN ERBAKAN ÜNİVERSİTESİ NECMETTIN ERBAKAN UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+YMP9QVa+HUu31mKJjp+E/aO6xGC2je/WS5ApW9aNJcu:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>NEVŞEHİR HACI BEKTAŞ VELİ ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">NEVŞEHİR HACI BEKTAŞ VELİ ÜNİVERSİTESİ NEVSEHIR HACI BEKTAS VELI UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+Wr9GrhhJ3lpjGWMji4AoZpYo/hs6JJqRY5Qsz3Saul9:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>NİĞDE ÖMER HALİSDEMİR ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">NİĞDE ÖMER HALİSDEMİR ÜNİVERSİTESİ NIGDE OMER HALISDEMIR UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+SYVGY/kli4mpX7P/pHza452kquBjCjeLCw4cUSytoIo:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>NUH NACİ YAZGAN ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">NUH NACİ YAZGAN ÜNİVERSİTESİ NUH NACI YAZGAN UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+dJtwNSDIIyHUjQr5OJPtMu/WYazjr+8glDWgSfk/D6e:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>ONBEŞ KASIM KIBRIS ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">ONBEŞ KASIM KIBRIS ÜNİVERSİTESİ ONBES KASIM KIBRIS UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+eGGZPhcLymjXTOVcZsWEKT7ParG3YovJ2aTHanJGHoM:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>ONDOKUZ MAYIS ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">ONDOKUZ MAYIS ÜNİVERSİTESİ ONDOKUZ MAYIS UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+RBTD+jN3j/lDl7/z9ui61q1dMXBDt72O2nb1POPfae3:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>ORDU ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">ORDU ÜNİVERSİTESİ ORDU UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+XhduXF2ulEc9MmfOBEP6IUE9qVzMC8O57FOLSI8wdfY:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>ORTA DOĞU TEKNİK ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">ORTA DOĞU TEKNİK ÜNİVERSİTESİ MIDDLE EAST TECHNICAL UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+RRVRfpCHtV6sjDy36wMZfwKnr3FBj21Iqvn/C4uWjnI:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>OSMANİYE KORKUT ATA ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">OSMANİYE KORKUT ATA ÜNİVERSİTESİ OSMANIYE KORKUT ATA UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+VQnSOadFfDo5kCBRMYOSaetZD4dqTBBtr9xk3jRM9yC:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>OSTİM TEKNİK ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">OSTİM TEKNİK ÜNİVERSİTESİ OSTIM TECHNICAL UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+ev0N0SrHVoUXJBY3lMPB47u2jo90ppmZrvhlhsnmrvc:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>ÖZYEĞİN ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">ÖZYEĞİN ÜNİVERSİTESİ OZYEGIN UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+ev0N0SrHVoUXJBY3lMPB47g0Ch+dn0mCCR0FP7r+HDC:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>PAMUKKALE ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">PAMUKKALE ÜNİVERSİTESİ PAMUKKALE UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+Tq37Xi+OTgatFkoWGnUECXuo2ClxlE+218enpWbo2UB:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info active"><span>PİRİ REİS ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">PİRİ REİS ÜNİVERSİTESİ PIRI REIS UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+VGlBkVqVl+tlbhssIddNMKYxZHfvuxajRoIzBPGRuCB:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>POLİS AKADEMİSİ<span
+													style="visibility: hidden;font-size: 0pt">POLİS AKADEMİSİ POLICE ACADEMY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+dJtwNSDIIyHUjQr5OJPtMuIE0WuYv7e5Npj1b8Pat3u:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>RAUF DENKTAŞ ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">RAUF DENKTAŞ ÜNİVERSİTESİ RAUF DENKTAS UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+eKFdEp+/DMzmX4/slXCvxEVW+aq5vy34xaJ/rlr23gr:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>RECEP TAYYİP ERDOĞAN ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">RECEP TAYYİP ERDOĞAN ÜNİVERSİTESİ RECEP TAYYIP ERDOGAN UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+XWDUIsw+FXcoSne9svX6szYdnDEBFMFYUseRJVDaAha:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>SABANCI ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">SABANCI ÜNİVERSİTESİ SABANCI UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+bJggToHnWTFnCx+gwr8OR/AXNCFAhfzHp6SK336nOA9:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>SAĞLIK BİLİMLERİ ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">SAĞLIK BİLİMLERİ ÜNİVERSİTESİ UNIVERSITY OF HEALTH SCIENCES</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+T8dvquJp0YkrCkoIBJopc3UdvvUhw8Jwz8PDEh7IQIs:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>SAKARYA UYGULAMALI BİLİMLER ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">SAKARYA UYGULAMALI BİLİMLER ÜNİVERSİTESİ SAKARYA UNIVERSITY OF APPLIED SCIENCES</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+XWDUIsw+FXcoSne9svX6sypdS+xQGBPHIA41F3qdjrx:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>SAKARYA ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">SAKARYA ÜNİVERSİTESİ SAKARYA UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+T8dvquJp0YkrCkoIBJopc272UAu+0mpNWoRGevRGbux:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>SAMSUN ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">SAMSUN ÜNİVERSİTESİ SAMSUN UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+fRSlBg+I5KKBi6cuWUJ6Rh2I+VYLjzHNwD0DfhkVadi:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>SANKO ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">SANKO ÜNİVERSİTESİ SANKO UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+RG601QJ84XAGqLjyDmwzLd+3FZ42MDHddkxQwtZoM6X:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>SELÇUK ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">SELÇUK ÜNİVERSİTESİ SELCUK UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+dI5NLfLJtQe7q4oI9feL1BS4GR3guSUP3ZBx1MY3F9g:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>SİİRT ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">SİİRT ÜNİVERSİTESİ SIIRT UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+dwOdGAJ/XKoFklNY1D0AD8RyZxCuma0vwkrRScsfdn3:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>SİNOP ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">SİNOP ÜNİVERSİTESİ SINOP UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+T8dvquJp0YkrCkoIBJopc1JfrvWedfbbdLEY46LwpIL:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>SİVAS BİLİM VE TEKNOLOJİ ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">SİVAS BİLİM VE TEKNOLOJİ ÜNİVERSİTESİ SİVAS UNIVERSITY OF SCIENCE AND TECHNOLOGY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+dDsnfts77UMMtBiAyWgWOME6pV+4S/0VWghXj4+D7fW:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>SİVAS CUMHURİYET ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">SİVAS CUMHURİYET ÜNİVERSİTESİ SIVAS CUMHURIYET UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+bezmXqYDN5PtXJnHqSViOvWoId+H8qkISfvqa0Zkax2:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>SUMGAYIT DEVLET ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">SUMGAYIT DEVLET ÜNİVERSİTESİ SUMGAYIT STATE UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+YWH3nDUUznuL4zTRF+vJTIzH89zC6EBDb5RFeAZ/lLz:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>SÜLEYMAN DEMİREL ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">SÜLEYMAN DEMİREL ÜNİVERSİTESİ SULEYMAN DEMIREL UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+VGjIinOdB4gd3lp9os3vSgiALiiaNMe3fDz5mAOfkHN:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>ŞIRNAK ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">ŞIRNAK ÜNİVERSİTESİ SIRNAK UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+bezmXqYDN5PtXJnHqSViOuJoUns2ovafn2Yzh4AtCyz:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>ŞOTA RUSTAVELİ DEVLET ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">ŞOTA RUSTAVELİ DEVLET ÜNİVERSİTESİ SOTA RUSTAVELI STATE UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+T8dvquJp0YkrCkoIBJopc2illvXUIXLiPacR996eczD:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>TARSUS ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">TARSUS ÜNİVERSİTESİ TARSUS UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+SYVGY/kli4mpX7P/pHza46ejor97AqXUuoOyr7vARlC:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>TED ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">TED ÜNİVERSİTESİ TED UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+a+RLmZ9Kkz0tuqSI1AVGccwXLHtOWcH2i+gAzGWmrKv:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>TEKİRDAĞ NAMIK KEMAL ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">TEKİRDAĞ NAMIK KEMAL ÜNİVERSİTESİ TEKIRDAG NAMIK KEMAL UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+YQkfjgeDC42HRSjqOFKkKN47mQfL7nks9D1b98LtA77:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>TİRAN NEW YORK ÜNİVERSİTESİ (İNGİLİZCE)<span
+													style="visibility: hidden;font-size: 0pt">TİRAN NEW YORK ÜNİVERSİTESİ (İNGİLİZCE) TİRAN NEW YORK ÜNİVERSİTESİ (İNGİLİZCE)</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+Z+JXObeI+XXYmfy+6pSUx6KFBskP6kCIPaBo07Sd6Uz:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>TOBB EKONOMİ VE TEKNOLOJİ ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">TOBB EKONOMİ VE TEKNOLOJİ ÜNİVERSİTESİ TOBB UNIVERSITY OF ECONOMICS AND TECHNOLOGY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+eZ+bg8mTajMztjmaVAQAUh5nSpvcJgEOGZW/V1PMQZl:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>TOKAT GAZİOSMANPAŞA ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">TOKAT GAZİOSMANPAŞA ÜNİVERSİTESİ TOKAT GAZIOSMANPASA UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+RCUjfw/JfwtQDZ+7CM54OLeQ69Zekt8e0j8Y26dcW+B:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>TOROS ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">TOROS ÜNİVERSİTESİ TOROS UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+bl4Zleg/RIikun8wfMEkPN5owSlgMzuQOpDRYQXDdvz:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>TRABZON ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">TRABZON ÜNİVERSİTESİ TRABZON UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+Z+JXObeI+XXYmfy+6pSUx4cCc4a7/TawbQPQtAGOJaE:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>TRAKYA ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">TRAKYA ÜNİVERSİTESİ TRAKYA UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+XKoGFG2sc4o89pfAudfWEXJUu3QWY/SGijDtuGIPJHL:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>TÜRK HAVA KURUMU ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">TÜRK HAVA KURUMU ÜNİVERSİTESİ UNIVERSITY OF TURKISH AERONAUTICAL ASSOCIATION</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+Qnya55I0v1KPSpB2JaaT8ufNM5N+OZlm2lNDLAtKwbl:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>TÜRK-ALMAN ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">TÜRK-ALMAN ÜNİVERSİTESİ TURKISH - GERMAN UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+ZfTDaFvkksQguVEnEiZRb5iHFRx3lOqaD/D3YD8BLnp:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>TÜRKİYE ULUSLARARASI İSLAM, BİLİM VE TEKNOLOJİ ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">TÜRKİYE ULUSLARARASI İSLAM, BİLİM VE TEKNOLOJİ ÜNİVERSİTESİ TURKEY INTERNATIONAL ISLAM, SCIENCE AND TECHNOLOGY UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+Z8hFVO1fvm5koPjFjOy7fH1dkAAA5I234+wT/xfjz/G:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>TÜRK-JAPON BİLİM VE TEKNOLOJİ ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">TÜRK-JAPON BİLİM VE TEKNOLOJİ ÜNİVERSİTESİ TURKISH-JAPANESE SCIENCE AND TECHNOLOGY UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+SdtvvpEri962/YssnbY5CpoEgM47GT+PoIBQNgpHpkn:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>UFUK ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">UFUK ÜNİVERSİTESİ UFUK UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+c5Xl/mT+ug/gO9Yck7Yc6vCF+zHzc1ibtYTtDH5jzUO:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>ULUSLARARASI BALKAN ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">ULUSLARARASI BALKAN ÜNİVERSİTESİ INTERNATIONAL BALKAN UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+ad8hQrtRnRoyz/ajmy7jpvQkVwvuLCF71XdPcikkmtj:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>ULUSLARARASI FİNAL ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">ULUSLARARASI FİNAL ÜNİVERSİTESİ FINAL INTERNATIONAL UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+YFnSS/FPN924TFIKFGdGL+IsybvCojzpr82/AivOlEG:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>ULUSLARARASI KIBRIS ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">ULUSLARARASI KIBRIS ÜNİVERSİTESİ CYPRUS INTERNATIONAL UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+c5Xl/mT+ug/gO9Yck7Yc6uxUwS+Gm5kQdU/g489hEvX:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>ULUSLARARASI SARAYBOSNA ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">ULUSLARARASI SARAYBOSNA ÜNİVERSİTESİ INTERNATIONAL UNIVERSITY OF SARAJEVO</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+dz1sZq+WHspcWm3UNTf1yQ48vHKC1AREKZCOz4OJSct:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>UŞAK ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">UŞAK ÜNİVERSİTESİ USAK UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+Z/7tmP7uIpZVMmO4Pu/MzZVzUsDYgqsG3X4Kd1sV6FG:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>ÜSKÜDAR ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">ÜSKÜDAR ÜNİVERSİTESİ USKUDAR UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+Ya/JPzLjfYw2aYf74LCd43eDVIq6qwbweQuj56Grdwo:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>VAN YÜZÜNCÜ YIL ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">VAN YÜZÜNCÜ YIL ÜNİVERSİTESİ VAN YUZUNCU YIL UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+YFnSS/FPN924TFIKFGdGL+UoxBqM58CTsNwRmCAp5dz:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>YAKIN DOĞU ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">YAKIN DOĞU ÜNİVERSİTESİ NEAR EAST UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+X77Ae8sYdrwg6hl6Nm7W/nhVFAK7uQSaUKNvfyREoBk:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>YALOVA ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">YALOVA ÜNİVERSİTESİ YALOVA UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+X77Ae8sYdrwg6hl6Nm7W/k9TX1tossGibeqn87kmPE1:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>YAŞAR ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">YAŞAR ÜNİVERSİTESİ YASAR UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+fcWW9SNbOp9p7mZbSko9YW6hmD3cz4rcxEMQRU7FUGW:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>YEDİTEPE ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">YEDİTEPE ÜNİVERSİTESİ YEDITEPE UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+ZpFscCec+iL2TphoWliN8gRuIvvQUrv13IOhi475dm/:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>YILDIZ TEKNİK ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">YILDIZ TEKNİK ÜNİVERSİTESİ YILDIZ TECHNICAL UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+bu2c0evYUAhkL8KGgputSlR5/7KyTGJzXR7hgoO1u5S:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>YOZGAT BOZOK ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">YOZGAT BOZOK ÜNİVERSİTESİ YOZGAT BOZOK UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+Z/7tmP7uIpZVMmO4Pu/MzYN9o71hK8AHWf0D3PRsDwK:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>YÜKSEK İHTİSAS ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">YÜKSEK İHTİSAS ÜNİVERSİTESİ YUKSEK IHTISAS UNIVERSITY</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+XqL8++Wcl0dEeu1MhZtep8mhv4Y8Oy8HTOByPNLjqm6:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>YÜKSEKÖĞRETIM PLANLAMA, DENETLEME, AKREDİTASYON VE KOORDİNASYON KURULU<span
+													style="visibility: hidden;font-size: 0pt">YÜKSEKÖĞRETIM PLANLAMA, DENETLEME, AKREDİTASYON VE KOORDİNASYON KURULU PRESIDENCY OF SUPREME BOARD OF HIGHER EDUCATION</span></span></a>
+											
+											<a href="/AkademikArama/AkademisyenArama?birim=DYof/DlT4hVoB0TfSd7s+YNfDFa6kc6q0UqFpzWjTwc4R3QTe8G9iyaPDj3/EcF4:Z2ZjY2JhNTEyNjU3NTMxMA=="
+												class="list-group-item listMinimal list-group-item-info"><span>ZONGULDAK BÜLENT ECEVİT ÜNİVERSİTESİ<span
+													style="visibility: hidden;font-size: 0pt">ZONGULDAK BÜLENT ECEVİT ÜNİVERSİTESİ ZONGULDAK BULENT ECEVIT UNIVERSITY</span></span></a>
+											
+										</div>
+									</form>
+								</div>
+								
+								<div>
+									<ul class="list-group">
+										
+										<a href="/AkademikArama/AkademisyenArama?islem=HFeKUiO3_CdOgNOu61FQDW7N9qFtJlXr3is_NerGxUPdt5gff9b71t2v7us_P-vm"
+											class="list-group-item listMinimal list-group-item-info"><span>DENİZCİLİK FAKÜLTESİ<span
+												style="visibility: hidden;font-size: 0pt">DENİZCİLİK FAKÜLTESİ FACULTY OF MARITIME</span></span></a>
+										
+										<a href="/AkademikArama/AkademisyenArama?islem=HFeKUiO3_CdOgNOu61FQDW7N9qFtJlXr3is_NerGxUMWs8Q7delvKKoPVheclQdz"
+											class="list-group-item listMinimal list-group-item-info"><span>DENİZCİLİK MESLEK YÜKSEKOKULU<span
+												style="visibility: hidden;font-size: 0pt">DENİZCİLİK MESLEK YÜKSEKOKULU MARITIME VOCATIONAL SCHOOL</span></span></a>
+										
+										<a href="/AkademikArama/AkademisyenArama?islem=HFeKUiO3_CdOgNOu61FQDW7N9qFtJlXr3is_NerGxUPnTvP0f93jsOsTSbnf6-at"
+											class="list-group-item listMinimal list-group-item-info"><span>FEN-EDEBİYAT FAKÜLTESİ<span
+												style="visibility: hidden;font-size: 0pt">FEN-EDEBİYAT FAKÜLTESİ FACULTY OF ARTS AND SCIENCES</span></span></a>
+										
+										<a href="/AkademikArama/AkademisyenArama?islem=HFeKUiO3_CdOgNOu61FQDW7N9qFtJlXr3is_NerGxUN_oYZm5PYfuRNmDaSnTeXA"
+											class="list-group-item listMinimal list-group-item-info"><span>HUKUK FAKÜLTESİ<span
+												style="visibility: hidden;font-size: 0pt">HUKUK FAKÜLTESİ FACULTY OF LAW</span></span></a>
+										
+										<a href="/AkademikArama/AkademisyenArama?islem=HFeKUiO3_CdOgNOu61FQDW7N9qFtJlXr3is_NerGxUN9Acw4Z5SioGpGfBVkHA9U"
+											class="list-group-item listMinimal list-group-item-info"><span>İKTİSADİ VE İDARİ BİLİMLER FAKÜLTESİ<span
+												style="visibility: hidden;font-size: 0pt">İKTİSADİ VE İDARİ BİLİMLER FAKÜLTESİ FACULTY OF ECONOMICS AND ADMINISTRATIVE SCIENCES</span></span></a>
+										
+										<a href="/AkademikArama/AkademisyenArama?islem=HFeKUiO3_CdOgNOu61FQDW7N9qFtJlXr3is_NerGxUNs6wxS3dJS1rd63uXw75iq"
+											class="list-group-item listMinimal list-group-item-info"><span>LİSANSÜSTÜ EĞİTİM ENSTİTÜSÜ<span
+												style="visibility: hidden;font-size: 0pt">LİSANSÜSTÜ EĞİTİM ENSTİTÜSÜ INSTITUTE OF GRADUATE PROGRAMS</span></span></a>
+										
+										<a href="/AkademikArama/AkademisyenArama?islem=HFeKUiO3_CdOgNOu61FQDW7N9qFtJlXr3is_NerGxUPcc9GB-35ErZXALUAhA-zf"
+											class="list-group-item listMinimal list-group-item-info"><span>MÜHENDİSLİK FAKÜLTESİ<span
+												style="visibility: hidden;font-size: 0pt">MÜHENDİSLİK FAKÜLTESİ FACULTY OF ENGINEERING</span></span></a>
+										
+										<a href="/AkademikArama/AkademisyenArama?islem=HFeKUiO3_CdOgNOu61FQDW7N9qFtJlXr3is_NerGxUNZMAMnt746StHWD-FMJaq3"
+											class="list-group-item listMinimal list-group-item-info"><span>REKTÖRLÜK<span
+												style="visibility: hidden;font-size: 0pt">REKTÖRLÜK RECTORATE</span></span></a>
+										
+									</ul>
+								</div>
+								
+							</div>
+						</div>
+						<!--/.nav-collapse -->
+					</div>
+				</div>
+			</div>
+			<!-- Sol Menu bitis-->
+			
+			<div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 main">
+				<div class="alert alert-info">
+					
+					YÖK / PİRİ REİS ÜNİVERSİTESİ
+					için arama sonuçları (Bu üniversitede yapılan tezlere ulaşmak için 
+					<a href="/AkademikArama/UniversiteyeGoreAkademisyenCalismalari">tıklayınız</a>)
+					
+
+
+					<span class="pull-right"><span class="badge">Arama sonucu: 219 sonuç bulundu</span><div class="dropdown pull-right"><button class="btn btn-default dropdown-toggle btn-xs" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Aktar<span class="caret"></span></button><ul class="dropdown-menu" aria-labelledby="dropdownMenu1"><li><a href="#" id="save-list"><i class="fa fa-file-text-o" aria-hidden="true"></i>Text</a></li><li><a href="#" id="save-list-excel"><i class="fa fa-file-excel-o" aria-hidden="true"></i>Excel</a></li></ul></div></span>
+
+
+				</div>
+				
+				<div class="table-responsive">
+					<table id="authorlistTb" class="table table-striped">
+						<tbody>
+							<tr id="authorInfo_164608"><td><span id="spid" style="visibility: hidden;font-size: 0pt">164608</span></td><td width="110px"><a href="/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&sira=_D2bDdARDMCOgjHVGzFVZw&authorId=57A6856663E8E116"><img class="img-circle" alt="AHMET TAŞDEMİR" src="" style="width:90px; height: 90px;"></a></td><td> <span class="pull-right"> <a id='popoverDataımG' class='popoverData' style='cursor:pointer' data-content='ORCID:0000-0002-7414-2525' rel='popover' data-placement='top'  data-html='true'  data-original-title='' data-trigger='click'><img src="../images/orcidFav.png" alt="ORCID"></a></span><h6>PROFESÖR</h6><h4><a href="/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&sira=_D2bDdARDMCOgjHVGzFVZw&authorId=57A6856663E8E116">AHMET TAŞDEMİR</a></h4><h6>PİRİ REİS ÜNİVERSİTESİ/DENİZCİLİK FAKÜLTESİ/GEMİ MAKİNELERİ İŞLETME MÜHENDİSLİĞİ BÖLÜMÜ/GEMİ MAKİNELERİ İŞLETME MÜHENDİSLİĞİ PR.  /</h6>	<p></p> <span class="label label-success"><a class="anahtarKelime" href="/AkademikArama/AkademisyenArama?islem=HFeKUiO3_CdOgNOu61FQDX3xNMKakXZHTabgSVWb-LU">Mühendislik Temel Alanı</a></span>  <span class="label label-primary">&nbsp;&nbsp;<a class="anahtarKelime" href="/AkademikArama/AkademisyenArama?islem=HFeKUiO3_CdOgNOu61FQDcLF38S3-h1zyh954PVnULfrTr2LYO309zyoE4VIpMBZ">Deniz ve Gemi Mühendisliği</a></span><span> <a href="/AkademikArama/AkademisyenArama?islem=HFeKUiO3_CdOgNOu61FQDQpc15zGyHcKI7zsASQxLyV7dEj_keUpaOAivGI64QWl">Gemi İnşaatı</a> ; <a href="/AkademikArama/AkademisyenArama?islem=HFeKUiO3_CdOgNOu61FQDQpc15zGyHcKI7zsASQxLyV_xOE2dB6EbJLRNw-z2iBb">Gemi Hidromekaniği</a> ; <a href="/AkademikArama/AkademisyenArama?islem=HFeKUiO3_CdOgNOu61FQDQpc15zGyHcKI7zsASQxLyVPRmJ0PCPxpg53LIOKSb5x">Deniz Araçları Yapısal Tasarımı</a></span></td><td><a href="mailto:atasdemir@pirireis.edu.tr">atasdemir[at]pirireis.edu.tr</a><small class="pull-right" ><a id="authorBookM_164608" href="#" class="authorBookM" title="Listeme Ekle"><span class="glyphicon glyphicon-bookmark"></span> </a></small></td><td><span id="spid2" style="visibility: hidden;font-size: 0pt">57A6856663E8E116</span></td></td></tr><tr id="authorInfo_289530"><td><span id="spid" style="visibility: hidden;font-size: 0pt">289530</span></td><td width="110px"><a href="/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&sira=VAWp5jxMDUj5cB0bvOvsDw&authorId=7F04B05BA408005A"><img class="img-circle" alt="AHMET SAMİM ÜNAN" src="" style="width:90px; height: 90px;"></a></td><td> <span class="pull-right"> <a id='popoverDataımG' class='popoverData' style='cursor:pointer' data-content='ORCID:0000-0002-5915-6582' rel='popover' data-placement='top'  data-html='true'  data-original-title='' data-trigger='click'><img src="../images/orcidFav.png" alt="ORCID"></a></span><h6>PROFESÖR</h6><h4><a href="/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&sira=VAWp5jxMDUj5cB0bvOvsDw&authorId=7F04B05BA408005A">AHMET SAMİM ÜNAN</a></h4><h6>PİRİ REİS ÜNİVERSİTESİ/HUKUK FAKÜLTESİ/ÖZEL HUKUK BÖLÜMÜ/DENİZ HUKUKU ANABİLİM DALI/</h6>	<p></p> <span class="label label-success"><a class="anahtarKelime" href="/AkademikArama/AkademisyenArama?islem=HFeKUiO3_CdOgNOu61FQDWKGo6V93VCPiGKKYdgb8U8">Hukuk Temel Alanı</a></span>  <span class="label label-primary">&nbsp;&nbsp;<a class="anahtarKelime" href="/AkademikArama/AkademisyenArama?islem=HFeKUiO3_CdOgNOu61FQDTDP4WhbT48EyLsMFCPG0NPrTr2LYO309zyoE4VIpMBZ">Deniz Hukuku</a></span><span> <a href="/AkademikArama/AkademisyenArama?islem=HFeKUiO3_CdOgNOu61FQDYpNaIZoYHvDbsaNT22zu1ouACf8O96l_y4AvMdjV8Oa">Deniz Hukuku</a></span></td><td><small class="pull-right" ><a id="authorBookM_289530" href="#" class="authorBookM" title="Listeme Ekle"><span class="glyphicon glyphicon-bookmark"></span> </a></small></td><td><span id="spid2" style="visibility: hidden;font-size: 0pt">7F04B05BA408005A</span></td></td></tr><tr id="authorInfo_32057"><td><span id="spid" style="visibility: hidden;font-size: 0pt">32057</span></td><td width="110px"><a href="/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&sira=NPyYQsydu7pn_jChegdWIA&authorId=BE2CD8C7C095F14D"><img class="img-circle" alt="AYKUT ARSLAN" src="" style="width:90px; height: 90px;"></a></td><td> <span class="pull-right"> <a id='popoverDataımG' class='popoverData' style='cursor:pointer' data-content='ORCID:0000-0001-5689-3918' rel='popover' data-placement='top'  data-html='true'  data-original-title='' data-trigger='click'><img src="../images/orcidFav.png" alt="ORCID"></a></span><h6>PROFESÖR</h6><h4><a href="/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&sira=NPyYQsydu7pn_jChegdWIA&authorId=BE2CD8C7C095F14D">AYKUT ARSLAN</a></h4><h6>PİRİ REİS ÜNİVERSİTESİ/İKTİSADİ VE İDARİ BİLİMLER FAKÜLTESİ/ULUSLARARASI TİCARET VE İŞLETMECİLİK BÖLÜMÜ/ULUSLARARASI İŞLETMECİLİK VE TİCARET PR.  /</h6>	<p></p> <span class="label label-success"><a class="anahtarKelime" href="/AkademikArama/AkademisyenArama?islem=HFeKUiO3_CdOgNOu61FQDdgP3T-rXNviLMZszEI_OFc">Sosyal-Beşeri ve İdari Bilimler Temel Alanı</a></span>  <span class="label label-primary">&nbsp;&nbsp;<a class="anahtarKelime" href="/AkademikArama/AkademisyenArama?islem=HFeKUiO3_CdOgNOu61FQDbo3wmRk8mDzRvyvmrNUnM1eEQelTm-XyRhBW_4oLHrN">Yönetim ve Organizasyon</a></span><span> <a href="/AkademikArama/AkademisyenArama?islem=HFeKUiO3_CdOgNOu61FQDdiQ0VAU6wzylrdOMY01Nbo6ur4uUbIXoO2Xxrk9kzGd">Örgütsel Davranış</a> ; <a href="/AkademikArama/AkademisyenArama?islem=HFeKUiO3_CdOgNOu61FQDdiQ0VAU6wzylrdOMY01NbqiuU3pCZLSdD1aLRBT1JU9">Stratejik Yönetim</a> ; <a href="/AkademikArama/AkademisyenArama?islem=HFeKUiO3_CdOgNOu61FQDdiQ0VAU6wzylrdOMY01Nbol96cbuyg85kNNf2Qnb_WX">Örgüt Kuramları</a></span></td><td><a href="mailto:draykutarslan@gmail.com">draykutarslan[at]gmail.com</a><small class="pull-right" ><a id="authorBookM_32057" href="#" class="authorBookM" title="Listeme Ekle"><span class="glyphicon glyphicon-bookmark"></span> </a></small></td><td><span id="spid2" style="visibility: hidden;font-size: 0pt">BE2CD8C7C095F14D</span></td></td></tr><tr id="authorInfo_127740"><td><span id="spid" style="visibility: hidden;font-size: 0pt">127740</span></td><td width="110px"><a href="/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&sira=nT3KGP3694fUamKe2z0D-w&authorId=478F0F7529DB686D"><img class="img-circle" alt="AYSEVİL SALMAN DURMUŞLAR" src="" style="width:90px; height: 90px;"></a></td><td> <span class="pull-right"> <a id='popoverDataımG' class='popoverData' style='cursor:pointer' data-content='ORCID:0000-0001-6998-5942' rel='popover' data-placement='top'  data-html='true'  data-original-title='' data-trigger='click'><img src="../images/orcidFav.png" alt="ORCID"></a></span><h6>PROFESÖR</h6><h4><a href="/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&sira=nT3KGP3694fUamKe2z0D-w&authorId=478F0F7529DB686D">AYSEVİL SALMAN DURMUŞLAR</a></h4><h6>PİRİ REİS ÜNİVERSİTESİ/MÜHENDİSLİK FAKÜLTESİ/ELEKTRİK-ELEKTRONİK MÜHENDİSLİĞİ BÖLÜMÜ/ELEKTRİK-ELEKTRONİK MÜHENDİSLİĞİ PR.  /</h6>	<p></p> <span class="label label-success"><a class="anahtarKelime" href="/AkademikArama/AkademisyenArama?islem=HFeKUiO3_CdOgNOu61FQDWAd-DlDBvzWmV-FZfX-5Ss">Fen Bilimleri ve Matematik Temel Alanı</a></span>  <span class="label label-primary">&nbsp;&nbsp;<a class="anahtarKelime" href="/AkademikArama/AkademisyenArama?islem=HFeKUiO3_CdOgNOu61FQDW5TmxQDxTU1peRR3uhczxTrTr2LYO309zyoE4VIpMBZ">Fizik</a></span><span> <a href="/AkademikArama/AkademisyenArama?islem=HFeKUiO3_CdOgNOu61FQDTlsTPLr5iiR0fXznkpYQX5vkmrh020S_SFUWiU8cdUD">Genel Fizik</a> ; <a href="/AkademikArama/AkademisyenArama?islem=HFeKUiO3_CdOgNOu61FQDTlsTPLr5iiR0fXznkpYQX4s8rjq_k-I0e30y3HwYp5g">Yarı İletkenler</a> ; <a href="/AkademikArama/AkademisyenArama?islem=HFeKUiO3_CdOgNOu61FQDTlsTPLr5iiR0fXznkpYQX7inCH6AHfkZJLwMyZzBbvR">Sensörler</a></span></td><td><a href="mailto:asdurmuslar@pirireis.edu.tr">asdurmuslar[at]pirireis.edu.tr</a><small class="pull-right" ><a id="authorBookM_127740" href="#" class="authorBookM" title="Listeme Ekle"><span class="glyphicon glyphicon-bookmark"></span> </a></small></td><td><span id="spid2" style="visibility: hidden;font-size: 0pt">478F0F7529DB686D</span></td></td></tr><tr id="authorInfo_22832"><td><span id="spid" style="visibility: hidden;font-size: 0pt">22832</span></td><td width="110px"><a href="/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&sira=V-OBp1_xUj06V-k5ii5aPQ&authorId=5884A7DD908E7B18"><img class="img-circle" alt="BAHAR CEYDA SÜRAL EFEÇINAR" src="../authorimages/photo_w.jpg" style="width:90px; height: 90px;"></a></td><td> <span class="pull-right"> <a id='popoverDataımG' class='popoverData' style='cursor:pointer' data-content='ORCID:0000-0002-7016-943X' rel='popover' data-placement='top'  data-html='true'  data-original-title='' data-trigger='click'><img src="../images/orcidFav.png" alt="ORCID"></a></span><h6>PROFESÖR</h6><h4><a href="/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&sira=V-OBp1_xUj06V-k5ii5aPQ&authorId=5884A7DD908E7B18">BAHAR CEYDA SÜRAL EFEÇINAR</a></h4><h6>PİRİ REİS ÜNİVERSİTESİ/HUKUK FAKÜLTESİ/ÖZEL HUKUK BÖLÜMÜ/MİLLETLERARASI ÖZEL HUKUK ANABİLİM DALI/</h6>	<p></p> <span class="label label-success"><a class="anahtarKelime" href="/AkademikArama/AkademisyenArama?islem=HFeKUiO3_CdOgNOu61FQDRjzxbEWpyBmX7P1Wr5x2Wc">Hukuk Temel Alanı</a></span>  <span class="label label-primary">&nbsp;&nbsp;<a class="anahtarKelime" href="/AkademikArama/AkademisyenArama?islem=HFeKUiO3_CdOgNOu61FQDRUpg3oUiPm2gZmD8snveFnrTr2LYO309zyoE4VIpMBZ">Milletlerarası Özel Hukuk</a></span></td><td><small class="pull-right" ><a id="authorBookM_22832" href="#" class="authorBookM" title="Listeme Ekle"><span class="glyphicon glyphicon-bookmark"></span> </a></small></td><td><span id="spid2" style="visibility: hidden;font-size: 0pt">5884A7DD908E7B18</span></td></td></tr><tr id="authorInfo_151636"><td><span id="spid" style="visibility: hidden;font-size: 0pt">151636</span></td><td width="110px"><a href="/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&sira=soTUaaecAI-j1RLJL-WJow&authorId=9597F947385107C3"><img class="img-circle" alt="BARIŞ BARLAS" src="../authorimages/photo_m.jpg" style="width:90px; height: 90px;"></a></td><td> <span class="pull-right"> <a id='popoverDataımG' class='popoverData' style='cursor:pointer' data-content='ORCID:0000-0002-5846-2369' rel='popover' data-placement='top'  data-html='true'  data-original-title='' data-trigger='click'><img src="../images/orcidFav.png" alt="ORCID"></a></span><h6>PROFESÖR</h6><h4><a href="/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&sira=soTUaaecAI-j1RLJL-WJow&authorId=9597F947385107C3">BARIŞ BARLAS</a></h4><h6>PİRİ REİS ÜNİVERSİTESİ/DENİZCİLİK MESLEK YÜKSEKOKULU/MOTORLU ARAÇLAR VE ULAŞTIRMA TEKNOLOJİLERİ BÖLÜMÜ/GEMİ İNŞAATI PR. /</h6>	<p></p> <span class="label label-success"><a class="anahtarKelime" href="/AkademikArama/AkademisyenArama?islem=HFeKUiO3_CdOgNOu61FQDeBxU_9hdeUqY7ywsCdA_VI">Mühendislik Temel Alanı</a></span>  <span class="label label-primary">&nbsp;&nbsp;<a class="anahtarKelime" href="/AkademikArama/AkademisyenArama?islem=HFeKUiO3_CdOgNOu61FQDbaSv1a2Jd9rGvFvb--yZtbrTr2LYO309zyoE4VIpMBZ">Deniz ve Gemi Mühendisliği</a></span></td><td><small class="pull-right" ><a id="authorBookM_151636" href="#" class="authorBookM" title="Listeme Ekle"><span class="glyphicon glyphicon-bookmark"></span> </a></small></td><td><span id="spid2" style="visibility: hidden;font-size: 0pt">9597F947385107C3</span></td></td></tr><tr id="authorInfo_21580"><td><span id="spid" style="visibility: hidden;font-size: 0pt">21580</span></td><td width="110px"><a href="/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&sira=q3SMeouSUM6tBWypaNs06Q&authorId=F1668266752EBA35"><img class="img-circle" alt="BAŞAK BAŞOĞLU KAPANCI" src="" style="width:90px; height: 90px;"></a></td><td> <span class="pull-right"> <a id='popoverDataımG' class='popoverData' style='cursor:pointer' data-content='ORCID:0000-0002-4093-0136' rel='popover' data-placement='top'  data-html='true'  data-original-title='' data-trigger='click'><img src="../images/orcidFav.png" alt="ORCID"></a></span><h6>PROFESÖR</h6><h4><a href="/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&sira=q3SMeouSUM6tBWypaNs06Q&authorId=F1668266752EBA35">BAŞAK BAŞOĞLU KAPANCI</a></h4><h6>PİRİ REİS ÜNİVERSİTESİ/HUKUK FAKÜLTESİ/ÖZEL HUKUK BÖLÜMÜ/MEDENİ HUKUK ANABİLİM DALI/</h6>	<p></p> <span class="label label-success"><a class="anahtarKelime" href="/AkademikArama/AkademisyenArama?islem=HFeKUiO3_CdOgNOu61FQDWsU_f09j4BOduWixcGqVDw">Hukuk Temel Alanı</a></span>  <span class="label label-primary">&nbsp;&nbsp;<a class="anahtarKelime" href="/AkademikArama/AkademisyenArama?islem=HFeKUiO3_CdOgNOu61FQDaHKV2BEfLufZlHwG4wqkgjrTr2LYO309zyoE4VIpMBZ">Medeni Hukuk</a></span><span> <a href="/AkademikArama/AkademisyenArama?islem=HFeKUiO3_CdOgNOu61FQDWgnmYJdID0h8BiWRRFbQ9C77yMvriB5rX0YTLvkr0xc">Medeni Hukuk</a></span></td><td><a href="mailto:basakbasoglu@gmail.com">basakbasoglu[at]gmail.com</a><small class="pull-right" ><a id="authorBookM_21580" href="#" class="authorBookM" title="Listeme Ekle"><span class="glyphicon glyphicon-bookmark"></span> </a></small></td><td><span id="spid2" style="visibility: hidden;font-size: 0pt">F1668266752EBA35</span></td></td></tr><tr id="authorInfo_150062"><td><span id="spid" style="visibility: hidden;font-size: 0pt">150062</span></td><td width="110px"><a href="/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&sira=XnHpYHEOm1CMGoYyz01g8Q&authorId=BB3492A52225B633"><img class="img-circle" alt="BÜLENT HOCA" src="../authorimages/photo_m.jpg" style="width:90px; height: 90px;"></a></td><td> <span class="pull-right"> <a id='popoverDataımG' class='popoverData' style='cursor:pointer' data-content='ORCID:0000-0001-9093-9887' rel='popover' data-placement='top'  data-html='true'  data-original-title='' data-trigger='click'><img src="../images/orcidFav.png" alt="ORCID"></a></span><h6>PROFESÖR</h6><h4><a href="/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&sira=XnHpYHEOm1CMGoYyz01g8Q&authorId=BB3492A52225B633">BÜLENT HOCA</a></h4><h6>PİRİ REİS ÜNİVERSİTESİ/İKTİSADİ VE İDARİ BİLİMLER FAKÜLTESİ/EKONOMİ VE FİNANS BÖLÜMÜ/EKONOMİ VE FİNANS PR.  /</h6>	<p></p> <span class="label label-success"><a class="anahtarKelime" href="/AkademikArama/AkademisyenArama?islem=HFeKUiO3_CdOgNOu61FQDQbksxxnVsOP_0_OIDFHklw">Sosyal-Beşeri ve İdari Bilimler Temel Alanı</a></span>  <span class="label label-primary">&nbsp;&nbsp;<a class="anahtarKelime" href="/AkademikArama/AkademisyenArama?islem=HFeKUiO3_CdOgNOu61FQDapTDHMBm7FxDf4q2kv3RzrDSh--IWGUumkwXAa42sRR">Uluslararası İktisat</a></span><span> <a href="/AkademikArama/AkademisyenArama?islem=HFeKUiO3_CdOgNOu61FQDfmc17B7L2ZY2tIqG8SUZvaoLGK4C6lMzQkay7eG4dF8">Uluslararası Politik İktisat</a> ; <a href="/AkademikArama/AkademisyenArama?islem=HFeKUiO3_CdOgNOu61FQDfmc17B7L2ZY2tIqG8SUZvZASkZLDcbizLo-ErwJc80p">Uluslararası Ticaret</a> ; <a href="/AkademikArama/AkademisyenArama?islem=HFeKUiO3_CdOgNOu61FQDfmc17B7L2ZY2tIqG8SUZvYdCA23U8OFw0xpGZkgn6FZ">Küreselleşme ve Çok Uluslu Şirketler</a></span></td><td><a href="mailto:bhoca@pirireis.edu.tr">bhoca[at]pirireis.edu.tr</a><small class="pull-right" ><a id="authorBookM_150062" href="#" class="authorBookM" title="Listeme Ekle"><span class="glyphicon glyphicon-bookmark"></span> </a></small></td><td><span id="spid2" style="visibility: hidden;font-size: 0pt">BB3492A52225B633</span></td></td></tr><tr id="authorInfo_22999"><td><span id="spid" style="visibility: hidden;font-size: 0pt">22999</span></td><td width="110px"><a href="/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&sira=EpjhmFgiSAVk66O84AtUZg&authorId=24712D4582AC0405"><img class="img-circle" alt="CAHİDE ELİF ÖZEN CANSOY" src="" style="width:90px; height: 90px;"></a></td><td> <span class="pull-right"> <a id='popoverDataımG' class='popoverData' style='cursor:pointer' data-content='ORCID:0000-0003-2275-042X' rel='popover' data-placement='top'  data-html='true'  data-original-title='' data-trigger='click'><img src="../images/orcidFav.png" alt="ORCID"></a></span><h6>PROFESÖR</h6><h4><a href="/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&sira=EpjhmFgiSAVk66O84AtUZg&authorId=24712D4582AC0405">CAHİDE ELİF ÖZEN CANSOY</a></h4><h6>PİRİ REİS ÜNİVERSİTESİ/REKTÖRLÜK/</h6>	<p></p> <span class="label label-success"><a class="anahtarKelime" href="/AkademikArama/AkademisyenArama?islem=HFeKUiO3_CdOgNOu61FQDVWMK71i4Xk0yDHntPiLrq0">Fen Bilimleri ve Matematik Temel Alanı</a></span>  <span class="label label-primary">&nbsp;&nbsp;<a class="anahtarKelime" href="/AkademikArama/AkademisyenArama?islem=HFeKUiO3_CdOgNOu61FQDSzbDjL6q4ogl5h7rzheF2PrTr2LYO309zyoE4VIpMBZ">Kimya</a></span><span> <a href="/AkademikArama/AkademisyenArama?islem=HFeKUiO3_CdOgNOu61FQDSimXsfrTInCBlnPMUm2BRQM6b8q4AFMI3PMMA6DHRxb">Fiziksel Kimya</a> ; <a href="/AkademikArama/AkademisyenArama?islem=HFeKUiO3_CdOgNOu61FQDSimXsfrTInCBlnPMUm2BRSvO0wgfPlQPZCGoeGp-8d4">Polimer Bilimi</a> ; <a href="/AkademikArama/AkademisyenArama?islem=HFeKUiO3_CdOgNOu61FQDSimXsfrTInCBlnPMUm2BRT6dj0G9qFiNpeDoGdnuWdz">Yüzey Kimyası</a></span></td><td><a href="mailto:ecansoy@pirireis.edu.tr">ecansoy[at]pirireis.edu.tr</a><small class="pull-right" ><a id="authorBookM_22999" href="#" class="authorBookM" title="Listeme Ekle"><span class="glyphicon glyphicon-bookmark"></span> </a></small></td><td><span id="spid2" style="visibility: hidden;font-size: 0pt">24712D4582AC0405</span></td></td></tr><tr id="authorInfo_218631"><td><span id="spid" style="visibility: hidden;font-size: 0pt">218631</span></td><td width="110px"><a href="/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&sira=5Eaxq5GEK5ukOf71Zpm7dA&authorId=994859A4EE9E26D9"><img class="img-circle" alt="CÜNEYT EZGİ" src="" style="width:90px; height: 90px;"></a></td><td> <span class="pull-right"> <a id='popoverDataımG' class='popoverData' style='cursor:pointer' data-content='ORCID:0000-0003-3264-0021' rel='popover' data-placement='top'  data-html='true'  data-original-title='' data-trigger='click'><img src="../images/orcidFav.png" alt="ORCID"></a></span><h6>PROFESÖR</h6><h4><a href="/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&sira=5Eaxq5GEK5ukOf71Zpm7dA&authorId=994859A4EE9E26D9">CÜNEYT EZGİ</a></h4><h6>PİRİ REİS ÜNİVERSİTESİ/DENİZCİLİK FAKÜLTESİ/GEMİ MAKİNELERİ İŞLETME MÜHENDİSLİĞİ BÖLÜMÜ/GEMİ MAKİNELERİ İŞLETME MÜHENDİSLİĞİ PR.  /</h6>	<p></p> <span class="label label-success"><a class="anahtarKelime" href="/AkademikArama/AkademisyenArama?islem=HFeKUiO3_CdOgNOu61FQDbEeEcCrLcoVk3OV8Njnuyc">Mühendislik Temel Alanı</a></span>  <span class="label label-primary">&nbsp;&nbsp;<a class="anahtarKelime" href="/AkademikArama/AkademisyenArama?islem=HFeKUiO3_CdOgNOu61FQDdX3QXutBdiSIpP0wrDjonPrTr2LYO309zyoE4VIpMBZ">Makine Mühendisliği</a></span><span> <a href="/AkademikArama/AkademisyenArama?islem=HFeKUiO3_CdOgNOu61FQDdEIoXhfLmiiFqdadW4FhWg_arnvA29C1mLyphsGKRRn">Enerji</a> ; <a href="/AkademikArama/AkademisyenArama?islem=HFeKUiO3_CdOgNOu61FQDdEIoXhfLmiiFqdadW4FhWjt3SIsO9pkwKSBbK5a85MY">Termodinamik</a> ; <a href="/AkademikArama/AkademisyenArama?islem=HFeKUiO3_CdOgNOu61FQDdEIoXhfLmiiFqdadW4FhWjXfrYcUKLx82BJfrJHj0Cd">Isı Transferi</a></span></td><td><a href="mailto:cezgi@pirireis.edu.tr">cezgi[at]pirireis.edu.tr</a><small class="pull-right" ><a id="authorBookM_218631" href="#" class="authorBookM" title="Listeme Ekle"><span class="glyphicon glyphicon-bookmark"></span> </a></small></td><td><span id="spid2" style="visibility: hidden;font-size: 0pt">994859A4EE9E26D9</span></td></td></tr><tr id="authorInfo_51568"><td><span id="spid" style="visibility: hidden;font-size: 0pt">51568</span></td><td width="110px"><a href="/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&sira=iHDPgsbZ-szm5UHCxj3mmg&authorId=1AB51C4E853E51C3"><img class="img-circle" alt="GÜLŞEN AKIN EVİNGÜR" src="" style="width:90px; height: 90px;"></a></td><td> <span class="pull-right"> <a id='popoverDataımG' class='popoverData' style='cursor:pointer' data-content='ORCID:0000-0003-2210-5842' rel='popover' data-placement='top'  data-html='true'  data-original-title='' data-trigger='click'><img src="../images/orcidFav.png" alt="ORCID"></a></span><h6>PROFESÖR</h6><h4><a href="/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&sira=iHDPgsbZ-szm5UHCxj3mmg&authorId=1AB51C4E853E51C3">GÜLŞEN AKIN EVİNGÜR</a></h4><h6>PİRİ REİS ÜNİVERSİTESİ/DENİZCİLİK MESLEK YÜKSEKOKULU/ELEKTRONİK VE OTOMASYON BÖLÜMÜ/MEKATRONİK PR. /</h6>	<p></p> <span class="label label-success"><a class="anahtarKelime" href="/AkademikArama/AkademisyenArama?islem=HFeKUiO3_CdOgNOu61FQDXLeoO8YkxDFNJV1r9vzVHo">Fen Bilimleri ve Matematik Temel Alanı</a></span>  <span class="label label-primary">&nbsp;&nbsp;<a class="anahtarKelime" href="/AkademikArama/AkademisyenArama?islem=HFeKUiO3_CdOgNOu61FQDZ_zKAtqJJfSIaaIFabG457rTr2LYO309zyoE4VIpMBZ">Fizik</a></span><span> <a href="/AkademikArama/AkademisyenArama?islem=HFeKUiO3_CdOgNOu61FQDWG0QHzZcwfG8sZFh19vQ935zeaVsLADGaGcnDi91jhF">Yoğun Madde Fiziği</a> ; <a href="/AkademikArama/AkademisyenArama?islem=HFeKUiO3_CdOgNOu61FQDWG0QHzZcwfG8sZFh19vQ909XjM0Ln8d7RgBgOLQhcb5">Atom- Molekül ve Lazer Fiziği</a> ; <a href="/AkademikArama/AkademisyenArama?islem=HFeKUiO3_CdOgNOu61FQDWG0QHzZcwfG8sZFh19vQ92jhAb8A2uQO4ZZXeIuugoO">Malzeme Fiziği</a></span></td><td><a href="mailto:gulsen.evingur@pirireis.edu.tr">gulsen.evingur[at]pirireis.edu.tr</a><small class="pull-right" ><a id="authorBookM_51568" href="#" class="authorBookM" title="Listeme Ekle"><span class="glyphicon glyphicon-bookmark"></span> </a></small></td><td><span id="spid2" style="visibility: hidden;font-size: 0pt">1AB51C4E853E51C3</span></td></td></tr><tr id="authorInfo_17221"><td><span id="spid" style="visibility: hidden;font-size: 0pt">17221</span></td><td width="110px"><a href="/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&sira=4WGEO1b9Pd2gJkOu4LsIDw&authorId=CC8125CA220115FF"><img class="img-circle" alt="HATİCE FUNDA YERCAN" src="" style="width:90px; height: 90px;"></a></td><td> <span class="pull-right"> <a id='popoverDataımG' class='popoverData' style='cursor:pointer' data-content='ORCID:0000-0002-6428-6824' rel='popover' data-placement='top'  data-html='true'  data-original-title='' data-trigger='click'><img src="../images/orcidFav.png" alt="ORCID"></a></span><h6>PROFESÖR</h6><h4><a href="/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&sira=4WGEO1b9Pd2gJkOu4LsIDw&authorId=CC8125CA220115FF">HATİCE FUNDA YERCAN</a></h4><h6>PİRİ REİS ÜNİVERSİTESİ/DENİZCİLİK FAKÜLTESİ/DENİZ ULAŞTIRMA İŞLETME MÜHENDİSLİĞİ BÖLÜMÜ/DENİZ ULAŞTIRMA İŞLETME MÜHENDİSLİĞİ PR.  /</h6>	<p></p> <span class="label label-success"><a class="anahtarKelime" href="/AkademikArama/AkademisyenArama?islem=HFeKUiO3_CdOgNOu61FQDRlbisd9fJfYw38MrD7Prrc">Mühendislik Temel Alanı</a></span>  <span class="label label-primary">&nbsp;&nbsp;<a class="anahtarKelime" href="/AkademikArama/AkademisyenArama?islem=HFeKUiO3_CdOgNOu61FQDXgNSCSs5uqCOmhR_kcDtOrrTr2LYO309zyoE4VIpMBZ">Deniz ve Gemi Mühendisliği</a></span><span> <a href="/AkademikArama/AkademisyenArama?islem=HFeKUiO3_CdOgNOu61FQDWnDBlJpnun-nM2DP-pwgWRRvhR-Yv7Xq-YMJHMC_Plw">Deniz Ulaştırma Mühendisliği</a> ; <a href="/AkademikArama/AkademisyenArama?islem=HFeKUiO3_CdOgNOu61FQDWnDBlJpnun-nM2DP-pwgWRInV2hYmKvX0v3DAIL7Fzz">Deniz İşletmeciliği</a> ; <a href="/AkademikArama/AkademisyenArama?islem=HFeKUiO3_CdOgNOu61FQDWnDBlJpnun-nM2DP-pwgWSYiOjLYHD_EP_xurtIZH0N">Deniz Ulaşımı</a></span></td><td><small class="pull-right" ><a id="authorBookM_17221" href="#" class="authorBookM" title="Listeme Ekle"><span class="glyphicon glyphicon-bookmark"></span> </a></small></td><td><span id="spid2" style="visibility: hidden;font-size: 0pt">CC8125CA220115FF</span></td></td></tr><tr id="authorInfo_278059"><td><span id="spid" style="visibility: hidden;font-size: 0pt">278059</span></td><td width="110px"><a href="/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&sira=GIXe1alYuQtGyCLDRIQ30Q&authorId=3C2D5D970A56B382"><img class="img-circle" alt="IRYNA SEMENIUK ZÜMRÜTDAL" src="" style="width:90px; height: 90px;"></a></td><td> <span class="pull-right"> <a id='popoverDataımG' class='popoverData' style='cursor:pointer' data-content='ORCID:0000-0003-1987-8262' rel='popover' data-placement='top'  data-html='true'  data-original-title='' data-trigger='click'><img src="../images/orcidFav.png" alt="ORCID"></a></span><h6>PROFESÖR</h6><h4><a href="/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&sira=GIXe1alYuQtGyCLDRIQ30Q&authorId=3C2D5D970A56B382">IRYNA SEMENIUK ZÜMRÜTDAL</a></h4><h6>PİRİ REİS ÜNİVERSİTESİ/REKTÖRLÜK/İNGİLİZCE HAZIRLIK BÖLÜMÜ/</h6>	<p></p> <span class="label label-success"><a class="anahtarKelime" href="/AkademikArama/AkademisyenArama?islem=HFeKUiO3_CdOgNOu61FQDSE3Zsl-GpwvzEZ6nUOnlX4">Filoloji Temel Alanı</a></span>  <span class="label label-primary">&nbsp;&nbsp;<a class="anahtarKelime" href="/AkademikArama/AkademisyenArama?islem=HFeKUiO3_CdOgNOu61FQDdjnQkNX_Szxt3czKAYG727rTr2LYO309zyoE4VIpMBZ">Dünya Dilleri ve Edebiyatları</a></span><span> <a href="/AkademikArama/AkademisyenArama?islem=HFeKUiO3_CdOgNOu61FQDcEu8FartzYvjw_Shlil9snPxVHffubfbHVe260ZsPeB">İngiliz Dili ve Edebiyatı</a> ; <a href="/AkademikArama/AkademisyenArama?islem=HFeKUiO3_CdOgNOu61FQDcEu8FartzYvjw_Shlil9sm2b-YgGSiMyMq6hbzGvUvh">Amerikan Edebiyatı</a></span></td><td><small class="pull-right" ><a id="authorBookM_278059" href="#" class="authorBookM" title="Listeme Ekle"><span class="glyphicon glyphicon-bookmark"></span> </a></small></td><td><span id="spid2" style="visibility: hidden;font-size: 0pt">3C2D5D970A56B382</span></td></td></tr><tr id="authorInfo_1412"><td><span id="spid" style="visibility: hidden;font-size: 0pt">1412</span></td><td width="110px"><a href="/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&sira=f6U-DEtbVV2rye1FGqLApg&authorId=090F988DAF148CC8"><img class="img-circle" alt="İBRAHİM SOĞUKPINAR" src="" style="width:90px; height: 90px;"></a></td><td> <span class="pull-right"> <a id='popoverDataımG' class='popoverData' style='cursor:pointer' data-content='ORCID:0000-0002-0408-0277' rel='popover' data-placement='top'  data-html='true'  data-original-title='' data-trigger='click'><img src="../images/orcidFav.png" alt="ORCID"></a></span><h6>PROFESÖR</h6><h4><a href="/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&sira=f6U-DEtbVV2rye1FGqLApg&authorId=090F988DAF148CC8">İBRAHİM SOĞUKPINAR</a></h4><h6>PİRİ REİS ÜNİVERSİTESİ/DENİZCİLİK MESLEK YÜKSEKOKULU/ELEKTRİK VE ENERJİ BÖLÜMÜ/HİBRİD VE ELEKTRİKLİ TAŞITLAR TEKNOLOJİSİ PR. /</h6>	<p></p> <span class="label label-success"><a class="anahtarKelime" href="/AkademikArama/AkademisyenArama?islem=HFeKUiO3_CdOgNOu61FQDdRmW0z6ejxKswmYr_k8gTA">Mühendislik Temel Alanı</a></span>  <span class="label label-primary">&nbsp;&nbsp;<a class="anahtarKelime" href="/AkademikArama/AkademisyenArama?islem=HFeKUiO3_CdOgNOu61FQDZXM-u3jDp-Y_4qaM6Q9CZ3rTr2LYO309zyoE4VIpMBZ">Bilgisayar Bilimleri ve Mühendisliği</a></span><span> <a href="/AkademikArama/AkademisyenArama?islem=HFeKUiO3_CdOgNOu61FQDfEs58_rmUkfrAs0xW_9OlFwNtNqa3iw7HpdqYOSy2Ae">Bilgi Güvenliği ve Kriptoloji</a> ; <a href="/AkademikArama/AkademisyenArama?islem=HFeKUiO3_CdOgNOu61FQDfEs58_rmUkfrAs0xW_9OlHdZZpH0SfSYWOjJcYj1mgc">Bilgisayar ve İletişim Ağları</a> ; <a href="/AkademikArama/AkademisyenArama?islem=HFeKUiO3_CdOgNOu61FQDfEs58_rmUkfrAs0xW_9OlFe_jhH1cW5eWLFThPCtPx6">Adli Bilişim</a></span></td><td><a href="mailto:isogukpinar@pirireis.edu.tr">isogukpinar[at]pirireis.edu.tr</a><small class="pull-right" ><a id="authorBookM_1412" href="#" class="authorBookM" title="Listeme Ekle"><span class="glyphicon glyphicon-bookmark"></span> </a></small></td><td><span id="spid2" style="visibility: hidden;font-size: 0pt">090F988DAF148CC8</span></td></td></tr><tr id="authorInfo_42829"><td><span id="spid" style="visibility: hidden;font-size: 0pt">42829</span></td><td width="110px"><a href="/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&sira=O9q5MA0M4yzTvR2o8-WnMg&authorId=47567BB1FF942558"><img class="img-circle" alt="İPEK SEVDA SÖĞÜT" src="" style="width:90px; height: 90px;"></a></td><td> <span class="pull-right"> <a id='popoverDataımG' class='popoverData' style='cursor:pointer' data-content='ORCID:0000-0002-3501-6593' rel='popover' data-placement='top'  data-html='true'  data-original-title='' data-trigger='click'><img src="../images/orcidFav.png" alt="ORCID"></a></span><h6>PROFESÖR</h6><h4><a href="/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&sira=O9q5MA0M4yzTvR2o8-WnMg&authorId=47567BB1FF942558">İPEK SEVDA SÖĞÜT</a></h4><h6>PİRİ REİS ÜNİVERSİTESİ/HUKUK FAKÜLTESİ/HUKUK PR. /</h6>	<p></p> <span class="label label-success"><a class="anahtarKelime" href="/AkademikArama/AkademisyenArama?islem=HFeKUiO3_CdOgNOu61FQDYuc6Pq0EdkTNN_t_9VBtMk">Hukuk Temel Alanı</a></span>  <span class="label label-primary">&nbsp;&nbsp;<a class="anahtarKelime" href="/AkademikArama/AkademisyenArama?islem=HFeKUiO3_CdOgNOu61FQDTch1a6oJ_XVawG0-RcD_N_rTr2LYO309zyoE4VIpMBZ">Roma Hukuku</a></span><span> <a href="/AkademikArama/AkademisyenArama?islem=HFeKUiO3_CdOgNOu61FQDVgHaQyMSC4ApP9g8Au8Gky8aH-PKpjf67uRlf3IgfJk">Roma Hukuku</a></span></td><td><a href="mailto:issogut@pirireis.edu.tr">issogut[at]pirireis.edu.tr</a><small class="pull-right" ><a id="authorBookM_42829" href="#" class="authorBookM" title="Listeme Ekle"><span class="glyphicon glyphicon-bookmark"></span> </a></small></td><td><span id="spid2" style="visibility: hidden;font-size: 0pt">47567BB1FF942558</span></td></td></tr><tr id="authorInfo_151651"><td><span id="spid" style="visibility: hidden;font-size: 0pt">151651</span></td><td width="110px"><a href="/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&sira=-JY7-AwtRcFwDSw_TGsXhw&authorId=4ED2BC02C5FEB7A6"><img class="img-circle" alt="İSMAİL HAKKI HELVACIOĞLU" src="" style="width:90px; height: 90px;"></a></td><td> <span class="pull-right"> <a id='popoverDataımG' class='popoverData' style='cursor:pointer' data-content='ORCID:0000-0002-9225-6999' rel='popover' data-placement='top'  data-html='true'  data-original-title='' data-trigger='click'><img src="../images/orcidFav.png" alt="ORCID"></a></span><h6>PROFESÖR</h6><h4><a href="/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&sira=-JY7-AwtRcFwDSw_TGsXhw&authorId=4ED2BC02C5FEB7A6">İSMAİL HAKKI HELVACIOĞLU</a></h4><h6>PİRİ REİS ÜNİVERSİTESİ/MÜHENDİSLİK FAKÜLTESİ/GEMİ İNŞAATI VE GEMİ MAKİNELERİ MÜHENDİSLİĞİ BÖLÜMÜ/GEMİ İNŞAATI VE GEMİ MAKİNELERİ MÜHENDİSLİĞİ PR.  /</h6>	<p></p> <span class="label label-success"><a class="anahtarKelime" href="/AkademikArama/AkademisyenArama?islem=HFeKUiO3_CdOgNOu61FQDTEg46Zkww9tOEB1B-IT2hM">Mühendislik Temel Alanı</a></span>  <span class="label label-primary">&nbsp;&nbsp;<a class="anahtarKelime" href="/AkademikArama/AkademisyenArama?islem=HFeKUiO3_CdOgNOu61FQDboiI65Y6yNBVFk14DDp0XbrTr2LYO309zyoE4VIpMBZ">Deniz ve Gemi Mühendisliği</a></span><span> <a href="/AkademikArama/AkademisyenArama?islem=HFeKUiO3_CdOgNOu61FQDamidPXcrYtBMkpTY_IUjDF7dEj_keUpaOAivGI64QWl">Gemi İnşaatı</a> ; <a href="/AkademikArama/AkademisyenArama?islem=HFeKUiO3_CdOgNOu61FQDamidPXcrYtBMkpTY_IUjDF_xOE2dB6EbJLRNw-z2iBb">Gemi Hidromekaniği</a> ; <a href="/AkademikArama/AkademisyenArama?islem=HFeKUiO3_CdOgNOu61FQDamidPXcrYtBMkpTY_IUjDGRTJltkctUBB42n07vKkN5">Deniz Teknolojisi</a></span></td><td><a href="mailto:ihelvacioglu@pirireis.edu.tr">ihelvacioglu[at]pirireis.edu.tr</a><small class="pull-right" ><a id="authorBookM_151651" href="#" class="authorBookM" title="Listeme Ekle"><span class="glyphicon glyphicon-bookmark"></span> </a></small></td><td><span id="spid2" style="visibility: hidden;font-size: 0pt">4ED2BC02C5FEB7A6</span></td></td></tr><tr id="authorInfo_1226"><td><span id="spid" style="visibility: hidden;font-size: 0pt">1226</span></td><td width="110px"><a href="/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&sira=eS6LQMZfrcjjMbs99l1AWg&authorId=1391142083A9DE2A"><img class="img-circle" alt="MEHMET TAHİR ÖZDEN" src="" style="width:90px; height: 90px;"></a></td><td> <span class="pull-right"> <a id='popoverDataımG' class='popoverData' style='cursor:pointer' data-content='ORCID:0000-0003-2689-3188' rel='popover' data-placement='top'  data-html='true'  data-original-title='' data-trigger='click'><img src="../images/orcidFav.png" alt="ORCID"></a></span><h6>PROFESÖR</h6><h4><a href="/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&sira=eS6LQMZfrcjjMbs99l1AWg&authorId=1391142083A9DE2A">MEHMET TAHİR ÖZDEN</a></h4><h6>PİRİ REİS ÜNİVERSİTESİ/DENİZCİLİK FAKÜLTESİ/GEMİ MAKİNELERİ İŞLETME MÜHENDİSLİĞİ BÖLÜMÜ/GEMİ MAKİNELERİ İŞLETME MÜHENDİSLİĞİ PR.  /</h6>	<p></p> <span class="label label-success"><a class="anahtarKelime" href="/AkademikArama/AkademisyenArama?islem=HFeKUiO3_CdOgNOu61FQDepQxBXY3idtCSCt1_rmax0">Mühendislik Temel Alanı</a></span>  <span class="label label-primary">&nbsp;&nbsp;<a class="anahtarKelime" href="/AkademikArama/AkademisyenArama?islem=HFeKUiO3_CdOgNOu61FQDZON_mbpbVxXvW3sPtiizHXrTr2LYO309zyoE4VIpMBZ">Elektrik-Elektronik ve Haberleşme Mühendisliği</a></span><span> <a href="/AkademikArama/AkademisyenArama?islem=HFeKUiO3_CdOgNOu61FQDUiwNuYivgZCFtG2eVOpOFBQCbY-d9SvJKgXQ_9wdElD">Haberleşme</a> ; <a href="/AkademikArama/AkademisyenArama?islem=HFeKUiO3_CdOgNOu61FQDUiwNuYivgZCFtG2eVOpOFAkqGoKjwrvaPIgrdHKEK07">İşaret İşleme</a></span></td><td><a href="mailto:mtozden@pirireis.edu.tr">mtozden[at]pirireis.edu.tr</a><small class="pull-right" ><a id="authorBookM_1226" href="#" class="authorBookM" title="Listeme Ekle"><span class="glyphicon glyphicon-bookmark"></span> </a></small></td><td><span id="spid2" style="visibility: hidden;font-size: 0pt">1391142083A9DE2A</span></td></td></tr><tr id="authorInfo_216922"><td><span id="spid" style="visibility: hidden;font-size: 0pt">216922</span></td><td width="110px"><a href="/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&sira=3QkHR6YRCb-E-1I0RusEZw&authorId=81CE9042620F6C40"><img class="img-circle" alt="MEHMET ZİYA SÖĞÜT" src="" style="width:90px; height: 90px;"></a></td><td> <span class="pull-right"> <a id='popoverDataımG' class='popoverData' style='cursor:pointer' data-content='ORCID:0000-0002-9782-7885' rel='popover' data-placement='top'  data-html='true'  data-original-title='' data-trigger='click'><img src="../images/orcidFav.png" alt="ORCID"></a></span><h6>PROFESÖR</h6><h4><a href="/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&sira=3QkHR6YRCb-E-1I0RusEZw&authorId=81CE9042620F6C40">MEHMET ZİYA SÖĞÜT</a></h4><h6>PİRİ REİS ÜNİVERSİTESİ/DENİZCİLİK FAKÜLTESİ/GEMİ MAKİNELERİ İŞLETME MÜHENDİSLİĞİ BÖLÜMÜ/GEMİ MAKİNELERİ İŞLETME MÜHENDİSLİĞİ PR.  /</h6>	<p></p> <span class="label label-success"><a class="anahtarKelime" href="/AkademikArama/AkademisyenArama?islem=HFeKUiO3_CdOgNOu61FQDdKFsOwn9HLPO1L_zcK71Mo">Mühendislik Temel Alanı</a></span>  <span class="label label-primary">&nbsp;&nbsp;<a class="anahtarKelime" href="/AkademikArama/AkademisyenArama?islem=HFeKUiO3_CdOgNOu61FQDWssDjKoho5Rp2_-OdAp7AvrTr2LYO309zyoE4VIpMBZ">Makine Mühendisliği</a></span><span> <a href="/AkademikArama/AkademisyenArama?islem=HFeKUiO3_CdOgNOu61FQDRzgtGaZ4D4B10IoKVCr-50_arnvA29C1mLyphsGKRRn">Enerji</a> ; <a href="/AkademikArama/AkademisyenArama?islem=HFeKUiO3_CdOgNOu61FQDRzgtGaZ4D4B10IoKVCr-53t3SIsO9pkwKSBbK5a85MY">Termodinamik</a> ; <a href="/AkademikArama/AkademisyenArama?islem=HFeKUiO3_CdOgNOu61FQDRzgtGaZ4D4B10IoKVCr-51uf8_-3LDf_-tySvyunu7C">Akışkanlar Mekaniği</a></span></td><td><a href="mailto:mzsogut@pirireis.edu.tr">mzsogut[at]pirireis.edu.tr</a><small class="pull-right" ><a id="authorBookM_216922" href="#" class="authorBookM" title="Listeme Ekle"><span class="glyphicon glyphicon-bookmark"></span> </a></small></td><td><span id="spid2" style="visibility: hidden;font-size: 0pt">81CE9042620F6C40</span></td></td></tr><tr id="authorInfo_5925"><td><span id="spid" style="visibility: hidden;font-size: 0pt">5925</span></td><td width="110px"><a href="/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&sira=8bQ1IMPqlclXbN3kRBSFrQ&authorId=17EE88A9E520C253"><img class="img-circle" alt="METİN TAYLAN" src="../authorimages/photo_m.jpg" style="width:90px; height: 90px;"></a></td><td> <span class="pull-right"> <a id='popoverDataımG' class='popoverData' style='cursor:pointer' data-content='ORCID:0000-0003-1701-8699' rel='popover' data-placement='top'  data-html='true'  data-original-title='' data-trigger='click'><img src="../images/orcidFav.png" alt="ORCID"></a></span><h6>PROFESÖR</h6><h4><a href="/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&sira=8bQ1IMPqlclXbN3kRBSFrQ&authorId=17EE88A9E520C253">METİN TAYLAN</a></h4><h6>PİRİ REİS ÜNİVERSİTESİ/MÜHENDİSLİK FAKÜLTESİ/GEMİ İNŞAATI VE GEMİ MAKİNELERİ MÜHENDİSLİĞİ BÖLÜMÜ/GEMİ İNŞAATI VE GEMİ MAKİNELERİ MÜHENDİSLİĞİ PR.  /</h6>	<p></p> <span class="label label-success"><a class="anahtarKelime" href="/AkademikArama/AkademisyenArama?islem=HFeKUiO3_CdOgNOu61FQDdDDdcscGRbw8i1TtVPt_Rw">Mühendislik Temel Alanı</a></span>  <span class="label label-primary">&nbsp;&nbsp;<a class="anahtarKelime" href="/AkademikArama/AkademisyenArama?islem=HFeKUiO3_CdOgNOu61FQDRZiST53WmRY9VfJRvWhcQjrTr2LYO309zyoE4VIpMBZ">Deniz ve Gemi Mühendisliği</a></span><span> <a href="/AkademikArama/AkademisyenArama?islem=HFeKUiO3_CdOgNOu61FQDXpxKp1cdI0qht2P9t2Tvsp_xOE2dB6EbJLRNw-z2iBb">Gemi Hidromekaniği</a> ; <a href="/AkademikArama/AkademisyenArama?islem=HFeKUiO3_CdOgNOu61FQDXpxKp1cdI0qht2P9t2Tvsp7dEj_keUpaOAivGI64QWl">Gemi İnşaatı</a> ; <a href="/AkademikArama/AkademisyenArama?islem=HFeKUiO3_CdOgNOu61FQDXpxKp1cdI0qht2P9t2TvsrI7Kg_DVOMqw-Hqa4utS-K">Gemi Hareketleri ve Kontrolü</a></span></td><td><a href="mailto:mtaylan@pirireis.edu.tr">mtaylan[at]pirireis.edu.tr</a><small class="pull-right" ><a id="authorBookM_5925" href="#" class="authorBookM" title="Listeme Ekle"><span class="glyphicon glyphicon-bookmark"></span> </a></small></td><td><span id="spid2" style="visibility: hidden;font-size: 0pt">17EE88A9E520C253</span></td></td></tr><tr id="authorInfo_38298"><td><span id="spid" style="visibility: hidden;font-size: 0pt">38298</span></td><td width="110px"><a href="/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&sira=2Wiyh97f95x_J_ifX1gvVw&authorId=415C5B36884EDB83"><img class="img-circle" alt="MUSA KAMACI" src="../authorimages/photo_m.jpg" style="width:90px; height: 90px;"></a></td><td> <span class="pull-right"> <a id='popoverDataımG' class='popoverData' style='cursor:pointer' data-content='ORCID:0000-0001-5865-7687' rel='popover' data-placement='top'  data-html='true'  data-original-title='' data-trigger='click'><img src="../images/orcidFav.png" alt="ORCID"></a></span><h6>PROFESÖR</h6><h4><a href="/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&sira=2Wiyh97f95x_J_ifX1gvVw&authorId=415C5B36884EDB83">MUSA KAMACI</a></h4><h6>PİRİ REİS ÜNİVERSİTESİ/DENİZCİLİK MESLEK YÜKSEKOKULU/ELEKTRİK VE ENERJİ BÖLÜMÜ/HİBRİD VE ELEKTRİKLİ TAŞITLAR TEKNOLOJİSİ PR. /</h6>	<p></p> <span class="label label-success"><a class="anahtarKelime" href="/AkademikArama/AkademisyenArama?islem=HFeKUiO3_CdOgNOu61FQDdJzk79hMnb1lS2dPBKkRvE">Fen Bilimleri ve Matematik Temel Alanı</a></span>  <span class="label label-primary">&nbsp;&nbsp;<a class="anahtarKelime" href="/AkademikArama/AkademisyenArama?islem=HFeKUiO3_CdOgNOu61FQDVb0O5WUjM6um3GdPA1bDXrrTr2LYO309zyoE4VIpMBZ">Kimya</a></span><span> <a href="/AkademikArama/AkademisyenArama?islem=HFeKUiO3_CdOgNOu61FQDXC-8JXk2DvIHCm775zwnWSvO0wgfPlQPZCGoeGp-8d4">Polimer Bilimi</a></span></td><td><a href="mailto:mkamaci@pirireis.edu.tr">mkamaci[at]pirireis.edu.tr</a><small class="pull-right" ><a id="authorBookM_38298" href="#" class="authorBookM" title="Listeme Ekle"><span class="glyphicon glyphicon-bookmark"></span> </a></small></td><td><span id="spid2" style="visibility: hidden;font-size: 0pt">415C5B36884EDB83</span></td></td></tr>
+						</tbody>
+					</table>
+					<ul class="pagination">
+						
+						<li class="active"><a href="/AkademikArama/AramaFiltrele?islem=HFeKUiO3_CdOgNOu61FQDSiW-_ANCFjlvbVmvZp0IFg">1</a></li>
+						
+						<li><a href="/AkademikArama/AramaFiltrele?islem=HFeKUiO3_CdOgNOu61FQDXYKEH250dGmNZb6j9QZX2U">2</a></li>
+						
+						<li><a href="/AkademikArama/AramaFiltrele?islem=HFeKUiO3_CdOgNOu61FQDU2s_0wdhU_L4s6QSfmLax4">3</a></li>
+						
+						<li><a href="/AkademikArama/AramaFiltrele?islem=HFeKUiO3_CdOgNOu61FQDZfVyVU9Ne1YZH9kiXH3FbY">4</a></li>
+						
+						<li><a href="/AkademikArama/AramaFiltrele?islem=HFeKUiO3_CdOgNOu61FQDRiMOA4O1sJTvUfRzwX-eYA">5</a></li>
+						
+						<li><a href="/AkademikArama/AramaFiltrele?islem=HFeKUiO3_CdOgNOu61FQDYAeuI7siQmBi-ktf0UEqAM">6</a></li>
+						
+						<li><a href="/AkademikArama/AramaFiltrele?islem=HFeKUiO3_CdOgNOu61FQDc1JztZVQI2ALfeFj_m61kI">7</a></li>
+						
+						<li><a href="/AkademikArama/AramaFiltrele?islem=HFeKUiO3_CdOgNOu61FQDaQtOY_1uElvE2_McthZOFk">8</a></li>
+						
+						<li><a href="/AkademikArama/AramaFiltrele?islem=HFeKUiO3_CdOgNOu61FQDXi0EOnIvqDUYBsvjNCNU2k">9</a></li>
+						
+						<li><a href="/AkademikArama/AramaFiltrele?islem=HFeKUiO3_CdOgNOu61FQDSaq5h95HyB1AMCTwYQbSTU">10</a></li>
+						
+						<li><a href="/AkademikArama/AramaFiltrele?islem=HFeKUiO3_CdOgNOu61FQDVLnGzu5YECymwUtQv3iBMzhYYQ7Vv093aAmQ67guwgP">&raquo;</a></li>
+						
+
+					</ul>
+
+				</div>
+				
+			</div>
+		</div>
+		<hr>
+		      <footer>    <!-- Foorter baslangic-->
+	      <div class="container">
+		        <div class="row v-center">
+					<p>2026 &copy; Yükseköğretim Kurulu </p>
+				
+				</div>
+		     </div>    <!-- Footer bitis-->
+      </footer>	  
+      		<div id="strgModal" class="modal fade" role="dialog" tabindex="-1" >
+		  <div class="modal-dialog modal-lg">
+			<div class="modal-content">
+			  <div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title">Araştırmacı Listem</h4>
+			  </div>
+			  <div class="modal-body modalscroll">
+				<p> <ul id="citedList" class="list-group content"></ul></p>
+			  </div>
+			  <div class="modal-footer">
+				<a href="#" id="storageRemove" class="btn btn-warning" role="button"><i class="fa fa-file-text-o" aria-hidden="true"></i> Tümünü Sil</a>
+				<a href="#" id="storagePrint" class="btn btn-success" role="button"><i class="fa fa-file-text-o" aria-hidden="true"></i> Text</a>
+				<a href="#" id="storagePrintWord" class="btn btn-success" role="button"><i class="fa fa-file-word-o" aria-hidden="true"></i> Word</a>
+				<a href="#" id="storageExcel" class="btn btn-success" role="button"><i class="fa fa-file-excel-o" aria-hidden="true"></i> Excel</a>
+				<button  type="button" class="btn btn-default closeMymodal">Kapat</button>
+			  </div>
+			</div>
+		  </div>
+		</div>
+		
+		<div class="sideleftbar" style="display: none;">
+			<div class="sideleftbar-button multi-cite-button" >
+				<a href="#" class="text-info"  id="unitslink"> Araştırmacı Listem <span id="units" class="badge">0</span></a>
+			</div>
+		</div>
+						
+
+	</div>
+	<!-- 
+    ================================================== -->
+	<!-- javascript dosyaları -->
+
+
+	
+	
+	
+	
+	
+	
+
+	
+</body>
+</html>
