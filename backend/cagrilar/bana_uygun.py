@@ -75,7 +75,7 @@ async def bana_uygun(profile: AkademikProfil, sadece_acik: bool = True) -> list[
     fused = reciprocal_rank_fusion(
         [{"id": d.id, "distance": dist} for d, dist in semantic],
         [{"id": d.id, "distance": len(bm25) - r} for r, d in enumerate(bm25)],
-        rrf_k=s.rrf_k, fetch_top_k=s.result_count,
+        rrf_k=s.rrf_k, fetch_top_k=s.bana_uygun_sonuc,
     )
     if not fused:
         return []

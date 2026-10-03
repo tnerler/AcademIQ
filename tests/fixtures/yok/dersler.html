@@ -1,0 +1,678 @@
+
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<meta charset="utf-8"/>
+<meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="YÖK Akademik Arama" name="description"/><meta content="AYDIN EMRE CEVİZ, MUSTAFA IŞIK" name="author"/>
+<link href="./images/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
+<title>YÜKSEKÖĞRETİM KURULU</title>
+<!-- CSS -->
+<link href="../css/bootstrap.css" rel="stylesheet"/>
+<link href="../css/custom.css?v=2218" rel="stylesheet"/>
+<link href="../css/timeline.css" rel="stylesheet"/>
+<link href="../css/bootstrapValidator.css" rel="stylesheet"/>
+<link href="../css/font-awesome.css" rel="stylesheet"/>
+<!-- Hata ayıklama ie! -->
+<!--[if lt IE 9]><![endif]-->
+<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!--[if lt IE 9]>
+      
+      
+    <![endif]-->
+</head>
+<body>
+<div class="bodyback">
+<div class="container-fluid">
+<div class="navbar navbar-inverse navbar-fixed-top navbarBackground" role="navigation">
+<div class="container-fluid">
+<div class="navbar-header">
+<button class="navbar-toggle" data-target=".navbar-collapse" data-toggle="collapse" type="button">
+<span class="sr-only">Toggle navigation</span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+</button>
+<a class="navbar_brand" href="../"><img alt="Yükseköğretim Kurulu Akademik Arama" class="logo" src="../images/miniLogo.png"/></a>
+</div>
+<div class="navbar-collapse collapse">
+<ul class="nav navbar-nav navbar-right">
+<li class="active"><a href="../">Anasayfa</a></li>
+<li class="active"><a href="#" onclick="yonlendir('/AkademikArama/LanguageServlet?dil=trHome');">Türkçe</a></li>
+<li class="active"> <a href="#" onclick="yonlendir('/AkademikArama/LanguageServlet?dil=enHome');"> English</a> </li>
+</ul>
+</div> <!--navbar-collapse bitis-->
+</div> <!--container bitis-->
+<!--Arama Bölmesi-->
+<div class="container-fluid">
+<div class="col-lg-4 col-md-5 col-sm-6 col-xs-9 col-md-offset-2 col-sm-offset-3 col-xs-offset-2">
+<form action="/AkademikArama/AkademisyenArama" class="form-horizontal error" id="searchForm" method="post">
+<div class="row">
+<div>
+<div class="form-group">
+<div class="input-group">
+<input class="form-control" data-bv-notempty="" data-bv-notempty-message="Lütfen arama terimi giriniz" data-bv-stringlength-max="50" data-bv-stringlength-message="En az 3 en fazla 30 karakter girilebilir" data-bv-stringlength-min="3" maxlength="50" minlength="3" name="aramaTerim" placeholder="Arama yapmak istediğiniz kelimeyi giriniz" required="" type="text" value=""/>
+<div class="input-group-btn">
+<button class="btn btn-default" data-container="body" data-placement="bottom" data-toggle="popover" data-trigger="hover" id="searchButton" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+<button class="btn btn-default dropdown-toggle" data-toggle="dropdown" tabindex="-1" type="button">
+<span class="caret"></span>
+<span class="sr-only"></span>
+</button><input name="islem" type="hidden" value="1"/>
+<ul class="dropdown-menu dropdown-menu-form pull-right" role="menu"> <!--Arama secenekleri-->
+<li>
+<label class="checkbox">
+<input checked="checked" id="yazarCheckbox" name="yazarCheckbox" type="checkbox"/>
+													Akademisyenler
+												</label>
+</li>
+<li>
+<label class="checkbox">
+<input checked="checked" id="kitapCheckbox" name="kitapCheckbox" type="checkbox"/>
+													Kitaplar
+												</label>
+</li>
+<li>
+<label class="checkbox">
+<input checked="checked" id="PatentCheckbox" name="PatentCheckbox" type="checkbox"/>
+													Patentler
+												</label>
+</li>
+<li>
+<label class="checkbox">
+<input checked="checked" id="projeCheckbox" name="projeCheckbox" type="checkbox"/>
+													Projeler
+												</label>
+</li>
+<li>
+<label class="checkbox">
+<input checked="checked" id="MakaeleCheckbox" name="MakaeleCheckbox" type="checkbox"/>
+													Makaleler
+												</label>
+</li>
+<li>
+<label class="checkbox">
+<input checked="checked" id="BildiriCheckbox" name="BildiriCheckbox" type="checkbox"/>
+													Bildiriler
+												</label>
+</li>
+<li>
+<label class="checkbox">
+<input checked="checked" id="SanatsalCheckbox" name="SanatsalCheckbox" type="checkbox"/>
+													Sanatsal faaliyetler
+												</label>
+</li>
+<li>
+<label class="checkbox">
+<input checked="checked" id="TezCheckbox" name="TezCheckbox" type="checkbox"/>
+													Tezler
+												</label>
+</li>
+</ul> <!--Arama secenekleri bitis-->
+</div>
+</div>
+</div><!-- /.input-group -->
+</div>
+</div><!-- /.row -->
+</form>
+</div>
+</div>
+</div>
+</div>
+<hr/>
+
+
+<hr/>
+<hr/>
+<div class="container-fluid">
+<!-- Sol Menu -->
+<div class="col-lg-2 col-md-2 col-sm-0 col-xs-0 padSol">
+<div class="sidebar-nav">
+<div class="navbar navbar-default" role="navigation">
+<div class="navbar-header">
+<button class="navbar-toggle" data-target=".sidebar-navbar-collapse" data-toggle="collapse" type="button">
+<span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+</button>
+<span class="visible-xs navbar-brand">Profili</span>
+</div>
+<div class="navbar-collapse collapse sidebar-navbar-collapse">
+<ul class="nav nav-pills nav-stacked wide">
+<li id="personelMenu"><a href="viewAuthor.jsp"><div class="iconLi">
+<i class="fa fa-graduation-cap"></i>
+</div>Kişisel Bilgiler </a></li>
+<li id="booksMenu"><a href="/AkademikArama/AkademisyenYayinBilgileri?pubType=q3SMeouSUM6tBWypaNs06Q&amp;authorId=57A6856663E8E116">
+<div class="iconLi">
+<i class="fa fa-book"></i>
+</div>
+<div class="iconLitext">Kitaplar</div>
+</a></li>
+<li id="articleMenu"><a href="/AkademikArama/AkademisyenYayinBilgileri?pubType=5Eaxq5GEK5ukOf71Zpm7dA&amp;authorId=57A6856663E8E116">
+<div class="iconLi">
+<i class="fa fa-pencil"></i>
+</div>
+<div class="iconLitext">Makaleler</div>
+</a></li>
+<li id="proceedingMenu"><a href="/AkademikArama/AkademisyenYayinBilgileri?pubType=iHDPgsbZ-szm5UHCxj3mmg&amp;authorId=57A6856663E8E116">
+<div class="iconLi">
+<i class="fa fa-foursquare"></i>
+</div>
+<div class="iconLitext">Bildiriler</div>
+</a></li>
+<li id="projectMenu"><a href="/AkademikArama/AkademisyenProjeBilgileri?authorId=57A6856663E8E116">
+<div class="iconLi">
+<i class="fa fa-flask"></i>
+</div>
+<div class="iconLitext">Projeler</div>
+</a></li>
+<li id="lessonMenu"><a href="/AkademikArama/AkademisyenDersBilgileri?authorId=57A6856663E8E116">
+<div class="iconLi">
+<i class="glyphicon glyphicon-blackboard"></i>
+</div>
+<div class="iconLitext">Dersler</div>
+</a></li>
+<li id="thesisMenu"><a href="/AkademikArama/AkademisyenYonTezBilgileri?authorId=57A6856663E8E116">
+<div class="iconLi">
+<i class="fa fa-check"></i>
+</div>
+<div class="iconLitext">Yönetilen Tezler</div>
+</a></li>
+<li id="awardMenu"><a href="/AkademikArama/AkademisyenOdulBilgileri?authorId=57A6856663E8E116">
+<div class="iconLi">
+<i class="fa fa-star-o"></i>
+</div>
+<div class="iconLitext">Ödüller</div>
+</a></li>
+<li id="patentMenu"><a href="/AkademikArama/AkademisyenPatentBilgileri?authorId=57A6856663E8E116">
+<div class="iconLi">
+<i class="fa fa-certificate"></i>
+</div>
+<div class="iconLitext">Patentler</div>
+</a></li>
+<li id="memberMenu"><a href="/AkademikArama/AkademisyenUyelikBilgileri?authorId=57A6856663E8E116">
+<div class="iconLi">
+<i class="fa fa-users"></i>
+</div>
+<div class="iconLitext">Üyelikler</div>
+</a></li>
+<li id="artMenu"><a href="/AkademikArama/AkademisyenSanatsalBilgileri?authorId=57A6856663E8E116">
+<div class="iconLi">
+<i class="fa fa-video-camera"></i>
+</div>
+<div class="iconLitext">Sanatsal faaliyetler</div>
+</a></li>
+<li id="idariMenu"><a href="/AkademikArama/AkademisyenIdariGorevBilgileri?authorId=57A6856663E8E116">
+<div class="iconLi">
+<i class="fa fa-user"></i>
+</div>
+<div class="iconLitext">İdari Görevler</div>
+</a></li>
+<li id="expeirenceMenu"><a href="/AkademikArama/AkademisyenDeneyimBilgileri?authorId=57A6856663E8E116">
+<div class="iconLi">
+<i class="fa fa-suitcase"></i>
+</div>
+<div class="iconLitext">Üniversite Dışı Deneyim</div>
+</a></li>
+<li>
+<span class="label label-info labelFont">Son güncelleme: 24.09.2026</span>
+</li>
+</ul>
+</div>
+<!--/.nav-collapse -->
+</div>
+</div>
+</div>
+<!-- Sol Menu bitis-->
+<div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
+<div class="row borderLine">
+<div class="col-lg-2 col-md-2 col-sm-2 col-xs-0 text-center">
+<img alt="AHMET TAŞDEMİR" class="img-circle" src="" style="width: 90px; height: 90px;"/>
+</div>
+<div class="col-lg-6 col-md-6 col-sm-10 col-xs-12">
+<h4>PROFESÖR AHMET TAŞDEMİR
+										
+						</h4>
+						 PİRİ REİS ÜNİVERSİTESİ/DENİZCİLİK FAKÜLTESİ/GEMİ MAKİNELERİ İŞLETME MÜHENDİSLİĞİ BÖLÜMÜ/GEMİ MAKİNELERİ İŞLETME MÜHENDİSLİĞİ PR.  /
+						<p></p>
+<span class="label label-success"> Mühendislik Temel Alanı</span>
+<span class="label label-primary"> Deniz ve Gemi Mühendisliği</span>
+						
+						Gemi İnşaatı
+						, Gemi Hidromekaniği
+						, Deniz Araçları Yapısal Tasarımı
+					</div>
+<div class="col-lg-4 col-md-4 col-sm-0 col-xs-0">
+<a href="viewAuthorGraphs.jsp"><img alt="Birlikte çalıştığı yazarlar" class="img" src="../images/collaborated.png"/> Birlikte çalıştığı kişiler </a>
+</div>
+</div>
+<div class="container-fluid">
+<div class="panel-group" id="accordion">
+<div class="panel panel-default">
+<div class="panel-heading">
+<h4 class="panel-title">
+<a data-parent="#accordion" data-toggle="collapse" href="#collapse0"> Önlisans
+									</a>
+</h4>
+</div>
+<div class="panel-collapse collapse in" id="collapse0">
+<div class="panel-body">
+<table class="table">
+<thead>
+<tr>
+<th>Dönem</th>
+<th>Ders Adı</th>
+<th>Dili</th>
+<th>Saat</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2017-2018</td>
+<td>Ship Geometry</td>
+<td>İngilizce</td>
+<td>2</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<h4 class="panel-title">
+<a data-parent="#accordion" data-toggle="collapse" href="#collapse1"> Lisans
+									</a>
+</h4>
+</div>
+<div class="panel-collapse collapse" id="collapse1">
+<div class="panel-body">
+<table class="table">
+<thead>
+<tr>
+<th>Dönem</th>
+<th>Ders Adı</th>
+<th>Dili</th>
+<th>Saat</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2023-2024</td>
+<td>Naval Architecture and Ship Stability</td>
+<td>İngilizce</td>
+<td>3</td>
+</tr>
+<tr>
+<td>2023-2024</td>
+<td>Strength of Materials</td>
+<td>İngilizce</td>
+<td>3</td>
+</tr>
+<tr>
+<td>2022-2023</td>
+<td>Strength of Materials</td>
+<td>İngilizce</td>
+<td>3</td>
+</tr>
+<tr>
+<td>2022-2023</td>
+<td>Fluid Mechanics</td>
+<td>İngilizce</td>
+<td>3</td>
+</tr>
+<tr>
+<td>2022-2023</td>
+<td>Naval Architecture and Ship Stability</td>
+<td>İngilizce</td>
+<td>3</td>
+</tr>
+<tr>
+<td>2021-2022</td>
+<td>Strength of Materials</td>
+<td>İngilizce</td>
+<td>3</td>
+</tr>
+<tr>
+<td>2021-2022</td>
+<td>Statics</td>
+<td>İngilizce</td>
+<td>3</td>
+</tr>
+<tr>
+<td>2021-2022</td>
+<td>Naval Architecture and Ship Stability</td>
+<td>İngilizce</td>
+<td>6</td>
+</tr>
+<tr>
+<td>2021-2022</td>
+<td>Fluid Mechanics</td>
+<td>İngilizce</td>
+<td>3</td>
+</tr>
+<tr>
+<td>2020-2021</td>
+<td>Research and Presentation Techniques</td>
+<td>İngilizce</td>
+<td>1</td>
+</tr>
+<tr>
+<td>2020-2021</td>
+<td>Naval Architecture and Ship Stability</td>
+<td>İngilizce</td>
+<td>3</td>
+</tr>
+<tr>
+<td>2020-2021</td>
+<td>Fluid Mechanics</td>
+<td>İngilizce</td>
+<td>3</td>
+</tr>
+<tr>
+<td>2020-2021</td>
+<td>Strength of Materials</td>
+<td>İngilizce</td>
+<td>3</td>
+</tr>
+<tr>
+<td>2019-2020</td>
+<td>Fluid Mechanics</td>
+<td>İngilizce</td>
+<td>9</td>
+</tr>
+<tr>
+<td>2019-2020</td>
+<td>Strength of Materials</td>
+<td>İngilizce</td>
+<td>9</td>
+</tr>
+<tr>
+<td>2019-2020</td>
+<td>Naval Architecture and Ship Stability</td>
+<td>İngilizce</td>
+<td>6</td>
+</tr>
+<tr>
+<td>2019-2020</td>
+<td>Ship Theory</td>
+<td>İngilizce</td>
+<td>4</td>
+</tr>
+<tr>
+<td>2018-2019</td>
+<td>Dynamics</td>
+<td>İngilizce</td>
+<td>3</td>
+</tr>
+<tr>
+<td>2018-2019</td>
+<td>Shipbuilding</td>
+<td>İngilizce</td>
+<td>6</td>
+</tr>
+<tr>
+<td>2018-2019</td>
+<td>Naval Architecture and Ship Stability</td>
+<td>İngilizce</td>
+<td>6</td>
+</tr>
+<tr>
+<td>2018-2019</td>
+<td>Strength of Materials</td>
+<td>İngilizce</td>
+<td>3</td>
+</tr>
+<tr>
+<td>2018-2019</td>
+<td>Shipbuilding</td>
+<td>İngilizce</td>
+<td>2</td>
+</tr>
+<tr>
+<td>2018-2019</td>
+<td>Naval Architecture and Ship Stability</td>
+<td>İngilizce</td>
+<td>3</td>
+</tr>
+<tr>
+<td>2018-2019</td>
+<td>Statitics</td>
+<td>İngilizce</td>
+<td>6</td>
+</tr>
+<tr>
+<td>2017-2018</td>
+<td>Shipbuilding</td>
+<td>İngilizce</td>
+<td>4</td>
+</tr>
+<tr>
+<td>2017-2018</td>
+<td>Shipbuilding</td>
+<td>İngilizce</td>
+<td>2</td>
+</tr>
+<tr>
+<td>2017-2018</td>
+<td>Statitics</td>
+<td>İngilizce</td>
+<td>8</td>
+</tr>
+<tr>
+<td>2017-2018</td>
+<td>Statitics</td>
+<td>İngilizce</td>
+<td>4</td>
+</tr>
+<tr>
+<td>2017-2018</td>
+<td>Naval Architecture and Ship Stability</td>
+<td>İngilizce</td>
+<td>6</td>
+</tr>
+<tr>
+<td>2017-2018</td>
+<td>Naval Architecture and Ship Stability</td>
+<td>İngilizce</td>
+<td>3</td>
+</tr>
+<tr>
+<td>2016-2017</td>
+<td>Shipbuilding</td>
+<td>İngilizce</td>
+<td>6</td>
+</tr>
+<tr>
+<td>2016-2017</td>
+<td>Statitics</td>
+<td>İngilizce</td>
+<td>6</td>
+</tr>
+<tr>
+<td>2016-2017</td>
+<td>Naval Architecture and Ship Stability</td>
+<td>İngilizce</td>
+<td>6</td>
+</tr>
+<tr>
+<td>2014-2015</td>
+<td>Shipbuilding</td>
+<td>İngilizce</td>
+<td>2</td>
+</tr>
+<tr>
+<td>2014-2015</td>
+<td>Marine Diesel Engines</td>
+<td>İngilizce</td>
+<td>4</td>
+</tr>
+<tr>
+<td>2014-2015</td>
+<td>MARİTİME BUSİNESS MANAGEMENT</td>
+<td>İngilizce</td>
+<td>2</td>
+</tr>
+<tr>
+<td>2014-2015</td>
+<td>INTRODUCTİON TO MARİNE ENGİNEERİNG</td>
+<td>İngilizce</td>
+<td>4</td>
+</tr>
+<tr>
+<td>2013-2014</td>
+<td>Maritime Business Management</td>
+<td>İngilizce</td>
+<td>2</td>
+</tr>
+<tr>
+<td>2013-2014</td>
+<td>Fluidmechanics</td>
+<td>İngilizce</td>
+<td>4</td>
+</tr>
+<tr>
+<td>2013-2014</td>
+<td>Physics I</td>
+<td>İngilizce</td>
+<td>5</td>
+</tr>
+<tr>
+<td>2013-2014</td>
+<td>Introduction to Marine Engineering</td>
+<td>İngilizce</td>
+<td>4</td>
+</tr>
+<tr>
+<td>2013-2014</td>
+<td>Shipbuilding</td>
+<td>İngilizce</td>
+<td>2</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<h4 class="panel-title">
+<a data-parent="#accordion" data-toggle="collapse" href="#collapse2"> Yüksek Lisans
+									</a>
+</h4>
+</div>
+<div class="panel-collapse collapse" id="collapse2">
+<div class="panel-body">
+<table class="table">
+<thead>
+<tr>
+<th>Dönem</th>
+<th>Ders Adı</th>
+<th>Dili</th>
+<th>Saat</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2022-2023</td>
+<td>NUMERICAL METHODS IN FLUID FLOW AND HEAT TRANSFER</td>
+<td>İngilizce</td>
+<td>3</td>
+</tr>
+<tr>
+<td>2021-2022</td>
+<td>NUMERICAL METHODS IN FLUID FLOW AND HEAT TRANSFER</td>
+<td>İngilizce</td>
+<td>3</td>
+</tr>
+<tr>
+<td>2020-2021</td>
+<td>Fluid Dynamics and Numerical Methods in Heat Transfer</td>
+<td>İngilizce</td>
+<td>3</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<h4 class="panel-title">
+<a data-parent="#accordion" data-toggle="collapse" href="#collapse3"> Doktora
+									</a>
+</h4>
+</div>
+<div class="panel-collapse collapse" id="collapse3">
+<div class="panel-body">
+<table class="table">
+<thead>
+<tr>
+<th>Dönem</th>
+<th>Ders Adı</th>
+<th>Dili</th>
+<th>Saat</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2022-2023</td>
+<td>Optimization Techniques for Design</td>
+<td>İngilizce</td>
+<td>3</td>
+</tr>
+<tr>
+<td>2021-2022</td>
+<td>Optimization Techniques for Design</td>
+<td>İngilizce</td>
+<td>3</td>
+</tr>
+<tr>
+<td>2020-2021</td>
+<td>Optimization Techniques for Design</td>
+<td>İngilizce</td>
+<td>3</td>
+</tr>
+<tr>
+<td>2019-2020</td>
+<td>Unified Theory of Ship Motions and Strength</td>
+<td>İngilizce</td>
+<td>3</td>
+</tr>
+<tr>
+<td>2017-2018</td>
+<td>Introduction to Finite Elements</td>
+<td>İngilizce</td>
+<td>3</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<hr/>
+<footer>
+<!-- Foorter baslangic-->
+<div class="container">
+<div class="row v-center">
+<p>2026 © Yükseköğretim Kurulu</p>
+</div>
+</div>
+<!-- Foorter bitis-->
+</footer>
+</div>
+<!-- 
+    ================================================== -->
+<!-- javascript dosyaları -->
+
+
+
+
+
+
+</body>
+</html>

@@ -1,6 +1,7 @@
 """Baslik kara listesi: proje cagrisi olmadigi basliktan belli olan duyurular LLM'e gitmeden elenir.
 
-Kaliplar 2025-09 / 2026-09 arasindaki 252 TUBITAK duyuru basligina gore secildi. "Suresi uzatildi /
+Kaliplar 2025-09 / 2026-09 arasindaki 252 TUBITAK duyuru basligina, sonra ayni donemin TUSEB (25), kalkinma
+ajanslari (36) ve AB Baskanligi (27) basliklarina gore secildi. "Suresi uzatildi /
 guncellendi" duyurulari bilerek listede yok: mevcut bir cagrinin tarihlerini guncellerler.
 Kaliplar sadelestirilmis (kucuk harf, Turkce karaktersiz) basliga \\b ile kelime basindan uygulanir.
 """
@@ -26,6 +27,11 @@ KARA_LISTE = [
     "katilim destegi", "toplantisina katilim",
     "kis okulu", "calistay", "seminer", "zirve", "kongre", "bilgi gunu", "proje pazari",
     "rehber", "onaylandi", "son asamaya",
+    # TUSEB / kalkinma ajanslari / AB Baskanligi
+    "ziyaret", "hakem", "webinar", "tamamlandi", "hak kazan", "protokol imza", "mesaji", "sikca sorulan",
+    "toplantisi", "bilgilendirme etkinli", "bilgilendirme program", "egitimi duzenlen", "mentorlu",
+    "yardim masasi", "satin alma", "yururluge gir",
+    "kpss", "sinav", "atama", "uzman yardimci", "personel alim", "alim ilani", "alinacaktir",
 ]
 
 _PATTERN = re.compile(r"\b(" + "|".join(re.escape(k) for k in KARA_LISTE) + ")")

@@ -9,4 +9,6 @@ SECTION_LABELS = {
     "yayinlar": "Yayınlar",
     "projeler": "Projeler",
     "yonetilen_tezler": "Yönetilen Tezler",
+    "patentler": "Patentler",        # yalnizca YOK verisinde (backend/yok/index.py)
+    "dersler": "Verdiği Dersler",    # yalnizca YOK verisinde
 }

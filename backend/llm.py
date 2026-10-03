@@ -10,9 +10,10 @@ from backend.config import get_settings
 
 
 @lru_cache
-def get_llm() -> ChatOpenAI:
+def get_llm(model: str | None = None) -> ChatOpenAI:
+    """model verilmezse llm_model (varsayilan sohbet modeli) kullanilir."""
     s = get_settings()
-    return ChatOpenAI(model=s.llm_model, temperature=0, api_key=s.openai_api_key)
+    return ChatOpenAI(model=model or s.llm_model, temperature=0, api_key=s.openai_api_key)
 
 
 @lru_cache

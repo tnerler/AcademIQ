@@ -8,7 +8,7 @@ from typing import Literal
 from fastapi import APIRouter, Header, HTTPException, Query, status
 from sqlalchemy import Select, case, func, insert, or_, select
 
-from backend.api.schemas import CagriDetay, CagriListe, CekmeCalismasi, ProgramOzet, TaramaDurumu
+from backend.api.schemas import CagriDetay, CagriListe, CekmeCalismasi, KaynakOzet, ProgramOzet, TaramaDurumu
 from backend.cagrilar.db import cagri_eslesmeleri, cagrilar, cekme_calismalari, durum, get_engine
 from backend.config import get_settings
 
@@ -31,17 +31,23 @@ def _uygun_hocalar(sonuc: dict | None) -> list[str]:
     return [s["hoca"]["ad_soyad"] for s in (sonuc or {}).get("sonuclar", [])]
 
 
-def _filtrele(q: Select, durum_: str | None, hedef_kitle: str | None, program: str | None, ara: str | None) -> Select:
+def _filtrele(q: Select, durum_: str | None, hedef_kitle: str | None, program: str | None, ara: str | None,
+              kaynak: str | None = None, son_gun: int | None = None) -> Select:
     if durum_:
         q = q.where(durum == durum_)
     if hedef_kitle:
         q = q.where(cagrilar.c.hedef_kitle == hedef_kitle)
+    if kaynak:
+        q = q.where(cagrilar.c.kaynak == kaynak)
     if program:
         q = q.where(cagrilar.c.program_kodu == program)
+    if son_gun is not None:  # N gun icinde kapanan acik cagrilar
+        q = q.where(durum == "acik", cagrilar.c.son_tarih <= func.current_date() + son_gun)
     if ara and ara.strip():
         kalip = f"%{ara.strip()}%"
         q = q.where(or_(*(col.ilike(kalip) for col in (
-            cagrilar.c.baslik, cagrilar.c.ozet, cagrilar.c.program_adi, cagrilar.c.program_kodu))))
+            cagrilar.c.baslik, cagrilar.c.ozet, cagrilar.c.program_adi, cagrilar.c.program_kodu,
+            func.array_to_string(cagrilar.c.basvuru_kosullari, " "), cagrilar.c.metin))))
     return q
 
 
@@ -49,14 +55,16 @@ def _filtrele(q: Select, durum_: str | None, hedef_kitle: str | None, program: s
 def list_cagrilar(
     durum_: Literal["acik", "gecmis", "belirsiz"] | None = Query(None, alias="durum"),
     hedef_kitle: Literal["akademik", "sanayi"] | None = None,
+    kaynak: str | None = Query(None, description="Kaynak, ör. TÜBİTAK, TÜSEB, Kalkınma Ajansları, AB Başkanlığı"),
     program: str | None = Query(None, description="Program kodu, ör. 1001"),
-    q: str | None = Query(None, description="Başlık, özet ve programda arama"),
+    son_gun: int | None = Query(None, ge=0, le=365, description="Yalnızca N gün içinde kapanan açık çağrılar"),
+    q: str | None = Query(None, description="Başlık, özet, program, başvuru koşulları ve çağrı metninde arama"),
     limit: int = Query(50, ge=1, le=200),
     offset: int = Query(0, ge=0),
 ) -> CagriListe:
     base = _filtrele(select(*_KOLONLAR, durum, cagri_eslesmeleri.c.sonuc)
                      .outerjoin(cagri_eslesmeleri, cagri_eslesmeleri.c.cagri_id == cagrilar.c.id),
-                     durum_, hedef_kitle, program, q)
+                     durum_, hedef_kitle, program, q, kaynak, son_gun)
     with get_engine().connect() as conn:
         toplam = conn.execute(select(func.count()).select_from(base.subquery())).scalar_one()
         rows = conn.execute(base.order_by(*_SIRA).limit(limit).offset(offset)).mappings().all()
@@ -67,14 +75,26 @@ def list_cagrilar(
 
 
 @router.get("/programlar", response_model=list[ProgramOzet], summary="Filtre icin program kodlari")
-def list_programlar() -> list[ProgramOzet]:
+def list_programlar(kaynak: str | None = Query(None, description="Yalnızca bu kaynağın programları")) -> list[ProgramOzet]:
     q = (select(cagrilar.c.program_kodu.label("kod"), func.max(cagrilar.c.program_adi).label("ad"),
                 func.count().label("sayi"))
          .where(cagrilar.c.program_kodu.is_not(None))
          .group_by(cagrilar.c.program_kodu)
          .order_by(func.count().desc(), cagrilar.c.program_kodu))
+    if kaynak:
+        q = q.where(cagrilar.c.kaynak == kaynak)
     with get_engine().connect() as conn:
         return [ProgramOzet(**r) for r in conn.execute(q).mappings()]
+
+
+@router.get("/kaynaklar", response_model=list[KaynakOzet], summary="Filtre icin kaynaklar ve cagri sayilari")
+def list_kaynaklar() -> list[KaynakOzet]:
+    q = (select(cagrilar.c.kaynak, func.count().label("sayi"),
+                func.count().filter(durum == "acik").label("acik"))
+         .group_by(cagrilar.c.kaynak)
+         .order_by(func.count().desc()))
+    with get_engine().connect() as conn:
+        return [KaynakOzet(**r) for r in conn.execute(q).mappings()]
 
 
 @router.get("/tarama", response_model=TaramaDurumu, summary="Son cagri toplama calismasinin durumu")

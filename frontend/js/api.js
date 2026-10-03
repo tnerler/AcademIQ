@@ -226,6 +226,68 @@ export async function match({ file = null, metin = null, cagri = null, yenile = 
   }
 }
 
+/**
+ * POST /api/sohbet (JSON) -> SohbetYaniti { tur, metin, eslesme, hoca, adaylar }
+ * tur: ilan (yapıştırılan ilan) | alan (alana göre hoca) | hoca (bir hocanın bilgileri) | sohbet
+ * gecmis: [{ rol: "kullanici" | "asistan", metin }] (eskiden yeniye). Eşleştirme gibi 10–15 sn sürebilir.
+ */
+export async function sohbet(mesaj, gecmis = [], { signal } = {}) {
+  const invalid = validateMetin(mesaj);
+  if (invalid) throw new ApiError(422, invalid.message.replace("İlan metni", "Mesaj"));
+
+  const controller = new AbortController();
+  let timedOut = false;
+  const timer = setTimeout(() => {
+    timedOut = true;
+    controller.abort();
+  }, CONFIG.MATCH_TIMEOUT_MS);
+  signal?.addEventListener("abort", () => controller.abort(), { once: true });
+
+  try {
+    if (CONFIG.USE_MOCK) return await mockSohbet(mesaj.trim(), controller.signal);
+    return await request("/api/sohbet", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ mesaj: mesaj.trim(), gecmis }),
+      signal: controller.signal,
+    });
+  } catch (err) {
+    if (err.name === "AbortError" && timedOut) throw new ApiError(408, FALLBACK_MESSAGES[408]);
+    throw err;
+  } finally {
+    clearTimeout(timer);
+  }
+}
+
+// Mock: metinde bir hocanın adı geçiyorsa "hoca", uzun metin "ilan", selamlama "sohbet", gerisi "alan".
+async function mockSohbet(mesaj, signal) {
+  const cvs = await loadMock("cvs");
+  const n = normalizeText(mesaj);
+  const hoca = cvs.find((h) => n.includes(normalizeText(h.ad_soyad)));
+  if (hoca) {
+    await sleep(1200, signal);
+    const alanlar = hoca.arastirma_alanlari ?? [];
+    return {
+      tur: "hoca", hoca: toOzet(hoca), adaylar: [], eslesme: null,
+      metin: `Örnek yanıt (mock): **${hoca.ad_soyad}** hakkında CV'deki bilgiler:\n${
+        alanlar.map((a) => `- ${a}`).join("\n") || "- Araştırma alanı bilgisi yok"}`,
+    };
+  }
+  if (mesaj.length < 60 && /merhaba|selam|ne yapabil|yardım/.test(n)) {
+    await sleep(600, signal);
+    return { tur: "sohbet", hoca: null, adaylar: [], eslesme: null,
+      metin: "Merhaba! Bir proje ilanı yapıştırabilir, bir alan sorabilir ya da bir hocanın bilgilerini isteyebilirsiniz." };
+  }
+  await sleep(CONFIG.MOCK_MATCH_DELAY_MS, signal);
+  if (/hata/i.test(mesaj)) throw new ApiError(500, FALLBACK_MESSAGES[500]);
+  const eslesme = structuredClone(await pickMockIlanByText(mesaj));
+  const tur = mesaj.length > 300 ? "ilan" : "alan";
+  return {
+    tur, eslesme, hoca: null, adaylar: [],
+    metin: `Örnek sonuç (mock): **${eslesme.ilan.baslik}** için ${eslesme.sonuclar.length} hocayı Eşleştir sayfasında listeledim.`,
+  };
+}
+
 /** Pasif İlan Ekle ekranındaki örnek ilan listesi. */
 export function getSampleIlanlar() {
   return loadMock("ilanlar");
@@ -256,22 +318,28 @@ async function mockCagrilar() {
     durum: i.son_basvuru >= today ? "acik" : "gecmis",
     yayin_tarihi: null,
     uygun_hocalar: [],
-    butce: null, sure: null, basvuru_kosullari: [], baglantilar: [], guncelleme_urller: [],
+    butce: null, program_butcesi: null, sure: null, basvuru_kosullari: [], baglantilar: [], guncelleme_urller: [],
   }));
 }
 
 /** GET /api/cagrilar -> { toplam, cagrilar: CagriOzet[] } */
-export async function getCagrilar({ durum = "", hedef_kitle = "", program = "", q = "", limit = 50, offset = 0 } = {}) {
+export async function getCagrilar({
+  durum = "", hedef_kitle = "", kaynak = "", program = "", son_gun = "", q = "", limit = 50, offset = 0,
+} = {}) {
   if (CONFIG.USE_MOCK) {
     await sleep(250);
     const ara = normalizeText(q);
+    const sinir = son_gun === "" ? null : new Date(Date.now() + Number(son_gun) * 86400000).toISOString().slice(0, 10);
     const list = (await mockCagrilar()).filter((c) =>
       (!durum || c.durum === durum) && (!hedef_kitle || c.hedef_kitle === hedef_kitle)
-      && (!program || c.program_kodu === program) && (!ara || normalizeText(c.baslik + " " + c.ozet).includes(ara)));
+      && (!kaynak || c.kaynak === kaynak) && (!program || c.program_kodu === program)
+      && (!sinir || (c.durum === "acik" && c.son_tarih <= sinir))
+      && (!ara || normalizeText(c.baslik + " " + c.ozet).includes(ara)));
     return { toplam: list.length, cagrilar: list.slice(offset, offset + limit) };
   }
   const params = new URLSearchParams(
-    Object.entries({ durum, hedef_kitle, program, q, limit, offset }).filter(([, v]) => v !== "" && v != null),
+    Object.entries({ durum, hedef_kitle, kaynak, program, son_gun, q, limit, offset })
+      .filter(([, v]) => v !== "" && v != null),
   );
   return request(`/api/cagrilar?${params}`);
 }
@@ -286,14 +354,31 @@ export async function getCagri(id) {
   return request(`/api/cagrilar/${encodeURIComponent(id)}`);
 }
 
-/** GET /api/cagrilar/programlar -> ProgramOzet[] */
-export async function getProgramlar() {
+/** GET /api/cagrilar/programlar?kaynak= -> ProgramOzet[] */
+export async function getProgramlar({ kaynak = "" } = {}) {
   if (CONFIG.USE_MOCK) {
     const counts = new Map();
-    for (const c of await mockCagrilar()) if (c.program_kodu) counts.set(c.program_kodu, (counts.get(c.program_kodu) ?? 0) + 1);
+    for (const c of await mockCagrilar()) {
+      if (c.program_kodu && (!kaynak || c.kaynak === kaynak)) counts.set(c.program_kodu, (counts.get(c.program_kodu) ?? 0) + 1);
+    }
     return [...counts].map(([kod, sayi]) => ({ kod, ad: null, sayi }));
   }
-  return request("/api/cagrilar/programlar");
+  return request(`/api/cagrilar/programlar${kaynak ? `?${new URLSearchParams({ kaynak })}` : ""}`);
+}
+
+/** GET /api/cagrilar/kaynaklar -> KaynakOzet[] */
+export async function getKaynaklar() {
+  if (CONFIG.USE_MOCK) {
+    const counts = new Map();
+    for (const c of await mockCagrilar()) {
+      const k = counts.get(c.kaynak) ?? { kaynak: c.kaynak, sayi: 0, acik: 0 };
+      k.sayi += 1;
+      k.acik += c.durum === "acik" ? 1 : 0;
+      counts.set(c.kaynak, k);
+    }
+    return [...counts.values()];
+  }
+  return request("/api/cagrilar/kaynaklar");
 }
 
 /** GET /api/cagrilar/tarama -> TaramaDurumu */
@@ -306,6 +391,22 @@ export async function getTarama() {
 export async function tara(token) {
   if (CONFIG.USE_MOCK) throw new ApiError(501, "Mock modda kaynak taraması yapılamaz.");
   return request("/api/cagrilar/tara", { method: "POST", headers: { "X-Admin-Token": token } });
+}
+
+// ---------------------------------------------------------------------------
+// YÖK Akademik güncellik kontrolü
+// ---------------------------------------------------------------------------
+
+/** GET /api/yok/tarama -> YokTaramaDurumu */
+export async function getYokTarama() {
+  if (CONFIG.USE_MOCK) return { aktif: null, son_biten: null, son_tam: null, akademisyen_sayisi: 0 };
+  return request("/api/yok/tarama");
+}
+
+/** POST /api/yok/tara?tur=hizli|tam (X-Admin-Token) -> YokTarama */
+export async function yokTara(token, tur = "hizli") {
+  if (CONFIG.USE_MOCK) throw new ApiError(501, "Mock modda YÖK taraması yapılamaz.");
+  return request(`/api/yok/tara?tur=${encodeURIComponent(tur)}`, { method: "POST", headers: { "X-Admin-Token": token } });
 }
 
 // ---------------------------------------------------------------------------

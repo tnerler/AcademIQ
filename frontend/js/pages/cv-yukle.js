@@ -104,7 +104,7 @@ function renderUploads() {
             <td><span class="badge ${STATUS[u.status][0]}" ${u.error ? `title="${esc(u.error)}"` : ""}>
               ${u.status === "run" ? `<span class="spinner dark"></span> ` : ""}${STATUS[u.status][1]}</span></td>
             <td>${u.hoca ? `<a class="link-btn" href="#/cvler/${encodeURIComponent(u.hoca.id)}">${esc(fullName(u.hoca))}</a>`
-              : u.error ? `<span class="small" style="color:var(--err-fg)">${esc(u.error)}</span>` : "—"}</td>
+              : u.error ? `<span class="small" style="color:var(--error)">${esc(u.error)}</span>` : "—"}</td>
           </tr>`).join("")}
         </tbody>
       </table>

@@ -1,4 +1,5 @@
 import { getCvs, getCv, cvPdfUrl } from "../api.js";
+import { mountYokKontrol } from "../yok-kontrol.js";
 import {
   esc, icon, chips, displayName, fullName, shortUni, normalize, trCompare, notice, openPdfModal,
 } from "../ui.js";
@@ -29,13 +30,19 @@ export function render(el, params) {
           <h1 class="page-title">CV'ler</h1>
           <p class="page-sub" id="cv-sub">Yükleniyor…</p>
         </div>
-        <a class="btn btn-primary" href="#/cv-yukle">+ CV Yükle</a>
+        <div class="page-actions">
+          <div class="page-actions" id="yok-head"></div>
+          <a class="btn btn-cta" href="#/cv-yukle">+ CV Yükle</a>
+        </div>
       </div>
+      <div id="yok-body"></div>
       <div id="cv-body">${skeleton()}</div>
     </div>`;
+  const unmountYok = mountYokKontrol(el.querySelector("#yok-head"), el.querySelector("#yok-body"));
   load();
   return () => {
     root = null;
+    unmountYok();
   };
 }
 

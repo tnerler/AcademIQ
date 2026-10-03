@@ -4,7 +4,8 @@ ardindan aktif cagrilarin sayfalari yeniden kontrol edilir; yeni/degisen cagrila
 akademik olanlar otomatik eslestirilir.
 
   - Ilk calistirma (duyurular bos) ya da --backfill: son `cagri_backfill_gun` gunun tum duyurulari.
-  - Sonraki calistirmalar: liste sayfalari bilinen bir duyuruya gelene kadar gezilir.
+  - Sonraki calistirmalar: liste sayfalari bilinen bir duyuruya gelene kadar gezilir (sirali olmayan
+    listelerde tum liste gezilip bilinenler atlanir).
   - Duyurular eskiden yeniye islenir: yarida kalan bir calistirmadan sonra atlanan duyuru olmaz.
   - 'hata' karari verilen duyurular her calistirmada yeniden denenir.
 
@@ -33,7 +34,10 @@ from backend.cagrilar.extract import CagriCikarim, cikar, tarihleri_birlestir
 from backend.cagrilar.filters import kara_liste
 from backend.cagrilar.index import cagrilari_indeksle
 from backend.cagrilar.sources.base import DuyuruOge, DuyuruSayfasi, Kaynak
+from backend.cagrilar.sources.ab import AbBaskanligi
+from backend.cagrilar.sources.kalkinma_ajanslari import KalkinmaAjanslari
 from backend.cagrilar.sources.tubitak import Tubitak
+from backend.cagrilar.sources.tuseb import Tuseb
 from backend.config import get_settings
 from backend.matching.ilan_extract import fold
 from backend.vectorstore import doc_id
@@ -48,7 +52,7 @@ MAX_ARTAN_SAYFA = 30  # bilinen duyuru hic bulunamazsa (ör. uzun sure calismadi
 
 
 def kaynaklar() -> list[Kaynak]:
-    return [Tubitak()]
+    return [Tubitak(), Tuseb(), KalkinmaAjanslari(), AbBaskanligi()]
 
 
 # --- Calistirma kaydi ----------------------------------------------------------
@@ -64,13 +68,16 @@ def calistir(calisma_id: int, backfill: bool = False) -> Counter:
         conn.execute(update(cekme_calismalari).where(cekme_calismalari.c.id == calisma_id)
                      .values(durum="calisiyor", basladi=func.now()))
     sayac: Counter = Counter()
-    try:
-        for kaynak in kaynaklar():
+    hatalar: list[str] = []
+    for kaynak in kaynaklar():  # bir sitenin hatasi digerlerini durdurmasin
+        try:
             _kaynak_calistir(kaynak, backfill, sayac)
-    except Exception as exc:
-        logger.exception("Cekme calismasi basarisiz")
-        _bitir(calisma_id, "hata", sayac, f"{type(exc).__name__}: {exc}")
-        raise
+        except Exception as exc:
+            logger.exception("%s taranamadi", kaynak.ad)
+            hatalar.append(f"{kaynak.ad}: {type(exc).__name__}: {exc}")
+    if hatalar:
+        _bitir(calisma_id, "hata", sayac, "\n".join(hatalar))
+        return sayac
     _bitir(calisma_id, "bitti", sayac, None)
     logger.info("Calisma %d bitti: %s", calisma_id, dict(sayac))
     return sayac
@@ -115,6 +122,8 @@ def _kaynak_calistir(kaynak: Kaynak, backfill: bool, sayac: Counter) -> None:
 def _yeni_duyurular(kaynak: Kaynak, bilinen: set[str], backfill: bool) -> list[DuyuruOge]:
     """Liste sayfalarindan islenmemis duyurular (yeniden eskiye)."""
     sinir = date.today() - timedelta(days=get_settings().cagri_backfill_gun)
+    if not kaynak.sirali:
+        return _sirasiz_yeni_duyurular(kaynak, bilinen, sinir)
     yeni: list[DuyuruOge] = []
     sayfa = 0
     while True:
@@ -137,6 +146,20 @@ def _yeni_duyurular(kaynak: Kaynak, bilinen: set[str], backfill: bool) -> list[D
             return yeni
 
 
+def _sirasiz_yeni_duyurular(kaynak: Kaynak, bilinen: set[str], sinir: date) -> list[DuyuruOge]:
+    """Elle siralanan listeler: bilinen bir duyuru yeni olanlarin sonunu gostermez; tum sayfalar gezilir,
+    bilinenler ve backfill penceresinden eskiler atlanir. Sonuc tarihe gore yeniden eskiye (tarihsizler basta)."""
+    yeni: dict[str, DuyuruOge] = {}
+    for sayfa in range(MAX_ARTAN_SAYFA):
+        ogeler = kaynak.liste(sayfa)
+        if not ogeler:
+            break
+        for oge in ogeler:
+            if oge.url not in bilinen and not (oge.yayin_tarihi and oge.yayin_tarihi < sinir):
+                yeni.setdefault(oge.url, oge)
+    return sorted(yeni.values(), key=lambda o: o.yayin_tarihi or date.max, reverse=True)
+
+
 def _isle(kaynak: Kaynak, oge: DuyuruOge, sayac: Counter) -> tuple[str | None, bool]:
     """Tek duyuru. Donus: (olusturulan/guncellenen cagri id'si, yeni cagri mi)."""
     if kalip := kara_liste(oge.baslik):
@@ -145,7 +168,7 @@ def _isle(kaynak: Kaynak, oge: DuyuruOge, sayac: Counter) -> tuple[str | None, b
         return None, False
     try:
         sayfa = kaynak.detay(oge.url)
-        c = cikar(sayfa.metin, sayfa.baglantilar, oge.yayin_tarihi, oge.baslik)
+        c = cikar(sayfa.metin, sayfa.baglantilar, oge.yayin_tarihi, oge.baslik, kaynak.ad)
     except Exception as exc:  # tek duyurunun hatasi calismayi durdurmasin; sonraki calismada tekrar denenir
         logger.warning("Duyuru islenemedi (%s): %s", oge.url, exc)
         sayac["hata"] += 1
@@ -162,6 +185,13 @@ def _isle(kaynak: Kaynak, oge: DuyuruOge, sayac: Counter) -> tuple[str | None, b
         sayac["guncellenen"] += 1
         _duyuru_yaz(kaynak, oge, "guncelleme", c.sebep, hedef)
         logger.info("GUNCELLEME %s -> %s", oge.baslik[:80], hedef)
+        return hedef, False
+
+    if hedef := _ayni_cagri(oge):  # ayni cagrinin tekrar duyurusu (takvim + acildi, "devam ediyor" ...)
+        _guncellemeyi_uygula(hedef, oge, sayfa)
+        sayac["tekrar"] += 1
+        _duyuru_yaz(kaynak, oge, "guncelleme", f"aynı çağrının tekrar duyurusu ({c.sebep})", hedef)
+        logger.info("TEKRAR %s -> %s", oge.baslik[:80], hedef)
         return hedef, False
 
     cagri_id = _cagri_yaz(kaynak, oge, sayfa, c)
@@ -187,7 +217,8 @@ def _alanlar(c: CagriCikarim, sayfa: DuyuruSayfasi) -> dict:
     """Cikarimdan cagrilar tablosuna yazilan alanlar (kimlik ve tarihce alanlari haric)."""
     return {
         "program_kodu": c.program_kodu, "program_adi": c.program_adi, "hedef_kitle": c.hedef_kitle,
-        "ozet": c.ozet, "tarihler": [t.model_dump() for t in c.tarihler], "butce": c.butce, "sure": c.sure,
+        "ozet": c.ozet, "tarihler": [t.model_dump() for t in c.tarihler], "butce": c.butce,
+        "program_butcesi": c.program_butcesi, "sure": c.sure,
         "basvuru_kosullari": c.basvuru_kosullari, "baglantilar": [b.model_dump() for b in c.baglantilar],
         "metin": sayfa.metin, "icerik_hash": _hash(sayfa.metin), "son_kontrol": func.now(),
     }
@@ -207,7 +238,8 @@ def _cagri_yaz(kaynak: Kaynak, oge: DuyuruOge, sayfa: DuyuruSayfasi, c: CagriCik
 
 # Baslik eslestirmesinde anlam tasimayan kelimeler (5 harflik kokler)
 _BOS = {"cagri", "basvu", "sures", "uzati", "gunce", "takvi", "acild", "acili", "basla", "progr", "yili",
-        "donem", "tubit", "kapsa", "ilisk", "bilgi", "belli", "oldu", "yayin", "deste"}
+        "donem", "tubit", "kapsa", "ilisk", "bilgi", "belli", "oldu", "yayin", "deste",
+        "tuseb", "kalki", "ajans", "ilan", "edild", "edilm"}
 
 
 def _tokenler(baslik: str) -> set[str]:
@@ -239,6 +271,27 @@ def _guncellenen_cagri(c: CagriCikarim, oge: DuyuruOge) -> str | None:
         if skor > en_iyi_skor:  # esitlikte daha yeni olan (siralama) kalir
             en_iyi, en_iyi_skor = a.id, skor
     return en_iyi
+
+
+TEKRAR_PENCERESI_GUN = 180  # her yil ayni baslikla gelen duyurular (ör. "EMBO ... Devam Ediyor") birlesmesin
+
+
+def ayni_baslik(a: str, b: str) -> bool:
+    """Anlamli kelimeleri ve sayilari birebir ayni basliklar: '1833-SAYEM Yesil Donusum 2026-1 Cagri Takvimi Belli Oldu'
+    = '1833-SAYEM Yesil Donusum 2026 Yili 1. Cagrisi Acildi'; '1707 ... 2026-2' != '1707 ... 2026-3'."""
+    ta = _tokenler(a)
+    return len(ta) >= 3 and ta == _tokenler(b)
+
+
+def _ayni_cagri(oge: DuyuruOge) -> str | None:
+    """LLM 'cagri' dedigi halde kayitli bir cagrinin tekrar duyurusu olan duyurunun cagrisi."""
+    q = select(cagrilar.c.id, cagrilar.c.baslik).where(cagrilar.c.url != oge.url)
+    if oge.yayin_tarihi:
+        q = q.where(cagrilar.c.yayin_tarihi.between(oge.yayin_tarihi - timedelta(days=TEKRAR_PENCERESI_GUN),
+                                                    oge.yayin_tarihi + timedelta(days=TEKRAR_PENCERESI_GUN)))
+    with get_engine().connect() as conn:
+        adaylar = conn.execute(q.order_by(cagrilar.c.yayin_tarihi.desc().nulls_last())).all()
+    return next((a.id for a in adaylar if ayni_baslik(oge.baslik, a.baslik)), None)
 
 
 def _guncellemeyi_uygula(cagri_id: str, oge: DuyuruOge, sayfa: DuyuruSayfasi) -> None:
@@ -276,7 +329,7 @@ def _aktifleri_kontrol_et(kaynak: Kaynak, atla: set[str], sayac: Counter) -> set
                 with get_engine().begin() as conn:
                     conn.execute(update(cagrilar).where(cagrilar.c.id == row.id).values(son_kontrol=func.now()))
                 continue
-            c = cikar(sayfa.metin, sayfa.baglantilar, row.yayin_tarihi, row.baslik)
+            c = cikar(sayfa.metin, sayfa.baglantilar, row.yayin_tarihi, row.baslik, kaynak.ad)
             alanlar = _alanlar(c, sayfa)
             if row.guncelleme_urller:  # uzatma duyurulariyla gelen tarihler kaybolmasin
                 alanlar["tarihler"] = tarihleri_birlestir(row.tarihler, sayfa.metin, row.yayin_tarihi)

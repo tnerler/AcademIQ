@@ -33,7 +33,8 @@ cagrilar = Table(
     Column("ozet", Text),
     Column("tarihler", JSONB, nullable=False),
     Column("son_tarih", Date),  # generated: cagri_son_tarih(tarihler), yazilmaz
-    Column("butce", Text),
+    Column("butce", Text),  # proje basina ust sinir
+    Column("program_butcesi", Text),  # programin toplam butcesi
     Column("sure", Text),
     Column("basvuru_kosullari", ARRAY(Text), nullable=False),
     Column("baglantilar", JSONB, nullable=False),

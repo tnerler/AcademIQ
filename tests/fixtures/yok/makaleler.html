@@ -1,0 +1,2115 @@
+
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<meta charset="utf-8"/>
+<meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="YÖK Akademik Arama" name="description"/><meta content="AYDIN EMRE CEVİZ, MUSTAFA IŞIK" name="author"/>
+<link href="./images/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
+<title>YÜKSEKÖĞRETİM KURULU</title>
+<!-- CSS -->
+<link href="../css/bootstrap.css" rel="stylesheet"/>
+<link href="../css/custom.css?v=2218" rel="stylesheet"/>
+<link href="../css/timeline.css" rel="stylesheet"/>
+<link href="../css/bootstrapValidator.css" rel="stylesheet"/>
+<link href="../css/font-awesome.css" rel="stylesheet"/>
+</head>
+<body>
+<div class="bodyback">
+<div class="container-fluid">
+<div class="navbar navbar-inverse navbar-fixed-top navbarBackground" role="navigation">
+<div class="container-fluid">
+<div class="navbar-header">
+<button class="navbar-toggle" data-target=".navbar-collapse" data-toggle="collapse" type="button">
+<span class="sr-only">Toggle navigation</span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+</button>
+<a class="navbar_brand" href="../"><img alt="Yükseköğretim Kurulu Akademik Arama" class="logo" src="../images/miniLogo.png"/></a>
+</div>
+<div class="navbar-collapse collapse">
+<ul class="nav navbar-nav navbar-right">
+<li class="active"><a href="../">Anasayfa</a></li>
+<li class="active"><a href="#" onclick="yonlendir('/AkademikArama/LanguageServlet?dil=trHome');">Türkçe</a></li>
+<li class="active"> <a href="#" onclick="yonlendir('/AkademikArama/LanguageServlet?dil=enHome');"> English</a> </li>
+</ul>
+</div> <!--navbar-collapse bitis-->
+</div> <!--container bitis-->
+<!--Arama Bölmesi-->
+<div class="container-fluid">
+<div class="col-lg-4 col-md-5 col-sm-6 col-xs-9 col-md-offset-2 col-sm-offset-3 col-xs-offset-2">
+<form action="/AkademikArama/AkademisyenArama" class="form-horizontal error" id="searchForm" method="post">
+<div class="row">
+<div>
+<div class="form-group">
+<div class="input-group">
+<input class="form-control" data-bv-notempty="" data-bv-notempty-message="Lütfen arama terimi giriniz" data-bv-stringlength-max="50" data-bv-stringlength-message="En az 3 en fazla 30 karakter girilebilir" data-bv-stringlength-min="3" maxlength="50" minlength="3" name="aramaTerim" placeholder="Arama yapmak istediğiniz kelimeyi giriniz" required="" type="text" value=""/>
+<div class="input-group-btn">
+<button class="btn btn-default" data-container="body" data-placement="bottom" data-toggle="popover" data-trigger="hover" id="searchButton" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+<button class="btn btn-default dropdown-toggle" data-toggle="dropdown" tabindex="-1" type="button">
+<span class="caret"></span>
+<span class="sr-only"></span>
+</button><input name="islem" type="hidden" value="1"/>
+<ul class="dropdown-menu dropdown-menu-form pull-right" role="menu"> <!--Arama secenekleri-->
+<li>
+<label class="checkbox">
+<input checked="checked" id="yazarCheckbox" name="yazarCheckbox" type="checkbox"/>
+													Akademisyenler
+												</label>
+</li>
+<li>
+<label class="checkbox">
+<input checked="checked" id="kitapCheckbox" name="kitapCheckbox" type="checkbox"/>
+													Kitaplar
+												</label>
+</li>
+<li>
+<label class="checkbox">
+<input checked="checked" id="PatentCheckbox" name="PatentCheckbox" type="checkbox"/>
+													Patentler
+												</label>
+</li>
+<li>
+<label class="checkbox">
+<input checked="checked" id="projeCheckbox" name="projeCheckbox" type="checkbox"/>
+													Projeler
+												</label>
+</li>
+<li>
+<label class="checkbox">
+<input checked="checked" id="MakaeleCheckbox" name="MakaeleCheckbox" type="checkbox"/>
+													Makaleler
+												</label>
+</li>
+<li>
+<label class="checkbox">
+<input checked="checked" id="BildiriCheckbox" name="BildiriCheckbox" type="checkbox"/>
+													Bildiriler
+												</label>
+</li>
+<li>
+<label class="checkbox">
+<input checked="checked" id="SanatsalCheckbox" name="SanatsalCheckbox" type="checkbox"/>
+													Sanatsal faaliyetler
+												</label>
+</li>
+<li>
+<label class="checkbox">
+<input checked="checked" id="TezCheckbox" name="TezCheckbox" type="checkbox"/>
+													Tezler
+												</label>
+</li>
+</ul> <!--Arama secenekleri bitis-->
+</div>
+</div>
+</div><!-- /.input-group -->
+</div>
+</div><!-- /.row -->
+</form>
+</div>
+</div>
+</div>
+</div>
+<hr/>
+
+
+<hr/>
+<hr/>
+<div class="container-fluid">
+<!-- Sol Menu -->
+<div class="col-lg-2 col-md-2 col-sm-0 col-xs-0 padSol">
+<div class="sidebar-nav">
+<div class="navbar navbar-default" role="navigation">
+<div class="navbar-header">
+<button class="navbar-toggle" data-target=".sidebar-navbar-collapse" data-toggle="collapse" type="button">
+<span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+</button>
+<span class="visible-xs navbar-brand">Profili</span>
+</div>
+<div class="navbar-collapse collapse sidebar-navbar-collapse">
+<ul class="nav nav-pills nav-stacked wide">
+<li id="personelMenu"><a href="viewAuthor.jsp"><div class="iconLi">
+<i class="fa fa-graduation-cap"></i>
+</div>Kişisel Bilgiler </a></li>
+<li id="booksMenu"><a href="/AkademikArama/AkademisyenYayinBilgileri?pubType=q3SMeouSUM6tBWypaNs06Q&amp;authorId=57A6856663E8E116">
+<div class="iconLi">
+<i class="fa fa-book"></i>
+</div>
+<div class="iconLitext">Kitaplar</div>
+</a></li>
+<li id="articleMenu"><a href="/AkademikArama/AkademisyenYayinBilgileri?pubType=5Eaxq5GEK5ukOf71Zpm7dA&amp;authorId=57A6856663E8E116">
+<div class="iconLi">
+<i class="fa fa-pencil"></i>
+</div>
+<div class="iconLitext">Makaleler</div>
+</a></li>
+<li id="proceedingMenu"><a href="/AkademikArama/AkademisyenYayinBilgileri?pubType=iHDPgsbZ-szm5UHCxj3mmg&amp;authorId=57A6856663E8E116">
+<div class="iconLi">
+<i class="fa fa-foursquare"></i>
+</div>
+<div class="iconLitext">Bildiriler</div>
+</a></li>
+<li id="projectMenu"><a href="/AkademikArama/AkademisyenProjeBilgileri?authorId=57A6856663E8E116">
+<div class="iconLi">
+<i class="fa fa-flask"></i>
+</div>
+<div class="iconLitext">Projeler</div>
+</a></li>
+<li id="lessonMenu"><a href="/AkademikArama/AkademisyenDersBilgileri?authorId=57A6856663E8E116">
+<div class="iconLi">
+<i class="glyphicon glyphicon-blackboard"></i>
+</div>
+<div class="iconLitext">Dersler</div>
+</a></li>
+<li id="thesisMenu"><a href="/AkademikArama/AkademisyenYonTezBilgileri?authorId=57A6856663E8E116">
+<div class="iconLi">
+<i class="fa fa-check"></i>
+</div>
+<div class="iconLitext">Yönetilen Tezler</div>
+</a></li>
+<li id="awardMenu"><a href="/AkademikArama/AkademisyenOdulBilgileri?authorId=57A6856663E8E116">
+<div class="iconLi">
+<i class="fa fa-star-o"></i>
+</div>
+<div class="iconLitext">Ödüller</div>
+</a></li>
+<li id="patentMenu"><a href="/AkademikArama/AkademisyenPatentBilgileri?authorId=57A6856663E8E116">
+<div class="iconLi">
+<i class="fa fa-certificate"></i>
+</div>
+<div class="iconLitext">Patentler</div>
+</a></li>
+<li id="memberMenu"><a href="/AkademikArama/AkademisyenUyelikBilgileri?authorId=57A6856663E8E116">
+<div class="iconLi">
+<i class="fa fa-users"></i>
+</div>
+<div class="iconLitext">Üyelikler</div>
+</a></li>
+<li id="artMenu"><a href="/AkademikArama/AkademisyenSanatsalBilgileri?authorId=57A6856663E8E116">
+<div class="iconLi">
+<i class="fa fa-video-camera"></i>
+</div>
+<div class="iconLitext">Sanatsal faaliyetler</div>
+</a></li>
+<li id="idariMenu"><a href="/AkademikArama/AkademisyenIdariGorevBilgileri?authorId=57A6856663E8E116">
+<div class="iconLi">
+<i class="fa fa-user"></i>
+</div>
+<div class="iconLitext">İdari Görevler</div>
+</a></li>
+<li id="expeirenceMenu"><a href="/AkademikArama/AkademisyenDeneyimBilgileri?authorId=57A6856663E8E116">
+<div class="iconLi">
+<i class="fa fa-suitcase"></i>
+</div>
+<div class="iconLitext">Üniversite Dışı Deneyim</div>
+</a></li>
+<li>
+<span class="label label-info labelFont">Son güncelleme: 24.09.2026</span>
+</li>
+</ul>
+</div>
+<!--/.nav-collapse -->
+</div>
+</div>
+</div>
+<!-- Sol Menu bitis-->
+<div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
+<div class="row borderLine">
+<div class="col-lg-2 col-md-2 col-sm-2 col-xs-0 text-center">
+<img alt="AHMET TAŞDEMİR" class="img-circle" src="" style="width: 90px; height: 90px;"/>
+</div>
+<div class="col-lg-6 col-md-6 col-sm-10 col-xs-12">
+<h4>PROFESÖR AHMET TAŞDEMİR
+					
+						</h4>
+						 PİRİ REİS ÜNİVERSİTESİ/DENİZCİLİK FAKÜLTESİ/GEMİ MAKİNELERİ İŞLETME MÜHENDİSLİĞİ BÖLÜMÜ/GEMİ MAKİNELERİ İŞLETME MÜHENDİSLİĞİ PR.  /
+						<p></p>
+<span class="label label-success"> Mühendislik Temel Alanı</span>
+<span class="label label-primary"> Deniz ve Gemi Mühendisliği</span>
+						
+						Gemi İnşaatı
+						, Gemi Hidromekaniği
+						, Deniz Araçları Yapısal Tasarımı
+				</div>
+<div class="col-lg-4 col-md-4 col-sm-0 col-xs-0">
+<a href="viewAuthorGraphs.jsp"><img alt="Birlikte çalıştığı yazarlar" class="img" src="../images/collaborated.png"/> Birlikte çalıştığı kişiler </a>
+</div>
+</div>
+<div class="container-fluid">
+<!-- <div class="header">
+					<h4>
+					<span class="label kitap">BİLDİRİLER</span>
+					</h4>
+				</div> -->
+<div>
+<ul class="nav nav-tabs" id="makaleTab" role="tablist">
+<li class="active" role="presentation"><a aria-controls="all" data-toggle="tab" href="#all" role="tab">Tümü</a></li>
+<li role="presentation"><a aria-controls="international" data-toggle="tab" href="#international" role="tab">Uluslararası Hakemli</a></li>
+<li role="presentation"><a aria-controls="national" data-toggle="tab" href="#national" role="tab">Ulusal Hakemli</a></li>
+<li role="presentation"><a aria-controls="other" data-toggle="tab" href="#other" role="tab">Diğer</a></li>
+<li role="presentation">
+<div class="inner-addon left-addon">
+<i class="glyphicon glyphicon-search"></i>
+<input class="form-control" id="filter" placeholder="Sonuçlar içinde ara" type="text"/>
+</div>
+</li>
+</ul>
+<div class="tab-content">
+<div class="tab-pane fade in active" id="all" role="tabpanel">
+<table class="table">
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody class="searchable">
+<tr>
+<td><span class="badge">
+								
+										1
+
+								</span></td>
+<td>
+<span class="baslika"><strong> <a data-target="#remoteModal" data-toggle="modal" href="yayinDetay.jsp?id=Kxm8tsz1EECQdUdM247VXA&amp;no=_D2bDdARDMCOgjHVGzFVZw">Assessment of the shipbuilding industry with a value-oriented approach</a></strong>
+</span><p></p>
+<a class="popoverData" data-content="&lt;b&gt;Unvan: &lt;/b&gt;Doktor Öğretim Üyesi&lt;br&gt;&lt;b&gt;Yazar türü: &lt;/b&gt;Author&lt;br&gt;&lt;b&gt;Şu anki unvan: &lt;/b&gt;Doktor Öğretim Üyesi" data-html="true" data-original-title="" data-placement="top" data-trigger="hover" href="/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&amp;authorId=65B0BBD6B922BAF9" id="popoverData" rel="popover">OKTAY ÇETİN</a>,<a class="popoverData" data-content="&lt;b&gt;Unvan: &lt;/b&gt;Araştırma Görevlisi&lt;br&gt;&lt;b&gt;Yazar türü: &lt;/b&gt;Author&lt;br&gt;&lt;b&gt;Şu anki unvan: &lt;/b&gt;Araştırma Görevlisi" data-html="true" data-original-title="" data-placement="top" data-trigger="hover" href="/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&amp;authorId=1B01CA9F652A4964" id="popoverData" rel="popover">SALİH BAKKAL</a>,<a class="popoverData" data-content="&lt;b&gt;Unvan: &lt;/b&gt;Profesör&lt;br&gt;&lt;b&gt;Yazar türü: &lt;/b&gt;Author&lt;br&gt;&lt;b&gt;Şu anki unvan: &lt;/b&gt;Profesör" data-html="true" data-original-title="" data-placement="top" data-trigger="hover" href="/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&amp;authorId=57A6856663E8E116" id="popoverData" rel="popover">AHMET TAŞDEMİR</a>,<a class="popoverData" data-content="&lt;b&gt;Unvan: &lt;/b&gt;Profesör&lt;br&gt;&lt;b&gt;Yazar türü: &lt;/b&gt;Author&lt;br&gt;&lt;b&gt;Şu anki unvan: &lt;/b&gt;Profesör" data-html="true" data-original-title="" data-placement="top" data-trigger="hover" href="/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&amp;authorId=81CE9042620F6C40" id="popoverData" rel="popover">MEHMET ZİYA SÖĞÜT</a>
+, Yayın Yeri:Journal of Ocean Engineering and Marine Energy
+, 2025
+<p>
+<span class="label label-info">
+Uluslararası
+</span>
+ <span class="label label-primary">
+Hakemli
+</span>
+ <span class="label label-success">
+SSCI
+</span>
+ <span class="label label-default">
+Özgün Makale
+</span>
+  <a href="https://dx.doi.org/10.1016/j.oceaneng.2025.122369" target="_blank">https://dx.doi.org/10.1016/j.oceaneng.2025.122369</a>
+</p>
+</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><span class="badge">
+								
+										2
+
+								</span></td>
+<td>
+<span class="baslika"><strong> <a data-target="#remoteModal" data-toggle="modal" href="yayinDetay.jsp?id=Rvdrppyt8RS7ltzTSrUnhQ&amp;no=VAWp5jxMDUj5cB0bvOvsDw">Alternative fuels for enhanced ship energy efficiency: A conceptual design study of a handymax bulk carrier</a></strong>
+</span><p></p>
+<a class="popoverData" data-content="&lt;b&gt;Unvan: &lt;/b&gt;Doktor Öğretim Üyesi&lt;br&gt;&lt;b&gt;Yazar türü: &lt;/b&gt;Author&lt;br&gt;&lt;b&gt;Şu anki unvan: &lt;/b&gt;Doktor Öğretim Üyesi" data-html="true" data-original-title="" data-placement="top" data-trigger="hover" href="/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&amp;authorId=46728924A7090FE6" id="popoverData" rel="popover">MEHMET AKMAN</a>,<a class="popoverData" data-content="&lt;b&gt;Unvan: &lt;/b&gt;Doktor Öğretim Üyesi&lt;br&gt;&lt;b&gt;Yazar türü: &lt;/b&gt;Author&lt;br&gt;&lt;b&gt;Şu anki unvan: &lt;/b&gt;Doktor Öğretim Üyesi" data-html="true" data-original-title="" data-placement="top" data-trigger="hover" href="/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&amp;authorId=22E3230DF079293F" id="popoverData" rel="popover">BÜLENT İBRAHİM TURAN</a>,<a class="popoverData" data-content="&lt;b&gt;Unvan: &lt;/b&gt;Profesör&lt;br&gt;&lt;b&gt;Yazar türü: &lt;/b&gt;Author&lt;br&gt;&lt;b&gt;Şu anki unvan: &lt;/b&gt;Profesör" data-html="true" data-original-title="" data-placement="top" data-trigger="hover" href="/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&amp;authorId=57A6856663E8E116" id="popoverData" rel="popover">AHMET TAŞDEMİR</a>,<a class="popoverData" data-content="&lt;b&gt;Unvan: &lt;/b&gt;Profesör&lt;br&gt;&lt;b&gt;Yazar türü: &lt;/b&gt;Author&lt;br&gt;&lt;b&gt;Şu anki unvan: &lt;/b&gt;Profesör" data-html="true" data-original-title="" data-placement="top" data-trigger="hover" href="/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&amp;authorId=81CE9042620F6C40" id="popoverData" rel="popover">MEHMET ZİYA SÖĞÜT</a>
+, Yayın Yeri:International Journal of Hydrogen Energy
+, 2025
+<p>
+<span class="label label-info">
+Uluslararası
+</span>
+ <span class="label label-primary">
+Hakemli
+</span>
+ <span class="label label-success">
+SCI-Expanded
+</span>
+ <span class="label label-default">
+Özgün Makale
+</span>
+  <a href="https://dx.doi.org/10.1016/j.ijhydene.2024.11.069." target="_blank">https://dx.doi.org/10.1016/j.ijhydene.2024.11.069.</a>
+</p>
+</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><span class="badge">
+								
+										3
+
+								</span></td>
+<td>
+<span class="baslika"><strong> <a data-target="#remoteModal" data-toggle="modal" href="yayinDetay.jsp?id=Tgq2DohOelgGwld_s_Q0qw&amp;no=NPyYQsydu7pn_jChegdWIA">An overview of wire arc additive manufacturing (WAAM) in shipbuilding industry</a></strong>
+</span><p></p>
+<a class="popoverData" data-content="&lt;b&gt;Unvan: &lt;/b&gt;Profesör&lt;br&gt;&lt;b&gt;Yazar türü: &lt;/b&gt;Author&lt;br&gt;&lt;b&gt;Şu anki unvan: &lt;/b&gt;Profesör" data-html="true" data-original-title="" data-placement="top" data-trigger="hover" href="/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&amp;authorId=57A6856663E8E116" id="popoverData" rel="popover">AHMET TAŞDEMİR</a>,SERKAN NOHUT
+, Yayın Yeri:Ships and Offshore Structures
+, 2021
+<p>
+<span class="label label-info">
+Uluslararası
+</span>
+ <span class="label label-primary">
+Hakemli
+</span>
+ <span class="label label-success">
+SSCI
+</span>
+ <span class="label label-default">
+Özgün Makale
+</span>
+  <a href="https://dx.doi.org/10.1080/17445302.2020.1786232" target="_blank">https://dx.doi.org/10.1080/17445302.2020.1786232</a>
+</p>
+</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><span class="badge">
+								
+										4
+
+								</span></td>
+<td>
+<span class="baslika"><strong> <a data-target="#remoteModal" data-toggle="modal" href="yayinDetay.jsp?id=wdx5Ri2Wkv542om4scNhPA&amp;no=nT3KGP3694fUamKe2z0D-w">Analytical and Numerical Analysis of the Strength Performance of a Novel Ship Construction Profile</a></strong>
+</span><p></p>
+<a class="popoverData" data-content="&lt;b&gt;Unvan: &lt;/b&gt;Profesör&lt;br&gt;&lt;b&gt;Yazar türü: &lt;/b&gt;Author&lt;br&gt;&lt;b&gt;Şu anki unvan: &lt;/b&gt;Profesör" data-html="true" data-original-title="" data-placement="top" data-trigger="hover" href="/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&amp;authorId=57A6856663E8E116" id="popoverData" rel="popover">AHMET TAŞDEMİR</a>,SERKAN NOHUT,<a class="popoverData" data-content="&lt;b&gt;Unvan: &lt;/b&gt;Öğretim Görevlisi&lt;br&gt;&lt;b&gt;Yazar türü: &lt;/b&gt;Author&lt;br&gt;&lt;b&gt;Şu anki unvan: &lt;/b&gt;Doktor Öğretim Üyesi" data-html="true" data-original-title="" data-placement="top" data-trigger="hover" href="/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&amp;authorId=46728924A7090FE6" id="popoverData" rel="popover">MEHMET AKMAN</a>
+, Yayın Yeri:Journal of Eta Maritime Science
+, 2021
+<p>
+<span class="label label-info">
+Ulusal
+</span>
+ <span class="label label-primary">
+Hakemli
+</span>
+ <span class="label label-success">
+TR DİZİN
+</span>
+ <span class="label label-default">
+Özgün Makale
+</span>
+</p>
+</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><span class="badge">
+								
+										5
+
+								</span></td>
+<td>
+<span class="baslika"><strong> <a data-target="#remoteModal" data-toggle="modal" href="yayinDetay.jsp?id=J_NzUTyN5eTq4dLkb5nH0Q&amp;no=V-OBp1_xUj06V-k5ii5aPQ">Analytical and Numerical Analysis of the Strength Performance of a Novel Ship Construction Profile</a></strong>
+</span><p></p>
+<a class="popoverData" data-content="&lt;b&gt;Unvan: &lt;/b&gt;Tanımsız Ünvan&lt;br&gt;&lt;b&gt;Yazar türü: &lt;/b&gt;Author&lt;br&gt;&lt;b&gt;Şu anki unvan: &lt;/b&gt;Profesör" data-html="true" data-original-title="" data-placement="top" data-trigger="hover" href="/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&amp;authorId=57A6856663E8E116" id="popoverData" rel="popover">AHMET TAŞDEMİR</a>,SERKAN NOHUT,<a class="popoverData" data-content="&lt;b&gt;Unvan: &lt;/b&gt;Tanımsız Ünvan&lt;br&gt;&lt;b&gt;Yazar türü: &lt;/b&gt;Author&lt;br&gt;&lt;b&gt;Şu anki unvan: &lt;/b&gt;Doktor Öğretim Üyesi" data-html="true" data-original-title="" data-placement="top" data-trigger="hover" href="/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&amp;authorId=46728924A7090FE6" id="popoverData" rel="popover">MEHMET AKMAN</a>
+, Yayın Yeri:Journal of Eta Maritime Science
+, 2021
+<p>
+<span class="label label-info">
+Uluslararası
+</span>
+ <span class="label label-primary">
+Hakemli
+</span>
+ <span class="label label-success">
+TR DİZİN
+</span>
+ <span class="label label-default">
+Özgün Makale
+</span>
+  <a href="https://dx.doi.org/10.4274/jems.2021.87049" target="_blank">https://dx.doi.org/10.4274/jems.2021.87049</a>
+</p>
+</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><span class="badge">
+								
+										6
+
+								</span></td>
+<td>
+<span class="baslika"><strong> <a data-target="#remoteModal" data-toggle="modal" href="yayinDetay.jsp?id=fcH9y__9EJz1ADvTg_IWJg&amp;no=soTUaaecAI-j1RLJL-WJow">An Overview of Wire Arc Additive Manufacturing (WAAM) in Shipbuilding Industry</a></strong>
+</span><p></p>
+<a class="popoverData" data-content="&lt;b&gt;Unvan: &lt;/b&gt;Profesör&lt;br&gt;&lt;b&gt;Yazar türü: &lt;/b&gt;Author&lt;br&gt;&lt;b&gt;Şu anki unvan: &lt;/b&gt;Profesör" data-html="true" data-original-title="" data-placement="top" data-trigger="hover" href="/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&amp;authorId=57A6856663E8E116" id="popoverData" rel="popover">AHMET TAŞDEMİR</a>,SERKAN NOHUT
+, Yayın Yeri:Ships and Offshore Structures
+, 2020
+<p>
+<span class="label label-info">
+Uluslararası
+</span>
+ <span class="label label-primary">
+Hakemli
+</span>
+ <span class="label label-success">
+SCI-Expanded
+</span>
+ <span class="label label-default">
+Derleme Makale
+</span>
+</p>
+</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><span class="badge">
+								
+										7
+
+								</span></td>
+<td>
+<span class="baslika"><strong> <a data-target="#remoteModal" data-toggle="modal" href="yayinDetay.jsp?id=FoQ6X96rvwhM73v0CbYceg&amp;no=q3SMeouSUM6tBWypaNs06Q">DENİZCİLİK SEKTÖRÜNDEKİ SON GELİŞMELER VE ÜLKEMİZE YANSIMALARI</a></strong>
+</span><p></p>
+<a class="popoverData" data-content="&lt;b&gt;Unvan: &lt;/b&gt;Profesör&lt;br&gt;&lt;b&gt;Yazar türü: &lt;/b&gt;Author&lt;br&gt;&lt;b&gt;Şu anki unvan: &lt;/b&gt;Profesör" data-html="true" data-original-title="" data-placement="top" data-trigger="hover" href="/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&amp;authorId=57A6856663E8E116" id="popoverData" rel="popover">AHMET TAŞDEMİR</a>,<a class="popoverData" data-content="&lt;b&gt;Unvan: &lt;/b&gt;Araştırma Görevlisi&lt;br&gt;&lt;b&gt;Yazar türü: &lt;/b&gt;Author&lt;br&gt;&lt;b&gt;Şu anki unvan: &lt;/b&gt;Doktor Öğretim Üyesi" data-html="true" data-original-title="" data-placement="top" data-trigger="hover" href="/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&amp;authorId=46728924A7090FE6" id="popoverData" rel="popover">MEHMET AKMAN</a>,NAZMİ ÇEŞMECİ
+, Yayın Yeri:GMO Journal of Ship and Maritime Technology
+, 2017
+<p>
+<span class="label label-info">
+Ulusal
+</span>
+ <span class="label label-primary">
+Hakemli
+</span>
+ <span class="label label-success">
+Endekste taranmıyor
+</span>
+ <span class="label label-default">
+Özgün Makale
+</span>
+</p>
+</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><span class="badge">
+								
+										8
+
+								</span></td>
+<td>
+<span class="baslika"><strong> <a data-target="#remoteModal" data-toggle="modal" href="yayinDetay.jsp?id=EBEqlH8T1mCTbVuw4pDR8g&amp;no=XnHpYHEOm1CMGoYyz01g8Q">A CRITICAL ASSESSMENT OF MEASURES TO IMPROVE ENERGY EFFICIENCY IN CONTAINERSHIPS</a></strong>
+</span><p></p>
+									Volker Bertram,<a class="popoverData" data-content="&lt;b&gt;Unvan: &lt;/b&gt;Profesör&lt;br&gt;&lt;b&gt;Yazar türü: &lt;/b&gt;Author&lt;br&gt;&lt;b&gt;Şu anki unvan: &lt;/b&gt;Profesör" data-html="true" data-original-title="" data-placement="top" data-trigger="hover" href="/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&amp;authorId=57A6856663E8E116" id="popoverData" rel="popover">AHMET TAŞDEMİR</a>
+, Yayın Yeri:GMO SHIPMAR
+, 2016
+<p>
+<span class="label label-info">
+Ulusal
+</span>
+ <span class="label label-primary">
+Hakemli
+</span>
+ <span class="label label-success">
+EI: Engineering Index 
+</span>
+ <span class="label label-default">
+Özgün Makale
+</span>
+  <a href="https://dx.doi.org/10.3940/rina.con.2014.12" target="_blank">https://dx.doi.org/10.3940/rina.con.2014.12</a>
+</p>
+</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><span class="badge">
+								
+										9
+
+								</span></td>
+<td>
+<span class="baslika"><strong> <a data-target="#remoteModal" data-toggle="modal" href="yayinDetay.jsp?id=IyceRPr-GFsBAFw1FcphMw&amp;no=EpjhmFgiSAVk66O84AtUZg">A Critical Assessment of Measures to Improve Energy Efficiency in Containership</a></strong>
+</span><p></p>
+									Volker Bertram,<a class="popoverData" data-content="&lt;b&gt;Unvan: &lt;/b&gt;Profesör&lt;br&gt;&lt;b&gt;Yazar türü: &lt;/b&gt;Author&lt;br&gt;&lt;b&gt;Şu anki unvan: &lt;/b&gt;Profesör" data-html="true" data-original-title="" data-placement="top" data-trigger="hover" href="/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&amp;authorId=57A6856663E8E116" id="popoverData" rel="popover">AHMET TAŞDEMİR</a>
+, Yayın Yeri:International Conference on Engine Room Simulators (ICERS)
+, 2015
+<p>
+<span class="label label-info">
+Uluslararası
+</span>
+ <span class="label label-primary">
+Hakemli
+</span>
+ <span class="label label-success">
+Endekste taranmıyor
+</span>
+ <span class="label label-default">
+Özgün Makale
+</span>
+</p>
+</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><span class="badge">
+								
+										10
+
+								</span></td>
+<td>
+<span class="baslika"><strong> <a data-target="#remoteModal" data-toggle="modal" href="yayinDetay.jsp?id=fzjim27qhfZ9i66m-g90dA&amp;no=5Eaxq5GEK5ukOf71Zpm7dA">Offshore structures should be approached as a Strategic value for Turkey’s shipbuilding industry and it’s future</a></strong>
+</span><p></p>
+									Devrim Aşkın Karaca,<a class="popoverData" data-content="&lt;b&gt;Unvan: &lt;/b&gt;Profesör&lt;br&gt;&lt;b&gt;Yazar türü: &lt;/b&gt;Author&lt;br&gt;&lt;b&gt;Şu anki unvan: &lt;/b&gt;Profesör" data-html="true" data-original-title="" data-placement="top" data-trigger="hover" href="/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&amp;authorId=57A6856663E8E116" id="popoverData" rel="popover">AHMET TAŞDEMİR</a>
+, Yayın Yeri:INTNAM
+, 2014
+<p>
+<span class="label label-info">
+Uluslararası
+</span>
+ <span class="label label-primary">
+Hakemli
+</span>
+ <span class="label label-success">
+Endekste taranmıyor
+</span>
+ <span class="label label-default">
+Derleme Makale
+</span>
+</p>
+</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><span class="badge">
+								
+										11
+
+								</span></td>
+<td>
+<span class="baslika"><strong> <a data-target="#remoteModal" data-toggle="modal" href="yayinDetay.jsp?id=Q-YGYvMuLGIGYUw-Hp8ZQg&amp;no=iHDPgsbZ-szm5UHCxj3mmg">Influence of surface treatment on strength distribution on Vita VMK 68 dental porcelain”, Advanced in Materials Science and Engineering</a></strong>
+</span><p></p>
+									SERKAN NOHUT,<a class="popoverData" data-content="&lt;b&gt;Unvan: &lt;/b&gt;Profesör&lt;br&gt;&lt;b&gt;Yazar türü: &lt;/b&gt;Author&lt;br&gt;&lt;b&gt;Şu anki unvan: &lt;/b&gt;Profesör" data-html="true" data-original-title="" data-placement="top" data-trigger="hover" href="/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&amp;authorId=57A6856663E8E116" id="popoverData" rel="popover">AHMET TAŞDEMİR</a>,<a class="popoverData" data-content="&lt;b&gt;Unvan: &lt;/b&gt;Araştırma Görevlisi&lt;br&gt;&lt;b&gt;Yazar türü: &lt;/b&gt;Author&lt;br&gt;&lt;b&gt;Şu anki unvan: &lt;/b&gt;Doktor Öğretim Üyesi" data-html="true" data-original-title="" data-placement="top" data-trigger="hover" href="/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&amp;authorId=C44F8590C48C1B7E" id="popoverData" rel="popover">SÜLEYMAN AYKUT KORKMAZ</a>
+, Yayın Yeri:Advanced in Materials Science and Engineering
+, 2013
+<p>
+<span class="label label-info">
+Uluslararası
+</span>
+ <span class="label label-primary">
+Hakemli
+</span>
+ <span class="label label-success">
+SSCI
+</span>
+ <span class="label label-default">
+Özgün Makale
+</span>
+</p>
+</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><span class="badge">
+								
+										12
+
+								</span></td>
+<td>
+<span class="baslika"><strong> <a data-target="#remoteModal" data-toggle="modal" href="yayinDetay.jsp?id=7oPsvmOTey_MBuHmn_yAlA&amp;no=4WGEO1b9Pd2gJkOu4LsIDw">Influence of Surface Treatment on Strength Distribution of Vita VMK 68 Dental Porcelains</a></strong>
+</span><p></p>
+									SERKAN NOHUT,<a class="popoverData" data-content="&lt;b&gt;Unvan: &lt;/b&gt;Profesör&lt;br&gt;&lt;b&gt;Yazar türü: &lt;/b&gt;Author&lt;br&gt;&lt;b&gt;Şu anki unvan: &lt;/b&gt;Profesör" data-html="true" data-original-title="" data-placement="top" data-trigger="hover" href="/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&amp;authorId=57A6856663E8E116" id="popoverData" rel="popover">AHMET TAŞDEMİR</a>,<a class="popoverData" data-content="&lt;b&gt;Unvan: &lt;/b&gt;Araştırma Görevlisi&lt;br&gt;&lt;b&gt;Yazar türü: &lt;/b&gt;Author&lt;br&gt;&lt;b&gt;Şu anki unvan: &lt;/b&gt;Doktor Öğretim Üyesi" data-html="true" data-original-title="" data-placement="top" data-trigger="hover" href="/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&amp;authorId=C44F8590C48C1B7E" id="popoverData" rel="popover">SÜLEYMAN AYKUT KORKMAZ</a>
+, Yayın Yeri:Advances in Materials Science and Engineering
+, 2013
+<p>
+<span class="label label-info">
+Uluslararası
+</span>
+ <span class="label label-primary">
+Hakemli
+</span>
+ <span class="label label-success">
+SCI-Expanded
+</span>
+ <span class="label label-default">
+Özgün Makale
+</span>
+</p>
+</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><span class="badge">
+								
+										13
+
+								</span></td>
+<td>
+<span class="baslika"><strong> <a data-target="#remoteModal" data-toggle="modal" href="yayinDetay.jsp?id=KxtCUpqd0SkOIRJMRa5QaQ&amp;no=GIXe1alYuQtGyCLDRIQ30Q">Influence of Surface Treatment on Strength Distribution of Vita VMK 68 Dental Porcelains</a></strong>
+</span><p></p>
+									SERKAN NOHUT,<a class="popoverData" data-content="&lt;b&gt;Unvan: &lt;/b&gt;Profesör&lt;br&gt;&lt;b&gt;Yazar türü: &lt;/b&gt;Author&lt;br&gt;&lt;b&gt;Şu anki unvan: &lt;/b&gt;Profesör" data-html="true" data-original-title="" data-placement="top" data-trigger="hover" href="/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&amp;authorId=57A6856663E8E116" id="popoverData" rel="popover">AHMET TAŞDEMİR</a>,<a class="popoverData" data-content="&lt;b&gt;Unvan: &lt;/b&gt;Araştırma Görevlisi&lt;br&gt;&lt;b&gt;Yazar türü: &lt;/b&gt;Author&lt;br&gt;&lt;b&gt;Şu anki unvan: &lt;/b&gt;Doktor Öğretim Üyesi" data-html="true" data-original-title="" data-placement="top" data-trigger="hover" href="/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&amp;authorId=C44F8590C48C1B7E" id="popoverData" rel="popover">SÜLEYMAN AYKUT KORKMAZ</a>
+, Yayın Yeri:ADVANCES IN MATERIALS SCIENCE AND ENGINEERING
+, 2013
+<p>
+<span class="label label-info">
+Uluslararası
+</span>
+ <span class="label label-primary">
+Hakemli
+</span>
+ <span class="label label-success">
+SCI
+</span>
+ <span class="label label-default">
+Özgün Makale
+</span>
+  <a href="https://dx.doi.org/10.1155/2013/128065" target="_blank">https://dx.doi.org/10.1155/2013/128065</a>
+</p>
+</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><span class="badge">
+								
+										14
+
+								</span></td>
+<td>
+<span class="baslika"><strong> <a data-target="#remoteModal" data-toggle="modal" href="yayinDetay.jsp?id=fcZfbpB7ojGn3Q09PfUqMw&amp;no=f6U-DEtbVV2rye1FGqLApg">Characterization of Strength Distribution of Dental Ceramics with Different Microstructures and Surface Treatments</a></strong>
+</span><p></p>
+									SERKAN NOHUT,<a class="popoverData" data-content="&lt;b&gt;Unvan: &lt;/b&gt;Profesör&lt;br&gt;&lt;b&gt;Yazar türü: &lt;/b&gt;İkinci Danışman Yazar&lt;br&gt;&lt;b&gt;Şu anki unvan: &lt;/b&gt;Profesör" data-html="true" data-original-title="" data-placement="top" data-trigger="hover" href="/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&amp;authorId=57A6856663E8E116" id="popoverData" rel="popover">AHMET TAŞDEMİR</a>
+, Yayın Yeri:Advanced in Materials Science and Engineering
+, 2013
+<p>
+<span class="label label-info">
+Uluslararası
+</span>
+ <span class="label label-primary">
+Hakemli
+</span>
+ <span class="label label-success">
+SCI
+</span>
+ <span class="label label-default">
+Özgün Makale
+</span>
+</p>
+</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><span class="badge">
+								
+										15
+
+								</span></td>
+<td>
+<span class="baslika"><strong> <a data-target="#remoteModal" data-toggle="modal" href="yayinDetay.jsp?id=9ZpRX8oFBwAvuk5XPeg8jQ&amp;no=O9q5MA0M4yzTvR2o8-WnMg">İç Suların Deniz Taşımacılığında Kullanılmasının Tarihi Geçmişi ve Önemi: Fırat Örneği</a></strong>
+</span><p></p>
+<a class="popoverData" data-content="&lt;b&gt;Unvan: &lt;/b&gt;Profesör&lt;br&gt;&lt;b&gt;Yazar türü: &lt;/b&gt;Author&lt;br&gt;&lt;b&gt;Şu anki unvan: &lt;/b&gt;Profesör" data-html="true" data-original-title="" data-placement="top" data-trigger="hover" href="/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&amp;authorId=57A6856663E8E116" id="popoverData" rel="popover">AHMET TAŞDEMİR</a>,SERKAN NOHUT
+, Yayın Yeri:Gemi İnşaatı ve Deniz Teknolojisi
+, 2013
+<p>
+<span class="label label-info">
+Ulusal
+</span>
+ <span class="label label-primary">
+Hakemli
+</span>
+ <span class="label label-success">
+Endekste taranmıyor
+</span>
+ <span class="label label-default">
+Derleme Makale
+</span>
+</p>
+</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><span class="badge">
+								
+										16
+
+								</span></td>
+<td>
+<span class="baslika"><strong> <a data-target="#remoteModal" data-toggle="modal" href="yayinDetay.jsp?id=aRL38mxDxK-AnQsYj53tkQ&amp;no=-JY7-AwtRcFwDSw_TGsXhw">Fatigue analysis of ship structures with hinged deck design by finite element method. A case study: Fatigue analysis of the primary supporting members of 4900 PCTC</a></strong>
+</span><p></p>
+<a class="popoverData" data-content="&lt;b&gt;Unvan: &lt;/b&gt;Profesör&lt;br&gt;&lt;b&gt;Yazar türü: &lt;/b&gt;Author&lt;br&gt;&lt;b&gt;Şu anki unvan: &lt;/b&gt;Profesör" data-html="true" data-original-title="" data-placement="top" data-trigger="hover" href="/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&amp;authorId=57A6856663E8E116" id="popoverData" rel="popover">AHMET TAŞDEMİR</a>,SERKAN NOHUT
+, Yayın Yeri:Marine Structures
+, 2012
+<p>
+<span class="label label-info">
+Uluslararası
+</span>
+ <span class="label label-primary">
+Hakemli
+</span>
+ <span class="label label-success">
+SSCI
+</span>
+ <span class="label label-default">
+Özgün Makale
+</span>
+</p>
+</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><span class="badge">
+								
+										17
+
+								</span></td>
+<td>
+<span class="baslika"><strong> <a data-target="#remoteModal" data-toggle="modal" href="yayinDetay.jsp?id=m0nZ46pZCm7gAa5jBuUo0g&amp;no=eS6LQMZfrcjjMbs99l1AWg">Fatigue analysis of ship structures with hinged deck design by finite
+element method. A case study: Fatigue analysis of the primary supporting
+members of 4900 PCTC</a></strong>
+</span><p></p>
+<a class="popoverData" data-content="&lt;b&gt;Unvan: &lt;/b&gt;Tanımsız Ünvan&lt;br&gt;&lt;b&gt;Yazar türü: &lt;/b&gt;Author&lt;br&gt;&lt;b&gt;Şu anki unvan: &lt;/b&gt;Profesör" data-html="true" data-original-title="" data-placement="top" data-trigger="hover" href="/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&amp;authorId=57A6856663E8E116" id="popoverData" rel="popover">AHMET TAŞDEMİR</a>,SERKAN NOHUT
+, Yayın Yeri:MARINE STRUCTURES
+, 2012
+<p>
+<span class="label label-info">
+Uluslararası
+</span>
+ <span class="label label-primary">
+Hakemli
+</span>
+ <span class="label label-success">
+SSCI
+</span>
+ <span class="label label-default">
+Özgün Makale
+</span>
+  <a href="https://dx.doi.org/10.1016/j.marstruc.2011.09.001" target="_blank">https://dx.doi.org/10.1016/j.marstruc.2011.09.001</a>
+</p>
+</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><span class="badge">
+								
+										18
+
+								</span></td>
+<td>
+<span class="baslika"><strong> <a data-target="#remoteModal" data-toggle="modal" href="yayinDetay.jsp?id=Q7qTi_LyerdtMXUUNG6RIA&amp;no=3QkHR6YRCb-E-1I0RusEZw">Fatigue analysis of ship structures with hinged deck design by finite element method. A case study: Fatigue analysis of the primary supporting members of 4900 PCTC</a></strong>
+</span><p></p>
+<a class="popoverData" data-content="&lt;b&gt;Unvan: &lt;/b&gt;Profesör&lt;br&gt;&lt;b&gt;Yazar türü: &lt;/b&gt;Author&lt;br&gt;&lt;b&gt;Şu anki unvan: &lt;/b&gt;Profesör" data-html="true" data-original-title="" data-placement="top" data-trigger="hover" href="/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&amp;authorId=57A6856663E8E116" id="popoverData" rel="popover">AHMET TAŞDEMİR</a>,SERKAN NOHUT
+, Yayın Yeri:Marine Structures
+, 2012
+<p>
+<span class="label label-info">
+Uluslararası
+</span>
+ <span class="label label-primary">
+Hakemli
+</span>
+ <span class="label label-success">
+SCI-Expanded
+</span>
+ <span class="label label-default">
+Özgün Makale
+</span>
+</p>
+</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><span class="badge">
+								
+										19
+
+								</span></td>
+<td>
+<span class="baslika"><strong> <a data-target="#remoteModal" data-toggle="modal" href="yayinDetay.jsp?id=mmzWHjBFijez285j6WsWtg&amp;no=8bQ1IMPqlclXbN3kRBSFrQ">Global Denizcilik ve Gemi İnşa Sektöründe Yaşanan Gelişmeler ve Ülkemize Yansımaları</a></strong>
+</span><p></p>
+<a class="popoverData" data-content="&lt;b&gt;Unvan: &lt;/b&gt;Profesör&lt;br&gt;&lt;b&gt;Yazar türü: &lt;/b&gt;Author&lt;br&gt;&lt;b&gt;Şu anki unvan: &lt;/b&gt;Profesör" data-html="true" data-original-title="" data-placement="top" data-trigger="hover" href="/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&amp;authorId=57A6856663E8E116" id="popoverData" rel="popover">AHMET TAŞDEMİR</a>,<a class="popoverData" data-content="&lt;b&gt;Unvan: &lt;/b&gt;Araştırma Görevlisi&lt;br&gt;&lt;b&gt;Yazar türü: &lt;/b&gt;Author&lt;br&gt;&lt;b&gt;Şu anki unvan: &lt;/b&gt;Doktor Öğretim Üyesi" data-html="true" data-original-title="" data-placement="top" data-trigger="hover" href="/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&amp;authorId=C44F8590C48C1B7E" id="popoverData" rel="popover">SÜLEYMAN AYKUT KORKMAZ</a>
+, Yayın Yeri:Gemi İnşaatı ve Deniz Teknolojisi Teknik Kongresi
+, 2012
+<p>
+<span class="label label-info">
+Ulusal
+</span>
+ <span class="label label-primary">
+Hakemli
+</span>
+ <span class="label label-success">
+Endekste taranmıyor
+</span>
+ <span class="label label-default">
+Derleme Makale
+</span>
+</p>
+</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><span class="badge">
+								
+										20
+
+								</span></td>
+<td>
+<span class="baslika"><strong> <a data-target="#remoteModal" data-toggle="modal" href="yayinDetay.jsp?id=TvIxvbflxEZ1xGHjsRvtHg&amp;no=2Wiyh97f95x_J_ifX1gvVw">Ulusal Denizcilik Politikasının Önemi</a></strong>
+</span><p></p>
+<a class="popoverData" data-content="&lt;b&gt;Unvan: &lt;/b&gt;Profesör&lt;br&gt;&lt;b&gt;Yazar türü: &lt;/b&gt;Author&lt;br&gt;&lt;b&gt;Şu anki unvan: &lt;/b&gt;Profesör" data-html="true" data-original-title="" data-placement="top" data-trigger="hover" href="/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&amp;authorId=57A6856663E8E116" id="popoverData" rel="popover">AHMET TAŞDEMİR</a>,Ceren Yılmaz
+, Yayın Yeri:TSE Standart
+, 2012
+<p>
+<span class="label label-info">
+Ulusal
+</span>
+ <span class="label label-primary">
+Hakemsiz
+</span>
+ <span class="label label-success">
+Endekste taranmıyor
+</span>
+ <span class="label label-default">
+Derleme Makale
+</span>
+</p>
+</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><span class="badge">
+								
+										21
+
+								</span></td>
+<td>
+<span class="baslika"><strong> <a data-target="#remoteModal" data-toggle="modal" href="yayinDetay.jsp?id=Cycwre4n64rDddj4asV-Wg&amp;no=jsJ6xLrpbxsKc4LM4Yh13Q">POSEIDON Programı kullanarak Gemilerin Sonlu Elemanlar Modelinin Etkili ve Ekonomik bir Şekilde Oluşturulması ve Uygulamaları</a></strong>
+</span><p></p>
+<a class="popoverData" data-content="&lt;b&gt;Unvan: &lt;/b&gt;Profesör&lt;br&gt;&lt;b&gt;Yazar türü: &lt;/b&gt;Author&lt;br&gt;&lt;b&gt;Şu anki unvan: &lt;/b&gt;Profesör" data-html="true" data-original-title="" data-placement="top" data-trigger="hover" href="/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&amp;authorId=57A6856663E8E116" id="popoverData" rel="popover">AHMET TAŞDEMİR</a>,SERKAN NOHUT,Burak Yılmaz
+, Yayın Yeri:Gemi ve Deniz Teknolojisi
+, 2012
+<p>
+<span class="label label-info">
+Ulusal
+</span>
+ <span class="label label-primary">
+Hakemli
+</span>
+ <span class="label label-success">
+Endekste taranmıyor
+</span>
+ <span class="label label-default">
+Derleme Makale
+</span>
+</p>
+</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><span class="badge">
+								
+										22
+
+								</span></td>
+<td>
+<span class="baslika"><strong> <a data-target="#remoteModal" data-toggle="modal" href="yayinDetay.jsp?id=2cdz6ymwup5i4ERk8htzvA&amp;no=tc2kCm7rC3yK8AaAotBxtg">Türk Denizcilik Sektörü IMO’nun yeni “Gemilerin Emniyetli ve Çevreye Duyarlı Geri Dönüşümü Konvansiyonu” Kurallarına Ne Kadar Hazır?</a></strong>
+</span><p></p>
+<a class="popoverData" data-content="&lt;b&gt;Unvan: &lt;/b&gt;Profesör&lt;br&gt;&lt;b&gt;Yazar türü: &lt;/b&gt;Author&lt;br&gt;&lt;b&gt;Şu anki unvan: &lt;/b&gt;Profesör" data-html="true" data-original-title="" data-placement="top" data-trigger="hover" href="/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&amp;authorId=57A6856663E8E116" id="popoverData" rel="popover">AHMET TAŞDEMİR</a>,Beyza Doyduk
+, Yayın Yeri:Denizcilik Dergisi
+, 2010
+<p>
+<span class="label label-info">
+Ulusal
+</span>
+ <span class="label label-primary">
+Hakemsiz
+</span>
+ <span class="label label-success">
+Endekste taranmıyor
+</span>
+ <span class="label label-default">
+Derleme Makale
+</span>
+</p>
+</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><span class="badge">
+								
+										23
+
+								</span></td>
+<td>
+<span class="baslika"><strong> <a data-target="#remoteModal" data-toggle="modal" href="yayinDetay.jsp?id=LGOxYDH7OhG4HLvnjMDUmw&amp;no=ZRf8Bs_bwrgiDo0f0IBZYA">Messung des Geschwindigkeitsfeldes eines Schiffdoppelmodells mit einer Fünflochsonde im Windkanal</a></strong>
+</span><p></p>
+<a class="popoverData" data-content="&lt;b&gt;Unvan: &lt;/b&gt;Profesör&lt;br&gt;&lt;b&gt;Yazar türü: &lt;/b&gt;Author&lt;br&gt;&lt;b&gt;Şu anki unvan: &lt;/b&gt;Profesör" data-html="true" data-original-title="" data-placement="top" data-trigger="hover" href="/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&amp;authorId=57A6856663E8E116" id="popoverData" rel="popover">AHMET TAŞDEMİR</a>
+, Yayın Yeri:IfS Schriften Universitaet Hamburg
+, 1994
+<p>
+<span class="label label-info">
+Uluslararası
+</span>
+ <span class="label label-primary">
+Hakemsiz
+</span>
+ <span class="label label-success">
+Endekste taranmıyor
+</span>
+ <span class="label label-default">
+Kısa Makale
+</span>
+</p>
+</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><span class="badge">
+								
+										24
+
+								</span></td>
+<td>
+<span class="baslika"><strong> <a data-target="#remoteModal" data-toggle="modal" href="yayinDetay.jsp?id=ROwn7zQKg0MOo4QgAzXwnQ&amp;no=UUfjxT2GaFaE4jqbIgcFLg">Digitalisierung der mittels Anstrichsversuche gewonnenen Bilder - Arbeitsgemeinschaft Strömungen mit Ablösung</a></strong>
+</span><p></p>
+									Uwe Gietz,<a class="popoverData" data-content="&lt;b&gt;Unvan: &lt;/b&gt;Profesör&lt;br&gt;&lt;b&gt;Yazar türü: &lt;/b&gt;Author&lt;br&gt;&lt;b&gt;Şu anki unvan: &lt;/b&gt;Profesör" data-html="true" data-original-title="" data-placement="top" data-trigger="hover" href="/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&amp;authorId=57A6856663E8E116" id="popoverData" rel="popover">AHMET TAŞDEMİR</a>
+, Yayın Yeri:Jahresbericht der DLR
+, 1993
+<p>
+<span class="label label-info">
+Uluslararası
+</span>
+ <span class="label label-primary">
+Hakemli
+</span>
+ <span class="label label-success">
+Endekste taranmıyor
+</span>
+ <span class="label label-default">
+Özgün Makale
+</span>
+</p>
+</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><span class="badge">
+								
+										25
+
+								</span></td>
+<td>
+<span class="baslika"><strong> <a data-target="#remoteModal" data-toggle="modal" href="yayinDetay.jsp?id=luS_ZKjVUvYju0jJTrkFsA&amp;no=gFyd-S_hU5DW1CCGLL8AbA">Strömung mit freier Oberflaeche: Vergleich von Experiment mit Rechnung</a></strong>
+</span><p></p>
+<a class="popoverData" data-content="&lt;b&gt;Unvan: &lt;/b&gt;Profesör&lt;br&gt;&lt;b&gt;Yazar türü: &lt;/b&gt;Author&lt;br&gt;&lt;b&gt;Şu anki unvan: &lt;/b&gt;Profesör" data-html="true" data-original-title="" data-placement="top" data-trigger="hover" href="/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&amp;authorId=57A6856663E8E116" id="popoverData" rel="popover">AHMET TAŞDEMİR</a>
+, Yayın Yeri:IfS Schriften Universitaet Hamburg
+, 1993
+<p>
+<span class="label label-info">
+Uluslararası
+</span>
+ <span class="label label-primary">
+Hakemsiz
+</span>
+ <span class="label label-success">
+Endekste taranmıyor
+</span>
+ <span class="label label-default">
+Kısa Makale
+</span>
+</p>
+</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><span class="badge">
+								
+										26
+
+								</span></td>
+<td>
+<span class="baslika"><strong> <a data-target="#remoteModal" data-toggle="modal" href="yayinDetay.jsp?id=q-xaDGnfk4CueYvyd1u_nw&amp;no=kpg8cYAvQfncUOQucxlgDQ">3D-Flow Field Measurements around a Cylinder in Open Channel Flow compared with Numerical Models</a></strong>
+</span><p></p>
+									Wilhelm Bechteler,<a class="popoverData" data-content="&lt;b&gt;Unvan: &lt;/b&gt;Profesör&lt;br&gt;&lt;b&gt;Yazar türü: &lt;/b&gt;Author&lt;br&gt;&lt;b&gt;Şu anki unvan: &lt;/b&gt;Profesör" data-html="true" data-original-title="" data-placement="top" data-trigger="hover" href="/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&amp;authorId=57A6856663E8E116" id="popoverData" rel="popover">AHMET TAŞDEMİR</a>,Karl Heinz Schaetz,Heinrich Sattel
+, Yayın Yeri:Computer Methods in Marine and Offshore Engineering
+, 1992
+<p>
+<span class="label label-info">
+Uluslararası
+</span>
+ <span class="label label-primary">
+Hakemli
+</span>
+ <span class="label label-success">
+EI: Engineering Index 
+</span>
+ <span class="label label-default">
+Özgün Makale
+</span>
+</p>
+</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><span class="badge">
+								
+										27
+
+								</span></td>
+<td>
+<span class="baslika"><strong> <a data-target="#remoteModal" data-toggle="modal" href="yayinDetay.jsp?id=GQxcWoNrm7HAWUJAl_dgWQ&amp;no=b610xf9OfVsYT0xA_JP16A">Untersuchungen des Deformations- und Spannungsverhaltens von Containerzurrelementen</a></strong>
+</span><p></p>
+<a class="popoverData" data-content="&lt;b&gt;Unvan: &lt;/b&gt;Profesör&lt;br&gt;&lt;b&gt;Yazar türü: &lt;/b&gt;Author&lt;br&gt;&lt;b&gt;Şu anki unvan: &lt;/b&gt;Profesör" data-html="true" data-original-title="" data-placement="top" data-trigger="hover" href="/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&amp;authorId=57A6856663E8E116" id="popoverData" rel="popover">AHMET TAŞDEMİR</a>
+, Yayın Yeri:Schiff und Hafen
+, 1991
+<p>
+<span class="label label-info">
+Uluslararası
+</span>
+ <span class="label label-primary">
+Hakemli
+</span>
+ <span class="label label-success">
+SCI
+</span>
+ <span class="label label-default">
+Özgün Makale
+</span>
+</p>
+</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><span class="badge">
+								
+										28
+
+								</span></td>
+<td>
+<span class="baslika"><strong> <a data-target="#remoteModal" data-toggle="modal" href="yayinDetay.jsp?id=5_dr-haI-FSMfwkegygPGg&amp;no=YiG4LPjlbwTXGZBtrrpGpw">2D-respective 3D-Flow Field Measurements in Open Channel Flow compared with Numerical   Models</a></strong>
+</span><p></p>
+<a class="popoverData" data-content="&lt;b&gt;Unvan: &lt;/b&gt;Profesör&lt;br&gt;&lt;b&gt;Yazar türü: &lt;/b&gt;Author&lt;br&gt;&lt;b&gt;Şu anki unvan: &lt;/b&gt;Profesör" data-html="true" data-original-title="" data-placement="top" data-trigger="hover" href="/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&amp;authorId=57A6856663E8E116" id="popoverData" rel="popover">AHMET TAŞDEMİR</a>,Heinrich Sattel,Karl Heinz Schaetz
+, Yayın Yeri:Computer Methods in Marine and Offshore Engineering
+, 1991
+<p>
+<span class="label label-info">
+Uluslararası
+</span>
+ <span class="label label-primary">
+Hakemli
+</span>
+ <span class="label label-success">
+EI: Engineering Index 
+</span>
+ <span class="label label-default">
+Özgün Makale
+</span>
+</p>
+</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><span class="badge">
+								
+										29
+
+								</span></td>
+<td>
+<span class="baslika"><strong> <a data-target="#remoteModal" data-toggle="modal" href="yayinDetay.jsp?id=HBiHqS6f1sXuP-rWjjorSg&amp;no=cMU5KgKjzFo4BVQCg2M0ig">Experimentelle Ermittlung des Wellenwiderstandes eines Kreiszylinders mittels Stereophotogrammetrie</a></strong>
+</span><p></p>
+<a class="popoverData" data-content="&lt;b&gt;Unvan: &lt;/b&gt;Profesör&lt;br&gt;&lt;b&gt;Yazar türü: &lt;/b&gt;Author&lt;br&gt;&lt;b&gt;Şu anki unvan: &lt;/b&gt;Profesör" data-html="true" data-original-title="" data-placement="top" data-trigger="hover" href="/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&amp;authorId=57A6856663E8E116" id="popoverData" rel="popover">AHMET TAŞDEMİR</a>,Wilhelm Bechteler
+, Yayın Yeri:Institutsmitteillungen, Universitaet der Bundeswehr München
+, 1989
+<p>
+<span class="label label-info">
+Uluslararası
+</span>
+ <span class="label label-primary">
+Hakemsiz
+</span>
+ <span class="label label-success">
+Endekste taranmıyor
+</span>
+ <span class="label label-default">
+Kısa Makale
+</span>
+</p>
+</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><span class="badge">
+								
+										30
+
+								</span></td>
+<td>
+<span class="baslika"><strong> <a data-target="#remoteModal" data-toggle="modal" href="yayinDetay.jsp?id=JjXJNilswb_3D4bugmZGTw&amp;no=vThS1HApyHzLZx07rrlXAg">Messung der Umströmung eines Zylinders</a></strong>
+</span><p></p>
+<a class="popoverData" data-content="&lt;b&gt;Unvan: &lt;/b&gt;Profesör&lt;br&gt;&lt;b&gt;Yazar türü: &lt;/b&gt;Author&lt;br&gt;&lt;b&gt;Şu anki unvan: &lt;/b&gt;Profesör" data-html="true" data-original-title="" data-placement="top" data-trigger="hover" href="/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&amp;authorId=57A6856663E8E116" id="popoverData" rel="popover">AHMET TAŞDEMİR</a>,Werner Zottmann
+, Yayın Yeri:Institutsmitteilungen, Universitaet der Bundeswehr München
+, 1988
+<p>
+<span class="label label-info">
+Uluslararası
+</span>
+ <span class="label label-primary">
+Hakemsiz
+</span>
+ <span class="label label-success">
+Endekste taranmıyor
+</span>
+ <span class="label label-default">
+Kısa Makale
+</span>
+</p>
+</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><span class="badge">
+								
+										31
+
+								</span></td>
+<td>
+<span class="baslika"><strong> <a data-target="#remoteModal" data-toggle="modal" href="yayinDetay.jsp?id=RAuxLpUqLwUnDtoJxW517w&amp;no=Zn_DcSuRqBYD-ikNOhM2-w">Widerstand von Schiffskörpern im Flachwasserbereich</a></strong>
+</span><p></p>
+									Karl Heinz Schaetz,<a class="popoverData" data-content="&lt;b&gt;Unvan: &lt;/b&gt;Profesör&lt;br&gt;&lt;b&gt;Yazar türü: &lt;/b&gt;Author&lt;br&gt;&lt;b&gt;Şu anki unvan: &lt;/b&gt;Profesör" data-html="true" data-original-title="" data-placement="top" data-trigger="hover" href="/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&amp;authorId=57A6856663E8E116" id="popoverData" rel="popover">AHMET TAŞDEMİR</a>
+, Yayın Yeri:Institutsmitteilungen, Universitaet der Bundeswehr München
+, 1988
+<p>
+<span class="label label-info">
+Uluslararası
+</span>
+ <span class="label label-primary">
+Hakemsiz
+</span>
+ <span class="label label-success">
+Endekste taranmıyor
+</span>
+ <span class="label label-default">
+Kısa Makale
+</span>
+</p>
+</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="tab-pane fade in" id="international" role="tabpanel">
+<table class="table">
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody class="searchable">
+<tr>
+<td><span class="badge">
+										1
+
+								</span></td>
+<td><span class="baslika"><strong> <a data-target="#remoteModal" data-toggle="modal" href="yayinDetay.jsp?id=Kxm8tsz1EECQdUdM247VXA&amp;no=_D2bDdARDMCOgjHVGzFVZw">Assessment of the shipbuilding industry with a value-oriented approach</a></strong>
+</span><p></p><a class="popoverData" data-content="&lt;b&gt;Unvan: &lt;/b&gt;Doktor Öğretim Üyesi&lt;br&gt;&lt;b&gt;Yazar türü: &lt;/b&gt;Author&lt;br&gt;&lt;b&gt;Şu anki unvan: &lt;/b&gt;Doktor Öğretim Üyesi" data-html="true" data-original-title="" data-placement="top" data-trigger="hover" href="/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&amp;authorId=65B0BBD6B922BAF9" id="popoverData" rel="popover">OKTAY ÇETİN</a>,<a class="popoverData" data-content="&lt;b&gt;Unvan: &lt;/b&gt;Araştırma Görevlisi&lt;br&gt;&lt;b&gt;Yazar türü: &lt;/b&gt;Author&lt;br&gt;&lt;b&gt;Şu anki unvan: &lt;/b&gt;Araştırma Görevlisi" data-html="true" data-original-title="" data-placement="top" data-trigger="hover" href="/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&amp;authorId=1B01CA9F652A4964" id="popoverData" rel="popover">SALİH BAKKAL</a>,<a class="popoverData" data-content="&lt;b&gt;Unvan: &lt;/b&gt;Profesör&lt;br&gt;&lt;b&gt;Yazar türü: &lt;/b&gt;Author&lt;br&gt;&lt;b&gt;Şu anki unvan: &lt;/b&gt;Profesör" data-html="true" data-original-title="" data-placement="top" data-trigger="hover" href="/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&amp;authorId=57A6856663E8E116" id="popoverData" rel="popover">AHMET TAŞDEMİR</a>,<a class="popoverData" data-content="&lt;b&gt;Unvan: &lt;/b&gt;Profesör&lt;br&gt;&lt;b&gt;Yazar türü: &lt;/b&gt;Author&lt;br&gt;&lt;b&gt;Şu anki unvan: &lt;/b&gt;Profesör" data-html="true" data-original-title="" data-placement="top" data-trigger="hover" href="/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&amp;authorId=81CE9042620F6C40" id="popoverData" rel="popover">MEHMET ZİYA SÖĞÜT</a>
+, Yayın Yeri:Journal of Ocean Engineering and Marine Energy
+, 2025
+<p>
+<span class="label label-info">
+Uluslararası
+</span>
+ <span class="label label-primary">
+Hakemli
+</span>
+ <span class="label label-success">
+SSCI
+</span>
+ <span class="label label-default">
+Özgün Makale
+</span>
+</p>
+</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><span class="badge">
+										2
+
+								</span></td>
+<td><span class="baslika"><strong> <a data-target="#remoteModal" data-toggle="modal" href="yayinDetay.jsp?id=Rvdrppyt8RS7ltzTSrUnhQ&amp;no=VAWp5jxMDUj5cB0bvOvsDw">Alternative fuels for enhanced ship energy efficiency: A conceptual design study of a handymax bulk carrier</a></strong>
+</span><p></p><a class="popoverData" data-content="&lt;b&gt;Unvan: &lt;/b&gt;Doktor Öğretim Üyesi&lt;br&gt;&lt;b&gt;Yazar türü: &lt;/b&gt;Author&lt;br&gt;&lt;b&gt;Şu anki unvan: &lt;/b&gt;Doktor Öğretim Üyesi" data-html="true" data-original-title="" data-placement="top" data-trigger="hover" href="/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&amp;authorId=46728924A7090FE6" id="popoverData" rel="popover">MEHMET AKMAN</a>,<a class="popoverData" data-content="&lt;b&gt;Unvan: &lt;/b&gt;Doktor Öğretim Üyesi&lt;br&gt;&lt;b&gt;Yazar türü: &lt;/b&gt;Author&lt;br&gt;&lt;b&gt;Şu anki unvan: &lt;/b&gt;Doktor Öğretim Üyesi" data-html="true" data-original-title="" data-placement="top" data-trigger="hover" href="/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&amp;authorId=22E3230DF079293F" id="popoverData" rel="popover">BÜLENT İBRAHİM TURAN</a>,<a class="popoverData" data-content="&lt;b&gt;Unvan: &lt;/b&gt;Profesör&lt;br&gt;&lt;b&gt;Yazar türü: &lt;/b&gt;Author&lt;br&gt;&lt;b&gt;Şu anki unvan: &lt;/b&gt;Profesör" data-html="true" data-original-title="" data-placement="top" data-trigger="hover" href="/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&amp;authorId=57A6856663E8E116" id="popoverData" rel="popover">AHMET TAŞDEMİR</a>,<a class="popoverData" data-content="&lt;b&gt;Unvan: &lt;/b&gt;Profesör&lt;br&gt;&lt;b&gt;Yazar türü: &lt;/b&gt;Author&lt;br&gt;&lt;b&gt;Şu anki unvan: &lt;/b&gt;Profesör" data-html="true" data-original-title="" data-placement="top" data-trigger="hover" href="/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&amp;authorId=81CE9042620F6C40" id="popoverData" rel="popover">MEHMET ZİYA SÖĞÜT</a>
+, Yayın Yeri:International Journal of Hydrogen Energy
+, 2025
+<p>
+<span class="label label-info">
+Uluslararası
+</span>
+ <span class="label label-primary">
+Hakemli
+</span>
+ <span class="label label-success">
+SCI-Expanded
+</span>
+ <span class="label label-default">
+Özgün Makale
+</span>
+</p>
+</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><span class="badge">
+										3
+
+								</span></td>
+<td><span class="baslika"><strong> <a data-target="#remoteModal" data-toggle="modal" href="yayinDetay.jsp?id=Tgq2DohOelgGwld_s_Q0qw&amp;no=NPyYQsydu7pn_jChegdWIA">An overview of wire arc additive manufacturing (WAAM) in shipbuilding industry</a></strong>
+</span><p></p><a class="popoverData" data-content="&lt;b&gt;Unvan: &lt;/b&gt;Profesör&lt;br&gt;&lt;b&gt;Yazar türü: &lt;/b&gt;Author&lt;br&gt;&lt;b&gt;Şu anki unvan: &lt;/b&gt;Profesör" data-html="true" data-original-title="" data-placement="top" data-trigger="hover" href="/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&amp;authorId=57A6856663E8E116" id="popoverData" rel="popover">AHMET TAŞDEMİR</a>,SERKAN NOHUT
+, Yayın Yeri:Ships and Offshore Structures
+, 2021
+<p>
+<span class="label label-info">
+Uluslararası
+</span>
+ <span class="label label-primary">
+Hakemli
+</span>
+ <span class="label label-success">
+SSCI
+</span>
+ <span class="label label-default">
+Özgün Makale
+</span>
+</p>
+</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><span class="badge">
+										5
+
+								</span></td>
+<td><span class="baslika"><strong> <a data-target="#remoteModal" data-toggle="modal" href="yayinDetay.jsp?id=J_NzUTyN5eTq4dLkb5nH0Q&amp;no=V-OBp1_xUj06V-k5ii5aPQ">Analytical and Numerical Analysis of the Strength Performance of a Novel Ship Construction Profile</a></strong>
+</span><p></p><a class="popoverData" data-content="&lt;b&gt;Unvan: &lt;/b&gt;Tanımsız Ünvan&lt;br&gt;&lt;b&gt;Yazar türü: &lt;/b&gt;Author&lt;br&gt;&lt;b&gt;Şu anki unvan: &lt;/b&gt;Profesör" data-html="true" data-original-title="" data-placement="top" data-trigger="hover" href="/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&amp;authorId=57A6856663E8E116" id="popoverData" rel="popover">AHMET TAŞDEMİR</a>,SERKAN NOHUT,<a class="popoverData" data-content="&lt;b&gt;Unvan: &lt;/b&gt;Tanımsız Ünvan&lt;br&gt;&lt;b&gt;Yazar türü: &lt;/b&gt;Author&lt;br&gt;&lt;b&gt;Şu anki unvan: &lt;/b&gt;Doktor Öğretim Üyesi" data-html="true" data-original-title="" data-placement="top" data-trigger="hover" href="/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&amp;authorId=46728924A7090FE6" id="popoverData" rel="popover">MEHMET AKMAN</a>
+, Yayın Yeri:Journal of Eta Maritime Science
+, 2021
+<p>
+<span class="label label-info">
+Uluslararası
+</span>
+ <span class="label label-primary">
+Hakemli
+</span>
+ <span class="label label-success">
+TR DİZİN
+</span>
+ <span class="label label-default">
+Özgün Makale
+</span>
+</p>
+</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><span class="badge">
+										6
+
+								</span></td>
+<td><span class="baslika"><strong> <a data-target="#remoteModal" data-toggle="modal" href="yayinDetay.jsp?id=fcH9y__9EJz1ADvTg_IWJg&amp;no=soTUaaecAI-j1RLJL-WJow">An Overview of Wire Arc Additive Manufacturing (WAAM) in Shipbuilding Industry</a></strong>
+</span><p></p><a class="popoverData" data-content="&lt;b&gt;Unvan: &lt;/b&gt;Profesör&lt;br&gt;&lt;b&gt;Yazar türü: &lt;/b&gt;Author&lt;br&gt;&lt;b&gt;Şu anki unvan: &lt;/b&gt;Profesör" data-html="true" data-original-title="" data-placement="top" data-trigger="hover" href="/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&amp;authorId=57A6856663E8E116" id="popoverData" rel="popover">AHMET TAŞDEMİR</a>,SERKAN NOHUT
+, Yayın Yeri:Ships and Offshore Structures
+, 2020
+<p>
+<span class="label label-info">
+Uluslararası
+</span>
+ <span class="label label-primary">
+Hakemli
+</span>
+ <span class="label label-success">
+SCI-Expanded
+</span>
+ <span class="label label-default">
+Derleme Makale
+</span>
+</p>
+</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><span class="badge">
+										9
+
+								</span></td>
+<td><span class="baslika"><strong> <a data-target="#remoteModal" data-toggle="modal" href="yayinDetay.jsp?id=IyceRPr-GFsBAFw1FcphMw&amp;no=EpjhmFgiSAVk66O84AtUZg">A Critical Assessment of Measures to Improve Energy Efficiency in Containership</a></strong>
+</span><p></p>Volker Bertram,<a class="popoverData" data-content="&lt;b&gt;Unvan: &lt;/b&gt;Profesör&lt;br&gt;&lt;b&gt;Yazar türü: &lt;/b&gt;Author&lt;br&gt;&lt;b&gt;Şu anki unvan: &lt;/b&gt;Profesör" data-html="true" data-original-title="" data-placement="top" data-trigger="hover" href="/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&amp;authorId=57A6856663E8E116" id="popoverData" rel="popover">AHMET TAŞDEMİR</a>
+, Yayın Yeri:International Conference on Engine Room Simulators (ICERS)
+, 2015
+<p>
+<span class="label label-info">
+Uluslararası
+</span>
+ <span class="label label-primary">
+Hakemli
+</span>
+ <span class="label label-success">
+Endekste taranmıyor
+</span>
+ <span class="label label-default">
+Özgün Makale
+</span>
+</p>
+</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><span class="badge">
+										10
+
+								</span></td>
+<td><span class="baslika"><strong> <a data-target="#remoteModal" data-toggle="modal" href="yayinDetay.jsp?id=fzjim27qhfZ9i66m-g90dA&amp;no=5Eaxq5GEK5ukOf71Zpm7dA">Offshore structures should be approached as a Strategic value for Turkey’s shipbuilding industry and it’s future</a></strong>
+</span><p></p>Devrim Aşkın Karaca,<a class="popoverData" data-content="&lt;b&gt;Unvan: &lt;/b&gt;Profesör&lt;br&gt;&lt;b&gt;Yazar türü: &lt;/b&gt;Author&lt;br&gt;&lt;b&gt;Şu anki unvan: &lt;/b&gt;Profesör" data-html="true" data-original-title="" data-placement="top" data-trigger="hover" href="/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&amp;authorId=57A6856663E8E116" id="popoverData" rel="popover">AHMET TAŞDEMİR</a>
+, Yayın Yeri:INTNAM
+, 2014
+<p>
+<span class="label label-info">
+Uluslararası
+</span>
+ <span class="label label-primary">
+Hakemli
+</span>
+ <span class="label label-success">
+Endekste taranmıyor
+</span>
+ <span class="label label-default">
+Derleme Makale
+</span>
+</p>
+</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><span class="badge">
+										11
+
+								</span></td>
+<td><span class="baslika"><strong> <a data-target="#remoteModal" data-toggle="modal" href="yayinDetay.jsp?id=Q-YGYvMuLGIGYUw-Hp8ZQg&amp;no=iHDPgsbZ-szm5UHCxj3mmg">Influence of surface treatment on strength distribution on Vita VMK 68 dental porcelain”, Advanced in Materials Science and Engineering</a></strong>
+</span><p></p>SERKAN NOHUT,<a class="popoverData" data-content="&lt;b&gt;Unvan: &lt;/b&gt;Profesör&lt;br&gt;&lt;b&gt;Yazar türü: &lt;/b&gt;Author&lt;br&gt;&lt;b&gt;Şu anki unvan: &lt;/b&gt;Profesör" data-html="true" data-original-title="" data-placement="top" data-trigger="hover" href="/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&amp;authorId=57A6856663E8E116" id="popoverData" rel="popover">AHMET TAŞDEMİR</a>,<a class="popoverData" data-content="&lt;b&gt;Unvan: &lt;/b&gt;Araştırma Görevlisi&lt;br&gt;&lt;b&gt;Yazar türü: &lt;/b&gt;Author&lt;br&gt;&lt;b&gt;Şu anki unvan: &lt;/b&gt;Doktor Öğretim Üyesi" data-html="true" data-original-title="" data-placement="top" data-trigger="hover" href="/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&amp;authorId=C44F8590C48C1B7E" id="popoverData" rel="popover">SÜLEYMAN AYKUT KORKMAZ</a>
+, Yayın Yeri:Advanced in Materials Science and Engineering
+, 2013
+<p>
+<span class="label label-info">
+Uluslararası
+</span>
+ <span class="label label-primary">
+Hakemli
+</span>
+ <span class="label label-success">
+SSCI
+</span>
+ <span class="label label-default">
+Özgün Makale
+</span>
+</p>
+</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><span class="badge">
+										12
+
+								</span></td>
+<td><span class="baslika"><strong> <a data-target="#remoteModal" data-toggle="modal" href="yayinDetay.jsp?id=7oPsvmOTey_MBuHmn_yAlA&amp;no=4WGEO1b9Pd2gJkOu4LsIDw">Influence of Surface Treatment on Strength Distribution of Vita VMK 68 Dental Porcelains</a></strong>
+</span><p></p>SERKAN NOHUT,<a class="popoverData" data-content="&lt;b&gt;Unvan: &lt;/b&gt;Profesör&lt;br&gt;&lt;b&gt;Yazar türü: &lt;/b&gt;Author&lt;br&gt;&lt;b&gt;Şu anki unvan: &lt;/b&gt;Profesör" data-html="true" data-original-title="" data-placement="top" data-trigger="hover" href="/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&amp;authorId=57A6856663E8E116" id="popoverData" rel="popover">AHMET TAŞDEMİR</a>,<a class="popoverData" data-content="&lt;b&gt;Unvan: &lt;/b&gt;Araştırma Görevlisi&lt;br&gt;&lt;b&gt;Yazar türü: &lt;/b&gt;Author&lt;br&gt;&lt;b&gt;Şu anki unvan: &lt;/b&gt;Doktor Öğretim Üyesi" data-html="true" data-original-title="" data-placement="top" data-trigger="hover" href="/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&amp;authorId=C44F8590C48C1B7E" id="popoverData" rel="popover">SÜLEYMAN AYKUT KORKMAZ</a>
+, Yayın Yeri:Advances in Materials Science and Engineering
+, 2013
+<p>
+<span class="label label-info">
+Uluslararası
+</span>
+ <span class="label label-primary">
+Hakemli
+</span>
+ <span class="label label-success">
+SCI-Expanded
+</span>
+ <span class="label label-default">
+Özgün Makale
+</span>
+</p>
+</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><span class="badge">
+										13
+
+								</span></td>
+<td><span class="baslika"><strong> <a data-target="#remoteModal" data-toggle="modal" href="yayinDetay.jsp?id=KxtCUpqd0SkOIRJMRa5QaQ&amp;no=GIXe1alYuQtGyCLDRIQ30Q">Influence of Surface Treatment on Strength Distribution of Vita VMK 68 Dental Porcelains</a></strong>
+</span><p></p>SERKAN NOHUT,<a class="popoverData" data-content="&lt;b&gt;Unvan: &lt;/b&gt;Profesör&lt;br&gt;&lt;b&gt;Yazar türü: &lt;/b&gt;Author&lt;br&gt;&lt;b&gt;Şu anki unvan: &lt;/b&gt;Profesör" data-html="true" data-original-title="" data-placement="top" data-trigger="hover" href="/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&amp;authorId=57A6856663E8E116" id="popoverData" rel="popover">AHMET TAŞDEMİR</a>,<a class="popoverData" data-content="&lt;b&gt;Unvan: &lt;/b&gt;Araştırma Görevlisi&lt;br&gt;&lt;b&gt;Yazar türü: &lt;/b&gt;Author&lt;br&gt;&lt;b&gt;Şu anki unvan: &lt;/b&gt;Doktor Öğretim Üyesi" data-html="true" data-original-title="" data-placement="top" data-trigger="hover" href="/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&amp;authorId=C44F8590C48C1B7E" id="popoverData" rel="popover">SÜLEYMAN AYKUT KORKMAZ</a>
+, Yayın Yeri:ADVANCES IN MATERIALS SCIENCE AND ENGINEERING
+, 2013
+<p>
+<span class="label label-info">
+Uluslararası
+</span>
+ <span class="label label-primary">
+Hakemli
+</span>
+ <span class="label label-success">
+SCI
+</span>
+ <span class="label label-default">
+Özgün Makale
+</span>
+</p>
+</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><span class="badge">
+										14
+
+								</span></td>
+<td><span class="baslika"><strong> <a data-target="#remoteModal" data-toggle="modal" href="yayinDetay.jsp?id=fcZfbpB7ojGn3Q09PfUqMw&amp;no=f6U-DEtbVV2rye1FGqLApg">Characterization of Strength Distribution of Dental Ceramics with Different Microstructures and Surface Treatments</a></strong>
+</span><p></p>SERKAN NOHUT,<a class="popoverData" data-content="&lt;b&gt;Unvan: &lt;/b&gt;Profesör&lt;br&gt;&lt;b&gt;Yazar türü: &lt;/b&gt;İkinci Danışman Yazar&lt;br&gt;&lt;b&gt;Şu anki unvan: &lt;/b&gt;Profesör" data-html="true" data-original-title="" data-placement="top" data-trigger="hover" href="/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&amp;authorId=57A6856663E8E116" id="popoverData" rel="popover">AHMET TAŞDEMİR</a>
+, Yayın Yeri:Advanced in Materials Science and Engineering
+, 2013
+<p>
+<span class="label label-info">
+Uluslararası
+</span>
+ <span class="label label-primary">
+Hakemli
+</span>
+ <span class="label label-success">
+SCI
+</span>
+ <span class="label label-default">
+Özgün Makale
+</span>
+</p>
+</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><span class="badge">
+										16
+
+								</span></td>
+<td><span class="baslika"><strong> <a data-target="#remoteModal" data-toggle="modal" href="yayinDetay.jsp?id=aRL38mxDxK-AnQsYj53tkQ&amp;no=-JY7-AwtRcFwDSw_TGsXhw">Fatigue analysis of ship structures with hinged deck design by finite element method. A case study: Fatigue analysis of the primary supporting members of 4900 PCTC</a></strong>
+</span><p></p><a class="popoverData" data-content="&lt;b&gt;Unvan: &lt;/b&gt;Profesör&lt;br&gt;&lt;b&gt;Yazar türü: &lt;/b&gt;Author&lt;br&gt;&lt;b&gt;Şu anki unvan: &lt;/b&gt;Profesör" data-html="true" data-original-title="" data-placement="top" data-trigger="hover" href="/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&amp;authorId=57A6856663E8E116" id="popoverData" rel="popover">AHMET TAŞDEMİR</a>,SERKAN NOHUT
+, Yayın Yeri:Marine Structures
+, 2012
+<p>
+<span class="label label-info">
+Uluslararası
+</span>
+ <span class="label label-primary">
+Hakemli
+</span>
+ <span class="label label-success">
+SSCI
+</span>
+ <span class="label label-default">
+Özgün Makale
+</span>
+</p>
+</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><span class="badge">
+										17
+
+								</span></td>
+<td><span class="baslika"><strong> <a data-target="#remoteModal" data-toggle="modal" href="yayinDetay.jsp?id=m0nZ46pZCm7gAa5jBuUo0g&amp;no=eS6LQMZfrcjjMbs99l1AWg">Fatigue analysis of ship structures with hinged deck design by finite
+element method. A case study: Fatigue analysis of the primary supporting
+members of 4900 PCTC</a></strong>
+</span><p></p><a class="popoverData" data-content="&lt;b&gt;Unvan: &lt;/b&gt;Tanımsız Ünvan&lt;br&gt;&lt;b&gt;Yazar türü: &lt;/b&gt;Author&lt;br&gt;&lt;b&gt;Şu anki unvan: &lt;/b&gt;Profesör" data-html="true" data-original-title="" data-placement="top" data-trigger="hover" href="/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&amp;authorId=57A6856663E8E116" id="popoverData" rel="popover">AHMET TAŞDEMİR</a>,SERKAN NOHUT
+, Yayın Yeri:MARINE STRUCTURES
+, 2012
+<p>
+<span class="label label-info">
+Uluslararası
+</span>
+ <span class="label label-primary">
+Hakemli
+</span>
+ <span class="label label-success">
+SSCI
+</span>
+ <span class="label label-default">
+Özgün Makale
+</span>
+</p>
+</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><span class="badge">
+										18
+
+								</span></td>
+<td><span class="baslika"><strong> <a data-target="#remoteModal" data-toggle="modal" href="yayinDetay.jsp?id=Q7qTi_LyerdtMXUUNG6RIA&amp;no=3QkHR6YRCb-E-1I0RusEZw">Fatigue analysis of ship structures with hinged deck design by finite element method. A case study: Fatigue analysis of the primary supporting members of 4900 PCTC</a></strong>
+</span><p></p><a class="popoverData" data-content="&lt;b&gt;Unvan: &lt;/b&gt;Profesör&lt;br&gt;&lt;b&gt;Yazar türü: &lt;/b&gt;Author&lt;br&gt;&lt;b&gt;Şu anki unvan: &lt;/b&gt;Profesör" data-html="true" data-original-title="" data-placement="top" data-trigger="hover" href="/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&amp;authorId=57A6856663E8E116" id="popoverData" rel="popover">AHMET TAŞDEMİR</a>,SERKAN NOHUT
+, Yayın Yeri:Marine Structures
+, 2012
+<p>
+<span class="label label-info">
+Uluslararası
+</span>
+ <span class="label label-primary">
+Hakemli
+</span>
+ <span class="label label-success">
+SCI-Expanded
+</span>
+ <span class="label label-default">
+Özgün Makale
+</span>
+</p>
+</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><span class="badge">
+										23
+
+								</span></td>
+<td><span class="baslika"><strong> <a data-target="#remoteModal" data-toggle="modal" href="yayinDetay.jsp?id=LGOxYDH7OhG4HLvnjMDUmw&amp;no=ZRf8Bs_bwrgiDo0f0IBZYA">Messung des Geschwindigkeitsfeldes eines Schiffdoppelmodells mit einer Fünflochsonde im Windkanal</a></strong>
+</span><p></p><a class="popoverData" data-content="&lt;b&gt;Unvan: &lt;/b&gt;Profesör&lt;br&gt;&lt;b&gt;Yazar türü: &lt;/b&gt;Author&lt;br&gt;&lt;b&gt;Şu anki unvan: &lt;/b&gt;Profesör" data-html="true" data-original-title="" data-placement="top" data-trigger="hover" href="/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&amp;authorId=57A6856663E8E116" id="popoverData" rel="popover">AHMET TAŞDEMİR</a>
+, Yayın Yeri:IfS Schriften Universitaet Hamburg
+, 1994
+<p>
+<span class="label label-info">
+Uluslararası
+</span>
+ <span class="label label-primary">
+Hakemsiz
+</span>
+ <span class="label label-success">
+Endekste taranmıyor
+</span>
+ <span class="label label-default">
+Kısa Makale
+</span>
+</p>
+</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><span class="badge">
+										24
+
+								</span></td>
+<td><span class="baslika"><strong> <a data-target="#remoteModal" data-toggle="modal" href="yayinDetay.jsp?id=ROwn7zQKg0MOo4QgAzXwnQ&amp;no=UUfjxT2GaFaE4jqbIgcFLg">Digitalisierung der mittels Anstrichsversuche gewonnenen Bilder - Arbeitsgemeinschaft Strömungen mit Ablösung</a></strong>
+</span><p></p>Uwe Gietz,<a class="popoverData" data-content="&lt;b&gt;Unvan: &lt;/b&gt;Profesör&lt;br&gt;&lt;b&gt;Yazar türü: &lt;/b&gt;Author&lt;br&gt;&lt;b&gt;Şu anki unvan: &lt;/b&gt;Profesör" data-html="true" data-original-title="" data-placement="top" data-trigger="hover" href="/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&amp;authorId=57A6856663E8E116" id="popoverData" rel="popover">AHMET TAŞDEMİR</a>
+, Yayın Yeri:Jahresbericht der DLR
+, 1993
+<p>
+<span class="label label-info">
+Uluslararası
+</span>
+ <span class="label label-primary">
+Hakemli
+</span>
+ <span class="label label-success">
+Endekste taranmıyor
+</span>
+ <span class="label label-default">
+Özgün Makale
+</span>
+</p>
+</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><span class="badge">
+										25
+
+								</span></td>
+<td><span class="baslika"><strong> <a data-target="#remoteModal" data-toggle="modal" href="yayinDetay.jsp?id=luS_ZKjVUvYju0jJTrkFsA&amp;no=gFyd-S_hU5DW1CCGLL8AbA">Strömung mit freier Oberflaeche: Vergleich von Experiment mit Rechnung</a></strong>
+</span><p></p><a class="popoverData" data-content="&lt;b&gt;Unvan: &lt;/b&gt;Profesör&lt;br&gt;&lt;b&gt;Yazar türü: &lt;/b&gt;Author&lt;br&gt;&lt;b&gt;Şu anki unvan: &lt;/b&gt;Profesör" data-html="true" data-original-title="" data-placement="top" data-trigger="hover" href="/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&amp;authorId=57A6856663E8E116" id="popoverData" rel="popover">AHMET TAŞDEMİR</a>
+, Yayın Yeri:IfS Schriften Universitaet Hamburg
+, 1993
+<p>
+<span class="label label-info">
+Uluslararası
+</span>
+ <span class="label label-primary">
+Hakemsiz
+</span>
+ <span class="label label-success">
+Endekste taranmıyor
+</span>
+ <span class="label label-default">
+Kısa Makale
+</span>
+</p>
+</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><span class="badge">
+										26
+
+								</span></td>
+<td><span class="baslika"><strong> <a data-target="#remoteModal" data-toggle="modal" href="yayinDetay.jsp?id=q-xaDGnfk4CueYvyd1u_nw&amp;no=kpg8cYAvQfncUOQucxlgDQ">3D-Flow Field Measurements around a Cylinder in Open Channel Flow compared with Numerical Models</a></strong>
+</span><p></p>Wilhelm Bechteler,<a class="popoverData" data-content="&lt;b&gt;Unvan: &lt;/b&gt;Profesör&lt;br&gt;&lt;b&gt;Yazar türü: &lt;/b&gt;Author&lt;br&gt;&lt;b&gt;Şu anki unvan: &lt;/b&gt;Profesör" data-html="true" data-original-title="" data-placement="top" data-trigger="hover" href="/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&amp;authorId=57A6856663E8E116" id="popoverData" rel="popover">AHMET TAŞDEMİR</a>,Karl Heinz Schaetz,Heinrich Sattel
+, Yayın Yeri:Computer Methods in Marine and Offshore Engineering
+, 1992
+<p>
+<span class="label label-info">
+Uluslararası
+</span>
+ <span class="label label-primary">
+Hakemli
+</span>
+ <span class="label label-success">
+EI: Engineering Index 
+</span>
+ <span class="label label-default">
+Özgün Makale
+</span>
+</p>
+</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><span class="badge">
+										27
+
+								</span></td>
+<td><span class="baslika"><strong> <a data-target="#remoteModal" data-toggle="modal" href="yayinDetay.jsp?id=GQxcWoNrm7HAWUJAl_dgWQ&amp;no=b610xf9OfVsYT0xA_JP16A">Untersuchungen des Deformations- und Spannungsverhaltens von Containerzurrelementen</a></strong>
+</span><p></p><a class="popoverData" data-content="&lt;b&gt;Unvan: &lt;/b&gt;Profesör&lt;br&gt;&lt;b&gt;Yazar türü: &lt;/b&gt;Author&lt;br&gt;&lt;b&gt;Şu anki unvan: &lt;/b&gt;Profesör" data-html="true" data-original-title="" data-placement="top" data-trigger="hover" href="/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&amp;authorId=57A6856663E8E116" id="popoverData" rel="popover">AHMET TAŞDEMİR</a>
+, Yayın Yeri:Schiff und Hafen
+, 1991
+<p>
+<span class="label label-info">
+Uluslararası
+</span>
+ <span class="label label-primary">
+Hakemli
+</span>
+ <span class="label label-success">
+SCI
+</span>
+ <span class="label label-default">
+Özgün Makale
+</span>
+</p>
+</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><span class="badge">
+										28
+
+								</span></td>
+<td><span class="baslika"><strong> <a data-target="#remoteModal" data-toggle="modal" href="yayinDetay.jsp?id=5_dr-haI-FSMfwkegygPGg&amp;no=YiG4LPjlbwTXGZBtrrpGpw">2D-respective 3D-Flow Field Measurements in Open Channel Flow compared with Numerical   Models</a></strong>
+</span><p></p><a class="popoverData" data-content="&lt;b&gt;Unvan: &lt;/b&gt;Profesör&lt;br&gt;&lt;b&gt;Yazar türü: &lt;/b&gt;Author&lt;br&gt;&lt;b&gt;Şu anki unvan: &lt;/b&gt;Profesör" data-html="true" data-original-title="" data-placement="top" data-trigger="hover" href="/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&amp;authorId=57A6856663E8E116" id="popoverData" rel="popover">AHMET TAŞDEMİR</a>,Heinrich Sattel,Karl Heinz Schaetz
+, Yayın Yeri:Computer Methods in Marine and Offshore Engineering
+, 1991
+<p>
+<span class="label label-info">
+Uluslararası
+</span>
+ <span class="label label-primary">
+Hakemli
+</span>
+ <span class="label label-success">
+EI: Engineering Index 
+</span>
+ <span class="label label-default">
+Özgün Makale
+</span>
+</p>
+</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><span class="badge">
+										29
+
+								</span></td>
+<td><span class="baslika"><strong> <a data-target="#remoteModal" data-toggle="modal" href="yayinDetay.jsp?id=HBiHqS6f1sXuP-rWjjorSg&amp;no=cMU5KgKjzFo4BVQCg2M0ig">Experimentelle Ermittlung des Wellenwiderstandes eines Kreiszylinders mittels Stereophotogrammetrie</a></strong>
+</span><p></p><a class="popoverData" data-content="&lt;b&gt;Unvan: &lt;/b&gt;Profesör&lt;br&gt;&lt;b&gt;Yazar türü: &lt;/b&gt;Author&lt;br&gt;&lt;b&gt;Şu anki unvan: &lt;/b&gt;Profesör" data-html="true" data-original-title="" data-placement="top" data-trigger="hover" href="/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&amp;authorId=57A6856663E8E116" id="popoverData" rel="popover">AHMET TAŞDEMİR</a>,Wilhelm Bechteler
+, Yayın Yeri:Institutsmitteillungen, Universitaet der Bundeswehr München
+, 1989
+<p>
+<span class="label label-info">
+Uluslararası
+</span>
+ <span class="label label-primary">
+Hakemsiz
+</span>
+ <span class="label label-success">
+Endekste taranmıyor
+</span>
+ <span class="label label-default">
+Kısa Makale
+</span>
+</p>
+</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><span class="badge">
+										30
+
+								</span></td>
+<td><span class="baslika"><strong> <a data-target="#remoteModal" data-toggle="modal" href="yayinDetay.jsp?id=JjXJNilswb_3D4bugmZGTw&amp;no=vThS1HApyHzLZx07rrlXAg">Messung der Umströmung eines Zylinders</a></strong>
+</span><p></p><a class="popoverData" data-content="&lt;b&gt;Unvan: &lt;/b&gt;Profesör&lt;br&gt;&lt;b&gt;Yazar türü: &lt;/b&gt;Author&lt;br&gt;&lt;b&gt;Şu anki unvan: &lt;/b&gt;Profesör" data-html="true" data-original-title="" data-placement="top" data-trigger="hover" href="/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&amp;authorId=57A6856663E8E116" id="popoverData" rel="popover">AHMET TAŞDEMİR</a>,Werner Zottmann
+, Yayın Yeri:Institutsmitteilungen, Universitaet der Bundeswehr München
+, 1988
+<p>
+<span class="label label-info">
+Uluslararası
+</span>
+ <span class="label label-primary">
+Hakemsiz
+</span>
+ <span class="label label-success">
+Endekste taranmıyor
+</span>
+ <span class="label label-default">
+Kısa Makale
+</span>
+</p>
+</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><span class="badge">
+										31
+
+								</span></td>
+<td><span class="baslika"><strong> <a data-target="#remoteModal" data-toggle="modal" href="yayinDetay.jsp?id=RAuxLpUqLwUnDtoJxW517w&amp;no=Zn_DcSuRqBYD-ikNOhM2-w">Widerstand von Schiffskörpern im Flachwasserbereich</a></strong>
+</span><p></p>Karl Heinz Schaetz,<a class="popoverData" data-content="&lt;b&gt;Unvan: &lt;/b&gt;Profesör&lt;br&gt;&lt;b&gt;Yazar türü: &lt;/b&gt;Author&lt;br&gt;&lt;b&gt;Şu anki unvan: &lt;/b&gt;Profesör" data-html="true" data-original-title="" data-placement="top" data-trigger="hover" href="/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&amp;authorId=57A6856663E8E116" id="popoverData" rel="popover">AHMET TAŞDEMİR</a>
+, Yayın Yeri:Institutsmitteilungen, Universitaet der Bundeswehr München
+, 1988
+<p>
+<span class="label label-info">
+Uluslararası
+</span>
+ <span class="label label-primary">
+Hakemsiz
+</span>
+ <span class="label label-success">
+Endekste taranmıyor
+</span>
+ <span class="label label-default">
+Kısa Makale
+</span>
+</p>
+</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="tab-pane fade in" id="national" role="tabpanel">
+<table class="table">
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody class="searchable">
+<tr>
+<td><span class="badge">
+										4
+
+								</span></td>
+<td><span class="baslika"><strong> <a data-target="#remoteModal" data-toggle="modal" href="yayinDetay.jsp?id=wdx5Ri2Wkv542om4scNhPA&amp;no=nT3KGP3694fUamKe2z0D-w">Analytical and Numerical Analysis of the Strength Performance of a Novel Ship Construction Profile</a></strong>
+</span><p></p><a class="popoverData" data-content="&lt;b&gt;Unvan: &lt;/b&gt;Profesör&lt;br&gt;&lt;b&gt;Yazar türü: &lt;/b&gt;Author&lt;br&gt;&lt;b&gt;Şu anki unvan: &lt;/b&gt;Profesör" data-html="true" data-original-title="" data-placement="top" data-trigger="hover" href="/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&amp;authorId=57A6856663E8E116" id="popoverData" rel="popover">AHMET TAŞDEMİR</a>,SERKAN NOHUT,<a class="popoverData" data-content="&lt;b&gt;Unvan: &lt;/b&gt;Öğretim Görevlisi&lt;br&gt;&lt;b&gt;Yazar türü: &lt;/b&gt;Author&lt;br&gt;&lt;b&gt;Şu anki unvan: &lt;/b&gt;Doktor Öğretim Üyesi" data-html="true" data-original-title="" data-placement="top" data-trigger="hover" href="/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&amp;authorId=46728924A7090FE6" id="popoverData" rel="popover">MEHMET AKMAN</a>
+, Yayın Yeri:Journal of Eta Maritime Science
+, 2021
+<p>
+<span class="label label-info">
+Ulusal
+</span>
+ <span class="label label-primary">
+Hakemli
+</span>
+ <span class="label label-success">
+TR DİZİN
+</span>
+ <span class="label label-default">
+Özgün Makale
+</span>
+</p>
+</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><span class="badge">
+										7
+
+								</span></td>
+<td><span class="baslika"><strong> <a data-target="#remoteModal" data-toggle="modal" href="yayinDetay.jsp?id=FoQ6X96rvwhM73v0CbYceg&amp;no=q3SMeouSUM6tBWypaNs06Q">DENİZCİLİK SEKTÖRÜNDEKİ SON GELİŞMELER VE ÜLKEMİZE YANSIMALARI</a></strong>
+</span><p></p><a class="popoverData" data-content="&lt;b&gt;Unvan: &lt;/b&gt;Profesör&lt;br&gt;&lt;b&gt;Yazar türü: &lt;/b&gt;Author&lt;br&gt;&lt;b&gt;Şu anki unvan: &lt;/b&gt;Profesör" data-html="true" data-original-title="" data-placement="top" data-trigger="hover" href="/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&amp;authorId=57A6856663E8E116" id="popoverData" rel="popover">AHMET TAŞDEMİR</a>,<a class="popoverData" data-content="&lt;b&gt;Unvan: &lt;/b&gt;Araştırma Görevlisi&lt;br&gt;&lt;b&gt;Yazar türü: &lt;/b&gt;Author&lt;br&gt;&lt;b&gt;Şu anki unvan: &lt;/b&gt;Doktor Öğretim Üyesi" data-html="true" data-original-title="" data-placement="top" data-trigger="hover" href="/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&amp;authorId=46728924A7090FE6" id="popoverData" rel="popover">MEHMET AKMAN</a>,NAZMİ ÇEŞMECİ
+, Yayın Yeri:GMO Journal of Ship and Maritime Technology
+, 2017
+<p>
+<span class="label label-info">
+Ulusal
+</span>
+ <span class="label label-primary">
+Hakemli
+</span>
+ <span class="label label-success">
+Endekste taranmıyor
+</span>
+ <span class="label label-default">
+Özgün Makale
+</span>
+</p>
+</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><span class="badge">
+										8
+
+								</span></td>
+<td><span class="baslika"><strong> <a data-target="#remoteModal" data-toggle="modal" href="yayinDetay.jsp?id=EBEqlH8T1mCTbVuw4pDR8g&amp;no=XnHpYHEOm1CMGoYyz01g8Q">A CRITICAL ASSESSMENT OF MEASURES TO IMPROVE ENERGY EFFICIENCY IN CONTAINERSHIPS</a></strong>
+</span><p></p>Volker Bertram,<a class="popoverData" data-content="&lt;b&gt;Unvan: &lt;/b&gt;Profesör&lt;br&gt;&lt;b&gt;Yazar türü: &lt;/b&gt;Author&lt;br&gt;&lt;b&gt;Şu anki unvan: &lt;/b&gt;Profesör" data-html="true" data-original-title="" data-placement="top" data-trigger="hover" href="/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&amp;authorId=57A6856663E8E116" id="popoverData" rel="popover">AHMET TAŞDEMİR</a>
+, Yayın Yeri:GMO SHIPMAR
+, 2016
+<p>
+<span class="label label-info">
+Ulusal
+</span>
+ <span class="label label-primary">
+Hakemli
+</span>
+ <span class="label label-success">
+EI: Engineering Index 
+</span>
+ <span class="label label-default">
+Özgün Makale
+</span>
+</p>
+</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><span class="badge">
+										15
+
+								</span></td>
+<td><span class="baslika"><strong> <a data-target="#remoteModal" data-toggle="modal" href="yayinDetay.jsp?id=9ZpRX8oFBwAvuk5XPeg8jQ&amp;no=O9q5MA0M4yzTvR2o8-WnMg">İç Suların Deniz Taşımacılığında Kullanılmasının Tarihi Geçmişi ve Önemi: Fırat Örneği</a></strong>
+</span><p></p><a class="popoverData" data-content="&lt;b&gt;Unvan: &lt;/b&gt;Profesör&lt;br&gt;&lt;b&gt;Yazar türü: &lt;/b&gt;Author&lt;br&gt;&lt;b&gt;Şu anki unvan: &lt;/b&gt;Profesör" data-html="true" data-original-title="" data-placement="top" data-trigger="hover" href="/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&amp;authorId=57A6856663E8E116" id="popoverData" rel="popover">AHMET TAŞDEMİR</a>,SERKAN NOHUT
+, Yayın Yeri:Gemi İnşaatı ve Deniz Teknolojisi
+, 2013
+<p>
+<span class="label label-info">
+Ulusal
+</span>
+ <span class="label label-primary">
+Hakemli
+</span>
+ <span class="label label-success">
+Endekste taranmıyor
+</span>
+ <span class="label label-default">
+Derleme Makale
+</span>
+</p>
+</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><span class="badge">
+										19
+
+								</span></td>
+<td><span class="baslika"><strong> <a data-target="#remoteModal" data-toggle="modal" href="yayinDetay.jsp?id=mmzWHjBFijez285j6WsWtg&amp;no=8bQ1IMPqlclXbN3kRBSFrQ">Global Denizcilik ve Gemi İnşa Sektöründe Yaşanan Gelişmeler ve Ülkemize Yansımaları</a></strong>
+</span><p></p><a class="popoverData" data-content="&lt;b&gt;Unvan: &lt;/b&gt;Profesör&lt;br&gt;&lt;b&gt;Yazar türü: &lt;/b&gt;Author&lt;br&gt;&lt;b&gt;Şu anki unvan: &lt;/b&gt;Profesör" data-html="true" data-original-title="" data-placement="top" data-trigger="hover" href="/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&amp;authorId=57A6856663E8E116" id="popoverData" rel="popover">AHMET TAŞDEMİR</a>,<a class="popoverData" data-content="&lt;b&gt;Unvan: &lt;/b&gt;Araştırma Görevlisi&lt;br&gt;&lt;b&gt;Yazar türü: &lt;/b&gt;Author&lt;br&gt;&lt;b&gt;Şu anki unvan: &lt;/b&gt;Doktor Öğretim Üyesi" data-html="true" data-original-title="" data-placement="top" data-trigger="hover" href="/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&amp;authorId=C44F8590C48C1B7E" id="popoverData" rel="popover">SÜLEYMAN AYKUT KORKMAZ</a>
+, Yayın Yeri:Gemi İnşaatı ve Deniz Teknolojisi Teknik Kongresi
+, 2012
+<p>
+<span class="label label-info">
+Ulusal
+</span>
+ <span class="label label-primary">
+Hakemli
+</span>
+ <span class="label label-success">
+Endekste taranmıyor
+</span>
+ <span class="label label-default">
+Derleme Makale
+</span>
+</p>
+</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><span class="badge">
+										20
+
+								</span></td>
+<td><span class="baslika"><strong> <a data-target="#remoteModal" data-toggle="modal" href="yayinDetay.jsp?id=TvIxvbflxEZ1xGHjsRvtHg&amp;no=2Wiyh97f95x_J_ifX1gvVw">Ulusal Denizcilik Politikasının Önemi</a></strong>
+</span><p></p><a class="popoverData" data-content="&lt;b&gt;Unvan: &lt;/b&gt;Profesör&lt;br&gt;&lt;b&gt;Yazar türü: &lt;/b&gt;Author&lt;br&gt;&lt;b&gt;Şu anki unvan: &lt;/b&gt;Profesör" data-html="true" data-original-title="" data-placement="top" data-trigger="hover" href="/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&amp;authorId=57A6856663E8E116" id="popoverData" rel="popover">AHMET TAŞDEMİR</a>,Ceren Yılmaz
+, Yayın Yeri:TSE Standart
+, 2012
+<p>
+<span class="label label-info">
+Ulusal
+</span>
+ <span class="label label-primary">
+Hakemsiz
+</span>
+ <span class="label label-success">
+Endekste taranmıyor
+</span>
+ <span class="label label-default">
+Derleme Makale
+</span>
+</p>
+</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><span class="badge">
+										21
+
+								</span></td>
+<td><span class="baslika"><strong> <a data-target="#remoteModal" data-toggle="modal" href="yayinDetay.jsp?id=Cycwre4n64rDddj4asV-Wg&amp;no=jsJ6xLrpbxsKc4LM4Yh13Q">POSEIDON Programı kullanarak Gemilerin Sonlu Elemanlar Modelinin Etkili ve Ekonomik bir Şekilde Oluşturulması ve Uygulamaları</a></strong>
+</span><p></p><a class="popoverData" data-content="&lt;b&gt;Unvan: &lt;/b&gt;Profesör&lt;br&gt;&lt;b&gt;Yazar türü: &lt;/b&gt;Author&lt;br&gt;&lt;b&gt;Şu anki unvan: &lt;/b&gt;Profesör" data-html="true" data-original-title="" data-placement="top" data-trigger="hover" href="/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&amp;authorId=57A6856663E8E116" id="popoverData" rel="popover">AHMET TAŞDEMİR</a>,SERKAN NOHUT,Burak Yılmaz
+, Yayın Yeri:Gemi ve Deniz Teknolojisi
+, 2012
+<p>
+<span class="label label-info">
+Ulusal
+</span>
+ <span class="label label-primary">
+Hakemli
+</span>
+ <span class="label label-success">
+Endekste taranmıyor
+</span>
+ <span class="label label-default">
+Derleme Makale
+</span>
+</p>
+</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><span class="badge">
+										22
+
+								</span></td>
+<td><span class="baslika"><strong> <a data-target="#remoteModal" data-toggle="modal" href="yayinDetay.jsp?id=2cdz6ymwup5i4ERk8htzvA&amp;no=tc2kCm7rC3yK8AaAotBxtg">Türk Denizcilik Sektörü IMO’nun yeni “Gemilerin Emniyetli ve Çevreye Duyarlı Geri Dönüşümü Konvansiyonu” Kurallarına Ne Kadar Hazır?</a></strong>
+</span><p></p><a class="popoverData" data-content="&lt;b&gt;Unvan: &lt;/b&gt;Profesör&lt;br&gt;&lt;b&gt;Yazar türü: &lt;/b&gt;Author&lt;br&gt;&lt;b&gt;Şu anki unvan: &lt;/b&gt;Profesör" data-html="true" data-original-title="" data-placement="top" data-trigger="hover" href="/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&amp;authorId=57A6856663E8E116" id="popoverData" rel="popover">AHMET TAŞDEMİR</a>,Beyza Doyduk
+, Yayın Yeri:Denizcilik Dergisi
+, 2010
+<p>
+<span class="label label-info">
+Ulusal
+</span>
+ <span class="label label-primary">
+Hakemsiz
+</span>
+ <span class="label label-success">
+Endekste taranmıyor
+</span>
+ <span class="label label-default">
+Derleme Makale
+</span>
+</p>
+</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Modal -->
+<div aria-hidden="true" aria-labelledby="remoteModalLabel" class="modal fade" id="remoteModal" role="dialog" tabindex="-1">
+<div class="modal-dialog">
+<div class="modal-content"></div>
+</div>
+</div>
+<!-- /.modal -->
+<hr/>
+<footer>
+<!-- Foorter baslangic-->
+<div class="container">
+<div class="row v-center">
+<p>2026 © Yükseköğretim Kurulu</p>
+</div>
+</div>
+<!-- Foorter bitis-->
+</footer>
+</div>
+<!-- 
+    ================================================== -->
+<!-- javascript dosyaları -->
+
+
+
+
+
+
+</body>
+</html>

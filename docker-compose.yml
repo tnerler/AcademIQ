@@ -4,6 +4,7 @@
 # data/cvler'e CV (.docx/.pdf) eklenince ya da silinince senkronize etmek icin:
 #   docker compose --profile index run --rm indexer
 # Proje cagrilari cagri-fetcher servisiyle her gun toplanir (docs/cagri-toplama-plan.md).
+# YOK Akademik verisi yok-worker ile guncel tutulur ("CV'ler guncel mi?" butonu ADMIN_TOKEN ister).
 
 x-backend: &backend
   build: .
@@ -75,6 +76,14 @@ services:
     container_name: academiq-cagri-fetcher
     restart: unless-stopped
     command: ["python", "-m", "backend.cagrilar.worker"]
+
+  # YOK Akademik guncellik kontrolu: CV'ler sayfasindaki "CV'ler guncel mi?" ve haftalik tam tarama
+  # (ilk acilista data/yok/pirireis_akademisyenler.json son bilinen durum olarak yuklenir)
+  yok-worker:
+    <<: *backend
+    container_name: academiq-yok-worker
+    restart: unless-stopped
+    command: ["python", "-m", "backend.yok.worker"]
 
   # CV klasoru senkronizasyonu: yalnizca yeni/degisen CV'ler islenir (varsayilan "up" ile calismaz)
   indexer:

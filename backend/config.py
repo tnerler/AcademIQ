@@ -26,6 +26,7 @@ class Settings(BaseSettings):
     # --- OpenAI ---
     openai_api_key: str
     llm_model: str = "gpt-4o-mini"
+    gerekce_model: str = "gpt-4.1-mini"  # eslestirme gerekcesi: uzun CV metninde satir bulma 4o-mini'de zayif
     embedding_model: str = "text-embedding-3-large"
     embedding_dim: int = 1536  # pgvector HNSW en fazla 2000 boyutu destekler
     embedding_batch_size: int = 128
@@ -39,7 +40,9 @@ class Settings(BaseSettings):
     semantic_top_k: int = 50
     rrf_k: int = 60
     chunks_per_academic: int = 3  # akademisyen skoru = en iyi N chunk'in RRF ortalamasi + profil
-    result_count: int = 5
+    kanit_karakter_butcesi: int = 24000  # gerekce icin hoca basina CV metni (~7k token; skorlamayi etkilemez)
+    result_count: int = 20  # eslestirmede donen hoca sayisi (her biri icin bir LLM gerekcesi)
+    bana_uygun_sonuc: int = 5  # "Bana Uygun"da donen cagri sayisi
 
     # --- Dosyalar ---
     cv_dir: Path = PROJECT_ROOT / "data" / "cvler"  # ana CV klasoru (.docx / .pdf); index_cvs ile senkronize
@@ -59,6 +62,13 @@ class Settings(BaseSettings):
     cagri_belirsiz_kontrol_gun: int = 90  # tarihi belirsiz cagrilar bu kadar gun yeniden kontrol edilir
     cagri_otomatik_eslestirme: bool = True
     admin_token: str | None = None      # "Kaynaklari tara" icin; tanimli degilse tetikleme kapali
+
+    # --- YOK Akademik (backend/yok) ---
+    yok_universite: str = "PİRİ REİS ÜNİVERSİTESİ"
+    yok_ilk_veri: Path = PROJECT_ROOT / "data" / "yok" / "pirireis_akademisyenler.json"  # tablo bossa yuklenir
+    yok_tam_tarama_gunu: int = 6        # haftalik tam tarama: 0=Pazartesi ... 6=Pazar
+    yok_tam_tarama_saati: int = 3       # Turkiye saati
+    yok_tarama_bekleme_dk: int = 5      # elle taramalar arasi en az bu kadar dakika (YOK'un bot korumasi icin)
 
     # --- CV yukleme ---
     cv_upload_dir: Path = PROJECT_ROOT / "data" / "uploads" / "cvler"

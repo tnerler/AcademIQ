@@ -8,10 +8,10 @@ wheels/
 
 # Virtual environments
 .venv
+.pytest_cache/
 
 data/
 .env
-data/
 docs/
 
 
@@ -25,3 +25,4 @@ frontend/TUANA_SORULAR.md
 
 academiq.sql
 data.zip
+zips/

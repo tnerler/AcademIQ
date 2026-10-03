@@ -48,7 +48,7 @@ export function render(el) {
           </div>
           <div class="row-actions">
             <button class="btn btn-outline" disabled>Kaydet</button>
-            <button class="btn btn-primary" disabled>Kaydet ve eşleştir</button>
+            <button class="btn btn-cta" disabled>Kaydet ve eşleştir</button>
           </div>
         </div>
 

@@ -1,4 +1,4 @@
-import { getCagrilar, getProgramlar, getTarama, tara, ApiError } from "../api.js";
+import { getCagrilar, getKaynaklar, getProgramlar, getTarama, tara, ApiError } from "../api.js";
 import { CONFIG } from "../config.js";
 import {
   esc, icon, notice, toast, durumBadge, tarihCell, tarihList, formatDateTime, displayName, HEDEF_KITLE,
@@ -11,7 +11,9 @@ const TOKEN_KEY = "academiq.adminToken";
 const POLL_MS = 5000;
 
 // Filtreler modül seviyesinde: sayfadan çıkıp dönünce korunur.
-const filters = { q: "", durum: "acik", hedef_kitle: "", program: "" };
+const VARSAYILAN = { q: "", durum: "acik", hedef_kitle: "", kaynak: "", program: "", son_gun: "" };
+const filters = { ...VARSAYILAN };
+const SON_GUN = [["", "Tümü"], ["7", "7 gün içinde"], ["30", "30 gün içinde"], ["90", "3 ay içinde"]];
 
 let root = null;
 let cagrilar = [];
@@ -51,9 +53,16 @@ export function render(el) {
             ${[["", "Tümü"], ["akademik", "Akademik"], ["sanayi", "Sanayi"]]
               .map(([v, l]) => `<option value="${v}" ${filters.hedef_kitle === v ? "selected" : ""}>${l}</option>`).join("")}
           </select></label>
+        <label class="field"><span>Kaynak</span>
+          <select class="select" id="f-kaynak"><option value="">Tümü</option></select></label>
         <label class="field"><span>Program</span>
           <select class="select" id="f-program"><option value="">Tümü</option></select></label>
+        <label class="field"><span>Son başvuru</span>
+          <select class="select" id="f-son-gun" title="Başvurusu açık ve seçilen süre içinde kapanan çağrılar">
+            ${SON_GUN.map(([v, l]) => `<option value="${v}" ${filters.son_gun === v ? "selected" : ""}>${l}</option>`).join("")}
+          </select></label>
       </div>
+      <div class="filters-foot" id="filters-foot"></div>
       <div class="card" style="overflow:hidden">
         <div class="table-wrap">
           <table class="table">
@@ -70,13 +79,32 @@ export function render(el) {
     clearTimeout(searchTimer);
     searchTimer = setTimeout(() => { filters.q = q.value; load(); }, 300);
   });
-  for (const [id, key] of [["#f-durum", "durum"], ["#f-hedef", "hedef_kitle"], ["#f-program", "program"]]) {
+  for (const [id, key] of [["#f-hedef", "hedef_kitle"], ["#f-program", "program"]]) {
     el.querySelector(id).addEventListener("change", (e) => { filters[key] = e.target.value; load(); });
   }
+  el.querySelector("#f-durum").addEventListener("change", (e) => {
+    filters.durum = e.target.value;
+    if (filters.durum !== "acik") setFilter("son_gun", "");  // "N gün içinde kapanan" yalnızca açık çağrılar için
+    load();
+  });
+  el.querySelector("#f-son-gun").addEventListener("change", (e) => {
+    filters.son_gun = e.target.value;
+    if (filters.son_gun) setFilter("durum", "acik");
+    load();
+  });
+  el.querySelector("#f-kaynak").addEventListener("change", (e) => {
+    filters.kaynak = e.target.value;
+    loadProgramlar();  // program listesi seçili kaynağa göre daralır
+    load();
+  });
+  el.querySelector("#filters-foot").addEventListener("click", (e) => {
+    if (e.target.closest("[data-temizle]")) filtreleriTemizle();
+  });
   el.querySelector("#tara").addEventListener("click", showTaraPanel);
   el.querySelector("#ilan-rows").addEventListener("click", onRowClick);
 
-  getProgramlar().then(renderProgramlar).catch(() => {});
+  getKaynaklar().then(renderKaynaklar).catch(() => {});
+  loadProgramlar();
   refreshTarama();
   load();
 
@@ -110,15 +138,41 @@ async function load({ append = false } = {}) {
   }
 }
 
+/** Filtreyi hem durumda hem ilgili select'te değiştirir (load çağırmaz). */
+function setFilter(key, value) {
+  filters[key] = value;
+  const id = { durum: "#f-durum", hedef_kitle: "#f-hedef", kaynak: "#f-kaynak", program: "#f-program",
+    son_gun: "#f-son-gun", q: "#f-q" }[key];
+  const input = root?.querySelector(id);
+  if (input) input.value = value;
+}
+
+function filtreleriTemizle() {
+  const kaynakDegisti = filters.kaynak !== VARSAYILAN.kaynak;
+  for (const [k, v] of Object.entries(VARSAYILAN)) setFilter(k, v);
+  if (kaynakDegisti) loadProgramlar();
+  load();
+}
+
+function renderFiltersFoot() {
+  const foot = root?.querySelector("#filters-foot");
+  if (!foot) return;
+  const aktif = Object.keys(VARSAYILAN).filter((k) => filters[k] !== VARSAYILAN[k]).length;
+  foot.innerHTML = aktif
+    ? `<button class="link-btn" data-temizle>${icon("x")} Filtreleri temizle (${aktif})</button>` : "";
+}
+
 function renderRows() {
+  renderFiltersFoot();
   const rows = root.querySelector("#ilan-rows");
   root.querySelector("#ilan-sub").textContent =
-    `${toplam} çağrı${CONFIG.USE_MOCK ? " · örnek veri" : ""} · TÜBİTAK duyurularından otomatik toplanır`;
+    `${toplam} çağrı${CONFIG.USE_MOCK ? " · örnek veri" : ""} · TÜBİTAK, TÜSEB, kalkınma ajansları ve AB Başkanlığı duyurularından otomatik toplanır`;
 
   if (!cagrilar.length) {
     rows.innerHTML = `<tr><td colspan="4"><div class="empty" style="padding:28px">
       ${icon("file")}<h3>Bu filtrelere uyan çağrı yok</h3>
-      <p class="small">Filtreleri değiştirin ya da <b>Durum: Tümü</b> seçin.</p></div></td></tr>`;
+      <p class="small">Filtreleri değiştirin ya da <button class="link-btn" data-temizle>filtreleri temizleyin</button>.</p>
+      </div></td></tr>`;
   } else {
     rows.innerHTML = cagrilar.map(rowHtml).join("");
   }
@@ -140,7 +194,7 @@ function rowHtml(c) {
           ${durumBadge(c.durum)}<span class="badge ${cls}">${esc(label)}</span>${uygun}
         </div>
       </td>
-      <td class="hide-sm small">${esc([c.program_kodu, c.program_adi].filter(Boolean).join(" · ") || "—")}</td>
+      <td class="hide-sm small">${esc([c.kaynak, c.program_kodu, c.program_adi].filter(Boolean).join(" · ") || "—")}</td>
       <td>${tarihCell(c)}</td>
       <td class="hide-sm"><a class="btn btn-soft" href="#/eslestir/cagri/${encodeURIComponent(c.id)}" data-stop>Eşleştir</a></td>
     </tr>
@@ -148,9 +202,9 @@ function rowHtml(c) {
 }
 
 function detailRow(c) {
-  const meta = [["Bütçe", c.butce], ["Süre", c.sure]].filter(([, v]) => v);
+  const meta = [["Proje başına bütçe", c.butce], ["Program bütçesi", c.program_butcesi], ["Süre", c.sure]].filter(([, v]) => v);
   return `
-    <tr class="detail-row"><td colspan="4" style="background:var(--surface-2)">
+    <tr class="detail-row"><td colspan="4">
       <div class="stack" style="gap:14px;max-width:900px">
         ${c.ozet ? `<p class="small" style="line-height:1.6;margin:0">${esc(c.ozet)}</p>` : ""}
         <div><div class="section-label">Tarihler</div>${tarihList(c.tarihler)}</div>
@@ -161,7 +215,7 @@ function detailRow(c) {
           <p class="small" style="margin:0">${c.uygun_hocalar.map((h, i) => `${i + 1}. ${esc(displayName(h))}`).join(" · ")}</p></div>` : ""}
         <div style="display:flex;gap:14px;flex-wrap:wrap;align-items:center">
           <a class="btn btn-primary" href="#/eslestir/cagri/${encodeURIComponent(c.id)}">${icon("swap")} Eşleştir</a>
-          <a class="link-btn" href="${esc(c.url)}" target="_blank" rel="noopener">${icon("external")} TÜBİTAK duyurusu</a>
+          ${c.url && c.url !== "#" ? `<a class="link-btn" href="${esc(c.url)}" target="_blank" rel="noopener">${icon("external")} ${esc(c.kaynak)} duyurusu</a>` : ""}
           ${(c.baglantilar ?? []).map((b) => `<a class="link-btn" href="${esc(b.url)}" target="_blank" rel="noopener">${esc(b.etiket)}</a>`).join("")}
         </div>
         ${c.guncelleme_urller?.length ? `<p class="tiny muted" style="margin:0">Bu çağrı ${c.guncelleme_urller.length} güncelleme duyurusuyla değişti (tarihler günceldir).</p>` : ""}
@@ -170,6 +224,7 @@ function detailRow(c) {
 }
 
 function onRowClick(e) {
+  if (e.target.closest("[data-temizle]")) return filtreleriTemizle();
   if (e.target.closest("a, button")) return;
   const tr = e.target.closest("tr[data-id]");
   if (!tr) return;
@@ -179,11 +234,31 @@ function onRowClick(e) {
   renderRows();
 }
 
+let programRequestId = 0;
+
+function loadProgramlar() {
+  const id = ++programRequestId;
+  getProgramlar({ kaynak: filters.kaynak })
+    .then((programlar) => { if (id === programRequestId) renderProgramlar(programlar); })
+    .catch(() => {});
+}
+
 function renderProgramlar(programlar) {
   const select = root?.querySelector("#f-program");
   if (!select) return;
+  if (filters.program && !programlar.some((p) => p.kod === filters.program)) {
+    filters.program = "";  // seçili program yeni kaynakta yok
+    load();
+  }
   select.innerHTML = `<option value="">Tümü</option>${programlar.map((p) =>
     `<option value="${esc(p.kod)}" ${filters.program === p.kod ? "selected" : ""}>${esc(p.kod)}${p.ad ? ` · ${esc(p.ad)}` : ""} (${p.sayi})</option>`).join("")}`;
+}
+
+function renderKaynaklar(kaynaklar) {
+  const select = root?.querySelector("#f-kaynak");
+  if (!select) return;
+  select.innerHTML = `<option value="">Tümü</option>${kaynaklar.map((k) =>
+    `<option value="${esc(k.kaynak)}" ${filters.kaynak === k.kaynak ? "selected" : ""}>${esc(k.kaynak)} (${k.acik} açık)</option>`).join("")}`;
 }
 
 // ---------------------------------------------------------------------------
@@ -207,7 +282,7 @@ function showTaraPanel() {
     <form class="card card-pad" id="tara-form" style="display:flex;gap:12px;align-items:flex-end;flex-wrap:wrap;margin-bottom:20px">
       <label class="field" style="flex:1;min-width:220px"><span>Yönetici anahtarı</span>
         <input class="input" type="password" id="tara-token" value="${esc(readToken())}" autocomplete="off" required></label>
-      <button class="btn btn-primary" type="submit">Taramayı başlat</button>
+      <button class="btn btn-cta" type="submit">Taramayı başlat</button>
       <p class="tiny muted" style="flex-basis:100%;margin:0">Kaynaklar her gün otomatik taranır. Elle tarama yeni duyuruları hemen işler (birkaç dakika sürebilir).</p>
     </form>`;
   const input = panel.querySelector("#tara-token");

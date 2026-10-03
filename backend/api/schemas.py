@@ -40,7 +40,8 @@ class HocaDetay(HocaOzet):
 class IlanMeta(BaseModel):
     """Aramaya girmeyen, yalnizca arayuzde gosterilen ilan bilgileri."""
     son_basvuru: str | None = Field(None, description="Son başvuru tarihi (ilanda yazdığı gibi), yoksa null")
-    butce: str | None = Field(None, description="Destek üst limiti / bütçe, yoksa null")
+    butce: str | None = Field(None, description="Proje başına destek/bütçe üst sınırı, yoksa null. Programın toplam "
+                                               "bütçesi ya da geçmiş dönemlerin istatistikleri değil")
     sure: str | None = Field(None, description="Proje süresi, yoksa null")
     yer: str | None = Field(None, description="Projenin yürütüleceği yer, yoksa null")
     basvuru_kosullari: list[str] = Field([], description="Unvan, deneyim, ekip büyüklüğü gibi başvuru koşulları")
@@ -68,7 +69,7 @@ class Kanit(BaseModel):
     bolum: str = Field(description="Bölüm anahtarı: arastirma, egitim, yayinlar, projeler, yonetilen_tezler, dersler")
     bolum_etiketi: str
     maddeler: list[str] = Field(description="CV'den alınan, eşleşmeyi destekleyen başlıklar")
-    skor: float = Field(description="Chunk'ın RRF skoru (0-100, en iyi chunk'a göre)")
+    skor: float = Field(description="Kanıt chunk'ının ilanla benzerliği (0-100, eşleştirmedeki en benzer kanıta göre)")
 
 
 class EslesmeSonucu(BaseModel):
@@ -85,11 +86,36 @@ class MatchResponse(BaseModel):
     olusturuldu: datetime | None = Field(None, description="Kayıtlı çağrı eşleştirmesiyse hesaplandığı zaman")
 
 
+# --- Sohbet (Eslestir sayfasindaki asistan, backend/sohbet) -------------------
+
+SohbetTuru = Literal["ilan", "alan", "hoca", "sohbet"]
+
+
+class SohbetMesaji(BaseModel):
+    rol: Literal["kullanici", "asistan"]
+    metin: str
+
+
+class SohbetIstegi(BaseModel):
+    mesaj: str
+    gecmis: list[SohbetMesaji] = Field([], description="Önceki mesajlar (eskiden yeniye); son birkaçı kullanılır")
+
+
+class SohbetYaniti(BaseModel):
+    tur: SohbetTuru = Field(description="ilan: yapıştırılan ilan metni, alan: konu/alan araması, "
+                                        "hoca: belirli bir akademisyen hakkında soru, sohbet: diğer")
+    metin: str = Field(description="Asistanın yanıtı (sade Markdown: **kalın**, '- ' madde)")
+    eslesme: MatchResponse | None = Field(None, description="ilan / alan: eşleşen hocalar")
+    hoca: HocaOzet | None = Field(None, description="hoca: yanıtın ait olduğu akademisyen")
+    adaylar: list[HocaOzet] = Field([], description="hoca: isim belirsizse ya da bulunamadıysa olası akademisyenler")
+
+
 # --- Proje cagrilari (otomatik toplanan, docs/cagri-toplama-plan.md) ---------
 
 class CagriTarihi(BaseModel):
     etiket: str = Field(description="Tarihin ne oldugu, ör. '1. Aşama uluslararası başvuru'")
     tarih: date
+    basvuru: bool = Field(True, description="Basvuru tarihi mi (sonuc, proje baslangici vb. false; son_tarih'e katilmaz)")
 
 
 class Baglanti(BaseModel):
@@ -114,7 +140,8 @@ class CagriOzet(BaseModel):
 
 
 class CagriDetay(CagriOzet):
-    butce: str | None = None
+    butce: str | None = Field(None, description="Proje başına destek üst sınırı")
+    program_butcesi: str | None = Field(None, description="Programın toplam bütçesi")
     sure: str | None = None
     basvuru_kosullari: list[str] = []
     baglantilar: list[Baglanti] = []
@@ -132,6 +159,12 @@ class ProgramOzet(BaseModel):
     sayi: int
 
 
+class KaynakOzet(BaseModel):
+    kaynak: str
+    sayi: int
+    acik: int = Field(description="Basvurusu acik cagri sayisi")
+
+
 class CekmeCalismasi(BaseModel):
     id: int
     tur: Literal["zamanli", "elle", "backfill"]
@@ -146,6 +179,66 @@ class CekmeCalismasi(BaseModel):
 class TaramaDurumu(BaseModel):
     son: CekmeCalismasi | None = Field(None, description="En son istenen çalışma")
     son_basarili: datetime | None = Field(None, description="En son başarıyla biten çalışmanın bitiş zamanı")
+
+
+# --- YOK Akademik guncellik kontrolu (backend/yok) -----------------------------
+
+class YokKisi(BaseModel):
+    author_id: str
+    ad_soyad: str
+    unvan: str = ""
+    bolum: str = ""
+
+
+class YokAlanFarki(BaseModel):
+    alan: str = Field(description="unvan, bolum, anahtar_kelimeler ...")
+    eski: str | list[str] | None = None
+    yeni: str | list[str] | None = None
+
+
+class YokBolumFarki(BaseModel):
+    eklenen: list[str] = []
+    silinen: list[str] = []
+
+
+class YokDegisen(YokKisi):
+    alanlar: list[YokAlanFarki] = []
+    bolumler: dict[str, YokBolumFarki] = Field(
+        {}, description="makaleler, bildiriler, kitaplar, projeler, dersler, yonetilen_tezler, patentler, "
+                        "akademik_gorevler, ogrenim")
+
+
+class YokRapor(BaseModel):
+    eklenen: list[YokKisi] = []
+    ayrilan: list[YokKisi] = []
+    degisen: list[YokDegisen] = []
+
+
+class YokIlerleme(BaseModel):
+    asama: Literal["liste", "detay"]
+    yapilan: int = 0
+    toplam: int | None = None
+
+
+class YokTarama(BaseModel):
+    id: int
+    tur: Literal["hizli", "tam"]
+    kaynak: Literal["elle", "zamanli"]
+    durum: Literal["bekliyor", "calisiyor", "bitti", "hata"]
+    istendi: datetime
+    basladi: datetime | None = None
+    bitti: datetime | None = None
+    ilerleme: YokIlerleme | None = None
+    ozet: dict[str, int] | None = Field(None, description="{eklenen, ayrilan, degisen}")
+    rapor: YokRapor | None = Field(None, description="Tarama sürerken o ana kadarki fark")
+    hata: str | None = None
+
+
+class YokTaramaDurumu(BaseModel):
+    aktif: YokTarama | None = Field(None, description="Bekleyen ya da süren tarama")
+    son_biten: YokTarama | None = Field(None, description="En son biten (ya da hata veren) tarama")
+    son_tam: datetime | None = Field(None, description="En son başarılı tam taramanın bitişi")
+    akademisyen_sayisi: int = Field(description="Son bilinen durumdaki aktif hoca sayısı")
 
 
 class BanaUygunCagri(BaseModel):
